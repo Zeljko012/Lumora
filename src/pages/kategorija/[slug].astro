@@ -8,6 +8,7 @@ import {
   productsByCategory,
   type Category,
 } from "../../data/products";
+import { withBase } from "../../lib/url";
 
 export function getStaticPaths() {
   return (["vaze", "figure", "svecnjaci", "dom"] as Category[]).map((slug) => ({
@@ -48,9 +49,9 @@ const ld = {
       <h1>{meta.heading}</h1>
       <p>{meta.intro}</p>
       <nav class="chips" aria-label="Kategorije">
-        <a href="/prodavnica">Sve</a>
-        <a href={`/kategorija/${slug}`} aria-current="page">{meta.title}</a>
-        {otherCats.map((c) => <a href={`/kategorija/${c}`}>{CATEGORY_META[c].title}</a>)}
+        <a href={withBase("/prodavnica")}>Sve</a>
+        <a href={withBase(`/kategorija/${slug}`)} aria-current="page">{meta.title}</a>
+        {otherCats.map((c) => <a href={withBase(`/kategorija/${c}`)}>{CATEGORY_META[c].title}</a>)}
       </nav>
     </header>
 

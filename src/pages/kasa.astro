@@ -2,6 +2,7 @@
 import Base from "../layouts/Base.astro";
 import Breadcrumbs from "../components/Breadcrumbs.astro";
 import { SITE } from "../data/site";
+import { withBase } from "../lib/url";
 ---
 
 <Base title="Porudžbina" description="Završite porudžbinu — plaćanje pouzećem." noindex>
@@ -77,8 +78,8 @@ import { SITE } from "../data/site";
         <label class="consent">
           <input type="checkbox" name="consent" required />
           <span>
-            Saglasan/na sam sa <a href="/uslovi-koriscenja" target="_blank">uslovima korišćenja</a>
-            i <a href="/politika-privatnosti" target="_blank">politikom privatnosti</a>.
+            Saglasan/na sam sa <a href={withBase("/uslovi-koriscenja")} target="_blank">uslovima korišćenja</a>
+            i <a href={withBase("/politika-privatnosti")} target="_blank">politikom privatnosti</a>.
           </span>
         </label>
 
@@ -98,13 +99,13 @@ import { SITE } from "../data/site";
         <div class="co__line"><span>Dostava</span><span data-shipping></span></div>
         <div class="co__line co__total"><span>Ukupno</span><span class="price" data-total></span></div>
         <p class="co__hint" data-ship-hint></p>
-        <a href="/korpa" class="co__edit">← Izmeni korpu</a>
+        <a href={withBase("/korpa")} class="co__edit">← Izmeni korpu</a>
       </aside>
     </div>
 
     <div class="empty" data-empty hidden>
       <p>Korpa je prazna — nema šta da se poruči.</p>
-      <a href="/prodavnica" class="btn">Pogledaj proizvode</a>
+      <a href={withBase("/prodavnica")} class="btn">Pogledaj proizvode</a>
     </div>
   </div>
 </Base>
@@ -290,6 +291,7 @@ import { SITE } from "../data/site";
   import { getCart, cartSubtotal, clearCart } from "../lib/cart";
   import { money, toFreeShipping, amount } from "../lib/format";
   import { SITE } from "../data/site";
+  import { withBase } from "../lib/url";
 
   const coEl = document.querySelector<HTMLElement>("[data-co]")!;
   const emptyEl = document.querySelector<HTMLElement>("[data-empty]")!;
@@ -419,7 +421,7 @@ import { SITE } from "../data/site";
     submitBtn.disabled = true;
     submitBtn.textContent = "Šaljem…";
     try {
-      const res = await fetch("/api/order", {
+      const res = await fetch(withBase("/api/order"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
@@ -434,7 +436,7 @@ import { SITE } from "../data/site";
         );
       } catch {}
       clearCart();
-      location.href = "/hvala";
+      location.href = withBase("/hvala");
     } catch (err) {
       formError.hidden = false;
       formError.textContent =

@@ -2,6 +2,7 @@
 import type { Product } from "../data/products";
 import { PRODUCT_COLORS, colorLabel } from "../data/site";
 import { money, discountPct } from "../lib/format";
+import { withBase } from "../lib/url";
 
 interface Props {
   product: Product;
@@ -10,8 +11,9 @@ interface Props {
 }
 
 const { product: p, eager = false } = Astro.props;
-const href = `/proizvod/${p.slug}`;
+const href = withBase(`/proizvod/${p.slug}`);
 const img = p.images[0];
+const imgSrc = withBase(img?.src ?? "");
 const off = discountPct(p.price, p.compareAt);
 const defaultColor = p.colors[0] ?? "white";
 const swatches = PRODUCT_COLORS.filter((c) => p.colors.includes(c.key));
@@ -21,7 +23,7 @@ const swatches = PRODUCT_COLORS.filter((c) => p.colors.includes(c.key));
   <a class="pc__media" href={href}>
     {off && <span class="pill pill--sale pc__badge">−{off}%</span>}
     <img
-      src={img?.src}
+      src={imgSrc}
       alt={img?.alt ?? p.name}
       width="600"
       height="750"
@@ -38,7 +40,7 @@ const swatches = PRODUCT_COLORS.filter((c) => p.colors.includes(c.key));
       data-price={p.price}
       data-color={defaultColor}
       data-color-label={colorLabel(defaultColor)}
-      data-image={img?.src}
+      data-image={imgSrc}
       aria-label={`Dodaj „${p.name}” u korpu`}
     >
       Dodaj u korpu

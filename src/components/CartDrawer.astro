@@ -1,5 +1,6 @@
 ---
 import { SITE } from "../data/site";
+import { withBase } from "../lib/url";
 ---
 
 <div class="cart-backdrop" data-cart-backdrop hidden></div>
@@ -30,7 +31,7 @@ import { SITE } from "../data/site";
   <div class="cd-body" data-cart-body>
     <p class="cd-empty" data-cart-empty>
       Korpa je prazna.
-      <a href="/prodavnica">Pogledaj proizvode →</a>
+      <a href={withBase("/prodavnica")}>Pogledaj proizvode →</a>
     </p>
     <ul class="cd-list" data-cart-list></ul>
   </div>
@@ -41,8 +42,8 @@ import { SITE } from "../data/site";
       <span class="price" data-cart-subtotal></span>
     </div>
     <p class="cd-note">Dostava se plaća kuriru pri preuzimanju. {SITE.paymentNote}</p>
-    <a href="/kasa" class="btn btn--block btn--lg">Nastavi na porudžbinu</a>
-    <a href="/korpa" class="cd-viewcart">Prikaži celu korpu</a>
+    <a href={withBase("/kasa")} class="btn btn--block btn--lg">Nastavi na porudžbinu</a>
+    <a href={withBase("/korpa")} class="cd-viewcart">Prikaži celu korpu</a>
   </footer>
 </aside>
 
@@ -269,6 +270,7 @@ import { SITE } from "../data/site";
   } from "../lib/cart";
   import { money, toFreeShipping, amount } from "../lib/format";
   import { SITE } from "../data/site";
+  import { withBase } from "../lib/url";
 
   const drawer = document.querySelector<HTMLElement>("[data-cart-drawer]")!;
   const backdrop = document.querySelector<HTMLElement>("[data-cart-backdrop]")!;
@@ -339,7 +341,7 @@ import { SITE } from "../data/site";
 
     for (const it of items) {
       const node = tpl.content.firstElementChild!.cloneNode(true) as HTMLElement;
-      const href = `/proizvod/${it.slug}`;
+      const href = withBase(`/proizvod/${it.slug}`);
       node.querySelectorAll<HTMLAnchorElement>("[data-href]").forEach((a) => (a.href = href));
       const img = node.querySelector<HTMLImageElement>("[data-img]")!;
       img.src = it.image;

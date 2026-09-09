@@ -1,10 +1,10 @@
 ---
 import { NAV, SITE } from "../data/site";
 import { money } from "../lib/format";
+import { withBase, isCurrentPath } from "../lib/url";
 
 const path = Astro.url.pathname;
-const isActive = (href: string) =>
-  href === "/" ? path === "/" : path.startsWith(href);
+const isActive = (href: string) => isCurrentPath(path, href);
 ---
 
 <div class="shipbar">
@@ -15,12 +15,12 @@ const isActive = (href: string) =>
 
 <header class="site-header" data-header>
   <div class="container header-inner">
-    <a href="/" class="brand" aria-label={`${SITE.name} — početna`}>{SITE.name}</a>
+    <a href={withBase("/")} class="brand" aria-label={`${SITE.name} — početna`}>{SITE.name}</a>
 
     <nav class="nav" aria-label="Glavni meni">
       {
         NAV.map((item) => (
-          <a href={item.href} aria-current={isActive(item.href) ? "page" : undefined}>
+          <a href={withBase(item.href)} aria-current={isActive(item.href) ? "page" : undefined}>
             {item.label}
           </a>
         ))
@@ -40,7 +40,7 @@ const isActive = (href: string) =>
         </svg>
       </button>
 
-      <a href="/korpa" class="icon-btn cart-btn" data-cart-open aria-label="Otvori korpu">
+      <a href={withBase("/korpa")} class="icon-btn cart-btn" data-cart-open aria-label="Otvori korpu">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
           <path d="M6 8h12l-1 12H7L6 8Z"></path>
           <path d="M9 8V6a3 3 0 0 1 6 0v2"></path>
@@ -66,12 +66,12 @@ const isActive = (href: string) =>
   <nav id="mobile-nav" class="mobile-nav" data-mobile-nav hidden aria-label="Meni">
     {
       NAV.map((item) => (
-        <a href={item.href} aria-current={isActive(item.href) ? "page" : undefined}>
+        <a href={withBase(item.href)} aria-current={isActive(item.href) ? "page" : undefined}>
           {item.label}
         </a>
       ))
     }
-    <a href="/prodavnica" class="mobile-nav__all">Svi proizvodi →</a>
+    <a href={withBase("/prodavnica")} class="mobile-nav__all">Svi proizvodi →</a>
   </nav>
 </header>
 

@@ -1,5 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
+import { withBase } from "../lib/url";
 ---
 
 <Base title="Stranica nije pronađena" description="Tražena stranica ne postoji." noindex>
@@ -10,8 +11,8 @@ import Base from "../layouts/Base.astro";
       Možda je link zastareo ili je proizvod uklonjen. Probajte odavde:
     </p>
     <div class="nf__cta">
-      <a href="/" class="btn">Naslovna</a>
-      <a href="/prodavnica" class="btn btn--ghost">Svi proizvodi</a>
+      <a href={withBase("/")} class="btn">Naslovna</a>
+      <a href={withBase("/prodavnica")} class="btn btn--ghost">Svi proizvodi</a>
     </div>
   </div>
 </Base>

@@ -1,5 +1,6 @@
 ---
 import { SITE } from "../data/site";
+import { withBase } from "../lib/url";
 
 interface Crumb {
   label: string;
@@ -24,11 +25,15 @@ const ld = {
 
 <nav class="crumbs" aria-label="Putanja">
   <ol>
-    <li><a href="/">Početna</a></li>
+    <li><a href={withBase("/")}>Početna</a></li>
     {
       items.map((c) => (
         <li>
-          {c.href ? <a href={c.href}>{c.label}</a> : <span aria-current="page">{c.label}</span>}
+          {c.href ? (
+            <a href={withBase(c.href)}>{c.label}</a>
+          ) : (
+            <span aria-current="page">{c.label}</span>
+          )}
         </li>
       ))
     }

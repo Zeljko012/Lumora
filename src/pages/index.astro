@@ -10,10 +10,11 @@ import {
   type Category,
 } from "../data/products";
 import { money } from "../lib/format";
+import { withBase } from "../lib/url";
 
 const best = bestsellers();
 const featured = featuredProducts().slice(0, 2);
-const heroImg = "/images/products/donut-vaza/1-lg.webp";
+const heroImg = withBase("/images/products/donut-vaza/1-lg.webp");
 
 const cats: Category[] = ["vaze", "figure", "svecnjaci", "dom"];
 const catCounts = Object.fromEntries(
@@ -43,8 +44,8 @@ const websiteLd = {
         dovršeni rukom — svaki komad zasebno, u 7 boja.
       </p>
       <div class="hero__cta">
-        <a href="/prodavnica" class="btn btn--lg">Pogledaj sve proizvode</a>
-        <a href="/o-nama" class="btn btn--ghost btn--lg">Kako nastaju</a>
+        <a href={withBase("/prodavnica")} class="btn btn--lg">Pogledaj sve proizvode</a>
+        <a href={withBase("/o-nama")} class="btn btn--ghost btn--lg">Kako nastaju</a>
       </div>
       <ul class="hero__trust">
         <li>Izrada u Srbiji</li>
@@ -67,7 +68,7 @@ const websiteLd = {
   <section class="section container">
     <div class="section-head">
       <h2>Najtraženije</h2>
-      <a href="/prodavnica">Cela ponuda →</a>
+      <a href={withBase("/prodavnica")}>Cela ponuda →</a>
     </div>
     <div class="product-grid">
       {best.map((p, i) => <ProductCard product={p} eager={i < 4} />)}
@@ -82,7 +83,7 @@ const websiteLd = {
     <nav class="bands" aria-label="Kolekcije">
       {
         cats.map((c, i) => (
-          <a class="band" href={`/kategorija/${c}`}>
+          <a class="band" href={withBase(`/kategorija/${c}`)}>
             <span class="band__i">0{i + 1}</span>
             <span class="band__n">{CATEGORY_META[c].title}</span>
             <span class="band__c">{catCounts[c]} {catCounts[c] === 1 ? "komad" : "komada"}</span>
@@ -100,9 +101,9 @@ const websiteLd = {
     <div class="feature">
       {
         featured.map((p) => (
-          <a class="feature__card" href={`/proizvod/${p.slug}`}>
+          <a class="feature__card" href={withBase(`/proizvod/${p.slug}`)}>
             <div class="feature__img">
-              <img src={p.images[0].src} alt={p.images[0].alt} width="800" height="800" loading="lazy" />
+              <img src={withBase(p.images[0].src)} alt={p.images[0].alt} width="800" height="800" loading="lazy" />
             </div>
             <div class="feature__body">
               <h3>{p.name}</h3>

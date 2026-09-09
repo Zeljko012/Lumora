@@ -1,6 +1,8 @@
 ---
 import { SITE } from "../data/site";
+import { withBase } from "../lib/url";
 const year = new Date().getFullYear();
+const L = withBase;
 ---
 
 <footer class="site-footer">
@@ -16,22 +18,22 @@ const year = new Date().getFullYear();
     <nav aria-label="Prodavnica">
       <h4>Prodavnica</h4>
       <ul>
-        <li><a href="/kategorija/vaze">Vaze</a></li>
-        <li><a href="/kategorija/figure">Figure</a></li>
-        <li><a href="/kategorija/svecnjaci">Svećnjaci</a></li>
-        <li><a href="/kategorija/dom">Dom</a></li>
-        <li><a href="/prodavnica">Svi proizvodi</a></li>
+        <li><a href={L("/kategorija/vaze")}>Vaze</a></li>
+        <li><a href={L("/kategorija/figure")}>Figure</a></li>
+        <li><a href={L("/kategorija/svecnjaci")}>Svećnjaci</a></li>
+        <li><a href={L("/kategorija/dom")}>Dom</a></li>
+        <li><a href={L("/prodavnica")}>Svi proizvodi</a></li>
       </ul>
     </nav>
 
     <nav aria-label="Pomoć">
       <h4>Pomoć</h4>
       <ul>
-        <li><a href="/dostava-i-povracaj">Dostava i povraćaj</a></li>
-        <li><a href="/cesta-pitanja">Česta pitanja</a></li>
-        <li><a href="/kontakt">Kontakt</a></li>
-        <li><a href="/uslovi-koriscenja">Uslovi korišćenja</a></li>
-        <li><a href="/politika-privatnosti">Politika privatnosti</a></li>
+        <li><a href={L("/dostava-i-povracaj")}>Dostava i povraćaj</a></li>
+        <li><a href={L("/cesta-pitanja")}>Česta pitanja</a></li>
+        <li><a href={L("/kontakt")}>Kontakt</a></li>
+        <li><a href={L("/uslovi-koriscenja")}>Uslovi korišćenja</a></li>
+        <li><a href={L("/politika-privatnosti")}>Politika privatnosti</a></li>
       </ul>
     </nav>
 

@@ -6,6 +6,7 @@ import { SITE } from "../../data/site";
 import { PRODUCTS, CATEGORY_META, type Category } from "../../data/products";
 import { priceRange } from "../../data/products";
 import { money } from "../../lib/format";
+import { withBase } from "../../lib/url";
 
 const cats: Category[] = ["vaze", "figure", "svecnjaci", "dom"];
 const [minP, maxP] = priceRange();
@@ -38,8 +39,8 @@ const itemListLd = {
         Besplatna dostava preko {money(SITE.freeShippingThreshold)}.
       </p>
       <nav class="chips" aria-label="Kategorije">
-        <a href="/prodavnica" aria-current="page">Sve</a>
-        {cats.map((c) => <a href={`/kategorija/${c}`}>{CATEGORY_META[c].title}</a>)}
+        <a href={withBase("/prodavnica")} aria-current="page">Sve</a>
+        {cats.map((c) => <a href={withBase(`/kategorija/${c}`)}>{CATEGORY_META[c].title}</a>)}
       </nav>
     </header>
 

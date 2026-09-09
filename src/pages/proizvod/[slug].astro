@@ -10,6 +10,7 @@ import {
   CATEGORY_META,
 } from "../../data/products";
 import { money, discountPct } from "../../lib/format";
+import { withBase } from "../../lib/url";
 
 export function getStaticPaths() {
   return PRODUCTS.map((p) => ({ params: { slug: p.slug } }));
@@ -17,7 +18,7 @@ export function getStaticPaths() {
 
 const { slug } = Astro.params as { slug: string };
 const p = getProduct(slug);
-if (!p) return Astro.redirect("/404");
+if (!p) return Astro.redirect(withBase("/404"));
 
 const cat = CATEGORY_META[p.category];
 const off = discountPct(p.price, p.compareAt);
@@ -65,6 +66,12 @@ const specs = p.dimension
   .split("\n")
   .map((s) => s.trim())
   .filter(Boolean);
+
+const gallery = p.images.map((im) => ({
+  src: withBase(im.src),
+  zoom: withBase(im.src.replace(".webp", "-lg.webp")),
+  alt: im.alt,
+}));
 ---
 
 <Base
@@ -90,25 +97,25 @@ const specs = p.dimension
           {off && <span class="pill pill--sale gallery__badge">−{off}%</span>}
           <img
             data-main
-            src={p.images[0]?.src}
-            data-zoom={p.images[0]?.src.replace(".webp", "-lg.webp")}
-            alt={p.images[0]?.alt}
+            src={gallery[0]?.src}
+            data-zoom={gallery[0]?.zoom}
+            alt={gallery[0]?.alt}
             width="1000"
             height="1250"
             fetchpriority="high"
           />
         </div>
         {
-          p.images.length > 1 && (
+          gallery.length > 1 && (
             <div class="gallery__thumbs" role="tablist" aria-label="Slike proizvoda">
-              {p.images.map((im, i) => (
+              {gallery.map((im, i) => (
                 <button
                   type="button"
                   role="tab"
                   aria-selected={i === 0 ? "true" : "false"}
                   data-thumb
                   data-src={im.src}
-                  data-zoom={im.src.replace(".webp", "-lg.webp")}
+                  data-zoom={im.zoom}
                   data-alt={im.alt}
                 >
                   <img src={im.src} alt="" width="120" height="150" loading="lazy" />
@@ -139,7 +146,7 @@ const specs = p.dimension
           data-slug={p.slug}
           data-name={p.name}
           data-price={p.price}
-          data-image={p.images[0]?.src}
+          data-image={gallery[0]?.src}
         >
           <fieldset class="colors">
             <legend>Boja: <b data-color-name>{swatches[0]?.label}</b></legend>
@@ -199,7 +206,7 @@ const specs = p.dimension
             <p>
               Dostava kurirskom službom po celoj Srbiji, {SITE.deliveryTime} od potvrde
               porudžbine. Plaćanje pouzećem. Zamena ili povraćaj u roku od 14 dana —
-              detalji na strani <a href="/dostava-i-povracaj">Dostava i povraćaj</a>.
+              detalji na strani <a href={withBase("/dostava-i-povracaj")}>Dostava i povraćaj</a>.
             </p>
           </details>
         </div>
@@ -235,7 +242,7 @@ const specs = p.dimension
     <section class="section">
       <div class="section-head">
         <h2>Moglo bi da vam se svidi</h2>
-        <a href={`/kategorija/${p.category}`}>Sve iz kategorije {cat.title} →</a>
+        <a href={withBase(`/kategorija/${p.category}`)}>Sve iz kategorije {cat.title} →</a>
       </div>
       <div class="product-grid">
         {related.map((r) => <ProductCard product={r} />)}

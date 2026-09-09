@@ -1,6 +1,7 @@
 ---
 import Base from "../layouts/Base.astro";
 import { SITE } from "../data/site";
+import { withBase } from "../lib/url";
 ---
 
 <Base title="Hvala na porudžbini" description="Porudžbina je primljena." noindex>
@@ -23,8 +24,8 @@ import { SITE } from "../data/site";
     </dl>
     <p class="thanks__pay">Plaćanje: <strong>pouzećem</strong> — {SITE.paymentNote}</p>
     <div class="thanks__cta">
-      <a href="/prodavnica" class="btn">Nastavi kupovinu</a>
-      <a href="/kontakt" class="btn btn--ghost">Kontakt</a>
+      <a href={withBase("/prodavnica")} class="btn">Nastavi kupovinu</a>
+      <a href={withBase("/kontakt")} class="btn btn--ghost">Kontakt</a>
     </div>
   </div>
 </Base>

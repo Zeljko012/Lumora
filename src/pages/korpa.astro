@@ -2,6 +2,7 @@
 import Base from "../layouts/Base.astro";
 import Breadcrumbs from "../components/Breadcrumbs.astro";
 import { SITE } from "../data/site";
+import { withBase } from "../lib/url";
 ---
 
 <Base
@@ -27,15 +28,15 @@ import { SITE } from "../data/site";
           <span data-ship></span>
         </div>
         <p class="summary__hint" data-ship-hint></p>
-        <a href="/kasa" class="btn btn--block btn--lg">Nastavi na porudžbinu</a>
-        <a href="/prodavnica" class="summary__cont">← Nastavi kupovinu</a>
+        <a href={withBase("/kasa")} class="btn btn--block btn--lg">Nastavi na porudžbinu</a>
+        <a href={withBase("/prodavnica")} class="summary__cont">← Nastavi kupovinu</a>
         <p class="summary__pay">{SITE.paymentNote}</p>
       </aside>
     </div>
 
     <div class="empty" data-empty hidden>
       <p>Vaša korpa je prazna.</p>
-      <a href="/prodavnica" class="btn">Pogledaj proizvode</a>
+      <a href={withBase("/prodavnica")} class="btn">Pogledaj proizvode</a>
     </div>
   </div>
 </Base>
@@ -221,6 +222,7 @@ import { SITE } from "../data/site";
   import { getCart, setQty, removeItem, cartSubtotal, onCartChange, type CartItem } from "../lib/cart";
   import { money, toFreeShipping, amount } from "../lib/format";
   import { SITE } from "../data/site";
+  import { withBase } from "../lib/url";
 
   const cartEl = document.querySelector<HTMLElement>("[data-cart]")!;
   const emptyEl = document.querySelector<HTMLElement>("[data-empty]")!;
@@ -238,7 +240,7 @@ import { SITE } from "../data/site";
 
     for (const it of items) {
       const node = tpl.content.firstElementChild!.cloneNode(true) as HTMLElement;
-      const href = `/proizvod/${it.slug}`;
+      const href = withBase(`/proizvod/${it.slug}`);
       node.querySelectorAll<HTMLAnchorElement>("[data-href]").forEach((a) => (a.href = href));
       const img = node.querySelector<HTMLImageElement>("[data-img]")!;
       img.src = it.image;
