@@ -1,0 +1,129 @@
+---
+import { SITE } from "../data/site";
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container foot-grid">
+    <div class="foot-brand">
+      <div class="mark">{SITE.name}</div>
+      <p>{SITE.tagline}. Dizajnirano i izrađeno u {SITE.address.city}u.</p>
+      <a href={SITE.social.instagram} rel="me noopener" target="_blank" class="ig">
+        Instagram {SITE.social.instagramHandle}
+      </a>
+    </div>
+
+    <nav aria-label="Prodavnica">
+      <h4>Prodavnica</h4>
+      <ul>
+        <li><a href="/kategorija/vaze">Vaze</a></li>
+        <li><a href="/kategorija/figure">Figure</a></li>
+        <li><a href="/kategorija/svecnjaci">Svećnjaci</a></li>
+        <li><a href="/kategorija/dom">Dom</a></li>
+        <li><a href="/prodavnica">Svi proizvodi</a></li>
+      </ul>
+    </nav>
+
+    <nav aria-label="Pomoć">
+      <h4>Pomoć</h4>
+      <ul>
+        <li><a href="/dostava-i-povracaj">Dostava i povraćaj</a></li>
+        <li><a href="/cesta-pitanja">Česta pitanja</a></li>
+        <li><a href="/kontakt">Kontakt</a></li>
+        <li><a href="/uslovi-koriscenja">Uslovi korišćenja</a></li>
+        <li><a href="/politika-privatnosti">Politika privatnosti</a></li>
+      </ul>
+    </nav>
+
+    <nav aria-label="Kontakt">
+      <h4>Kontakt</h4>
+      <ul>
+        <li><a href={`mailto:${SITE.email}`}>{SITE.email}</a></li>
+        <li><a href={SITE.phoneHref}>{SITE.phone}</a></li>
+        <li>{SITE.address.city}, {SITE.address.country}</li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="container foot-legal">
+    <span>© {year} {SITE.name}. Sva prava zadržana.</span>
+    <span>Plaćanje pouzećem · Dostava po celoj Srbiji</span>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--line);
+    background: var(--surface);
+    padding-block: clamp(2.5rem, 6vw, 3.75rem);
+    margin-top: clamp(3rem, 8vw, 5rem);
+  }
+  .foot-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 2rem;
+  }
+  .foot-brand .mark {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+  }
+  .foot-brand p {
+    color: var(--ink-soft);
+    font-size: 0.9rem;
+    max-width: 32ch;
+    margin-top: 0.5rem;
+  }
+  .foot-brand .ig {
+    display: inline-block;
+    margin-top: 0.75rem;
+    font-size: 0.88rem;
+    text-decoration: none;
+    color: var(--accent);
+  }
+  h4 {
+    font: 500 0.76rem/1 var(--font-mono);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin: 0 0 1rem;
+  }
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+  li,
+  li a {
+    font-size: 0.9rem;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  li a:hover {
+    color: var(--accent);
+  }
+  .foot-legal {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 2.5rem;
+    padding-top: 1.4rem;
+    border-top: 1px solid var(--line);
+    color: var(--ink-soft);
+    font-size: 0.8rem;
+  }
+  @media (max-width: 760px) {
+    .foot-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media (max-width: 440px) {
+    .foot-grid {
+      grid-template-columns: 1fr;
+      gap: 1.75rem;
+    }
+  }
+</style>

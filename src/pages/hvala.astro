@@ -1,0 +1,105 @@
+---
+import Base from "../layouts/Base.astro";
+import { SITE } from "../data/site";
+---
+
+<Base title="Hvala na porudžbini" description="Porudžbina je primljena." noindex>
+  <div class="container thanks">
+    <div class="thanks__icon" aria-hidden="true">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+        <circle cx="12" cy="12" r="10"></circle>
+        <path d="m8 12 3 3 5-6"></path>
+      </svg>
+    </div>
+    <h1>Hvala! Porudžbina je primljena.</h1>
+    <p class="thanks__lead" data-msg>
+      Poslali smo vam potvrdu na email. Uskoro vas kontaktiramo telefonom radi
+      potvrde termina dostave.
+    </p>
+    <dl class="thanks__meta" data-meta hidden>
+      <div><dt>Broj porudžbine</dt><dd data-id></dd></div>
+      <div><dt>Iznos</dt><dd data-total></dd></div>
+      <div><dt>Potvrda poslata na</dt><dd data-email></dd></div>
+    </dl>
+    <p class="thanks__pay">Plaćanje: <strong>pouzećem</strong> — {SITE.paymentNote}</p>
+    <div class="thanks__cta">
+      <a href="/prodavnica" class="btn">Nastavi kupovinu</a>
+      <a href="/kontakt" class="btn btn--ghost">Kontakt</a>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .thanks {
+    max-width: 560px;
+    text-align: center;
+    padding-block: clamp(2.5rem, 8vw, 5rem);
+  }
+  .thanks__icon {
+    color: var(--accent);
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+  .thanks h1 {
+    font-size: var(--step-3);
+  }
+  .thanks__lead {
+    color: var(--ink-soft);
+    margin-top: 0.75rem;
+  }
+  .thanks__meta {
+    margin: 1.75rem auto 0;
+    display: grid;
+    gap: 0.5rem;
+    text-align: left;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 1.1rem 1.25rem;
+  }
+  .thanks__meta div {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    font-size: 0.9rem;
+  }
+  .thanks__meta dt {
+    color: var(--ink-soft);
+  }
+  .thanks__meta dd {
+    margin: 0;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+  .thanks__pay {
+    margin-top: 1.25rem;
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+  }
+  .thanks__cta {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    margin-top: 1.75rem;
+    flex-wrap: wrap;
+  }
+</style>
+
+<script>
+  import { money } from "../lib/format";
+  try {
+    const raw = sessionStorage.getItem("lumora.lastOrder");
+    if (raw) {
+      const o = JSON.parse(raw);
+      const meta = document.querySelector<HTMLElement>("[data-meta]")!;
+      document.querySelector<HTMLElement>("[data-id]")!.textContent = o.id ?? "—";
+      document.querySelector<HTMLElement>("[data-total]")!.textContent = o.total
+        ? money(o.total)
+        : "—";
+      document.querySelector<HTMLElement>("[data-email]")!.textContent = o.email ?? "—";
+      meta.hidden = false;
+      sessionStorage.removeItem("lumora.lastOrder");
+    }
+  } catch {}
+</script>

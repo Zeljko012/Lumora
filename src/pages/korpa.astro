@@ -1,0 +1,270 @@
+---
+import Base from "../layouts/Base.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import { SITE } from "../data/site";
+---
+
+<Base
+  title="Korpa"
+  description="Vaša korpa u Lumora prodavnici."
+  noindex
+>
+  <div class="container">
+    <Breadcrumbs items={[{ label: "Korpa" }]} />
+    <h1 class="page-h1">Korpa</h1>
+
+    <div class="cart" data-cart hidden>
+      <ul class="cart__list" data-list></ul>
+
+      <aside class="summary">
+        <h2>Pregled</h2>
+        <div class="summary__row">
+          <span>Međuzbir</span>
+          <span class="price" data-subtotal></span>
+        </div>
+        <div class="summary__row summary__ship" data-ship-row>
+          <span>Dostava</span>
+          <span data-ship></span>
+        </div>
+        <p class="summary__hint" data-ship-hint></p>
+        <a href="/kasa" class="btn btn--block btn--lg">Nastavi na porudžbinu</a>
+        <a href="/prodavnica" class="summary__cont">← Nastavi kupovinu</a>
+        <p class="summary__pay">{SITE.paymentNote}</p>
+      </aside>
+    </div>
+
+    <div class="empty" data-empty hidden>
+      <p>Vaša korpa je prazna.</p>
+      <a href="/prodavnica" class="btn">Pogledaj proizvode</a>
+    </div>
+  </div>
+</Base>
+
+<template data-row-tpl>
+  <li class="row">
+    <a class="row__img" data-href><img data-img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="" width="90" height="112" /></a>
+    <div class="row__main">
+      <a class="row__name" data-href data-name></a>
+      <span class="row__color" data-color></span>
+      <button type="button" class="row__remove" data-remove>Ukloni</button>
+    </div>
+    <div class="qty" role="group" aria-label="Količina">
+      <button type="button" data-dec aria-label="Smanji">−</button>
+      <span data-qty>1</span>
+      <button type="button" data-inc aria-label="Povećaj">+</button>
+    </div>
+    <span class="row__price price" data-line></span>
+  </li>
+</template>
+
+<style>
+  .page-h1 {
+    font-size: var(--step-3);
+    padding-block: 0.5rem 1.5rem;
+  }
+  .cart {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 2.5rem;
+    align-items: start;
+    padding-bottom: 3rem;
+  }
+  @media (max-width: 860px) {
+    .cart {
+      grid-template-columns: 1fr;
+    }
+  }
+  .cart__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--line);
+  }
+  .row {
+    display: grid;
+    grid-template-columns: 90px 1fr auto auto;
+    gap: 1rem;
+    align-items: center;
+    padding: 1.1rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .row__img img {
+    width: 90px;
+    height: 112px;
+    object-fit: cover;
+    border-radius: 10px;
+    background: var(--surface-tint);
+  }
+  .row__name {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    text-decoration: none;
+    color: var(--ink);
+  }
+  .row__color {
+    display: block;
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    margin-top: 0.15rem;
+  }
+  .row__remove {
+    margin-top: 0.5rem;
+    background: none;
+    border: none;
+    color: var(--ink-soft);
+    font-size: 0.8rem;
+    text-decoration: underline;
+    cursor: pointer;
+    padding: 0;
+  }
+  .row__remove:hover {
+    color: var(--danger);
+  }
+  .qty {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+  }
+  .qty button {
+    width: 30px;
+    height: 34px;
+    border: none;
+    background: none;
+    color: var(--ink);
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  .qty span {
+    min-width: 1.6rem;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+    font-size: 0.9rem;
+  }
+  .row__price {
+    font-variant-numeric: tabular-nums;
+  }
+  @media (max-width: 560px) {
+    .row {
+      grid-template-columns: 72px 1fr;
+      grid-template-areas:
+        "img main"
+        "img qty"
+        "price price";
+      row-gap: 0.5rem;
+    }
+    .row__img {
+      grid-area: img;
+    }
+    .row__main {
+      grid-area: main;
+    }
+    .row .qty {
+      grid-area: qty;
+      justify-self: start;
+    }
+    .row__price {
+      grid-area: price;
+    }
+  }
+
+  .summary {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    position: sticky;
+    top: 90px;
+  }
+  .summary h2 {
+    font-size: 1.2rem;
+  }
+  .summary__row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.95rem;
+  }
+  .summary__hint {
+    font-size: 0.8rem;
+    color: var(--ink-soft);
+    margin-top: -0.25rem;
+  }
+  .summary .btn {
+    margin-top: 0.5rem;
+  }
+  .summary__cont {
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-decoration: none;
+  }
+  .summary__pay {
+    font-size: 0.76rem;
+    color: var(--ink-soft);
+    border-top: 1px solid var(--line);
+    padding-top: 0.75rem;
+  }
+  .empty {
+    padding: 4rem 0;
+    text-align: center;
+  }
+  .empty p {
+    color: var(--ink-soft);
+    margin-bottom: 1rem;
+  }
+</style>
+
+<script>
+  import { getCart, setQty, removeItem, cartSubtotal, onCartChange, type CartItem } from "../lib/cart";
+  import { money, toFreeShipping, amount } from "../lib/format";
+  import { SITE } from "../data/site";
+
+  const cartEl = document.querySelector<HTMLElement>("[data-cart]")!;
+  const emptyEl = document.querySelector<HTMLElement>("[data-empty]")!;
+  const list = document.querySelector<HTMLElement>("[data-list]")!;
+  const tpl = document.querySelector<HTMLTemplateElement>("[data-row-tpl]")!;
+  const subtotalEl = document.querySelector<HTMLElement>("[data-subtotal]")!;
+  const shipEl = document.querySelector<HTMLElement>("[data-ship]")!;
+  const shipHint = document.querySelector<HTMLElement>("[data-ship-hint]")!;
+
+  function render(items: CartItem[]) {
+    const has = items.length > 0;
+    cartEl.hidden = !has;
+    emptyEl.hidden = has;
+    list.innerHTML = "";
+
+    for (const it of items) {
+      const node = tpl.content.firstElementChild!.cloneNode(true) as HTMLElement;
+      const href = `/proizvod/${it.slug}`;
+      node.querySelectorAll<HTMLAnchorElement>("[data-href]").forEach((a) => (a.href = href));
+      const img = node.querySelector<HTMLImageElement>("[data-img]")!;
+      img.src = it.image;
+      img.alt = it.name;
+      node.querySelector<HTMLElement>("[data-name]")!.textContent = it.name;
+      node.querySelector<HTMLElement>("[data-color]")!.textContent = `Boja: ${it.colorLabel}`;
+      node.querySelector<HTMLElement>("[data-qty]")!.textContent = String(it.qty);
+      node.querySelector<HTMLElement>("[data-line]")!.textContent = money(it.price * it.qty);
+      node.querySelector("[data-dec]")!.addEventListener("click", () => setQty(it.key, it.qty - 1));
+      node.querySelector("[data-inc]")!.addEventListener("click", () => setQty(it.key, it.qty + 1));
+      node.querySelector("[data-remove]")!.addEventListener("click", () => removeItem(it.key));
+      list.appendChild(node);
+    }
+
+    const sub = cartSubtotal();
+    subtotalEl.textContent = money(sub);
+    const left = toFreeShipping(sub);
+    if (left === 0) {
+      shipEl.textContent = "Besplatno";
+      shipHint.textContent = "Ostvarili ste besplatnu dostavu.";
+    } else {
+      shipEl.textContent = `${amount(SITE.shippingFee)} ${SITE.currency}`;
+      shipHint.textContent = `Još ${amount(left)} ${SITE.currency} do besplatne dostave.`;
+    }
+  }
+
+  render(getCart());
+  onCartChange(render);
+</script>

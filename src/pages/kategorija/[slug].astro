@@ -1,0 +1,100 @@
+---
+import Base from "../../layouts/Base.astro";
+import ProductCard from "../../components/ProductCard.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import { SITE } from "../../data/site";
+import {
+  CATEGORY_META,
+  productsByCategory,
+  type Category,
+} from "../../data/products";
+
+export function getStaticPaths() {
+  return (["vaze", "figure", "svecnjaci", "dom"] as Category[]).map((slug) => ({
+    params: { slug },
+  }));
+}
+
+const { slug } = Astro.params as { slug: Category };
+const meta = CATEGORY_META[slug];
+const items = productsByCategory(slug);
+
+const otherCats = (["vaze", "figure", "svecnjaci", "dom"] as Category[]).filter(
+  (c) => c !== slug,
+);
+
+const ld = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: `${meta.title} — Lumora`,
+  numberOfItems: items.length,
+  itemListElement: items.map((p, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    url: new URL(`/proizvod/${p.slug}`, SITE.url).href,
+    name: p.name,
+  })),
+};
+---
+
+<Base
+  title={`${meta.title} — 3D dekoracije`}
+  description={meta.seoDescription}
+  jsonLd={[ld]}
+>
+  <div class="container">
+    <Breadcrumbs items={[{ label: "Prodavnica", href: "/prodavnica" }, { label: meta.title }]} />
+    <header class="listing-head">
+      <h1>{meta.heading}</h1>
+      <p>{meta.intro}</p>
+      <nav class="chips" aria-label="Kategorije">
+        <a href="/prodavnica">Sve</a>
+        <a href={`/kategorija/${slug}`} aria-current="page">{meta.title}</a>
+        {otherCats.map((c) => <a href={`/kategorija/${c}`}>{CATEGORY_META[c].title}</a>)}
+      </nav>
+    </header>
+
+    <div class="section">
+      <div class="product-grid">
+        {items.map((p, i) => <ProductCard product={p} eager={i < 4} />)}
+      </div>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .listing-head {
+    padding-block: 0.5rem 1.5rem;
+  }
+  .listing-head h1 {
+    font-size: var(--step-3);
+  }
+  .listing-head p {
+    color: var(--ink-soft);
+    margin-top: 0.5rem;
+    max-width: 62ch;
+  }
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.1rem;
+  }
+  .chips a {
+    text-decoration: none;
+    font-size: 0.85rem;
+    padding: 0.45rem 0.9rem;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    color: var(--ink);
+  }
+  .chips a:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  .chips a[aria-current="page"] {
+    background: var(--accent);
+    color: var(--accent-ink);
+    border-color: var(--accent);
+  }
+</style>

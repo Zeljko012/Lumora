@@ -1,0 +1,95 @@
+---
+import Base from "../layouts/Base.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import { SITE } from "../data/site";
+import { money } from "../lib/format";
+const updated = "2026";
+---
+
+<Base
+  title="Uslovi korišćenja"
+  description="Uslovi korišćenja i kupovine na sajtu Lumora."
+  noindex
+>
+  <div class="container">
+    <Breadcrumbs items={[{ label: "Uslovi korišćenja" }]} />
+    <article class="prose">
+      <h1>Uslovi korišćenja</h1>
+      <p><em>Poslednje ažuriranje: {updated}.</em></p>
+
+      <div class="todo">
+        ⚠️ Šablon — dopuni podacima o pravnom licu (pun naziv, matični broj, PIB,
+        adresa, kontakt) i uskladi sa Zakonom o zaštiti potrošača RS pre objave.
+      </div>
+
+      <h2>1. Opšte</h2>
+      <p>
+        Sajt {SITE.url.replace("https://", "")} i prodavnicu vodi {SITE.legalName}
+        („Prodavac”). Poručivanjem proizvoda potvrđujete da ste saglasni sa ovim
+        uslovima.
+      </p>
+
+      <h2>2. Proizvodi i cene</h2>
+      <p>
+        Svi proizvodi su ručno dovršene 3D štampane dekoracije. Cene su izražene u
+        dinarima ({SITE.currency}) i uključuju PDV ako je Prodavac u sistemu PDV-a.
+        Zadržavamo pravo izmene cena; za već potvrđene porudžbine važi cena u trenutku
+        poručivanja.
+      </p>
+
+      <h2>3. Porudžbina i plaćanje</h2>
+      <p>
+        Porudžbina se šalje putem forme na sajtu. Plaćanje je pouzećem, gotovinom
+        kuriru pri preuzimanju. Nakon slanja porudžbine dobijate potvrdu emailom;
+        ugovor je zaključen kada Prodavac potvrdi porudžbinu.
+      </p>
+
+      <h2>4. Dostava</h2>
+      <p>
+        Dostava se vrši kurirskom službom po celoj Srbiji, u roku od {SITE.deliveryTime}.
+        Poštarina iznosi {money(SITE.shippingFee)}, a besplatna je za porudžbine preko
+        {money(SITE.freeShippingThreshold)}.
+      </p>
+
+      <h2>5. Pravo na odustanak</h2>
+      <p>
+        Potrošač ima pravo da odustane od ugovora u roku od 14 dana od prijema robe,
+        bez navođenja razloga, u skladu sa Zakonom o zaštiti potrošača. Proizvod mora
+        biti nekorišćen i u originalnom pakovanju. Troškove vraćanja snosi potrošač,
+        osim kod oštećene ili pogrešno isporučene robe.
+      </p>
+
+      <h2>6. Reklamacije</h2>
+      <p>
+        Reklamacije se podnose na <a href={`mailto:${SITE.email}`}>{SITE.email}</a> uz
+        broj porudžbine i opis. Prodavac odgovara u roku od 8 dana od prijema
+        reklamacije.
+      </p>
+
+      <h2>7. Odgovornost</h2>
+      <p>
+        Proizvodi su dekorativni. Vaze nisu vodootporne. Svećnjaci se koriste sa
+        čajnim svećicama u držaču; ne ostavljati upaljenu sveću bez nadzora.
+      </p>
+
+      <h2>8. Kontakt</h2>
+      <p>{SITE.legalName}, {SITE.address.city}, {SITE.address.country} · {SITE.email}</p>
+    </article>
+  </div>
+</Base>
+
+<style>
+  .prose {
+    padding-block: 0.5rem 2rem;
+  }
+  .prose h1 {
+    font-size: var(--step-3);
+  }
+  .todo {
+    background: color-mix(in srgb, var(--clay) 15%, transparent);
+    border: 1px solid var(--clay);
+    border-radius: 10px;
+    padding: 0.8rem 1rem;
+    font-size: 0.85rem;
+  }
+</style>

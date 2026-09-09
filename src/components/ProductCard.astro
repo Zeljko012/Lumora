@@ -1,0 +1,188 @@
+---
+import type { Product } from "../data/products";
+import { PRODUCT_COLORS, colorLabel } from "../data/site";
+import { money, discountPct } from "../lib/format";
+
+interface Props {
+  product: Product;
+  /** prioritetno učitavanje slike (za prve u gridu) */
+  eager?: boolean;
+}
+
+const { product: p, eager = false } = Astro.props;
+const href = `/proizvod/${p.slug}`;
+const img = p.images[0];
+const off = discountPct(p.price, p.compareAt);
+const defaultColor = p.colors[0] ?? "white";
+const swatches = PRODUCT_COLORS.filter((c) => p.colors.includes(c.key));
+---
+
+<article class="pc">
+  <a class="pc__media" href={href}>
+    {off && <span class="pill pill--sale pc__badge">−{off}%</span>}
+    <img
+      src={img?.src}
+      alt={img?.alt ?? p.name}
+      width="600"
+      height="750"
+      loading={eager ? "eager" : "lazy"}
+      fetchpriority={eager ? "high" : "auto"}
+      decoding="async"
+    />
+    <button
+      type="button"
+      class="pc__add"
+      data-quick-add
+      data-slug={p.slug}
+      data-name={p.name}
+      data-price={p.price}
+      data-color={defaultColor}
+      data-color-label={colorLabel(defaultColor)}
+      data-image={img?.src}
+      aria-label={`Dodaj „${p.name}” u korpu`}
+    >
+      Dodaj u korpu
+    </button>
+  </a>
+
+  <div class="pc__body">
+    <div class="pc__swatches" aria-hidden="true">
+      {swatches.map((c) => <span style={`background:${c.hex}`} title={c.label}></span>)}
+    </div>
+    <h3 class="pc__name"><a href={href}>{p.name}</a></h3>
+    <p class="pc__spec">{p.dimension.replace(":", "")} · Eko PLA</p>
+    <p class="pc__price">
+      {
+        p.compareAt && (
+          <span class="price__old">{money(p.compareAt)}</span>
+        )
+      }
+      <span class:list={["price", { "price__now--sale": !!p.compareAt }]}>{money(p.price)}</span>
+    </p>
+  </div>
+</article>
+
+<style>
+  .pc {
+    display: flex;
+    flex-direction: column;
+  }
+  .pc__media {
+    position: relative;
+    display: block;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--surface-tint);
+    border: 1px solid var(--line);
+    aspect-ratio: 4 / 5;
+  }
+  .pc__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+  .pc__media:hover img {
+    transform: scale(1.04);
+  }
+  .pc__badge {
+    position: absolute;
+    top: 0.6rem;
+    left: 0.6rem;
+    z-index: 2;
+  }
+  .pc__add {
+    position: absolute;
+    left: 0.6rem;
+    right: 0.6rem;
+    bottom: 0.6rem;
+    padding: 0.7rem 1rem;
+    border: none;
+    border-radius: 999px;
+    background: var(--ground);
+    color: var(--ink);
+    font: 600 0.85rem/1 var(--font-body);
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(0.4rem);
+    transition:
+      opacity 0.18s ease,
+      transform 0.18s ease,
+      background-color 0.18s ease;
+  }
+  .pc__media:hover .pc__add,
+  .pc__media:focus-within .pc__add {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .pc__add:hover {
+    background: var(--accent);
+    color: var(--accent-ink);
+  }
+  @media (hover: none) {
+    .pc__add {
+      opacity: 1;
+      transform: none;
+      position: static;
+      margin-top: 0.5rem;
+      background: var(--surface);
+      border: 1px solid var(--line-strong);
+    }
+  }
+
+  .pc__body {
+    padding-top: 0.7rem;
+  }
+  .pc__swatches {
+    display: flex;
+    gap: 0.25rem;
+    margin-bottom: 0.4rem;
+  }
+  .pc__swatches span {
+    width: 12px;
+    height: 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+  }
+  .pc__name {
+    font-size: 1.05rem;
+  }
+  .pc__name a {
+    text-decoration: none;
+  }
+  .pc__name a:hover {
+    color: var(--accent);
+  }
+  .pc__spec {
+    font: 500 0.72rem/1.3 var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--ink-soft);
+    margin-top: 0.25rem;
+  }
+  .pc__price {
+    margin-top: 0.4rem;
+  }
+</style>
+
+<script>
+  import { addItem } from "../lib/cart";
+
+  document.addEventListener("click", (e) => {
+    const btn = (e.target as HTMLElement).closest<HTMLElement>("[data-quick-add]");
+    if (!btn) return;
+    e.preventDefault();
+    addItem({
+      slug: btn.dataset.slug!,
+      name: btn.dataset.name!,
+      price: Number(btn.dataset.price),
+      color: btn.dataset.color!,
+      colorLabel: btn.dataset.colorLabel!,
+      image: btn.dataset.image!,
+    });
+    window.dispatchEvent(new CustomEvent("lumora:added"));
+    window.dispatchEvent(
+      new CustomEvent("lumora:toast", { detail: `„${btn.dataset.name}” dodato u korpu` }),
+    );
+  });
+</script>

@@ -1,0 +1,590 @@
+---
+import Base from "../../layouts/Base.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import ProductCard from "../../components/ProductCard.astro";
+import { SITE, PRODUCT_COLORS } from "../../data/site";
+import {
+  PRODUCTS,
+  getProduct,
+  relatedProducts,
+  CATEGORY_META,
+} from "../../data/products";
+import { money, discountPct } from "../../lib/format";
+
+export function getStaticPaths() {
+  return PRODUCTS.map((p) => ({ params: { slug: p.slug } }));
+}
+
+const { slug } = Astro.params as { slug: string };
+const p = getProduct(slug);
+if (!p) return Astro.redirect("/404");
+
+const cat = CATEGORY_META[p.category];
+const off = discountPct(p.price, p.compareAt);
+const swatches = PRODUCT_COLORS.filter((c) => p.colors.includes(c.key));
+const related = relatedProducts(p, 4);
+const url = new URL(`/proizvod/${p.slug}`, SITE.url).href;
+
+const productLd = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  name: p.name,
+  description: p.seoDescription,
+  image: p.images.map((im) => new URL(im.src, SITE.url).href),
+  sku: p.slug,
+  brand: { "@type": "Brand", name: SITE.name },
+  category: cat.title,
+  material: "PLA",
+  color: swatches.map((c) => c.label),
+  offers: {
+    "@type": "Offer",
+    url,
+    priceCurrency: SITE.currency,
+    price: p.price,
+    availability: "https://schema.org/InStock",
+    itemCondition: "https://schema.org/NewCondition",
+    seller: { "@type": "Organization", name: SITE.name },
+    shippingDetails: {
+      "@type": "OfferShippingDetails",
+      shippingRate: {
+        "@type": "MonetaryAmount",
+        value: p.price >= SITE.freeShippingThreshold ? 0 : SITE.shippingFee,
+        currency: SITE.currency,
+      },
+      shippingDestination: { "@type": "DefinedRegion", addressCountry: "RS" },
+      deliveryTime: {
+        "@type": "ShippingDeliveryTime",
+        handlingTime: { "@type": "QuantitativeValue", minValue: 1, maxValue: 2, unitCode: "DAY" },
+        transitTime: { "@type": "QuantitativeValue", minValue: 2, maxValue: 4, unitCode: "DAY" },
+      },
+    },
+  },
+};
+
+const specs = p.dimension
+  .split("\n")
+  .map((s) => s.trim())
+  .filter(Boolean);
+---
+
+<Base
+  title={p.seoTitle}
+  description={p.seoDescription}
+  image={p.images[0]?.src}
+  type="product"
+  jsonLd={[productLd]}
+>
+  <div class="container">
+    <Breadcrumbs
+      items={[
+        { label: "Prodavnica", href: "/prodavnica" },
+        { label: cat.title, href: `/kategorija/${p.category}` },
+        { label: p.name },
+      ]}
+    />
+
+    <div class="pdp">
+      <!-- GALERIJA -->
+      <div class="gallery" data-gallery>
+        <div class="gallery__main">
+          {off && <span class="pill pill--sale gallery__badge">−{off}%</span>}
+          <img
+            data-main
+            src={p.images[0]?.src}
+            data-zoom={p.images[0]?.src.replace(".webp", "-lg.webp")}
+            alt={p.images[0]?.alt}
+            width="1000"
+            height="1250"
+            fetchpriority="high"
+          />
+        </div>
+        {
+          p.images.length > 1 && (
+            <div class="gallery__thumbs" role="tablist" aria-label="Slike proizvoda">
+              {p.images.map((im, i) => (
+                <button
+                  type="button"
+                  role="tab"
+                  aria-selected={i === 0 ? "true" : "false"}
+                  data-thumb
+                  data-src={im.src}
+                  data-zoom={im.src.replace(".webp", "-lg.webp")}
+                  data-alt={im.alt}
+                >
+                  <img src={im.src} alt="" width="120" height="150" loading="lazy" />
+                </button>
+              ))}
+            </div>
+          )
+        }
+      </div>
+
+      <!-- INFO -->
+      <div class="info">
+        <p class="info__cat eyebrow">{cat.title}</p>
+        <h1>{p.name}</h1>
+
+        <p class="info__price">
+          {p.compareAt && <span class="price__old">{money(p.compareAt)}</span>}
+          <span class:list={["price", "info__now", { "price__now--sale": !!p.compareAt }]}>
+            {money(p.price)}
+          </span>
+        </p>
+
+        <p class="info__lead">{p.lead}</p>
+
+        <form
+          class="buy"
+          data-buy
+          data-slug={p.slug}
+          data-name={p.name}
+          data-price={p.price}
+          data-image={p.images[0]?.src}
+        >
+          <fieldset class="colors">
+            <legend>Boja: <b data-color-name>{swatches[0]?.label}</b></legend>
+            <div class="colors__grid">
+              {
+                swatches.map((c, i) => (
+                  <label class="swatch" style={`--sw:${c.hex}`} title={c.label}>
+                    <input
+                      type="radio"
+                      name="color"
+                      value={c.key}
+                      data-label={c.label}
+                      checked={i === 0}
+                      required
+                    />
+                    <span aria-hidden="true" />
+                    <span class="visually-hidden">{c.label}</span>
+                  </label>
+                ))
+              }
+            </div>
+          </fieldset>
+
+          <div class="buy__row">
+            <div class="qty" role="group" aria-label="Količina">
+              <button type="button" data-dec aria-label="Smanji količinu">−</button>
+              <input type="number" data-qty value="1" min="1" max="20" inputmode="numeric" aria-label="Količina" />
+              <button type="button" data-inc aria-label="Povećaj količinu">+</button>
+            </div>
+            <button type="submit" class="btn btn--lg buy__add">Dodaj u korpu</button>
+          </div>
+        </form>
+
+        <ul class="usp">
+          <li>Poklon pakovanje — besplatno</li>
+          <li>Izrada u Srbiji, {SITE.deliveryTime}</li>
+          <li>{SITE.paymentNote}</li>
+          <li>Eko PLA — biorazgradiv materijal</li>
+        </ul>
+
+        <div class="acc">
+          <details open>
+            <summary>Detalji</summary>
+            <ul class="specs">
+              {specs.map((s) => <li>{s}</li>)}
+              <li>Materijal: Eko PLA (polimlečna kiselina) — biorazgradiv</li>
+              <li>Izrada: precizna 3D štampa, ručno dovršavanje</li>
+              <li>Namena: suvo cveće, pampas trava ili samostalna skulptura</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Za koga je</summary>
+            <p>{p.forWhom}</p>
+          </details>
+          <details>
+            <summary>Dostava i povraćaj</summary>
+            <p>
+              Dostava kurirskom službom po celoj Srbiji, {SITE.deliveryTime} od potvrde
+              porudžbine. Plaćanje pouzećem. Zamena ili povraćaj u roku od 14 dana —
+              detalji na strani <a href="/dostava-i-povracaj">Dostava i povraćaj</a>.
+            </p>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- OPIS -->
+    <section class="desc section">
+      <div class="desc__col">
+        <h2>O komadu</h2>
+        <p>{p.lead}</p>
+        <p>
+          Lumora {p.name} nastaje preciznom 3D štampom, sloj po sloj, sve dok ne dobije
+          konačnu formu koja spaja moderan dizajn i skulpturalnu eleganciju. Svaki komad
+          je dovršen ručno u domaćoj radionici — jedinstven i trajan.
+        </p>
+        <p>
+          Najlepše izgleda u minimalističkom okruženju — ostavite mu prostor da dođe do
+          izražaja. Kombinujte sa sušenim cvećem ili pampas travom za kompletan efekat.
+        </p>
+      </div>
+      <div class="desc__col">
+        <h2>Zašto Lumora</h2>
+        <ul class="why">
+          <li>Precizna 3D izrada — tekstura i forma kakvu ne nalazite u klasičnim prodavnicama</li>
+          <li>Eko PLA materijal — biorazgradiv, otporan, bezbedan za dom</li>
+          <li>Domaća proizvodnja — svaki komad nastaje u Srbiji</li>
+          <li>Dostupno u 7 boja — bela, bež, siva, crna, roze, maslinasto zelena, crvena</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2>Moglo bi da vam se svidi</h2>
+        <a href={`/kategorija/${p.category}`}>Sve iz kategorije {cat.title} →</a>
+      </div>
+      <div class="product-grid">
+        {related.map((r) => <ProductCard product={r} />)}
+      </div>
+    </section>
+  </div>
+</Base>
+
+<style>
+  .pdp {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: clamp(1.5rem, 4vw, 3.5rem);
+    padding-block: 1rem 1.5rem;
+    align-items: start;
+  }
+  @media (max-width: 900px) {
+    .pdp {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .gallery__main {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--line);
+    background: var(--surface-tint);
+    aspect-ratio: 4 / 5;
+  }
+  .gallery__main img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    cursor: zoom-in;
+  }
+  .gallery__badge {
+    position: absolute;
+    top: 0.8rem;
+    left: 0.8rem;
+    z-index: 2;
+  }
+  .gallery__thumbs {
+    display: flex;
+    gap: 0.6rem;
+    margin-top: 0.6rem;
+  }
+  .gallery__thumbs button {
+    flex: 0 0 auto;
+    width: 72px;
+    height: 90px;
+    padding: 0;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--surface-tint);
+    cursor: pointer;
+  }
+  .gallery__thumbs button[aria-selected="true"] {
+    border-color: var(--accent);
+    outline: 1px solid var(--accent);
+  }
+  .gallery__thumbs img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .info__cat {
+    margin-bottom: 0.4rem;
+  }
+  .info h1 {
+    font-size: var(--step-3);
+  }
+  .info__price {
+    margin-top: 0.6rem;
+    font-size: 1.35rem;
+  }
+  .info__lead {
+    margin-top: 0.9rem;
+    color: var(--ink-soft);
+    max-width: 46ch;
+  }
+
+  .buy {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+  }
+  .colors {
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+  .colors legend {
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    margin-bottom: 0.5rem;
+  }
+  .colors legend b {
+    color: var(--ink);
+    font-weight: 600;
+  }
+  .colors__grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .swatch {
+    --ring: transparent;
+    display: inline-grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 999px;
+    cursor: pointer;
+    box-shadow: inset 0 0 0 2px var(--ground), 0 0 0 1.5px var(--ring);
+    background: var(--sw);
+  }
+  .swatch span[aria-hidden] {
+    display: block;
+    width: 34px;
+    height: 34px;
+    border-radius: 999px;
+    border: 1px solid rgba(0, 0, 0, 0.14);
+  }
+  .swatch input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .swatch:has(input:checked) {
+    --ring: var(--accent);
+  }
+  .swatch:has(input:focus-visible) {
+    --ring: var(--accent);
+  }
+
+  .buy__row {
+    display: flex;
+    gap: 0.75rem;
+    align-items: stretch;
+  }
+  .qty {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    padding: 0 0.25rem;
+  }
+  .qty button {
+    width: 34px;
+    height: 44px;
+    border: none;
+    background: none;
+    color: var(--ink);
+    font-size: 1.1rem;
+    cursor: pointer;
+  }
+  .qty input {
+    width: 2.5rem;
+    text-align: center;
+    border: none;
+    background: none;
+    color: var(--ink);
+    font: inherit;
+    font-variant-numeric: tabular-nums;
+    -moz-appearance: textfield;
+    appearance: textfield;
+  }
+  .qty input::-webkit-outer-spin-button,
+  .qty input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  .buy__add {
+    flex: 1;
+  }
+
+  .usp {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0 0;
+    display: grid;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+  }
+  .usp li {
+    padding-left: 1.4rem;
+    position: relative;
+    color: var(--ink-soft);
+  }
+  .usp li::before {
+    content: "✦";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+
+  .acc {
+    margin-top: 1.5rem;
+    border-top: 1px solid var(--line);
+  }
+  .acc details {
+    border-bottom: 1px solid var(--line);
+  }
+  .acc summary {
+    padding: 0.9rem 0;
+    cursor: pointer;
+    font-weight: 600;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+  }
+  .acc summary::-webkit-details-marker {
+    display: none;
+  }
+  .acc summary::after {
+    content: "+";
+    color: var(--ink-soft);
+  }
+  .acc details[open] summary::after {
+    content: "–";
+  }
+  .acc details > :not(summary) {
+    padding-bottom: 1rem;
+    color: var(--ink-soft);
+    font-size: 0.92rem;
+  }
+  .specs {
+    margin: 0;
+    padding-left: 1.1rem;
+  }
+  .specs li + li {
+    margin-top: 0.3rem;
+  }
+  .acc a {
+    color: var(--accent);
+  }
+
+  .desc {
+    display: grid;
+    grid-template-columns: 1.3fr 0.7fr;
+    gap: clamp(1.5rem, 4vw, 3rem);
+    border-top: 1px solid var(--line);
+  }
+  .desc h2 {
+    font-size: var(--step-2);
+    margin-bottom: 0.7rem;
+  }
+  .desc__col > p + p {
+    margin-top: 0.8rem;
+    color: var(--ink-soft);
+  }
+  .desc__col > p:first-of-type {
+    color: var(--ink);
+  }
+  .why {
+    margin: 0;
+    padding-left: 1.1rem;
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+  }
+  .why li + li {
+    margin-top: 0.5rem;
+  }
+  @media (max-width: 760px) {
+    .desc {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  import { addItem } from "../../lib/cart";
+
+  // ── Galerija ────────────────────────────────────────────────────────
+  const gallery = document.querySelector<HTMLElement>("[data-gallery]");
+  if (gallery) {
+    const main = gallery.querySelector<HTMLImageElement>("[data-main]")!;
+    gallery.querySelectorAll<HTMLButtonElement>("[data-thumb]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        main.src = btn.dataset.src!;
+        main.dataset.zoom = btn.dataset.zoom!;
+        main.alt = btn.dataset.alt || "";
+        gallery
+          .querySelectorAll("[data-thumb]")
+          .forEach((b) => b.setAttribute("aria-selected", "false"));
+        btn.setAttribute("aria-selected", "true");
+      });
+    });
+    main.addEventListener("click", () => {
+      const z = main.dataset.zoom;
+      if (z) window.open(z, "_blank", "noopener");
+    });
+  }
+
+  // ── Kupovina ───────────────────────────────────────────────────────
+  const form = document.querySelector<HTMLFormElement>("[data-buy]");
+  if (form) {
+    const qty = form.querySelector<HTMLInputElement>("[data-qty]")!;
+    const nameEl = form.querySelector<HTMLElement>("[data-color-name]");
+    const clamp = () => {
+      let v = parseInt(qty.value || "1", 10);
+      if (isNaN(v) || v < 1) v = 1;
+      if (v > 20) v = 20;
+      qty.value = String(v);
+      return v;
+    };
+    form.querySelector("[data-dec]")!.addEventListener("click", () => {
+      qty.value = String(Math.max(1, clamp() - 1));
+    });
+    form.querySelector("[data-inc]")!.addEventListener("click", () => {
+      qty.value = String(Math.min(20, clamp() + 1));
+    });
+    qty.addEventListener("change", clamp);
+    form.querySelectorAll<HTMLInputElement>('input[name="color"]').forEach((r) => {
+      r.addEventListener("change", () => {
+        if (nameEl && r.checked) nameEl.textContent = r.dataset.label || r.value;
+      });
+    });
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const fd = new FormData(form);
+      const color = String(fd.get("color") || "");
+      const colorInput = form.querySelector<HTMLInputElement>(
+        `input[name="color"][value="${color}"]`,
+      );
+      if (!color) {
+        window.dispatchEvent(new CustomEvent("lumora:toast", { detail: "Izaberite boju." }));
+        return;
+      }
+      addItem(
+        {
+          slug: form.dataset.slug!,
+          name: form.dataset.name!,
+          price: Number(form.dataset.price),
+          color,
+          colorLabel: colorInput?.dataset.label || color,
+          image: form.dataset.image!,
+        },
+        clamp(),
+      );
+      window.dispatchEvent(new CustomEvent("lumora:added"));
+      window.dispatchEvent(
+        new CustomEvent("lumora:toast", { detail: `„${form.dataset.name}” dodato u korpu` }),
+      );
+    });
+  }
+</script>

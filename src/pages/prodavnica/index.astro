@@ -1,0 +1,89 @@
+---
+import Base from "../../layouts/Base.astro";
+import ProductCard from "../../components/ProductCard.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import { SITE } from "../../data/site";
+import { PRODUCTS, CATEGORY_META, type Category } from "../../data/products";
+import { priceRange } from "../../data/products";
+import { money } from "../../lib/format";
+
+const cats: Category[] = ["vaze", "figure", "svecnjaci", "dom"];
+const [minP, maxP] = priceRange();
+
+const itemListLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Svi proizvodi — Lumora",
+  numberOfItems: PRODUCTS.length,
+  itemListElement: PRODUCTS.map((p, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    url: new URL(`/proizvod/${p.slug}`, SITE.url).href,
+    name: p.name,
+  })),
+};
+---
+
+<Base
+  title="Svi proizvodi"
+  description={`Kompletna ponuda Lumora — ${PRODUCTS.length} skulpturalnih 3D dekoracija: vaze, figure, svećnjaci i detalji za dom. Cene od ${money(minP)}. Dostava po celoj Srbiji.`}
+  jsonLd={[itemListLd]}
+>
+  <div class="container">
+    <Breadcrumbs items={[{ label: "Prodavnica" }]} />
+    <header class="listing-head">
+      <h1>Svi proizvodi</h1>
+      <p>
+        {PRODUCTS.length} komada, svaki u 7 boja. Cene {money(minP)}–{money(maxP)}.
+        Besplatna dostava preko {money(SITE.freeShippingThreshold)}.
+      </p>
+      <nav class="chips" aria-label="Kategorije">
+        <a href="/prodavnica" aria-current="page">Sve</a>
+        {cats.map((c) => <a href={`/kategorija/${c}`}>{CATEGORY_META[c].title}</a>)}
+      </nav>
+    </header>
+
+    <div class="section">
+      <div class="product-grid">
+        {PRODUCTS.map((p, i) => <ProductCard product={p} eager={i < 4} />)}
+      </div>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .listing-head {
+    padding-block: 0.5rem 1.5rem;
+  }
+  .listing-head h1 {
+    font-size: var(--step-3);
+  }
+  .listing-head p {
+    color: var(--ink-soft);
+    margin-top: 0.5rem;
+    max-width: 60ch;
+  }
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.1rem;
+  }
+  .chips a {
+    text-decoration: none;
+    font-size: 0.85rem;
+    padding: 0.45rem 0.9rem;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    color: var(--ink);
+  }
+  .chips a:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  .chips a[aria-current="page"] {
+    background: var(--accent);
+    color: var(--accent-ink);
+    border-color: var(--accent);
+  }
+</style>

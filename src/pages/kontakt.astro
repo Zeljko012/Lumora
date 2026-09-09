@@ -1,0 +1,122 @@
+---
+import Base from "../layouts/Base.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import { SITE } from "../data/site";
+---
+
+<Base
+  title="Kontakt"
+  description={`Kontaktirajte Lumora — ${SITE.email}, ${SITE.phone}. Odgovaramo u toku dana.`}
+>
+  <div class="container">
+    <Breadcrumbs items={[{ label: "Kontakt" }]} />
+    <div class="contact">
+      <div class="prose">
+        <h1>Kontakt</h1>
+        <p class="lead">
+          Za pitanja o proizvodima, porudžbinama ili saradnji — javite se. Trudimo se
+          da odgovorimo isti dan.
+        </p>
+        <ul class="contact__list">
+          <li>
+            <span>Email</span>
+            <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+          </li>
+          <li>
+            <span>Telefon</span>
+            <a href={SITE.phoneHref}>{SITE.phone}</a>
+          </li>
+          <li>
+            <span>Instagram</span>
+            <a href={SITE.social.instagram} target="_blank" rel="noopener">
+              {SITE.social.instagramHandle}
+            </a>
+          </li>
+          <li>
+            <span>Sedište</span>
+            <span>{SITE.address.city}, {SITE.address.country}</span>
+          </li>
+        </ul>
+        <p class="contact__note">
+          Radno vreme za poruke: ponedeljak–subota, 9–20h. Porudžbine se obrađuju i
+          vikendom.
+        </p>
+      </div>
+
+      <a class="contact__cta" href={`mailto:${SITE.email}?subject=Upit%20sa%20sajta`}>
+        <span>Napiši nam email</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+          <path d="M5 12h14M13 6l6 6-6 6"></path>
+        </svg>
+      </a>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .contact {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2rem;
+    align-items: start;
+    padding-block: 0.5rem 2.5rem;
+  }
+  @media (max-width: 700px) {
+    .contact {
+      grid-template-columns: 1fr;
+    }
+  }
+  .prose h1 {
+    font-size: var(--step-3);
+  }
+  .lead {
+    font-size: var(--step-1);
+    color: var(--ink-soft);
+    margin: 0.5rem 0 1.5rem;
+    max-width: 48ch;
+  }
+  .contact__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 0.9rem;
+  }
+  .contact__list li {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 1rem;
+    padding-bottom: 0.9rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .contact__list span:first-child {
+    font: 500 0.74rem/1.6 var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+  }
+  .contact__list a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .contact__note {
+    margin-top: 1.25rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+  }
+  .contact__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 1rem 1.4rem;
+    border-radius: 999px;
+    background: var(--accent);
+    color: var(--accent-ink);
+    text-decoration: none;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .contact__cta:hover {
+    background: var(--accent-strong);
+  }
+</style>

@@ -1,0 +1,67 @@
+---
+import Base from "../layouts/Base.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import { SITE } from "../data/site";
+import { money } from "../lib/format";
+---
+
+<Base
+  title="Dostava i povraćaj"
+  description={`Dostava po celoj Srbiji za ${SITE.deliveryTime}. Plaćanje pouzećem. Povraćaj i zamena u roku od 14 dana.`}
+>
+  <div class="container">
+    <Breadcrumbs items={[{ label: "Dostava i povraćaj" }]} />
+    <article class="prose">
+      <h1>Dostava i povraćaj</h1>
+
+      <h2>Dostava</h2>
+      <ul>
+        <li>Šaljemo kurirskom službom po celoj Srbiji.</li>
+        <li>Rok izrade i slanja: <strong>{SITE.deliveryTime}</strong> od potvrde porudžbine.</li>
+        <li>
+          Poštarina: {money(SITE.shippingFee)}; <strong>besplatno</strong> za porudžbine
+          preko {money(SITE.freeShippingThreshold)}.
+        </li>
+        <li>Poštarina se plaća kuriru, zajedno sa iznosom porudžbine.</li>
+      </ul>
+
+      <h2>Plaćanje</h2>
+      <p>
+        Plaćanje je isključivo <strong>pouzećem</strong> — gotovinom kuriru pri
+        preuzimanju pošiljke. Nema online plaćanja karticom.
+      </p>
+
+      <h2>Potvrda porudžbine</h2>
+      <p>
+        Nakon slanja porudžbine dobijate email sa svim detaljima. Kontaktiramo vas i
+        telefonom radi potvrde adrese i termina.
+      </p>
+
+      <h2>Povraćaj i zamena</h2>
+      <ul>
+        <li>Imate pravo na povraćaj u roku od <strong>14 dana</strong> od prijema, bez navođenja razloga.</li>
+        <li>Proizvod treba da bude nekorišćen i u originalnom pakovanju.</li>
+        <li>Troškove vraćanja snosi kupac, osim ako je proizvod stigao oštećen ili pogrešan.</li>
+        <li>
+          Za pokretanje povraćaja pišite na
+          <a href={`mailto:${SITE.email}`}>{SITE.email}</a> sa brojem porudžbine.
+        </li>
+      </ul>
+
+      <h2>Oštećena pošiljka</h2>
+      <p>
+        Ako proizvod stigne oštećen, javite nam se u roku od 48 sati uz fotografiju —
+        šaljemo zamenu o našem trošku.
+      </p>
+    </article>
+  </div>
+</Base>
+
+<style>
+  .prose {
+    padding-block: 0.5rem 2rem;
+  }
+  .prose h1 {
+    font-size: var(--step-3);
+  }
+</style>

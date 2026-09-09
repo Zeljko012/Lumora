@@ -1,0 +1,69 @@
+---
+import Base from "../layouts/Base.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import { SITE } from "../data/site";
+---
+
+<Base
+  title="O nama"
+  description="Lumora je domaća radionica 3D štampanih dekoracija za dom. Kako nastaju naši komadi, od digitalnog modela do ručno dovršene forme."
+>
+  <div class="container">
+    <Breadcrumbs items={[{ label: "O nama" }]} />
+    <article class="prose">
+      <h1>O nama</h1>
+      <p class="lead">
+        Lumora je mala domaća radionica iz {SITE.address.city}a. Pravimo skulpturalne
+        dekoracije za dom — vaze, figure i svećnjake — spajajući digitalni dizajn i
+        ručni završni rad.
+      </p>
+
+      <h2>Kako nastaje jedan komad</h2>
+      <p>
+        Svaka forma prvo se modeluje u 3D-u. Zatim je štampač gradi sloj po sloj, iz
+        eko PLA materijala — biljnog, biorazgradivog polimera. Štampa jednog komada
+        traje u proseku oko 48 sati. Nakon toga sledi ručni deo: brušenje, čišćenje
+        ivica i provera boje pod dnevnim svetlom. Tek onda komad ide na pakovanje.
+      </p>
+
+      <h2>Zašto baš 3D štampa</h2>
+      <p>
+        3D štampa nam dozvoljava forme i teksture kakve klasična proizvodnja teško
+        postiže — otvorene krugove, mrežaste strukture, precizna rebra. Radimo u malim
+        serijama, bez kalupa i bez viška, pa svaki komad pravimo tek kada je poručen.
+      </p>
+
+      <h2>Materijal i održavanje</h2>
+      <p>
+        PLA je otporan na svakodnevno korišćenje i bezbedan za dom. Vaze su namenjene
+        suvom cveću i pampas travi — nisu vodootporne. Čiste se suvom ili blago vlažnom
+        krpom; izbegavajte direktno sunce i izvore toplote.
+      </p>
+
+      <h2>Poručivanje i dostava</h2>
+      <p>
+        Nema online plaćanja — porudžbinu plaćate kuriru pri preuzimanju (pouzećem).
+        Šaljemo po celoj Srbiji, {SITE.deliveryTime} od potvrde. Poklon pakovanje je
+        besplatno; napišite poruku u polju „Napomena” tokom porudžbine.
+      </p>
+
+      <p>
+        Pitanja? Pišite nam na <a href={`mailto:${SITE.email}`}>{SITE.email}</a> ili
+        preko <a href={SITE.social.instagram} target="_blank" rel="noopener">Instagrama</a>.
+      </p>
+    </article>
+  </div>
+</Base>
+
+<style>
+  .prose {
+    padding-block: 0.5rem 2rem;
+  }
+  .prose h1 {
+    font-size: var(--step-3);
+  }
+  .lead {
+    font-size: var(--step-1);
+    color: var(--ink-soft);
+  }
+</style>

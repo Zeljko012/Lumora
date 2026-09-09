@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Lumora">
+  <rect width="64" height="64" rx="14" fill="#4f6f63"/>
+  <path d="M20 14h9v27a7 7 0 0 0 14 0V14h-2.5" fill="none" stroke="#f6f2e9" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="44" cy="20" r="5" fill="#f6f2e9"/>
+</svg>

@@ -1,0 +1,384 @@
+---
+import { SITE } from "../data/site";
+---
+
+<div class="cart-backdrop" data-cart-backdrop hidden></div>
+
+<aside
+  class="cart-drawer"
+  data-cart-drawer
+  hidden
+  aria-hidden="true"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Korpa"
+>
+  <header class="cd-head">
+    <h2>Korpa</h2>
+    <button type="button" class="icon-btn" data-cart-close aria-label="Zatvori korpu">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+        <path d="M6 6l12 12M18 6L6 18"></path>
+      </svg>
+    </button>
+  </header>
+
+  <div class="cd-ship" data-cart-ship hidden>
+    <div class="cd-ship__bar"><span data-cart-ship-fill></span></div>
+    <p data-cart-ship-text></p>
+  </div>
+
+  <div class="cd-body" data-cart-body>
+    <p class="cd-empty" data-cart-empty>
+      Korpa je prazna.
+      <a href="/prodavnica">Pogledaj proizvode →</a>
+    </p>
+    <ul class="cd-list" data-cart-list></ul>
+  </div>
+
+  <footer class="cd-foot" data-cart-foot hidden>
+    <div class="cd-subtotal">
+      <span>Međuzbir</span>
+      <span class="price" data-cart-subtotal></span>
+    </div>
+    <p class="cd-note">Dostava se plaća kuriru pri preuzimanju. {SITE.paymentNote}</p>
+    <a href="/kasa" class="btn btn--block btn--lg">Nastavi na porudžbinu</a>
+    <a href="/korpa" class="cd-viewcart">Prikaži celu korpu</a>
+  </footer>
+</aside>
+
+<template data-cart-item-tpl>
+  <li class="cd-item">
+    <a class="cd-item__img" data-href
+      ><img
+        data-img
+        src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+        alt=""
+        width="72"
+        height="90"
+        loading="lazy"
+    /></a>
+    <div class="cd-item__main">
+      <a class="cd-item__name" data-href data-name></a>
+      <span class="cd-item__color" data-color></span>
+      <div class="cd-item__row">
+        <div class="qty" role="group" aria-label="Količina">
+          <button type="button" data-dec aria-label="Smanji količinu">−</button>
+          <span data-qty>1</span>
+          <button type="button" data-inc aria-label="Povećaj količinu">+</button>
+        </div>
+        <span class="price" data-line></span>
+      </div>
+    </div>
+    <button type="button" class="cd-item__remove" data-remove aria-label="Ukloni iz korpe">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+    </button>
+  </li>
+</template>
+
+<style>
+  .cart-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(20, 17, 14, 0.4);
+    z-index: 90;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+  .cart-backdrop[data-open] {
+    opacity: 1;
+  }
+  .cart-drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100dvh;
+    width: min(420px, 100vw);
+    background: var(--ground);
+    border-left: 1px solid var(--line);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    transform: translateX(100%);
+    transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: var(--shadow-md);
+  }
+  .cart-drawer[data-open] {
+    transform: translateX(0);
+  }
+
+  .cd-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.1rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .cd-head h2 {
+    font-size: 1.25rem;
+  }
+
+  .cd-ship {
+    padding: 0.9rem 1.1rem;
+    border-bottom: 1px solid var(--line);
+    background: var(--surface);
+  }
+  .cd-ship__bar {
+    height: 6px;
+    border-radius: 999px;
+    background: var(--surface-tint);
+    overflow: hidden;
+  }
+  .cd-ship__bar span {
+    display: block;
+    height: 100%;
+    width: 100%;
+    transform: scaleX(0);
+    transform-origin: left;
+    background: var(--accent);
+    transition: transform 0.3s ease;
+  }
+  .cd-ship p {
+    font-size: 0.8rem;
+    color: var(--ink-soft);
+    margin-top: 0.45rem;
+  }
+
+  .cd-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0.5rem 1.1rem;
+  }
+  .cd-empty {
+    padding: 2.5rem 0;
+    text-align: center;
+    color: var(--ink-soft);
+  }
+  .cd-empty a {
+    display: block;
+    margin-top: 0.5rem;
+    color: var(--accent);
+  }
+  .cd-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .cd-item {
+    display: grid;
+    grid-template-columns: 56px 1fr auto;
+    gap: 0.75rem;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .cd-item__img img {
+    width: 56px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 8px;
+    background: var(--surface-tint);
+  }
+  .cd-item__name {
+    font-family: var(--font-display);
+    font-size: 0.98rem;
+    text-decoration: none;
+    color: var(--ink);
+  }
+  .cd-item__color {
+    display: block;
+    font-size: 0.78rem;
+    color: var(--ink-soft);
+    margin-top: 0.1rem;
+  }
+  .cd-item__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+  }
+  .qty {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+  }
+  .qty button {
+    width: 26px;
+    height: 26px;
+    border: none;
+    background: none;
+    color: var(--ink);
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 999px;
+  }
+  .qty button:hover {
+    background: var(--surface);
+  }
+  .qty span {
+    min-width: 1.5rem;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+    font-size: 0.85rem;
+  }
+  .cd-item__remove {
+    align-self: start;
+    border: none;
+    background: none;
+    color: var(--ink-soft);
+    cursor: pointer;
+    padding: 0.2rem;
+  }
+  .cd-item__remove:hover {
+    color: var(--danger);
+  }
+
+  .cd-foot {
+    border-top: 1px solid var(--line);
+    padding: 1rem 1.1rem calc(1rem + env(safe-area-inset-bottom));
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+  .cd-subtotal {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.05rem;
+  }
+  .cd-note {
+    font-size: 0.76rem;
+    color: var(--ink-soft);
+  }
+  .cd-viewcart {
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+</style>
+
+<script>
+  import {
+    getCart,
+    setQty,
+    removeItem,
+    cartCount,
+    cartSubtotal,
+    onCartChange,
+    type CartItem,
+  } from "../lib/cart";
+  import { money, toFreeShipping, amount } from "../lib/format";
+  import { SITE } from "../data/site";
+
+  const drawer = document.querySelector<HTMLElement>("[data-cart-drawer]")!;
+  const backdrop = document.querySelector<HTMLElement>("[data-cart-backdrop]")!;
+  const list = document.querySelector<HTMLElement>("[data-cart-list]")!;
+  const tpl = document.querySelector<HTMLTemplateElement>("[data-cart-item-tpl]")!;
+  const empty = document.querySelector<HTMLElement>("[data-cart-empty]")!;
+  const foot = document.querySelector<HTMLElement>("[data-cart-foot]")!;
+  const subtotalEl = document.querySelector<HTMLElement>("[data-cart-subtotal]")!;
+  const shipWrap = document.querySelector<HTMLElement>("[data-cart-ship]")!;
+  const shipFill = document.querySelector<HTMLElement>("[data-cart-ship-fill]")!;
+  const shipText = document.querySelector<HTMLElement>("[data-cart-ship-text]")!;
+
+  let lastFocus: HTMLElement | null = null;
+
+  function openDrawer() {
+    lastFocus = document.activeElement as HTMLElement;
+    drawer.hidden = false;
+    backdrop.hidden = false;
+    requestAnimationFrame(() => {
+      drawer.dataset.open = "";
+      backdrop.dataset.open = "";
+    });
+    drawer.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+    drawer.querySelector<HTMLElement>("[data-cart-close]")?.focus();
+  }
+  function closeDrawer() {
+    delete drawer.dataset.open;
+    delete backdrop.dataset.open;
+    drawer.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+    setTimeout(() => {
+      drawer.hidden = true;
+      backdrop.hidden = true;
+    }, 280);
+    lastFocus?.focus();
+  }
+
+  // otvaranje: dugme u headeru (sprečava odlazak na /korpa), i svaki [data-cart-open]
+  document.querySelectorAll<HTMLElement>("[data-cart-open]").forEach((el) => {
+    el.addEventListener("click", (e) => {
+      e.preventDefault();
+      openDrawer();
+    });
+  });
+  document.querySelectorAll("[data-cart-close]").forEach((el) =>
+    el.addEventListener("click", closeDrawer),
+  );
+  backdrop.addEventListener("click", closeDrawer);
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && drawer.dataset.open !== undefined) closeDrawer();
+  });
+
+  function updateBadges() {
+    const count = cartCount();
+    document.querySelectorAll<HTMLElement>("[data-cart-count]").forEach((b) => {
+      b.textContent = String(count);
+      b.hidden = count === 0;
+    });
+  }
+
+  function render(items: CartItem[]) {
+    list.innerHTML = "";
+    const has = items.length > 0;
+    empty.hidden = has;
+    foot.hidden = !has;
+    shipWrap.hidden = !has;
+
+    for (const it of items) {
+      const node = tpl.content.firstElementChild!.cloneNode(true) as HTMLElement;
+      const href = `/proizvod/${it.slug}`;
+      node.querySelectorAll<HTMLAnchorElement>("[data-href]").forEach((a) => (a.href = href));
+      const img = node.querySelector<HTMLImageElement>("[data-img]")!;
+      img.src = it.image;
+      img.alt = it.name;
+      node.querySelector<HTMLElement>("[data-name]")!.textContent = it.name;
+      node.querySelector<HTMLElement>("[data-color]")!.textContent = `Boja: ${it.colorLabel}`;
+      node.querySelector<HTMLElement>("[data-qty]")!.textContent = String(it.qty);
+      node.querySelector<HTMLElement>("[data-line]")!.textContent = money(it.price * it.qty);
+      node
+        .querySelector("[data-dec]")!
+        .addEventListener("click", () => setQty(it.key, it.qty - 1));
+      node
+        .querySelector("[data-inc]")!
+        .addEventListener("click", () => setQty(it.key, it.qty + 1));
+      node
+        .querySelector("[data-remove]")!
+        .addEventListener("click", () => removeItem(it.key));
+      list.appendChild(node);
+    }
+
+    const sub = cartSubtotal();
+    subtotalEl.textContent = money(sub);
+
+    const left = toFreeShipping(sub);
+    const pct = Math.min(1, sub / SITE.freeShippingThreshold);
+    shipFill.style.transform = `scaleX(${pct})`;
+    shipText.textContent =
+      left === 0
+        ? "Ostvarili ste besplatnu dostavu 🎉"
+        : `Još ${amount(left)} ${SITE.currency} do besplatne dostave`;
+
+    updateBadges();
+  }
+
+  render(getCart());
+  onCartChange(render);
+
+  // otvori korpu automatski kad se doda proizvod
+  window.addEventListener("lumora:added", openDrawer);
+  // dozvoli drugim skriptama da otvore korpu
+  window.addEventListener("lumora:cart-open", openDrawer);
+</script>

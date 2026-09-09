@@ -1,0 +1,67 @@
+---
+import { SITE } from "../data/site";
+
+interface Crumb {
+  label: string;
+  href?: string;
+}
+interface Props {
+  items: Crumb[];
+}
+const { items } = Astro.props;
+
+const ld = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [{ label: "Početna", href: "/" }, ...items].map((c, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    name: c.label,
+    ...(c.href ? { item: new URL(c.href, SITE.url).href } : {}),
+  })),
+};
+---
+
+<nav class="crumbs" aria-label="Putanja">
+  <ol>
+    <li><a href="/">Početna</a></li>
+    {
+      items.map((c) => (
+        <li>
+          {c.href ? <a href={c.href}>{c.label}</a> : <span aria-current="page">{c.label}</span>}
+        </li>
+      ))
+    }
+  </ol>
+</nav>
+<script type="application/ld+json" set:html={JSON.stringify(ld)} is:inline />
+
+<style>
+  .crumbs {
+    padding-block: 0.9rem;
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+  }
+  ol {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin: 0;
+    padding: 0;
+  }
+  li + li::before {
+    content: "/";
+    margin-right: 0.4rem;
+    color: var(--line-strong);
+  }
+  a {
+    text-decoration: none;
+  }
+  a:hover {
+    color: var(--accent);
+  }
+  [aria-current="page"] {
+    color: var(--ink);
+  }
+</style>

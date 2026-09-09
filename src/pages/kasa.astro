@@ -1,0 +1,447 @@
+---
+import Base from "../layouts/Base.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import { SITE } from "../data/site";
+---
+
+<Base title="Porudžbina" description="Završite porudžbinu — plaćanje pouzećem." noindex>
+  <div class="container">
+    <Breadcrumbs items={[{ label: "Korpa", href: "/korpa" }, { label: "Porudžbina" }]} />
+    <h1 class="page-h1">Porudžbina</h1>
+
+    <div class="co" data-co hidden>
+      <form class="co__form" data-order-form novalidate>
+        <fieldset>
+          <legend>Kontakt</legend>
+          <div class="grid2">
+            <div class="field">
+              <label for="firstName">Ime *</label>
+              <input id="firstName" name="firstName" autocomplete="given-name" required />
+              <span class="error" data-error-for="firstName"></span>
+            </div>
+            <div class="field">
+              <label for="lastName">Prezime *</label>
+              <input id="lastName" name="lastName" autocomplete="family-name" required />
+              <span class="error" data-error-for="lastName"></span>
+            </div>
+            <div class="field">
+              <label for="phone">Telefon *</label>
+              <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="06x xxx xxxx" required />
+              <span class="error" data-error-for="phone"></span>
+            </div>
+            <div class="field">
+              <label for="email">Email *</label>
+              <input id="email" name="email" type="email" autocomplete="email" placeholder="vas@email.rs" required />
+              <span class="hint">Na ovu adresu šaljemo potvrdu porudžbine.</span>
+              <span class="error" data-error-for="email"></span>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Adresa za dostavu</legend>
+          <div class="field">
+            <label for="address">Ulica i broj *</label>
+            <input id="address" name="address" autocomplete="street-address" required />
+            <span class="error" data-error-for="address"></span>
+          </div>
+          <div class="grid2">
+            <div class="field">
+              <label for="city">Grad / mesto *</label>
+              <input id="city" name="city" autocomplete="address-level2" required />
+              <span class="error" data-error-for="city"></span>
+            </div>
+            <div class="field">
+              <label for="zip">Poštanski broj *</label>
+              <input id="zip" name="zip" inputmode="numeric" autocomplete="postal-code" required />
+              <span class="error" data-error-for="zip"></span>
+            </div>
+          </div>
+          <div class="field">
+            <label for="note">Napomena (opciono)</label>
+            <textarea id="note" name="note" rows="3" placeholder="Npr. poziv pre dostave, poklon poruka…"></textarea>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Plaćanje</legend>
+          <label class="pay">
+            <input type="radio" name="payment" value="pouzecem" checked />
+            <span>
+              <b>Pouzećem</b>
+              <small>{SITE.paymentNote}</small>
+            </span>
+          </label>
+        </fieldset>
+
+        <label class="consent">
+          <input type="checkbox" name="consent" required />
+          <span>
+            Saglasan/na sam sa <a href="/uslovi-koriscenja" target="_blank">uslovima korišćenja</a>
+            i <a href="/politika-privatnosti" target="_blank">politikom privatnosti</a>.
+          </span>
+        </label>
+
+        <input type="text" name="company" tabindex="-1" autocomplete="off" class="visually-hidden" aria-hidden="true" />
+
+        <p class="form-error" data-form-error hidden></p>
+        <button type="submit" class="btn btn--lg btn--block" data-submit>
+          Potvrdi porudžbinu
+        </button>
+        <p class="co__reassure">Nema online plaćanja. Porudžbinu plaćate kuriru gotovinom.</p>
+      </form>
+
+      <aside class="co__summary">
+        <h2>Vaša porudžbina</h2>
+        <ul class="co__items" data-items></ul>
+        <div class="co__line"><span>Međuzbir</span><span class="price" data-subtotal></span></div>
+        <div class="co__line"><span>Dostava</span><span data-shipping></span></div>
+        <div class="co__line co__total"><span>Ukupno</span><span class="price" data-total></span></div>
+        <p class="co__hint" data-ship-hint></p>
+        <a href="/korpa" class="co__edit">← Izmeni korpu</a>
+      </aside>
+    </div>
+
+    <div class="empty" data-empty hidden>
+      <p>Korpa je prazna — nema šta da se poruči.</p>
+      <a href="/prodavnica" class="btn">Pogledaj proizvode</a>
+    </div>
+  </div>
+</Base>
+
+<template data-item-tpl>
+  <li>
+    <img data-img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="" width="48" height="60" />
+    <div>
+      <span data-name></span>
+      <small data-meta></small>
+    </div>
+    <span class="price" data-line></span>
+  </li>
+</template>
+
+<style>
+  .page-h1 {
+    font-size: var(--step-3);
+    padding-block: 0.5rem 1.5rem;
+  }
+  .co {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 2.5rem;
+    align-items: start;
+    padding-bottom: 3rem;
+  }
+  @media (max-width: 900px) {
+    .co {
+      grid-template-columns: 1fr;
+    }
+    .co__summary {
+      order: -1;
+    }
+  }
+
+  fieldset {
+    border: none;
+    padding: 0;
+    margin: 0 0 1.75rem;
+  }
+  legend {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    margin-bottom: 0.9rem;
+    padding: 0;
+  }
+  .grid2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  @media (max-width: 480px) {
+    .grid2 {
+      grid-template-columns: 1fr;
+    }
+  }
+  .field {
+    margin-bottom: 1rem;
+  }
+
+  .pay,
+  .consent {
+    display: flex;
+    gap: 0.6rem;
+    align-items: flex-start;
+    padding: 0.9rem;
+    border: 1px solid var(--line-strong);
+    border-radius: 12px;
+  }
+  .pay span {
+    display: flex;
+    flex-direction: column;
+  }
+  .pay small,
+  .pay b {
+    line-height: 1.4;
+  }
+  .pay small {
+    color: var(--ink-soft);
+    font-size: 0.82rem;
+  }
+  .consent {
+    border-style: dashed;
+    font-size: 0.88rem;
+  }
+  .consent a {
+    color: var(--accent);
+  }
+
+  .form-error {
+    background: color-mix(in srgb, var(--danger) 12%, transparent);
+    color: var(--danger);
+    padding: 0.7rem 0.9rem;
+    border-radius: 10px;
+    font-size: 0.88rem;
+    margin-bottom: 0.9rem;
+  }
+  .co__reassure {
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--ink-soft);
+    margin-top: 0.7rem;
+  }
+
+  .co__summary {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 1.4rem;
+    position: sticky;
+    top: 90px;
+  }
+  .co__summary h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+  .co__items {
+    list-style: none;
+    margin: 0 0 1rem;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .co__items li {
+    display: grid;
+    grid-template-columns: 48px 1fr auto;
+    gap: 0.7rem;
+    align-items: center;
+  }
+  .co__items img {
+    width: 48px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 6px;
+    background: var(--surface-tint);
+  }
+  .co__items div {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.88rem;
+  }
+  .co__items small {
+    color: var(--ink-soft);
+    font-size: 0.78rem;
+  }
+  .co__line {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.92rem;
+    padding: 0.35rem 0;
+  }
+  .co__total {
+    border-top: 1px solid var(--line);
+    margin-top: 0.4rem;
+    padding-top: 0.7rem;
+    font-size: 1.1rem;
+  }
+  .co__hint {
+    font-size: 0.78rem;
+    color: var(--ink-soft);
+    margin-top: 0.3rem;
+  }
+  .co__edit {
+    display: inline-block;
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-decoration: none;
+  }
+  .empty {
+    padding: 4rem 0;
+    text-align: center;
+  }
+  .empty p {
+    color: var(--ink-soft);
+    margin-bottom: 1rem;
+  }
+</style>
+
+<script>
+  import { getCart, cartSubtotal, clearCart } from "../lib/cart";
+  import { money, toFreeShipping, amount } from "../lib/format";
+  import { SITE } from "../data/site";
+
+  const coEl = document.querySelector<HTMLElement>("[data-co]")!;
+  const emptyEl = document.querySelector<HTMLElement>("[data-empty]")!;
+  const itemsEl = document.querySelector<HTMLElement>("[data-items]")!;
+  const tpl = document.querySelector<HTMLTemplateElement>("[data-item-tpl]")!;
+  const form = document.querySelector<HTMLFormElement>("[data-order-form]")!;
+  const submitBtn = document.querySelector<HTMLButtonElement>("[data-submit]")!;
+  const formError = document.querySelector<HTMLElement>("[data-form-error]")!;
+
+  function computeTotals() {
+    const sub = cartSubtotal();
+    const shipping = toFreeShipping(sub) === 0 ? 0 : SITE.shippingFee;
+    return { sub, shipping, total: sub + shipping };
+  }
+
+  function renderSummary() {
+    const items = getCart();
+    if (items.length === 0) {
+      coEl.hidden = true;
+      emptyEl.hidden = false;
+      return;
+    }
+    coEl.hidden = false;
+    emptyEl.hidden = true;
+
+    itemsEl.innerHTML = "";
+    for (const it of items) {
+      const n = tpl.content.firstElementChild!.cloneNode(true) as HTMLElement;
+      const img = n.querySelector<HTMLImageElement>("[data-img]")!;
+      img.src = it.image;
+      img.alt = it.name;
+      n.querySelector<HTMLElement>("[data-name]")!.textContent = it.name;
+      n.querySelector<HTMLElement>("[data-meta]")!.textContent = `${it.colorLabel} · ${it.qty} kom`;
+      n.querySelector<HTMLElement>("[data-line]")!.textContent = money(it.price * it.qty);
+      itemsEl.appendChild(n);
+    }
+
+    const { sub, shipping, total } = computeTotals();
+    document.querySelector<HTMLElement>("[data-subtotal]")!.textContent = money(sub);
+    document.querySelector<HTMLElement>("[data-shipping]")!.textContent =
+      shipping === 0 ? "Besplatno" : money(shipping);
+    document.querySelector<HTMLElement>("[data-total]")!.textContent = money(total);
+    const left = toFreeShipping(sub);
+    document.querySelector<HTMLElement>("[data-ship-hint]")!.textContent =
+      left === 0
+        ? "Besplatna dostava ostvarena."
+        : `Još ${amount(left)} ${SITE.currency} do besplatne dostave.`;
+  }
+
+  renderSummary();
+  window.addEventListener("lumora:cart", renderSummary);
+
+  const RULES: Record<string, (v: string) => string | null> = {
+    firstName: (v) => (v.trim().length >= 2 ? null : "Unesite ime."),
+    lastName: (v) => (v.trim().length >= 2 ? null : "Unesite prezime."),
+    phone: (v) =>
+      /^[0-9+\s/-]{6,}$/.test(v.trim()) ? null : "Unesite ispravan broj telefona.",
+    email: (v) =>
+      /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v.trim()) ? null : "Unesite ispravnu email adresu.",
+    address: (v) => (v.trim().length >= 4 ? null : "Unesite ulicu i broj."),
+    city: (v) => (v.trim().length >= 2 ? null : "Unesite grad ili mesto."),
+    zip: (v) => (/^\d{4,6}$/.test(v.trim()) ? null : "Poštanski broj: 4–6 cifara."),
+  };
+
+  function validate(): boolean {
+    let ok = true;
+    for (const [name, rule] of Object.entries(RULES)) {
+      const input = form.elements.namedItem(name) as HTMLInputElement;
+      const errEl = form.querySelector<HTMLElement>(`[data-error-for="${name}"]`);
+      const msg = rule(input.value);
+      input.closest(".field")?.classList.toggle("invalid", !!msg);
+      if (errEl) errEl.textContent = msg || "";
+      if (msg) ok = false;
+    }
+    const consent = form.elements.namedItem("consent") as HTMLInputElement;
+    if (!consent.checked) {
+      ok = false;
+      formError.hidden = false;
+      formError.textContent = "Morate prihvatiti uslove korišćenja.";
+    }
+    return ok;
+  }
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    formError.hidden = true;
+
+    if ((form.elements.namedItem("company") as HTMLInputElement).value) return; // honeypot
+    if (!validate()) {
+      form.querySelector<HTMLElement>(".invalid input")?.focus();
+      return;
+    }
+
+    const items = getCart();
+    if (items.length === 0) {
+      renderSummary();
+      return;
+    }
+
+    const { sub, shipping, total } = computeTotals();
+    const fd = new FormData(form);
+    const payload = {
+      customer: {
+        firstName: fd.get("firstName"),
+        lastName: fd.get("lastName"),
+        phone: fd.get("phone"),
+        email: fd.get("email"),
+        address: fd.get("address"),
+        city: fd.get("city"),
+        zip: fd.get("zip"),
+        note: fd.get("note") || "",
+      },
+      payment: "pouzecem",
+      items: items.map((i) => ({
+        slug: i.slug,
+        name: i.name,
+        color: i.colorLabel,
+        qty: i.qty,
+        price: i.price,
+        lineTotal: i.price * i.qty,
+      })),
+      totals: { subtotal: sub, shipping, total },
+      currency: SITE.currency,
+      pageUrl: location.href,
+    };
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Šaljem…";
+    try {
+      const res = await fetch("/api/order", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data.ok) throw new Error(data.error || "Greška pri slanju.");
+
+      try {
+        sessionStorage.setItem(
+          "lumora.lastOrder",
+          JSON.stringify({ id: data.orderId, total, email: payload.customer.email }),
+        );
+      } catch {}
+      clearCart();
+      location.href = "/hvala";
+    } catch (err) {
+      formError.hidden = false;
+      formError.textContent =
+        (err as Error).message +
+        " Pokušajte ponovo ili nas kontaktirajte na " + SITE.email + ".";
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Potvrdi porudžbinu";
+    }
+  });
+</script>

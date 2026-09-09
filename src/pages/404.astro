@@ -1,0 +1,45 @@
+---
+import Base from "../layouts/Base.astro";
+---
+
+<Base title="Stranica nije pronađena" description="Tražena stranica ne postoji." noindex>
+  <div class="container nf">
+    <p class="nf__code">404</p>
+    <h1>Ova stranica ne postoji</h1>
+    <p class="nf__lead">
+      Možda je link zastareo ili je proizvod uklonjen. Probajte odavde:
+    </p>
+    <div class="nf__cta">
+      <a href="/" class="btn">Naslovna</a>
+      <a href="/prodavnica" class="btn btn--ghost">Svi proizvodi</a>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .nf {
+    max-width: 520px;
+    text-align: center;
+    padding-block: clamp(3rem, 10vw, 6rem);
+  }
+  .nf__code {
+    font-family: var(--font-mono);
+    font-size: 3rem;
+    color: var(--accent);
+  }
+  .nf h1 {
+    font-size: var(--step-3);
+    margin-top: 0.5rem;
+  }
+  .nf__lead {
+    color: var(--ink-soft);
+    margin-top: 0.75rem;
+  }
+  .nf__cta {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    margin-top: 1.75rem;
+    flex-wrap: wrap;
+  }
+</style>

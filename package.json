@@ -1,0 +1,25 @@
+{
+  "name": "lumora",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "images": "node scripts/fetch-images.mjs"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.2.1",
+    "@astrojs/vercel": "^8.0.4",
+    "astro": "^5.1.5",
+    "resend": "^4.0.1"
+  },
+  "devDependencies": {
+    "sharp": "^0.33.5"
+  }
+}

@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /kasa
+Disallow: /hvala
+Disallow: /korpa
+Disallow: /api/
+
+Sitemap: https://www.homedecorlumora.com/sitemap-index.xml
