@@ -161,7 +161,7 @@ export const PRODUCTS: Product[] = [
     "compareAt": null,
     "lead": "Savršen krug sa otvorenom sredinom — skulptura koja privlači pogled i kada je prazna i kada nosi buket.",
     "forWhom": "Za ljubitelje modernog minimalizma i kao upečatljiv poklon za useljenje.",
-    "dimension": "Visina: 18 cm",
+    "dimension": "Širina: 18 cm",
     "colors": [
       "white",
       "beige",
@@ -351,7 +351,7 @@ export const PRODUCTS: Product[] = [
     "compareAt": null,
     "lead": "Spiralni presek koji se penje uvis i daje utisak pokreta i kada vaza mirno stoji.",
     "forWhom": "Za one koji vole dinamične, moderne forme.",
-    "dimension": "Visina: 18 cm",
+    "dimension": "Širina: 18 cm",
     "colors": [
       "white",
       "beige",
@@ -465,7 +465,7 @@ export const PRODUCTS: Product[] = [
     "compareAt": null,
     "lead": "Oblik zgužvane papirne kese, iznenađujuće elegantan u mat završnici — trend forma koja se traži.",
     "forWhom": "Za ljubitelje wabi-sabi estetike i nesavršenih, ručnih formi.",
-    "dimension": "Visina: 18 cm",
+    "dimension": "Širina: 18 cm",
     "colors": [
       "white",
       "beige",
@@ -693,7 +693,7 @@ export const PRODUCTS: Product[] = [
     "compareAt": null,
     "lead": "Mačka izvedena kao otvorena mrežasta struktura — puna forma, a prozračna.",
     "forWhom": "Za ljubitelje mačaka koji vole savremen, dizajnerski predmet.",
-    "dimension": "Visina: 18 cm",
+    "dimension": "Širina: 18 cm",
     "colors": [
       "white",
       "beige",
@@ -807,7 +807,7 @@ export const PRODUCTS: Product[] = [
     "compareAt": null,
     "lead": "Sklupčana mačka u snu — mekana, zaobljena silueta koja smiruje prostor.",
     "forWhom": "Poklon za svakog vlasnika mačke.",
-    "dimension": "Visina: 18 cm",
+    "dimension": "Širina: 18 cm",
     "colors": [
       "white",
       "beige",
@@ -955,7 +955,7 @@ export const PRODUCTS: Product[] = [
     "compareAt": null,
     "lead": "Zaobljeni, mehurićasti svećnjak koji staje na dlan — najpristupačniji način da uneseš Lumora detalj u dom.",
     "forWhom": "Kao sitan poklon, dodatak na sto za proslavu ili prvi komad iz kolekcije.",
-    "dimension": "Visina: 18 cm",
+    "dimension": "",
     "colors": [
       "white",
       "beige",
@@ -993,7 +993,7 @@ export const PRODUCTS: Product[] = [
     "compareAt": null,
     "lead": "Perforirana forma koja lomi plamen svećice u desetine sitnih odsjaja po zidu i plafonu.",
     "forWhom": "Za one koji vole atmosferu sveća i toplu večernju svetlost.",
-    "dimension": "Visina: 18 cm",
+    "dimension": "",
     "colors": [
       "white",
       "beige",
@@ -1031,7 +1031,7 @@ export const PRODUCTS: Product[] = [
     "compareAt": null,
     "lead": "Vertikalna rebra bacaju pravilne senke i daju svećnjaku arhitektonski, kolonadni izgled.",
     "forWhom": "Za ljubitelje čistih linija i simetrije.",
-    "dimension": "Visina: 18 cm",
+    "dimension": "",
     "colors": [
       "white",
       "beige",
@@ -1069,7 +1069,7 @@ export const PRODUCTS: Product[] = [
     "compareAt": null,
     "lead": "Uvrnuta, spiralna forma koja se poigrava sa svetlom iz svakog ugla.",
     "forWhom": "Za one koji vole skulpturalne svećnjake koji rade i kada sveća ne gori.",
-    "dimension": "Visina: 18 cm",
+    "dimension": "",
     "colors": [
       "white",
       "beige",
@@ -1107,7 +1107,7 @@ export const PRODUCTS: Product[] = [
     "compareAt": null,
     "lead": "Svećnjak u obliku srca za jednu čajnu svećicu — mali gest sa velikim značenjem.",
     "forWhom": "Poklon za Dan zaljubljenih, godišnjicu ili „bez razloga”.",
-    "dimension": "Visina: 18 cm",
+    "dimension": "",
     "colors": [
       "white",
       "beige",

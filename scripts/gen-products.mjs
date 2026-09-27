@@ -263,6 +263,26 @@ function dimensionFrom(blocks) {
   return "Visina: 18 cm";
 }
 
+// Ručne ispravke nakon pregleda pravih fotografija proizvoda:
+// - svećnjaci nisu 18 cm visoki (to je bila pogrešna podrazumevana vrednost) —
+//   dimenzija se za njih uopšte ne prikazuje dok se ne izmeri svaki posebno.
+// - ovi komadi su na fotografiji vidljivo ŠIRI nego VIŠI, pa dimenzija
+//   opisuje širinu, ne visinu (vrednost 18 cm je i dalje privremena/placeholder).
+const DIMENSION_OVERRIDE = {
+  // svećnjaci — bez dimenzije
+  "srce-svecnjak": "",
+  "rasorsivac-svecnjak": "",
+  "booble-svecnjak": "",
+  "skupljac-svetla-svecnjak": "",
+  "uvijeni-svecnjak": "",
+  // širi nego viši
+  "krofna-vaza": "Širina: 18 cm", // Donut Vaza — ring je širi nego visok
+  "spiralna-vaza": "Širina: 18 cm", // bulbast, širi u struku nego visok
+  "vrecica-vaza": "Širina: 18 cm", // oblik kese, širi nego visok
+  "maca-figura-1": "Širina: 18 cm", // Uspavana Maca — sklupčana, širi nego visok
+  "maca-mreza": "Širina: 18 cm", // Maca Mreža — istegnuta poza, širi nego visok
+};
+
 function cleanImgAlt(alt, name, i) {
   const a = (alt || "").trim();
   if (a && !a.startsWith('"')) return a;
@@ -308,7 +328,7 @@ for (const p of raw) {
     compareAt,
     lead: copy.lead,
     forWhom: copy.forWhom,
-    dimension: dimensionFrom(p.body_blocks),
+    dimension: DIMENSION_OVERRIDE[p.handle] ?? dimensionFrom(p.body_blocks),
     colors,
     images,
     seoTitle: (p.seo_title || `${name} — 3D dekoracija | Lumora`).replace(/\s+/g, " ").trim(),

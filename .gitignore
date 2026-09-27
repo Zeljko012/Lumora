@@ -8,3 +8,6 @@ dist/
 *.log
 .DS_Store
 Thumbs.db
+
+# regenerisan iz products_export_1.csv preko scripts/parse_csv.py — nije izvor istine
+scripts/products-source.json

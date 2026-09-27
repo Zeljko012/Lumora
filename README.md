@@ -102,18 +102,27 @@ Menja se `scripts/gen-products.mjs`:
 - `NAME` — prikazani naziv po proizvodu
 - `CATEGORY` — u koju kategoriju ide (`vaze` / `figure` / `svecnjaci` / `dom`)
 - `COPY` — jedinstven uvod (`lead`) i „za koga je” (`forWhom`)
+- `DIMENSION_OVERRIDE` — ručna ispravka dimenzije po proizvodu (npr. `""` da se dimenzija
+  uopšte ne prikaže, ili `"Širina: 18 cm"` kad je komad širi nego viši — CSV izvoz iz
+  Shopify-ja ima generičku/pogrešnu vrednost pa se ovde ispravlja na osnovu fotografije)
 - `FEATURED` / `BESTSELLER` — šta se ističe na naslovnoj
 - cene, boje i SEO tekstovi dolaze iz Shopify izvoza
 
-Zatim:
+Zatim, ako imaš nov CSV izvoz sa Shopify-ja (Shopify admin → Products → Export):
 
 ```bash
-node scripts/gen-products.mjs "<putanja do products.json>"
+# 1) CSV (podrazumevano C:\Users\Zeljko\Desktop\products_export_1.csv) -> scripts/products-source.json
+python scripts/parse_csv.py
+
+# 2) products-source.json -> src/data/products.ts (+ scripts/images.json)
+node scripts/gen-products.mjs scripts/products-source.json
+
+# 3) povuci nove/izmenjene slike
+npm run images
 ```
 
-`products.json` je parsiran Shopify izvoz. Ako dobiješ nov CSV izvoz sa Shopify-ja,
-prvo ga ponovo parsiraj (skripta `scripts/` u pomoćnom folderu) pa pokreni gornju komandu,
-onda `npm run images` da povučeš nove slike.
+Ako menjaš samo `NAME`/`CATEGORY`/`COPY`/`DIMENSION_OVERRIDE` (bez novog CSV-a), preskoči
+korak 1 — `scripts/products-source.json` ostaje isti, samo ponovo pokreni korak 2.
 
 ### Nove/izmenjene slike
 Slike stoje u `public/images/products/<slug>/1.webp` (i `-lg.webp` za zoom).
@@ -159,7 +168,8 @@ src/
     uslovi-koriscenja · politika-privatnosti · 404
     api/order.ts           prima porudžbinu, šalje 2 mejla (Resend)
 scripts/
-  gen-products.mjs   Shopify izvoz -> products.ts
+  parse_csv.py       Shopify CSV izvoz -> products-source.json
+  gen-products.mjs   products-source.json -> products.ts (+ ručne ispravke)
   fetch-images.mjs   skida + optimizuje slike
   gen-assets.mjs     favicon PNG + OG slika
 public/

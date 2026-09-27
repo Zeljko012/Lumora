@@ -52,7 +52,7 @@ const swatches = PRODUCT_COLORS.filter((c) => p.colors.includes(c.key));
       {swatches.map((c) => <span style={`background:${c.hex}`} title={c.label}></span>)}
     </div>
     <h3 class="pc__name"><a href={href}>{p.name}</a></h3>
-    <p class="pc__spec">{p.dimension.replace(":", "")} · Eko PLA</p>
+    <p class="pc__spec">{p.dimension ? `${p.dimension.replace(":", "")} · ` : ""}Eko PLA</p>
     <p class="pc__price">
       {
         p.compareAt && (
