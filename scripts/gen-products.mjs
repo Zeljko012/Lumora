@@ -275,10 +275,8 @@ const DIMENSION_OVERRIDE = {
   "booble-svecnjak": "",
   "skupljac-svetla-svecnjak": "",
   "uvijeni-svecnjak": "",
-  // širi nego viši
-  "krofna-vaza": "Širina: 18 cm", // Donut Vaza — ring je širi nego visok
-  "spiralna-vaza": "Širina: 18 cm", // bulbast, širi u struku nego visok
-  "vrecica-vaza": "Širina: 18 cm", // oblik kese, širi nego visok
+  // širi nego viši (potvrđeno od strane vlasnika — Donut/Spiralna/Vrećica su
+  // u stvarnosti VIŠE, pa ostaju na podrazumevanoj "Visina")
   "maca-figura-1": "Širina: 18 cm", // Uspavana Maca — sklupčana, širi nego visok
   "maca-mreza": "Širina: 18 cm", // Maca Mreža — istegnuta poza, širi nego visok
 };

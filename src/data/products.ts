@@ -161,7 +161,7 @@ export const PRODUCTS: Product[] = [
     "compareAt": null,
     "lead": "Savršen krug sa otvorenom sredinom — skulptura koja privlači pogled i kada je prazna i kada nosi buket.",
     "forWhom": "Za ljubitelje modernog minimalizma i kao upečatljiv poklon za useljenje.",
-    "dimension": "Širina: 18 cm",
+    "dimension": "Visina: 18 cm",
     "colors": [
       "white",
       "beige",
@@ -351,7 +351,7 @@ export const PRODUCTS: Product[] = [
     "compareAt": null,
     "lead": "Spiralni presek koji se penje uvis i daje utisak pokreta i kada vaza mirno stoji.",
     "forWhom": "Za one koji vole dinamične, moderne forme.",
-    "dimension": "Širina: 18 cm",
+    "dimension": "Visina: 18 cm",
     "colors": [
       "white",
       "beige",
@@ -465,7 +465,7 @@ export const PRODUCTS: Product[] = [
     "compareAt": null,
     "lead": "Oblik zgužvane papirne kese, iznenađujuće elegantan u mat završnici — trend forma koja se traži.",
     "forWhom": "Za ljubitelje wabi-sabi estetike i nesavršenih, ručnih formi.",
-    "dimension": "Širina: 18 cm",
+    "dimension": "Visina: 18 cm",
     "colors": [
       "white",
       "beige",
