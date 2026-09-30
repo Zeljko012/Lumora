@@ -35,7 +35,8 @@ export const SITE = {
   freeShippingThreshold: 6000,
   /**
    * Cena dostave ispod praga namerno nije definisana — dok se ne potpiše
-   * ugovor sa kurirskom službom, ta cena se potvrđuje telefonom po porudžbini.
+   * ugovor sa kurirskom službom, naplaćuje se po njihovoj ceni ("Po ceni
+   * kurirske službe" na sajtu).
    */
   deliveryTime: "3–5 radnih dana",
   paymentNote: "Plaćanje pouzećem — gotovinom kuriru pri preuzimanju.",

@@ -110,7 +110,7 @@ function totalsBlock(t: OrderPayload["totals"]): string {
       <tr><td style="padding:3px 10px;color:#6e6459">Međuzbir</td>
         <td style="padding:3px 10px;text-align:right">${money(t.subtotal)}</td></tr>
       <tr><td style="padding:3px 10px;color:#6e6459">Dostava</td>
-        <td style="padding:3px 10px;text-align:right">${t.shippingFree ? "Besplatno" : "Dogovara se telefonom"}</td></tr>
+        <td style="padding:3px 10px;text-align:right">${t.shippingFree ? "Besplatno" : "Po ceni kurirske službe"}</td></tr>
       <tr><td style="padding:6px 10px;font-size:16px"><strong>Ukupno</strong></td>
         <td style="padding:6px 10px;text-align:right;font-size:16px"><strong>${money(t.total)}</strong></td></tr>
     </table>`;
@@ -196,7 +196,7 @@ export const POST: APIRoute = async ({ request }) => {
       .map((i) => `- ${i.name} / ${i.color} x${i.qty} = ${money(i.lineTotal)}`)
       .join("\n") +
     `\n\nMeđuzbir: ${money(body.totals.subtotal)}\nDostava: ${
-      body.totals.shippingFree ? "Besplatno" : "Dogovara se telefonom"
+      body.totals.shippingFree ? "Besplatno" : "Po ceni kurirske službe"
     }\nUkupno: ${money(body.totals.total)}\n\n` +
     `${c.firstName} ${c.lastName}\n${c.address}\n${c.zip} ${c.city}\nTel: ${c.phone}\nEmail: ${c.email}\n` +
     (c.note ? `\nNapomena: ${c.note}\n` : "");

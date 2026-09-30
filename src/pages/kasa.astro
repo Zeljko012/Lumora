@@ -335,13 +335,13 @@ import { withBase } from "../lib/url";
     document.querySelector<HTMLElement>("[data-subtotal]")!.textContent = money(sub);
     document.querySelector<HTMLElement>("[data-shipping]")!.textContent = shippingFree
       ? "Besplatno"
-      : "Dogovara se";
+      : "Po ceni kurirske službe";
     document.querySelector<HTMLElement>("[data-total]")!.textContent = money(total);
     const left = toFreeShipping(sub);
     document.querySelector<HTMLElement>("[data-ship-hint]")!.textContent =
       left === 0
         ? "Besplatna dostava ostvarena."
-        : `Još ${amount(left)} ${SITE.currency} do besplatne dostave — ispod toga cenu dostave potvrđujemo telefonom.`;
+        : `Još ${amount(left)} ${SITE.currency} do besplatne dostave — ispod toga se dostava naplaćuje po ceni kurirske službe.`;
   }
 
   renderSummary();
