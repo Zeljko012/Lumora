@@ -225,11 +225,10 @@ const COPY = {
   },
 };
 
+// Prikazano u "Izdvajamo" na naslovnoj (Base.astro/index.astro uzima prva 2)
 const FEATURED = new Set([
-  "krofna-vaza",
-  "duo-vaza-1",
-  "u-vaza",
-  "vrecica-vaza",
+  "krofna-vaza", // Donut Vaza
+  "maska", // Maska Figura
 ]);
 const BESTSELLER = new Set([
   "krofna-vaza",

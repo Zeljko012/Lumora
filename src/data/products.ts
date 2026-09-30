@@ -111,7 +111,7 @@ export const PRODUCTS: Product[] = [
     ],
     "seoTitle": "Arch Vaza – Elegantna Lučna 3D Dekoracija | Lumora",
     "seoDescription": "Arch Vaza od Lumore – elegantna 3D štampana vaza lučnog oblika. Skulpturalna dekoracija za policu ili komodu. 7 boja. Dostava po Srbiji.",
-    "featured": true,
+    "featured": false,
     "bestseller": false,
     "sourceHandle": "u-vaza"
   },
@@ -263,7 +263,7 @@ export const PRODUCTS: Product[] = [
     ],
     "seoTitle": "Duo Vaza – Set od Dve Moderne 3D Vaze | Lumora",
     "seoDescription": "Duo Vaza od Lumore – set od dve 3D štampane vaze modernog dizajna. Savršen poklon za useljenje ili rođendan. 7 boja. Dostava po Srbiji.",
-    "featured": true,
+    "featured": false,
     "bestseller": false,
     "sourceHandle": "duo-vaza-1"
   },
@@ -491,7 +491,7 @@ export const PRODUCTS: Product[] = [
     ],
     "seoTitle": "Vrećica Vaza – Unikatna 3D Dekoracija za Dom | Lumora",
     "seoDescription": "Vrećica Vaza od Lumore – elegantna 3D štampana dekoracija za policu ili sto. Dostupna u 7 boja. Besplatno poklon pakovanje. Dostava širom Srbije 3–5 dana.",
-    "featured": true,
+    "featured": false,
     "bestseller": false,
     "sourceHandle": "vrecica-vaza"
   },
@@ -757,7 +757,7 @@ export const PRODUCTS: Product[] = [
     ],
     "seoTitle": "Maska Figura – 3D Dekorativna Skulptura Maske | Lumora",
     "seoDescription": "Maska Figura od Lumore – 3D štampana dekorativna maska. Unikatni ukras za zid ili policu. Savršen poklon za ljubitelje umetnosti. 7 boja. Srbija.",
-    "featured": false,
+    "featured": true,
     "bestseller": false,
     "sourceHandle": "maska"
   },
