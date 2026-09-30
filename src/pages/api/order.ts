@@ -127,7 +127,7 @@ const shell = (title: string, body: string) => `
         ${body}
       </div>
       <div style="padding:16px 24px;border-top:1px solid #d6cbb8;color:#6e6459;font-size:12px">
-        Lumora · ${esc(SITE.address.city)}, ${esc(SITE.address.country)} ·
+        Lumora · ${esc(SITE.address.country)} ·
         <a href="mailto:${esc(SITE.email)}" style="color:#4f6f63">${esc(SITE.email)}</a>
       </div>
     </div>

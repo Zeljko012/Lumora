@@ -17,11 +17,11 @@ export const SITE = {
     "Lumora — 3D štampane dekoracije za dom izrađene u Srbiji. Vaze, figure i svećnjaci u 7 boja. Besplatno poklon pakovanje, dostava 3–5 radnih dana.",
   tagline: "Skulpturalne 3D dekoracije, izrađene u Srbiji",
 
-  email: "zdravo@homedecorlumora.com",
-  phone: "+381 60 000 0000",
-  phoneHref: "tel:+381600000000",
+  email: "homedecorlumora@gmail.com",
+  phone: "+381 69 400 70 70",
+  phoneHref: "tel:+381694007070",
+  /** Bez grada/sedišta namerno — samo zemlja proizvodnje i dostave. */
   address: {
-    city: "Beograd",
     country: "Srbija",
     countryCode: "RS",
   },

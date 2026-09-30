@@ -46,7 +46,7 @@ Bez ovog koraka checkout radi, ali umesto mejla vraća poruku „slanje nije pod
 ```
 RESEND_API_KEY=re_xxxxxxxxxxxxxxxxxxxxxxxx
 ORDER_FROM="Lumora <porudzbine@lumora.rs>"
-ORDER_TO=tvoj-licni-email@gmail.com
+ORDER_TO=homedecorlumora@gmail.com
 PUBLIC_SITE_URL=https://www.lumora.rs
 ```
 
