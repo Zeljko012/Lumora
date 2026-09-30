@@ -388,9 +388,9 @@ export const CATEGORY_META: Record<
     title: "Vaze",
     heading: "3D štampane vaze",
     intro:
-      "Skulpturalne vaze štampane sloj po sloj i ručno dovršene. Za suvo cveće, pampas travu ili same za sebe — u 7 boja.",
+      "Skulpturalne vaze, štampane sloj po sloj u boji koju izaberete. Za suvo cveće, pampas travu ili same za sebe — u 7 boja.",
     seoDescription:
-      "3D štampane vaze ručne izrade — Donut, Arch, Bubble, Duo i druge forme. 7 boja, dostava po celoj Srbiji, besplatno poklon pakovanje. Lumora.",
+      "3D štampane vaze — Donut, Arch, Bubble, Duo i druge forme. 7 boja, dostava po celoj Srbiji, besplatno poklon pakovanje. Lumora.",
   },
   figure: {
     slug: "figure",
