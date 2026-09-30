@@ -14,7 +14,7 @@ export const SITE = {
   url: rawUrl.replace(/\/$/, ""),
   /** Kratak opis za SEO (meta description na naslovnoj) */
   description:
-    "Lumora — 3D štampane dekoracije za dom izrađene u Srbiji. Vaze, figure i svećnjaci u 7 boja. Besplatno poklon pakovanje, dostava 3–5 radnih dana.",
+    "Lumora — 3D štampane dekoracije za dom izrađene u Srbiji. Vaze, figure i svećnjaci u 7 boja. Dostava 3–5 radnih dana, plaćanje pouzećem.",
   tagline: "Skulpturalne 3D dekoracije, izrađene u Srbiji",
 
   email: "homedecorlumora@gmail.com",
@@ -33,8 +33,10 @@ export const SITE = {
 
   /** Prag za besplatnu dostavu u dinarima */
   freeShippingThreshold: 6000,
-  /** Cena dostave ispod praga (informativno, plaća se kuriru pouzećem) */
-  shippingFee: 400,
+  /**
+   * Cena dostave ispod praga namerno nije definisana — dok se ne potpiše
+   * ugovor sa kurirskom službom, ta cena se potvrđuje telefonom po porudžbini.
+   */
   deliveryTime: "3–5 radnih dana",
   paymentNote: "Plaćanje pouzećem — gotovinom kuriru pri preuzimanju.",
 

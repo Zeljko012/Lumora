@@ -262,8 +262,8 @@ import { withBase } from "../lib/url";
       shipEl.textContent = "Besplatno";
       shipHint.textContent = "Ostvarili ste besplatnu dostavu.";
     } else {
-      shipEl.textContent = `${amount(SITE.shippingFee)} ${SITE.currency}`;
-      shipHint.textContent = `Još ${amount(left)} ${SITE.currency} do besplatne dostave.`;
+      shipEl.textContent = "Dogovara se";
+      shipHint.textContent = `Još ${amount(left)} ${SITE.currency} do besplatne dostave — ispod toga cenu dostave potvrđujemo telefonom.`;
     }
   }
 

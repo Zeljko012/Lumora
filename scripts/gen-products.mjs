@@ -262,6 +262,18 @@ function dimensionFrom(blocks) {
   return "Visina: 18 cm";
 }
 
+// Shopify SEO opisi ponekad sadrže "besplatno poklon pakovanje" iz starog
+// šablona — trenutno se ne šalje u poklon pakovanju, pa se ta rečenica uklanja.
+function stripGiftWrap(s) {
+  if (!s) return s;
+  return s
+    .split(/(?<=[.!?])\s+/)
+    .filter((sentence) => !/poklon pakovanje/i.test(sentence))
+    .join(" ")
+    .replace(/\s{2,}/g, " ")
+    .trim();
+}
+
 // Ručne ispravke nakon pregleda pravih fotografija proizvoda:
 // - svećnjaci nisu 18 cm visoki (to je bila pogrešna podrazumevana vrednost) —
 //   dimenzija se za njih uopšte ne prikazuje dok se ne izmeri svaki posebno.
@@ -329,7 +341,7 @@ for (const p of raw) {
     colors,
     images,
     seoTitle: (p.seo_title || `${name} — 3D dekoracija | Lumora`).replace(/\s+/g, " ").trim(),
-    seoDescription: (p.seo_description || copy.lead).replace(/\s+/g, " ").trim(),
+    seoDescription: stripGiftWrap(p.seo_description || copy.lead).replace(/\s+/g, " ").trim(),
     featured: FEATURED.has(p.handle),
     bestseller: BESTSELLER.has(p.handle),
     sourceHandle: p.handle,
@@ -390,7 +402,7 @@ export const CATEGORY_META: Record<
     intro:
       "Skulpturalne vaze, štampane sloj po sloj u boji koju izaberete. Za suvo cveće, pampas travu ili same za sebe — u 7 boja.",
     seoDescription:
-      "3D štampane vaze — Donut, Arch, Bubble, Duo i druge forme. 7 boja, dostava po celoj Srbiji, besplatno poklon pakovanje. Lumora.",
+      "3D štampane vaze — Donut, Arch, Bubble, Duo i druge forme. 7 boja, dostava po celoj Srbiji. Lumora.",
   },
   figure: {
     slug: "figure",
@@ -408,7 +420,7 @@ export const CATEGORY_META: Record<
     intro:
       "Svećnjaci za čajne svećice koji oblikuju svetlo — mehurići, rebra, spirale, srce. Topla večernja atmosfera u 7 boja.",
     seoDescription:
-      "3D štampani svećnjaci za čajne svećice — Bubble, Rebrasti, Spiralni, Srce. 7 boja, dostava po Srbiji, poklon pakovanje. Lumora.",
+      "3D štampani svećnjaci za čajne svećice — Bubble, Rebrasti, Spiralni, Srce. 7 boja, dostava po Srbiji. Lumora.",
   },
   dom: {
     slug: "dom",

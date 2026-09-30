@@ -45,7 +45,7 @@ export const CATEGORY_META: Record<
     intro:
       "Skulpturalne vaze, štampane sloj po sloj u boji koju izaberete. Za suvo cveće, pampas travu ili same za sebe — u 7 boja.",
     seoDescription:
-      "3D štampane vaze — Donut, Arch, Bubble, Duo i druge forme. 7 boja, dostava po celoj Srbiji, besplatno poklon pakovanje. Lumora.",
+      "3D štampane vaze — Donut, Arch, Bubble, Duo i druge forme. 7 boja, dostava po celoj Srbiji. Lumora.",
   },
   figure: {
     slug: "figure",
@@ -63,7 +63,7 @@ export const CATEGORY_META: Record<
     intro:
       "Svećnjaci za čajne svećice koji oblikuju svetlo — mehurići, rebra, spirale, srce. Topla večernja atmosfera u 7 boja.",
     seoDescription:
-      "3D štampani svećnjaci za čajne svećice — Bubble, Rebrasti, Spiralni, Srce. 7 boja, dostava po Srbiji, poklon pakovanje. Lumora.",
+      "3D štampani svećnjaci za čajne svećice — Bubble, Rebrasti, Spiralni, Srce. 7 boja, dostava po Srbiji. Lumora.",
   },
   dom: {
     slug: "dom",
@@ -148,7 +148,7 @@ export const PRODUCTS: Product[] = [
       }
     ],
     "seoTitle": "Bubble Vaza – 3D Dekoracija sa Mehurićima | Lumora",
-    "seoDescription": "Bubble Vaza od Lumore – 3D štampana vaza sa mehurićastim teksturama. Moderni dekor za dom. 7 boja, besplatno poklon pakovanje. Dostava po Srbiji.",
+    "seoDescription": "Bubble Vaza od Lumore – 3D štampana vaza sa mehurićastim teksturama. Moderni dekor za dom. Dostava po Srbiji.",
     "featured": false,
     "bestseller": false,
     "sourceHandle": "bubble-vaza"
@@ -300,7 +300,7 @@ export const PRODUCTS: Product[] = [
       }
     ],
     "seoTitle": "Harmony Vaza – Minimalist 3D Dekoracija za Dom | Lumora",
-    "seoDescription": "Harmony Vaza od Lumore – 3D štampana vaza minimalističnog dizajna. Savršena dekoracija za sve prostore. 7 boja. Besplatno poklon pakovanje. Srbija.",
+    "seoDescription": "Harmony Vaza od Lumore – 3D štampana vaza minimalističnog dizajna. Savršena dekoracija za sve prostore. 7 boja. Srbija.",
     "featured": false,
     "bestseller": false,
     "sourceHandle": "bez-vaza"
@@ -376,7 +376,7 @@ export const PRODUCTS: Product[] = [
       }
     ],
     "seoTitle": "Spiralna Vaza – Moderna 3D Dekoracija za Dom | Lumora",
-    "seoDescription": "Spiralna Vaza od Lumore – unikatna 3D štampana dekoracija spiralnog oblika. 7 boja, domaća izrada, besplatno poklon pakovanje. Dostava po Srbiji 3–5 dana.",
+    "seoDescription": "Spiralna Vaza od Lumore – unikatna 3D štampana dekoracija spiralnog oblika. Dostava po Srbiji 3–5 dana.",
     "featured": false,
     "bestseller": true,
     "sourceHandle": "spiralna-vaza"
@@ -490,7 +490,7 @@ export const PRODUCTS: Product[] = [
       }
     ],
     "seoTitle": "Vrećica Vaza – Unikatna 3D Dekoracija za Dom | Lumora",
-    "seoDescription": "Vrećica Vaza od Lumore – elegantna 3D štampana dekoracija za policu ili sto. Dostupna u 7 boja. Besplatno poklon pakovanje. Dostava širom Srbije 3–5 dana.",
+    "seoDescription": "Vrećica Vaza od Lumore – elegantna 3D štampana dekoracija za policu ili sto. Dostupna u 7 boja. Dostava širom Srbije 3–5 dana.",
     "featured": false,
     "bestseller": false,
     "sourceHandle": "vrecica-vaza"
@@ -1056,7 +1056,7 @@ export const PRODUCTS: Product[] = [
       }
     ],
     "seoTitle": "Rebrasti Svećnjak – 3D Dekorativni Svećnjak | Lumora",
-    "seoDescription": "Rebrasti Svećnjak od Lumore – 3D štampani svećnjak sa rebrastom teksturom. Dekoracija za dom. 7 boja. Besplatno poklon pakovanje. Dostava po Srbiji.",
+    "seoDescription": "Rebrasti Svećnjak od Lumore – 3D štampani svećnjak sa rebrastom teksturom. Dekoracija za dom. 7 boja. Dostava po Srbiji.",
     "featured": false,
     "bestseller": false,
     "sourceHandle": "skupljac-svetla-svecnjak"
@@ -1208,7 +1208,7 @@ export const PRODUCTS: Product[] = [
       }
     ],
     "seoTitle": "Home Za Vrata – 3D Dekoracija za Ulazna Vrata | Lumora",
-    "seoDescription": "Home Za Vrata od Lumore – 3D štampana dekoracija za ulazna vrata. Savršen poklon za useljenje. 7 boja. Besplatno poklon pakovanje. Srbija.",
+    "seoDescription": "Home Za Vrata od Lumore – 3D štampana dekoracija za ulazna vrata. Savršen poklon za useljenje. 7 boja. Srbija.",
     "featured": false,
     "bestseller": false,
     "sourceHandle": "home-za-vrata"

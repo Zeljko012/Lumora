@@ -2,6 +2,7 @@
 import Base from "../layouts/Base.astro";
 import Breadcrumbs from "../components/Breadcrumbs.astro";
 import { SITE } from "../data/site";
+import { money } from "../lib/format";
 ---
 
 <Base
@@ -43,8 +44,9 @@ import { SITE } from "../data/site";
       <h2>Poručivanje i dostava</h2>
       <p>
         Nema online plaćanja — porudžbinu plaćate kuriru pri preuzimanju (pouzećem).
-        Šaljemo po celoj Srbiji, {SITE.deliveryTime} od potvrde. Poklon pakovanje je
-        besplatno; napišite poruku u polju „Napomena” tokom porudžbine.
+        Šaljemo po celoj Srbiji, {SITE.deliveryTime} od potvrde. Poštarina je besplatna
+        preko {money(SITE.freeShippingThreshold)}; za manje porudžbine cenu dostave
+        potvrđujemo telefonom.
       </p>
 
       <p>

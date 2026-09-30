@@ -45,20 +45,22 @@ const productLd = {
     availability: "https://schema.org/InStock",
     itemCondition: "https://schema.org/NewCondition",
     seller: { "@type": "Organization", name: SITE.name },
-    shippingDetails: {
-      "@type": "OfferShippingDetails",
-      shippingRate: {
-        "@type": "MonetaryAmount",
-        value: p.price >= SITE.freeShippingThreshold ? 0 : SITE.shippingFee,
-        currency: SITE.currency,
-      },
-      shippingDestination: { "@type": "DefinedRegion", addressCountry: "RS" },
-      deliveryTime: {
-        "@type": "ShippingDeliveryTime",
-        handlingTime: { "@type": "QuantitativeValue", minValue: 1, maxValue: 2, unitCode: "DAY" },
-        transitTime: { "@type": "QuantitativeValue", minValue: 2, maxValue: 4, unitCode: "DAY" },
-      },
-    },
+    // shippingDetails namerno izostavljen dok cena dostave nije konačna
+    // (nema još potpisan ugovor sa kurirskom službom) — izuzev za besplatnu dostavu.
+    ...(p.price >= SITE.freeShippingThreshold
+      ? {
+          shippingDetails: {
+            "@type": "OfferShippingDetails",
+            shippingRate: { "@type": "MonetaryAmount", value: 0, currency: SITE.currency },
+            shippingDestination: { "@type": "DefinedRegion", addressCountry: "RS" },
+            deliveryTime: {
+              "@type": "ShippingDeliveryTime",
+              handlingTime: { "@type": "QuantitativeValue", minValue: 1, maxValue: 2, unitCode: "DAY" },
+              transitTime: { "@type": "QuantitativeValue", minValue: 2, maxValue: 4, unitCode: "DAY" },
+            },
+          },
+        }
+      : {}),
   },
 };
 
@@ -181,7 +183,7 @@ const gallery = p.images.map((im) => ({
         </form>
 
         <ul class="usp">
-          <li>Poklon pakovanje — besplatno</li>
+          <li>Besplatna dostava preko {money(SITE.freeShippingThreshold)}</li>
           <li>Izrada u Srbiji, {SITE.deliveryTime}</li>
           <li>{SITE.paymentNote}</li>
           <li>Eko PLA — biorazgradiv materijal</li>

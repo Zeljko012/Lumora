@@ -303,8 +303,10 @@ import { withBase } from "../lib/url";
 
   function computeTotals() {
     const sub = cartSubtotal();
-    const shipping = toFreeShipping(sub) === 0 ? 0 : SITE.shippingFee;
-    return { sub, shipping, total: sub + shipping };
+    const shippingFree = toFreeShipping(sub) === 0;
+    // Cena dostave ispod praga za besplatnu dostavu se dogovara telefonom
+    // (dok se ne potpiše ugovor sa kurirskom službom), zato se ne dodaje u ukupan iznos.
+    return { sub, shippingFree, total: sub };
   }
 
   function renderSummary() {
@@ -329,16 +331,17 @@ import { withBase } from "../lib/url";
       itemsEl.appendChild(n);
     }
 
-    const { sub, shipping, total } = computeTotals();
+    const { sub, shippingFree, total } = computeTotals();
     document.querySelector<HTMLElement>("[data-subtotal]")!.textContent = money(sub);
-    document.querySelector<HTMLElement>("[data-shipping]")!.textContent =
-      shipping === 0 ? "Besplatno" : money(shipping);
+    document.querySelector<HTMLElement>("[data-shipping]")!.textContent = shippingFree
+      ? "Besplatno"
+      : "Dogovara se";
     document.querySelector<HTMLElement>("[data-total]")!.textContent = money(total);
     const left = toFreeShipping(sub);
     document.querySelector<HTMLElement>("[data-ship-hint]")!.textContent =
       left === 0
         ? "Besplatna dostava ostvarena."
-        : `Još ${amount(left)} ${SITE.currency} do besplatne dostave.`;
+        : `Još ${amount(left)} ${SITE.currency} do besplatne dostave — ispod toga cenu dostave potvrđujemo telefonom.`;
   }
 
   renderSummary();
@@ -391,7 +394,7 @@ import { withBase } from "../lib/url";
       return;
     }
 
-    const { sub, shipping, total } = computeTotals();
+    const { sub, shippingFree, total } = computeTotals();
     const fd = new FormData(form);
     const payload = {
       customer: {
@@ -413,7 +416,7 @@ import { withBase } from "../lib/url";
         price: i.price,
         lineTotal: i.price * i.qty,
       })),
-      totals: { subtotal: sub, shipping, total },
+      totals: { subtotal: sub, shippingFree, total },
       currency: SITE.currency,
       pageUrl: location.href,
     };
