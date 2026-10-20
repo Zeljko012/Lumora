@@ -176,3 +176,29 @@ public/
   images/products/   optimizovane slike (WebP)
   icon.svg robots.txt og-default.jpg
 ```
+
+---
+
+## 6. SEO — šta je urađeno i kako dalje
+
+**Sav SEO sadržaj i ciljne ključne reči su u jednom fajlu: `src/data/seo.ts`**
+(kategorije, stranice za poklone, vodiči, FAQ). Menja se tamo, ne po stranama.
+
+Šta sajt već ima:
+- jedinstven `<title>` i meta opis na svakoj strani (proizvodi: ime + opis + cena + 7 boja + dostava)
+- stranice kategorija sa H1 koji sadrži ključnu frazu, tekstom ispod proizvoda i FAQ (FAQPage JSON-LD)
+- stranice za pretrage tipa „poklon…": `/pokloni/poklon-za-useljenje`, `/poklon-za-ljubitelje-macaka`,
+  `/poklon-za-godisnjicu`, `/pokloni-do-2000-dinara` (+ hub `/pokloni`)
+- vodiči `/vodic/…` (3 članka, Article JSON-LD) za informativne pretrage
+- JSON-LD: Organization, WebSite, Product, CollectionPage/ItemList, BreadcrumbList, FAQPage, Article
+- `sitemap-index.xml`, `robots.txt`, canonical, Open Graph, interno linkovanje (meni, footer, „Pogledaj i")
+
+**Važno:** ključne reči su birane prema tome kako ljudi u Srbiji realno traže ovakve proizvode,
+a NE prema izmerenim brojevima pretrage (nije bilo pristupa alatima sa podacima za Srbiju).
+
+Sledeći koraci (kad sajt dobije pravi domen):
+1. Dodaj domen u **Google Search Console**, potvrdi vlasništvo i pošalji `sitemap-index.xml`.
+2. Posle 2–4 nedelje: *Performance → Queries* — koje se fraze stvarno prikazuju; prilagodi naslove u `seo.ts`.
+3. Slike proizvoda: dodaj kratke prirodne alt tekstove ako nešto fali (trenutno dolaze iz Shopify-ja).
+4. Instagram/lokalni portali/blogeri koji linkuju na sajt su najjači signal — nijedan alat to ne zamenjuje.
+5. Pre pravog puštanja proveri da `PUBLIC_SITE_URL` i `Sitemap:` u `public/robots.txt` pokazuju na pravi domen.

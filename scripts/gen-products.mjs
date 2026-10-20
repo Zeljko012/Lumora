@@ -341,7 +341,10 @@ for (const p of raw) {
     colors,
     images,
     seoTitle: (p.seo_title || `${name} — 3D dekoracija | Lumora`).replace(/\s+/g, " ").trim(),
-    seoDescription: stripGiftWrap(p.seo_description || copy.lead).replace(/\s+/g, " ").trim(),
+    // Jedinstven opis: lead (jedinstven po proizvodu) + činjenice koje kupac traži u rezultatu pretrage
+    seoDescription: copy.lead
+      ? `${name}: ${copy.lead} ${String(price).replace(/\B(?=(\d{3})+(?!\d))/g, ".")} RSD · 7 boja · dostava po Srbiji.`
+      : stripGiftWrap(p.seo_description).replace(/\s+/g, " ").trim(),
     featured: FEATURED.has(p.handle),
     bestseller: BESTSELLER.has(p.handle),
     sourceHandle: p.handle,
@@ -464,7 +467,9 @@ fs.writeFileSync(
   "utf8",
 );
 
+const longDesc = items.filter((i) => i.seoDescription.length > 165);
 console.log(`✓ ${items.length} proizvoda -> src/data/products.ts`);
+if (longDesc.length) console.log(`  ⚠ ${longDesc.length} meta opisa > 165 znakova:`, longDesc.map((i) => i.slug + ":" + i.seoDescription.length).join(", "));
 for (const c of ["vaze", "figure", "svecnjaci", "dom"]) {
   console.log(`  ${c}: ${items.filter((i) => i.category === c).length}`);
 }

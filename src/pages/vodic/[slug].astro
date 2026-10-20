@@ -1,0 +1,93 @@
+---
+import Base from "../../layouts/Base.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import { SITE } from "../../data/site";
+import { GUIDES, getGuide } from "../../data/seo";
+import { withBase } from "../../lib/url";
+
+export function getStaticPaths() {
+  return GUIDES.map((g) => ({ params: { slug: g.slug } }));
+}
+
+const { slug } = Astro.params as { slug: string };
+const g = getGuide(slug)!;
+const others = GUIDES.filter((x) => x.slug !== g.slug);
+
+const url = new URL(`/vodic/${g.slug}`, SITE.url).href;
+const articleLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: g.title,
+  description: g.description,
+  inLanguage: "sr-RS",
+  datePublished: g.published,
+  dateModified: g.published,
+  mainEntityOfPage: url,
+  image: new URL("/og-default.jpg", SITE.url).href,
+  author: { "@type": "Organization", name: SITE.name, url: SITE.url },
+  publisher: { "@type": "Organization", name: SITE.name, url: SITE.url },
+};
+---
+
+<Base title={g.title} description={g.description} type="article" jsonLd={[articleLd]}>
+  <div class="container">
+    <Breadcrumbs items={[{ label: "Vodič", href: "/vodic" }, { label: g.title }]} />
+    <article class="prose guide">
+      <h1>{g.title}</h1>
+      <p class="lead">{g.intro}</p>
+
+      {
+        g.sections.map((s) => (
+          <section>
+            <h2>{s.h2}</h2>
+            {s.p.map((t) => <p>{t}</p>)}
+          </section>
+        ))
+      }
+
+      <aside class="guide__links">
+        <h2>Pogledaj u prodavnici</h2>
+        <ul>
+          {g.related.map((l) => <li><a href={withBase(l.href)}>{l.label}</a></li>)}
+        </ul>
+      </aside>
+
+      <aside class="guide__links">
+        <h2>Još vodiča</h2>
+        <ul>
+          {others.map((o) => <li><a href={withBase(`/vodic/${o.slug}`)}>{o.title}</a></li>)}
+        </ul>
+      </aside>
+    </article>
+  </div>
+</Base>
+
+<style>
+  .guide {
+    padding-block: 0.5rem 3rem;
+  }
+  .guide h1 {
+    font-size: var(--step-3);
+  }
+  .lead {
+    font-size: var(--step-1);
+    color: var(--ink-soft);
+  }
+  .guide__links {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+  }
+  .guide__links h2 {
+    font-size: var(--step-1);
+    margin-top: 0;
+  }
+  .guide__links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0.6rem 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.25rem;
+  }
+</style>

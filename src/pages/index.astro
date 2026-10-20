@@ -10,9 +10,12 @@ import {
   type Category,
 } from "../data/products";
 import { money } from "../lib/format";
+import { GIFT_PAGES } from "../data/seo";
+import { PRODUCTS } from "../data/products";
 import { withBase } from "../lib/url";
 
 const best = bestsellers();
+const minPrice = Math.min(...PRODUCTS.map((p) => p.price));
 const featured = featuredProducts().slice(0, 2);
 const heroImg = withBase("/images/products/donut-vaza/1-lg.webp");
 
@@ -31,14 +34,14 @@ const websiteLd = {
 ---
 
 <Base
-  title={`${SITE.name} — ${SITE.tagline}`}
+  title="Lumora — 3D štampane dekoracije za dom: vaze, figure, svećnjaci"
   description={SITE.description}
   jsonLd={[websiteLd]}
 >
   <section class="hero container">
     <div class="hero__copy">
       <span class="eyebrow">Štampano u 3D-u · dizajnirano u Srbiji</span>
-      <h1>Skulpturalne dekoracije koje menjaju sobu, ne samo policu.</h1>
+      <h1>3D štampane dekoracije za dom koje menjaju sobu, ne samo policu.</h1>
       <p class="hero__lead">
         Vaze, figure i svećnjaci crtani digitalno i štampani iz eko PLA materijala —
         svaki komad po porudžbini, u 7 boja.
@@ -127,6 +130,32 @@ const websiteLd = {
         <div><b>Eko PLA</b><span>biljni, biorazgradiv polimer</span></div>
         <div><b>7 boja</b><span>ista forma, tvoj izbor tona</span></div>
       </div>
+    </div>
+  </section>
+
+  <section class="section container seo-home">
+    <div class="section-head">
+      <h2>Ideje za poklon</h2>
+      <a href={withBase("/pokloni")}>Sve ideje →</a>
+    </div>
+    <ul class="gift-chips">
+      {GIFT_PAGES.map((g) => <li><a href={withBase(`/pokloni/${g.slug}`)}>{g.h1}</a></li>)}
+    </ul>
+
+    <div class="seo-home__text">
+      <h2>Dekoracije za dom, štampane po porudžbini</h2>
+      <p>
+        Lumora pravi moderne dekoracije za dom: <a href={withBase("/kategorija/vaze")}>vaze za suvo cveće i pampas travu</a>,
+        <a href={withBase("/kategorija/figure")}>dekorativne figure i skulpture</a>,
+        <a href={withBase("/kategorija/svecnjaci")}>svećnjake</a> i
+        <a href={withBase("/kategorija/dom")}>detalje za dom</a>. Svaki komad se 3D štampa u Srbiji,
+        po porudžbini, od eko PLA materijala, u jednoj od 7 boja.
+      </p>
+      <p>
+        Cene počinju od {money(minPrice)}, plaćanje je pouzećem, a dostava po celoj Srbiji traje {SITE.deliveryTime}.
+        Za porudžbine preko {money(SITE.freeShippingThreshold)} dostava je besplatna. Ako ti treba savet,
+        pročitaj naš <a href={withBase("/vodic")}>vodič kroz dekoraciju doma</a>.
+      </p>
     </div>
   </section>
 
@@ -336,6 +365,45 @@ const websiteLd = {
     .story {
       grid-template-columns: 1fr;
     }
+  }
+
+  /* seo + pokloni */
+  .gift-chips {
+    list-style: none;
+    margin: 0 0 2rem;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .gift-chips a {
+    display: inline-block;
+    text-decoration: none;
+    font-size: 0.9rem;
+    padding: 0.55rem 1rem;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    color: var(--ink);
+  }
+  .gift-chips a:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  .seo-home__text {
+    max-width: 760px;
+  }
+  .seo-home__text h2 {
+    font-size: var(--step-2);
+    margin-bottom: 0.7rem;
+  }
+  .seo-home__text p {
+    color: var(--ink-soft);
+  }
+  .seo-home__text p + p {
+    margin-top: 0.8rem;
+  }
+  .seo-home__text a {
+    color: var(--accent);
   }
 
   /* newsletter */

@@ -110,7 +110,7 @@ export const PRODUCTS: Product[] = [
       }
     ],
     "seoTitle": "Arch Vaza – Elegantna Lučna 3D Dekoracija | Lumora",
-    "seoDescription": "Arch Vaza od Lumore – elegantna 3D štampana vaza lučnog oblika. Skulpturalna dekoracija za policu ili komodu. 7 boja. Dostava po Srbiji.",
+    "seoDescription": "Arch Vaza: Lučna forma inspirisana arhitekturom — stoji sama kao mala skulptura ili nosi granu suvog cveća. 2.400 RSD · 7 boja · dostava po Srbiji.",
     "featured": false,
     "bestseller": false,
     "sourceHandle": "u-vaza"
@@ -148,7 +148,7 @@ export const PRODUCTS: Product[] = [
       }
     ],
     "seoTitle": "Bubble Vaza – 3D Dekoracija sa Mehurićima | Lumora",
-    "seoDescription": "Bubble Vaza od Lumore – 3D štampana vaza sa mehurićastim teksturama. Moderni dekor za dom. Dostava po Srbiji.",
+    "seoDescription": "Bubble Vaza: Mehurićasta tekstura koja hvata svetlo i senku i menja izgled tokom dana. 2.400 RSD · 7 boja · dostava po Srbiji.",
     "featured": false,
     "bestseller": false,
     "sourceHandle": "bubble-vaza"
@@ -186,7 +186,7 @@ export const PRODUCTS: Product[] = [
       }
     ],
     "seoTitle": "Donut Vaza – Unikatna 3D Dekoracija Kružnog Oblika | Lumora",
-    "seoDescription": "Donut Vaza od Lumore – 3D štampana vaza kružnog oblika poput krofne. Jedinstven dekor za policu ili sto. 7 boja. Dostava po Srbiji.",
+    "seoDescription": "Donut Vaza: Savršen krug sa otvorenom sredinom — skulptura koja privlači pogled i kada je prazna i kada nosi buket. 2.400 RSD · 7 boja · dostava po Srbiji.",
     "featured": true,
     "bestseller": true,
     "sourceHandle": "krofna-vaza"
@@ -224,7 +224,7 @@ export const PRODUCTS: Product[] = [
       }
     ],
     "seoTitle": "Duet Vaza – Set od Dve 3D Dekorativne Vaze | Lumora",
-    "seoDescription": "Duet Vaza od Lumore – set od dve 3D štampane vaze različitih tekstura. Idealan poklon ili dekoracija za dnevnu sobu. 7 boja. Dostava po Srbiji.",
+    "seoDescription": "Duet Vaza: Dve povezane forme u jednom komadu — dvostruki otvor za dva mala aranžmana. 3.600 RSD · 7 boja · dostava po Srbiji.",
     "featured": false,
     "bestseller": false,
     "sourceHandle": "duo-vaza"
@@ -262,7 +262,7 @@ export const PRODUCTS: Product[] = [
       }
     ],
     "seoTitle": "Duo Vaza – Set od Dve Moderne 3D Vaze | Lumora",
-    "seoDescription": "Duo Vaza od Lumore – set od dve 3D štampane vaze modernog dizajna. Savršen poklon za useljenje ili rođendan. 7 boja. Dostava po Srbiji.",
+    "seoDescription": "Duo Vaza: Set od dve vaze različitih visina koje rade zajedno — na komodi, polici ili trpezarijskom stolu. 3.600 RSD · 7 boja · dostava po Srbiji.",
     "featured": false,
     "bestseller": false,
     "sourceHandle": "duo-vaza-1"
@@ -300,7 +300,7 @@ export const PRODUCTS: Product[] = [
       }
     ],
     "seoTitle": "Harmony Vaza – Minimalist 3D Dekoracija za Dom | Lumora",
-    "seoDescription": "Harmony Vaza od Lumore – 3D štampana vaza minimalističnog dizajna. Savršena dekoracija za sve prostore. 7 boja. Srbija.",
+    "seoDescription": "Harmony Vaza: Čiste linije i mekana silueta koja se uklapa u svaki enterijer — od skandinavskog do toplog rustik stila. 2.400 RSD · 7 boja · dostava po Srbiji.",
     "featured": false,
     "bestseller": false,
     "sourceHandle": "bez-vaza"
@@ -338,7 +338,7 @@ export const PRODUCTS: Product[] = [
       }
     ],
     "seoTitle": "List Vaza – 3D Dekoracija u Obliku Lista | Lumora",
-    "seoDescription": "List Vaza od Lumore – 3D štampana vaza u obliku lista. Elegantna dekoracija za dom, idealna za suvo cveće i pampas travu. 7 boja. Dostava po Srbiji.",
+    "seoDescription": "List Vaza: Oblik lista pretočen u 3D formu — organska silueta sa mekim, prepoznatljivim obrisom. 2.400 RSD · 7 boja · dostava po Srbiji.",
     "featured": false,
     "bestseller": false,
     "sourceHandle": "list-vaza"
@@ -376,7 +376,7 @@ export const PRODUCTS: Product[] = [
       }
     ],
     "seoTitle": "Spiralna Vaza – Moderna 3D Dekoracija za Dom | Lumora",
-    "seoDescription": "Spiralna Vaza od Lumore – unikatna 3D štampana dekoracija spiralnog oblika. Dostava po Srbiji 3–5 dana.",
+    "seoDescription": "Spiralna Vaza: Spiralni presek koji se penje uvis i daje utisak pokreta i kada vaza mirno stoji. 2.400 RSD · 7 boja · dostava po Srbiji.",
     "featured": false,
     "bestseller": true,
     "sourceHandle": "spiralna-vaza"
@@ -414,7 +414,7 @@ export const PRODUCTS: Product[] = [
       }
     ],
     "seoTitle": "Split Vaza – Moderna 3D Dekoracija za Dom | Lumora",
-    "seoDescription": "Split Vaza od Lumore – moderna 3D štampana vaza sa podeljenim dizajnom. Unikatna dekoracija za policu ili trpezarijski sto. 7 boja. Dostava po Srbiji.",
+    "seoDescription": "Split Vaza: Presečena, asimetrična forma koja izgleda drugačije iz svakog ugla. 2.400 RSD · 7 boja · dostava po Srbiji.",
     "featured": false,
     "bestseller": false,
     "sourceHandle": "vaza-vaza"
@@ -452,7 +452,7 @@ export const PRODUCTS: Product[] = [
       }
     ],
     "seoTitle": "Vaza Luna – 3D Dekoracija Polumesec za Dom | Lumora",
-    "seoDescription": "Vaza Luna od Lumore – dekorativna 3D štampana vaza u obliku polumeseca. Savršen ukras za radni sto ili komodu. 7 boja. Dostava po Srbiji.",
+    "seoDescription": "Vaza Luna: Silueta polumeseca — nežna, zaobljena forma koja unosi mirnu, večernju notu u prostor. 2.000 RSD · 7 boja · dostava po Srbiji.",
     "featured": false,
     "bestseller": false,
     "sourceHandle": "mesec-vaza"
@@ -490,7 +490,7 @@ export const PRODUCTS: Product[] = [
       }
     ],
     "seoTitle": "Vrećica Vaza – Unikatna 3D Dekoracija za Dom | Lumora",
-    "seoDescription": "Vrećica Vaza od Lumore – elegantna 3D štampana dekoracija za policu ili sto. Dostupna u 7 boja. Dostava širom Srbije 3–5 dana.",
+    "seoDescription": "Vrećica Vaza: Oblik zgužvane papirne kese, iznenađujuće elegantan u mat završnici — trend forma koja se traži. 2.400 RSD · 7 boja · dostava po Srbiji.",
     "featured": false,
     "bestseller": false,
     "sourceHandle": "vrecica-vaza"
@@ -528,7 +528,7 @@ export const PRODUCTS: Product[] = [
       }
     ],
     "seoTitle": "Figura sa Srcem – 3D Skulptura Poklon za Ljubav | Lumora",
-    "seoDescription": "Figura sa Srcem od Lumore – 3D štampana skulptura srca. Idealan poklon za rođendan, godišnjicu ili Valentinovo. 7 boja. Dostava po Srbiji.",
+    "seoDescription": "Figura sa Srcem: Figura koja u rukama drži srce — jednostavna poruka pažnje i ljubavi. 1.800 RSD · 7 boja · dostava po Srbiji.",
     "featured": false,
     "bestseller": true,
     "sourceHandle": "skulptura-sa-srcem"
@@ -566,7 +566,7 @@ export const PRODUCTS: Product[] = [
       }
     ],
     "seoTitle": "Home Figura – 3D Dekoracija HOME Poklon za Useljenje | Lumora",
-    "seoDescription": "Home Figura od Lumore – 3D štampana figura slova HOME. Savršen poklon za useljenje u novi dom. 7 boja. Besplatno pakovanje. Dostava po Srbiji.",
+    "seoDescription": "Home Figura: Reč „HOME” u čvrstoj 3D formi — jednostavna poruka koja stoji na komodi, polici ili prozoru. 1.800 RSD · 7 boja · dostava po Srbiji.",
     "featured": false,
     "bestseller": false,
     "sourceHandle": "home-figura"
@@ -604,7 +604,7 @@ export const PRODUCTS: Product[] = [
       }
     ],
     "seoTitle": "Home Roze Figura – 3D Dekoracija HOME u Roze Boji | Lumora",
-    "seoDescription": "Home Roze Figura od Lumore – 3D štampana figura HOME u roze boji. Poklon za useljenje i dekoracija doma. 7 boja. Dostava po Srbiji.",
+    "seoDescription": "Home Roze Figura: Natpis „HOME” kao mala skulptura za policu ili ulazni deo stana. 2.000 RSD · 7 boja · dostava po Srbiji.",
     "featured": false,
     "bestseller": false,
     "sourceHandle": "home-roze-figura"
@@ -642,7 +642,7 @@ export const PRODUCTS: Product[] = [
       }
     ],
     "seoTitle": "Labrador Figura – 3D Skulptura Psa Poklon | Lumora",
-    "seoDescription": "Labrador Figura od Lumore – 3D štampana figura Labrador psa. Savršen poklon za ljubitelje pasa. Ukras za dom. 7 boja. Dostava po Srbiji.",
+    "seoDescription": "Labrador Figura: Prepoznatljiva silueta labradora u sedećem stavu, svedena na čiste linije. 1.800 RSD · 7 boja · dostava po Srbiji.",
     "featured": false,
     "bestseller": false,
     "sourceHandle": "labrador-figura"
@@ -680,7 +680,7 @@ export const PRODUCTS: Product[] = [
       }
     ],
     "seoTitle": "Maca Figura – 3D Skulptura Mačke Poklon | Lumora",
-    "seoDescription": "Maca Figura od Lumore – slatka 3D štampana figura mačke. Savršen poklon za ljubitelje mačaka. Ukras za policu ili sto. 7 boja. Dostava po Srbiji.",
+    "seoDescription": "Maca Figura: Uspravna mačka svedena na osnovni oblik — sitna skulptura sa karakterom. 1.800 RSD · 7 boja · dostava po Srbiji.",
     "featured": false,
     "bestseller": true,
     "sourceHandle": "maca-figura"
@@ -718,7 +718,7 @@ export const PRODUCTS: Product[] = [
       }
     ],
     "seoTitle": "Maca Mreža – 3D Figura Mačke Mrežastog Dizajna | Lumora",
-    "seoDescription": "Maca Mreža Figura od Lumore – 3D štampana figura mačke sa mrežastim dizajnom. Ukras za dom, poklon za ljubitelje mačaka. 7 boja. Srbija.",
+    "seoDescription": "Maca Mreža Figura: Mačka izvedena kao otvorena mrežasta struktura — puna forma, a prozračna. 1.800 RSD · 7 boja · dostava po Srbiji.",
     "featured": false,
     "bestseller": false,
     "sourceHandle": "maca-mreza"
@@ -756,7 +756,7 @@ export const PRODUCTS: Product[] = [
       }
     ],
     "seoTitle": "Maska Figura – 3D Dekorativna Skulptura Maske | Lumora",
-    "seoDescription": "Maska Figura od Lumore – 3D štampana dekorativna maska. Unikatni ukras za zid ili policu. Savršen poklon za ljubitelje umetnosti. 7 boja. Srbija.",
+    "seoDescription": "Maska Figura: Stilizovano lice inspirisano pozorišnim i plemenskim maskama — dekorativna skulptura za zid ili policu. 1.800 RSD · 7 boja · dostava po Srbiji.",
     "featured": true,
     "bestseller": false,
     "sourceHandle": "maska"
@@ -794,7 +794,7 @@ export const PRODUCTS: Product[] = [
       }
     ],
     "seoTitle": "Mislilac Figura – 3D Skulptura Inspirisana Rodenovim Delom | Lumora",
-    "seoDescription": "Mislilac Figura od Lumore – 3D štampana skulptura u stilu Rodenovog Mislilaca. Jedinstven ukras za radnu sobu ili policu. 7 boja. Srbija.",
+    "seoDescription": "Mislilac Figura: Sedeća figura u pozi razmišljanja, sa jasnim odjekom Rodenovog „Mislioca”. 1.800 RSD · 7 boja · dostava po Srbiji.",
     "featured": false,
     "bestseller": false,
     "sourceHandle": "mislilac-figura"
@@ -832,7 +832,7 @@ export const PRODUCTS: Product[] = [
       }
     ],
     "seoTitle": "Uspavana Maca – 3D Figura Mačke koja Spava | Lumora",
-    "seoDescription": "Uspavana Maca Figura od Lumore – 3D štampana figura mačke koja spava. Slatki poklon za ljubitelje mačaka. 7 boja. Dostava po Srbiji.",
+    "seoDescription": "Uspavana Maca Figura: Sklupčana mačka u snu — mekana, zaobljena silueta koja smiruje prostor. 1.800 RSD · 7 boja · dostava po Srbiji.",
     "featured": false,
     "bestseller": false,
     "sourceHandle": "maca-figura-1"
@@ -866,7 +866,7 @@ export const PRODUCTS: Product[] = [
       }
     ],
     "seoTitle": "Zagrljaj Ljubavi – 3D Skulptura Para Poklon | Lumora",
-    "seoDescription": "Zagrljaj Ljubavi Figura od Lumore – 3D štampana skulptura para u zagrljaju. Savršen poklon za godišnjicu ili venčanje. 7 boja. Dostava po Srbiji.",
+    "seoDescription": "Zagrljaj Ljubavi Figura: Par u čvrstom zagrljaju, izveden kao jedna neprekinuta linija. 1.800 RSD · 7 boja · dostava po Srbiji.",
     "featured": false,
     "bestseller": false,
     "sourceHandle": "zagljeni-par-figura"
@@ -904,7 +904,7 @@ export const PRODUCTS: Product[] = [
       }
     ],
     "seoTitle": "Zaljubljene Mace – 3D Skulptura Dve Mačke | Lumora",
-    "seoDescription": "Zaljubljene Mace Figura od Lumore – 3D štampane dve mačke u zagrljaju. Poklon za ljubitelje mačaka i ljubav. 7 boja. Dostava po Srbiji.",
+    "seoDescription": "Zaljubljene Mace Figura: Dve mačke naslonjene jedna na drugu — nežan duo za policu. 1.800 RSD · 7 boja · dostava po Srbiji.",
     "featured": false,
     "bestseller": false,
     "sourceHandle": "zaljubljene-mace"
@@ -942,7 +942,7 @@ export const PRODUCTS: Product[] = [
       }
     ],
     "seoTitle": "Zaljubljeni Par – 3D Skulptura Para Poklon za Ljubav | Lumora",
-    "seoDescription": "Zaljubljeni Par Figura od Lumore – 3D štampana skulptura para. Savršen poklon za godišnjicu, venčanje ili rođendan. 7 boja. Dostava po Srbiji.",
+    "seoDescription": "Zaljubljeni Par Figura: Dve isprepletane figure u zagrljaju — apstraktna skulptura o bliskosti. 1.800 RSD · 7 boja · dostava po Srbiji.",
     "featured": false,
     "bestseller": true,
     "sourceHandle": "zaljubljeni-par-figura"
@@ -980,7 +980,7 @@ export const PRODUCTS: Product[] = [
       }
     ],
     "seoTitle": "Bubble Svećnjak – 3D Svećnjak Mehurićastog Dizajna | Lumora",
-    "seoDescription": "Bubble Svećnjak od Lumore – 3D štampani svećnjak sa mehurićastim dizajnom. Savršen poklon i dekor za dom. 7 boja. Dostava po Srbiji.",
+    "seoDescription": "Bubble Svećnjak: Zaobljeni, mehurićasti svećnjak koji staje na dlan — najpristupačniji način da uneseš Lumora detalj u dom. 700 RSD · 7 boja · dostava po Srbiji.",
     "featured": false,
     "bestseller": true,
     "sourceHandle": "booble-svecnjak"
@@ -1018,7 +1018,7 @@ export const PRODUCTS: Product[] = [
       }
     ],
     "seoTitle": "Hvatač Svetlosti Svećnjak – 3D Dekorativni Svećnjak | Lumora",
-    "seoDescription": "Hvatač Svetlosti Svećnjak od Lumore – 3D štampani svećnjak koji lomi i raspršuje svetlost. Magija u vreme sveća. 7 boja. Dostava po Srbiji.",
+    "seoDescription": "Hvatač Svetlosti Svećnjak: Perforirana forma koja lomi plamen svećice u desetine sitnih odsjaja po zidu i plafonu. 1.800 RSD · 7 boja · dostava po Srbiji.",
     "featured": false,
     "bestseller": false,
     "sourceHandle": "rasorsivac-svecnjak"
@@ -1056,7 +1056,7 @@ export const PRODUCTS: Product[] = [
       }
     ],
     "seoTitle": "Rebrasti Svećnjak – 3D Dekorativni Svećnjak | Lumora",
-    "seoDescription": "Rebrasti Svećnjak od Lumore – 3D štampani svećnjak sa rebrastom teksturom. Dekoracija za dom. 7 boja. Dostava po Srbiji.",
+    "seoDescription": "Rebrasti Svećnjak: Vertikalna rebra bacaju pravilne senke i daju svećnjaku arhitektonski, kolonadni izgled. 1.000 RSD · 7 boja · dostava po Srbiji.",
     "featured": false,
     "bestseller": false,
     "sourceHandle": "skupljac-svetla-svecnjak"
@@ -1094,7 +1094,7 @@ export const PRODUCTS: Product[] = [
       }
     ],
     "seoTitle": "Spiralni Svećnjak – 3D Dekorativni Svećnjak | Lumora",
-    "seoDescription": "Spiralni Svećnjak od Lumore – 3D štampani svećnjak spiralnog dizajna. Moderni dekor za dom i poklon. 7 boja. Besplatno pakovanje. Dostava po Srbiji.",
+    "seoDescription": "Spiralni Svećnjak: Uvrnuta, spiralna forma koja se poigrava sa svetlom iz svakog ugla. 1.800 RSD · 7 boja · dostava po Srbiji.",
     "featured": false,
     "bestseller": false,
     "sourceHandle": "uvijeni-svecnjak"
@@ -1132,7 +1132,7 @@ export const PRODUCTS: Product[] = [
       }
     ],
     "seoTitle": "Srce Svećnjak – 3D Svećnjak u Obliku Srca Poklon | Lumora",
-    "seoDescription": "Srce Svećnjak od Lumore – 3D štampani svećnjak u obliku srca. Savršen poklon za Valentinovo i godišnjicu. 7 boja. Dostava po Srbiji.",
+    "seoDescription": "Srce Svećnjak: Svećnjak u obliku srca za jednu čajnu svećicu — mali gest sa velikim značenjem. 1.800 RSD · 7 boja · dostava po Srbiji.",
     "featured": false,
     "bestseller": true,
     "sourceHandle": "srce-svecnjak"
@@ -1170,7 +1170,7 @@ export const PRODUCTS: Product[] = [
       }
     ],
     "seoTitle": "Drvo Saksija – 3D Dekoracija u Obliku Stabla | Lumora",
-    "seoDescription": "Drvo Saksija od Lumore – 3D štampana saksija u obliku stabla. Unikatna dekoracija za biljke i dom. 7 boja, domaća izrada. Dostava po Srbiji.",
+    "seoDescription": "Drvo Saksija: Saksija u obliku stilizovanog stabla, sa otvorom za drenažu — dom za sukulente i male biljke. 2.400 RSD · 7 boja · dostava po Srbiji.",
     "featured": false,
     "bestseller": true,
     "sourceHandle": "drvo-vaza"
@@ -1208,7 +1208,7 @@ export const PRODUCTS: Product[] = [
       }
     ],
     "seoTitle": "Home Za Vrata – 3D Dekoracija za Ulazna Vrata | Lumora",
-    "seoDescription": "Home Za Vrata od Lumore – 3D štampana dekoracija za ulazna vrata. Savršen poklon za useljenje. 7 boja. Srbija.",
+    "seoDescription": "Home Za Vrata: Natpis „HOME” oblikovan da stoji uz ulazna vrata ili na polici u hodniku — prvi detalj koji se vidi pri ulasku. 1.800 RSD · 7 boja · dostava po Srbiji.",
     "featured": false,
     "bestseller": false,
     "sourceHandle": "home-za-vrata"
@@ -1246,7 +1246,7 @@ export const PRODUCTS: Product[] = [
       }
     ],
     "seoTitle": "Papir Saksija – Unikatna 3D Dekoracija za Dom | Lumora",
-    "seoDescription": "Papir Saksija od Lumore – 3D štampana saksija u obliku papirne kese. Originalan dekor za biljke i suvo cveće. 7 boja. Dostava po Srbiji.",
+    "seoDescription": "Papir Saksija: Oblik presavijene papirne kese u čvrstoj formi — moderni omot za saksiju ili suvo cveće. 2.400 RSD · 7 boja · dostava po Srbiji.",
     "featured": false,
     "bestseller": false,
     "sourceHandle": "kesa-vaza"
@@ -1284,7 +1284,7 @@ export const PRODUCTS: Product[] = [
       }
     ],
     "seoTitle": "Šapica Saksija – 3D Dekoracija u Obliku Mačijeg Traga | Lumora",
-    "seoDescription": "Šapica Saksija od Lumore – slatka 3D štampana saksija u obliku šapice. Savršen poklon za ljubitelje mačaka. 7 boja. Dostava po Srbiji.",
+    "seoDescription": "Šapica Saksija: Saksija u obliku mačje šapice — simpatičan dom za sukulent ili kaktus. 2.200 RSD · 7 boja · dostava po Srbiji.",
     "featured": false,
     "bestseller": false,
     "sourceHandle": "sapica-vaza"

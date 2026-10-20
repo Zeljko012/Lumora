@@ -2,12 +2,15 @@
 import Base from "../../layouts/Base.astro";
 import ProductCard from "../../components/ProductCard.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import FaqBlock from "../../components/FaqBlock.astro";
 import { SITE } from "../../data/site";
 import {
   CATEGORY_META,
   productsByCategory,
   type Category,
 } from "../../data/products";
+import { CATEGORY_SEO, fill } from "../../data/seo";
+import { money } from "../../lib/format";
 import { withBase } from "../../lib/url";
 
 export function getStaticPaths() {
@@ -18,7 +21,15 @@ export function getStaticPaths() {
 
 const { slug } = Astro.params as { slug: Category };
 const meta = CATEGORY_META[slug];
+const seo = CATEGORY_SEO[slug];
 const items = productsByCategory(slug);
+
+const prices = items.map((p) => p.price);
+const vars = {
+  count: items.length,
+  from: money(Math.min(...prices)),
+  to: money(Math.max(...prices)),
+};
 
 const otherCats = (["vaze", "figure", "svecnjaci", "dom"] as Category[]).filter(
   (c) => c !== slug,
@@ -26,27 +37,28 @@ const otherCats = (["vaze", "figure", "svecnjaci", "dom"] as Category[]).filter(
 
 const ld = {
   "@context": "https://schema.org",
-  "@type": "ItemList",
-  name: `${meta.title} — Lumora`,
-  numberOfItems: items.length,
-  itemListElement: items.map((p, i) => ({
-    "@type": "ListItem",
-    position: i + 1,
-    url: new URL(`/proizvod/${p.slug}`, SITE.url).href,
-    name: p.name,
-  })),
+  "@type": "CollectionPage",
+  name: seo.h1,
+  url: new URL(`/kategorija/${slug}`, SITE.url).href,
+  inLanguage: "sr-RS",
+  mainEntity: {
+    "@type": "ItemList",
+    numberOfItems: items.length,
+    itemListElement: items.map((p, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      url: new URL(`/proizvod/${p.slug}`, SITE.url).href,
+      name: p.name,
+    })),
+  },
 };
 ---
 
-<Base
-  title={`${meta.title} — 3D dekoracije`}
-  description={meta.seoDescription}
-  jsonLd={[ld]}
->
+<Base title={seo.title} description={fill(seo.description, vars)} jsonLd={[ld]}>
   <div class="container">
     <Breadcrumbs items={[{ label: "Prodavnica", href: "/prodavnica" }, { label: meta.title }]} />
     <header class="listing-head">
-      <h1>{meta.heading}</h1>
+      <h1>{seo.h1}</h1>
       <p>{meta.intro}</p>
       <nav class="chips" aria-label="Kategorije">
         <a href={withBase("/prodavnica")}>Sve</a>
@@ -60,6 +72,29 @@ const ld = {
         {items.map((p, i) => <ProductCard product={p} eager={i < 4} />)}
       </div>
     </div>
+
+    <section class="seo-copy">
+      {
+        seo.sections.map((s) => (
+          <div class="seo-copy__block">
+            <h2>{s.h2}</h2>
+            {s.p.map((t) => <p>{t}</p>)}
+          </div>
+        ))
+      }
+    </section>
+
+    <div class="faq-wrap">
+      <FaqBlock faqs={seo.faqs.map((f) => ({ q: fill(f.q, vars), a: fill(f.a, vars) }))} />
+    </div>
+
+    <nav class="also" aria-label="Pogledaj i">
+      <h2>Pogledaj i</h2>
+      <ul>
+        {seo.related.map((l) => <li><a href={withBase(l.href)}>{l.label}</a></li>)}
+        {otherCats.map((c) => <li><a href={withBase(`/kategorija/${c}`)}>{CATEGORY_META[c].heading}</a></li>)}
+      </ul>
+    </nav>
   </div>
 </Base>
 
@@ -97,5 +132,51 @@ const ld = {
     background: var(--accent);
     color: var(--accent-ink);
     border-color: var(--accent);
+  }
+
+  .seo-copy {
+    display: grid;
+    gap: 2rem;
+    max-width: 760px;
+    padding-block: 1rem 2.5rem;
+    border-top: 1px solid var(--line);
+    margin-top: 1rem;
+    padding-top: 2.5rem;
+  }
+  .seo-copy h2 {
+    font-size: var(--step-2);
+    margin-bottom: 0.6rem;
+  }
+  .seo-copy p {
+    color: var(--ink-soft);
+  }
+  .seo-copy p + p {
+    margin-top: 0.8rem;
+  }
+  .faq-wrap {
+    padding-bottom: 2.5rem;
+  }
+  .also {
+    padding-block: 0 2rem;
+  }
+  .also h2 {
+    font-size: var(--step-1);
+    margin-bottom: 0.8rem;
+  }
+  .also ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
+  }
+  .also a {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.92rem;
+  }
+  .also a:hover {
+    text-decoration: underline;
   }
 </style>

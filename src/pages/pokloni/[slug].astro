@@ -1,0 +1,145 @@
+---
+import Base from "../../layouts/Base.astro";
+import ProductCard from "../../components/ProductCard.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import FaqBlock from "../../components/FaqBlock.astro";
+import { SITE } from "../../data/site";
+import { PRODUCTS, getProduct, type Product } from "../../data/products";
+import { GIFT_PAGES, getGiftPage, fill } from "../../data/seo";
+import { money } from "../../lib/format";
+import { withBase } from "../../lib/url";
+
+export function getStaticPaths() {
+  return GIFT_PAGES.map((g) => ({ params: { slug: g.slug } }));
+}
+
+const { slug } = Astro.params as { slug: string };
+const g = getGiftPage(slug)!;
+
+let items: Product[] = [];
+if (g.products) {
+  items = g.products.map((s) => getProduct(s)).filter((p): p is Product => !!p);
+} else if (g.maxPrice) {
+  items = PRODUCTS.filter((p) => p.price <= g.maxPrice!).sort(
+    (a, b) => a.price - b.price || a.name.localeCompare(b.name, "sr"),
+  );
+}
+
+const prices = items.map((p) => p.price);
+const vars = {
+  count: items.length,
+  from: money(Math.min(...prices)),
+  to: money(Math.max(...prices)),
+};
+
+const others = GIFT_PAGES.filter((x) => x.slug !== g.slug);
+
+const ld = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: g.h1,
+  url: new URL(`/pokloni/${g.slug}`, SITE.url).href,
+  inLanguage: "sr-RS",
+  mainEntity: {
+    "@type": "ItemList",
+    numberOfItems: items.length,
+    itemListElement: items.map((p, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      url: new URL(`/proizvod/${p.slug}`, SITE.url).href,
+      name: p.name,
+    })),
+  },
+};
+---
+
+<Base title={g.title} description={fill(g.description, vars)} jsonLd={[ld]}>
+  <div class="container">
+    <Breadcrumbs items={[{ label: "Pokloni", href: "/pokloni" }, { label: g.h1 }]} />
+    <header class="gift-head">
+      <h1>{g.h1}</h1>
+      {g.intro.map((t) => <p>{t}</p>)}
+    </header>
+
+    <div class="section">
+      <div class="product-grid">
+        {items.map((p, i) => <ProductCard product={p} eager={i < 4} />)}
+      </div>
+    </div>
+
+    <section class="gift-tips">
+      <h2>{g.tips.h2}</h2>
+      {g.tips.p.map((t) => <p>{fill(t, vars)}</p>)}
+    </section>
+
+    <div class="faq-wrap">
+      <FaqBlock faqs={g.faqs.map((f) => ({ q: fill(f.q, vars), a: fill(f.a, vars) }))} />
+    </div>
+
+    <nav class="also" aria-label="Još ideja za poklon">
+      <h2>Još ideja za poklon</h2>
+      <ul>
+        {others.map((o) => <li><a href={withBase(`/pokloni/${o.slug}`)}>{o.h1}</a></li>)}
+        <li><a href={withBase("/kategorija/figure")}>Dekorativne figure</a></li>
+        <li><a href={withBase("/kategorija/vaze")}>Moderne vaze</a></li>
+        <li><a href={withBase("/kategorija/svecnjaci")}>Svećnjaci</a></li>
+      </ul>
+    </nav>
+  </div>
+</Base>
+
+<style>
+  .gift-head {
+    padding-block: 0.5rem 1.5rem;
+  }
+  .gift-head h1 {
+    font-size: var(--step-3);
+  }
+  .gift-head p {
+    color: var(--ink-soft);
+    margin-top: 0.7rem;
+    max-width: 64ch;
+  }
+  .gift-tips {
+    max-width: 760px;
+    border-top: 1px solid var(--line);
+    padding-block: 2.5rem 2rem;
+    margin-top: 1rem;
+  }
+  .gift-tips h2 {
+    font-size: var(--step-2);
+    margin-bottom: 0.7rem;
+  }
+  .gift-tips p {
+    color: var(--ink-soft);
+  }
+  .gift-tips p + p {
+    margin-top: 0.8rem;
+  }
+  .faq-wrap {
+    padding-bottom: 2.5rem;
+  }
+  .also {
+    padding-block: 0 2rem;
+  }
+  .also h2 {
+    font-size: var(--step-1);
+    margin-bottom: 0.8rem;
+  }
+  .also ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
+  }
+  .also a {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.92rem;
+  }
+  .also a:hover {
+    text-decoration: underline;
+  }
+</style>

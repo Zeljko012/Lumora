@@ -1,0 +1,82 @@
+---
+import Base from "../../layouts/Base.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import { GUIDES } from "../../data/seo";
+import { withBase } from "../../lib/url";
+---
+
+<Base
+  title="Vodič: dekoracija i uređenje doma"
+  description="Praktični vodiči: kako izabrati vazu za suvo cveće, kako održavati 3D štampane dekoracije i kako ukrasiti policu i komodu."
+>
+  <div class="container">
+    <Breadcrumbs items={[{ label: "Vodič" }]} />
+    <header class="hub-head">
+      <h1>Vodič kroz dekoraciju doma</h1>
+      <p>Kratki, praktični saveti za izbor i postavljanje dekoracija.</p>
+    </header>
+
+    <ul class="guides">
+      {
+        GUIDES.map((g) => (
+          <li>
+            <a href={withBase(`/vodic/${g.slug}`)}>
+              <h2>{g.title}</h2>
+              <p>{g.description}</p>
+              <span>Pročitaj →</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</Base>
+
+<style>
+  .hub-head {
+    padding-block: 0.5rem 1.5rem;
+  }
+  .hub-head h1 {
+    font-size: var(--step-3);
+  }
+  .hub-head p {
+    color: var(--ink-soft);
+    margin-top: 0.6rem;
+  }
+  .guides {
+    list-style: none;
+    margin: 0;
+    padding: 0 0 3rem;
+    display: grid;
+    gap: 1rem;
+    max-width: 760px;
+  }
+  .guides a {
+    display: block;
+    padding: 1.3rem;
+    text-decoration: none;
+    color: var(--ink);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+  }
+  .guides a:hover {
+    border-color: var(--accent);
+  }
+  .guides h2 {
+    font-size: var(--step-1);
+  }
+  .guides p {
+    color: var(--ink-soft);
+    font-size: 0.92rem;
+    margin-top: 0.4rem;
+  }
+  .guides span {
+    display: inline-block;
+    margin-top: 0.7rem;
+    font: 500 0.78rem/1 var(--font-mono);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+</style>

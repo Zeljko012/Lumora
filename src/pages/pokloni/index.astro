@@ -1,0 +1,101 @@
+---
+import Base from "../../layouts/Base.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import { PRODUCTS, getProduct } from "../../data/products";
+import { GIFT_PAGES } from "../../data/seo";
+import { withBase } from "../../lib/url";
+
+const cards = GIFT_PAGES.map((g) => {
+  const count = g.products
+    ? g.products.filter((s) => getProduct(s)).length
+    : PRODUCTS.filter((p) => p.price <= (g.maxPrice ?? 0)).length;
+  return { ...g, count };
+});
+---
+
+<Base
+  title="Ideje za poklon – dekoracije za dom"
+  description="Ideje za poklon: za useljenje, godišnjicu, ljubitelje mačaka i pokloni do 2.000 dinara. 3D štampane dekoracije za dom, 7 boja, dostava po Srbiji."
+>
+  <div class="container">
+    <Breadcrumbs items={[{ label: "Pokloni" }]} />
+    <header class="hub-head">
+      <h1>Ideje za poklon</h1>
+      <p>
+        Pronađi poklon prema prilici ili budžetu. Svaki komad je 3D štampana
+        dekoracija za dom u boji po izboru.
+      </p>
+    </header>
+
+    <ul class="hub-grid">
+      {
+        cards.map((c) => (
+          <li>
+            <a href={withBase(`/pokloni/${c.slug}`)}>
+              <h2>{c.h1}</h2>
+              <p>{c.intro[0]}</p>
+              <span>{c.count} komada →</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</Base>
+
+<style>
+  .hub-head {
+    padding-block: 0.5rem 1.5rem;
+  }
+  .hub-head h1 {
+    font-size: var(--step-3);
+  }
+  .hub-head p {
+    color: var(--ink-soft);
+    margin-top: 0.6rem;
+    max-width: 60ch;
+  }
+  .hub-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0 0 3rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  @media (max-width: 700px) {
+    .hub-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  .hub-grid a {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    height: 100%;
+    padding: 1.4rem;
+    text-decoration: none;
+    color: var(--ink);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    transition: border-color 0.2s ease;
+  }
+  .hub-grid a:hover {
+    border-color: var(--accent);
+  }
+  .hub-grid h2 {
+    font-size: var(--step-2);
+  }
+  .hub-grid p {
+    color: var(--ink-soft);
+    font-size: 0.92rem;
+  }
+  .hub-grid span {
+    margin-top: auto;
+    font: 500 0.78rem/1 var(--font-mono);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+</style>

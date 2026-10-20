@@ -14,7 +14,7 @@ export const SITE = {
   url: rawUrl.replace(/\/$/, ""),
   /** Kratak opis za SEO (meta description na naslovnoj) */
   description:
-    "Lumora — 3D štampane dekoracije za dom izrađene u Srbiji. Vaze, figure i svećnjaci u 7 boja. Dostava 3–5 radnih dana, plaćanje pouzećem.",
+    "Lumora — 3D štampane dekoracije za dom izrađene u Srbiji. Vaze za suvo cveće, figure, svećnjaci i detalji za dom u 7 boja. Dostava 3–5 radnih dana, plaćanje pouzećem.",
   tagline: "Skulpturalne 3D dekoracije, izrađene u Srbiji",
 
   email: "homedecorlumora@gmail.com",
@@ -70,6 +70,7 @@ export const NAV = [
   { label: "Figure", href: "/kategorija/figure" },
   { label: "Svećnjaci", href: "/kategorija/svecnjaci" },
   { label: "Dom", href: "/kategorija/dom" },
+  { label: "Pokloni", href: "/pokloni" },
   { label: "O nama", href: "/o-nama" },
   { label: "Kontakt", href: "/kontakt" },
 ] as const;
