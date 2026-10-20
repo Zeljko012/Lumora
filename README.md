@@ -187,14 +187,14 @@ public/
 Šta sajt već ima:
 - jedinstven `<title>` i meta opis na svakoj strani (proizvodi: ime + opis + cena + 7 boja + dostava)
 - stranice kategorija sa H1 koji sadrži ključnu frazu, tekstom ispod proizvoda i FAQ (FAQPage JSON-LD)
-- stranice za pretrage tipa „poklon…": `/pokloni/poklon-za-useljenje`, `/poklon-za-ljubitelje-macaka`,
-  `/poklon-za-godisnjicu`, `/pokloni-do-2000-dinara` (+ hub `/pokloni`)
+- 9 stranica za poklone (`/pokloni/…`: useljenje, godišnjica, Dan zaljubljenih, 8. mart, rođendan, Nova godina, mačke, 3D štampani pokloni, do 2000 din)
+  i 4 stranice po stilu/prostoru (`/dekoracija/…`: minimalistička, boho, dnevna soba, saksije)
 - vodiči `/vodic/…` (3 članka, Article JSON-LD) za informativne pretrage
 - JSON-LD: Organization, WebSite, Product, CollectionPage/ItemList, BreadcrumbList, FAQPage, Article
 - `sitemap-index.xml`, `robots.txt`, canonical, Open Graph, interno linkovanje (meni, footer, „Pogledaj i")
 
-**Važno:** ključne reči su birane prema tome kako ljudi u Srbiji realno traže ovakve proizvode,
-a NE prema izmerenim brojevima pretrage (nije bilo pristupa alatima sa podacima za Srbiju).
+**Važno:** ključne reči dolaze iz istraživanja preko Perplexity-ja (pregled srpskih prodavnica i kategorija),
+bez izmerenih brojeva pretrage. Detalji, konkurencija i sezonski kalendar: `docs/seo-keyword-research.md`.
 
 Sledeći koraci (kad sajt dobije pravi domen):
 1. Dodaj domen u **Google Search Console**, potvrdi vlasništvo i pošalji `sitemap-index.xml`.

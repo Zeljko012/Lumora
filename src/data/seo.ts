@@ -11,6 +11,7 @@
  */
 import type { Category } from "./products";
 import { SITE } from "./site";
+import { EXTRA_GIFT_PAGES, THEME_PAGES as THEME_PAGES_DATA } from "./seo-landing";
 
 export interface Faq {
   q: string;
@@ -87,11 +88,25 @@ export const CATEGORY_SEO: Record<Category, CategorySeo> = {
         q: "Kako se plaća i koliko traje dostava?",
         a: `Plaćanje je pouzećem, gotovinom kuriru. Dostava po celoj Srbiji traje ${DELIVERY} od potvrde porudžbine.`,
       },
+      {
+        q: "Gde mogu da kupim vazu za suvo cveće u Srbiji?",
+        a: "Lumora vaze se naručuju direktno na sajtu i šalju na adresu u celoj Srbiji. Plaćanje je pouzećem.",
+      },
+      {
+        q: "Koliko košta vaza za suvo cveće?",
+        a: "Cene naših vaza su od {from} do {to}. Besplatna dostava važi za porudžbine preko 6.000 RSD.",
+      },
+      {
+        q: "Šta je 3D štampana vaza?",
+        a: "Vaza napravljena 3D štampom, sloj po sloj, od eko PLA materijala. Oblik je precizan, a boju biraš sam.",
+      },
     ],
     related: [
       { label: "Kako izabrati vazu za suvo cveće", href: "/vodic/kako-izabrati-vazu-za-suvo-cvece" },
       { label: "Poklon za useljenje u novi stan", href: "/pokloni/poklon-za-useljenje" },
       { label: "Kako ukrasiti policu i komodu", href: "/vodic/kako-ukrasiti-policu-i-komodu" },
+      { label: "Boho dekoracija za dom", href: "/dekoracija/boho-dekoracija-za-dom" },
+      { label: "Minimalistička dekoracija za dom", href: "/dekoracija/minimalisticka-dekoracija-za-dom" },
     ],
     keywords: [
       "vaza za suvo cveće",
@@ -146,11 +161,17 @@ export const CATEGORY_SEO: Record<Category, CategorySeo> = {
         q: "Koliko traje dostava?",
         a: `${DELIVERY} od potvrde porudžbine, kurirskom službom po celoj Srbiji. Plaćanje je pouzećem.`,
       },
+      {
+        q: "Koje figure su dobre za dnevnu sobu?",
+        a: "Mislilac, Zaljubljeni Par i Maska su skulpture koje same drže policu ili komodu. Pogledaj i ideje za dekoraciju dnevne sobe.",
+      },
     ],
     related: [
       { label: "Poklon za ljubitelje mačaka", href: "/pokloni/poklon-za-ljubitelje-macaka" },
       { label: "Poklon za godišnjicu", href: "/pokloni/poklon-za-godisnjicu" },
       { label: "Pokloni do 2.000 dinara", href: "/pokloni/pokloni-do-2000-dinara" },
+      { label: "3D štampani pokloni", href: "/pokloni/3d-stampani-pokloni" },
+      { label: "Dekoracija za dnevnu sobu", href: "/dekoracija/dekoracija-za-dnevnu-sobu" },
     ],
     keywords: [
       "dekorativne figure",
@@ -201,10 +222,15 @@ export const CATEGORY_SEO: Record<Category, CategorySeo> = {
         q: "Koji svećnjak je dobar poklon?",
         a: "Srce Svećnjak je popularan izbor za godišnjicu i Dan zaljubljenih, a Bubble Svećnjak je najpristupačniji — idealan kao mali poklon.",
       },
+      {
+        q: "Mogu li da složim set svećnjaka?",
+        a: "Da. Izaberi dva ili tri modela u istoj boji — na primer Bubble, Rebrasti i Spiralni — i dobijaš uigran set različitih oblika.",
+      },
     ],
     related: [
       { label: "Poklon za godišnjicu i zaljubljene", href: "/pokloni/poklon-za-godisnjicu" },
       { label: "Kako održavati 3D štampane dekoracije", href: "/vodic/kako-odrzavati-3d-stampane-dekoracije" },
+      { label: "Pokloni za Novu godinu i praznike", href: "/pokloni/pokloni-za-novu-godinu" },
     ],
     keywords: [
       "svećnjak",
@@ -244,8 +270,13 @@ export const CATEGORY_SEO: Record<Category, CategorySeo> = {
         q: "Mogu li da izaberem boju?",
         a: "Da, svaki proizvod dolazi u 7 boja. Boju biraš na stranici proizvoda.",
       },
+      {
+        q: "Koja saksija je dobra za sukulente?",
+        a: "Drvo, Šapica i Papir Saksija su namenjene malim biljkama poput sukulenata. Biljku drži u lončiću unutar saksije.",
+      },
     ],
     related: [
+      { label: "Dekorativne saksije za sukulente", href: "/dekoracija/dekorativne-saksije" },
       { label: "Poklon za useljenje u novi stan", href: "/pokloni/poklon-za-useljenje" },
       { label: "Poklon za ljubitelje mačaka", href: "/pokloni/poklon-za-ljubitelje-macaka" },
     ],
@@ -276,7 +307,7 @@ export interface GiftPage {
   keywords: string[];
 }
 
-export const GIFT_PAGES: GiftPage[] = [
+const BASE_GIFT_PAGES: GiftPage[] = [
   {
     slug: "poklon-za-useljenje",
     title: "Poklon za useljenje u novi stan – ideje i dekoracije",
@@ -375,12 +406,12 @@ export const GIFT_PAGES: GiftPage[] = [
   },
   {
     slug: "poklon-za-godisnjicu",
-    title: "Poklon za godišnjicu i Dan zaljubljenih",
-    h1: "Poklon za godišnjicu i zaljubljene",
+    title: "Poklon za godišnjicu – romantične dekoracije za dom",
+    h1: "Poklon za godišnjicu",
     description:
-      "Romantični pokloni za godišnjicu i Dan zaljubljenih: parovi u zagrljaju, figura sa srcem, svećnjak u obliku srca. 3D štampano u Srbiji, od {from}.",
+      "Romantičan poklon za godišnjicu veze: parovi u zagrljaju, figura sa srcem, svećnjak u obliku srca. 3D štampano u Srbiji, 7 boja, od {from}.",
     intro: [
-      "Za godišnjicu, Dan zaljubljenih ili bez posebnog razloga, mala skulptura o bliskosti poklanja se lako i ostaje dugo. Ne vene, ne zahteva negu i svaki put kad prođeš pored polica podseća na osobu koja ti ju je poklonila.",
+      "Za godišnjicu veze ili bez posebnog razloga, mala skulptura o bliskosti poklanja se lako i ostaje dugo. Ne vene, ne zahteva negu i svaki put kad prođeš pored polica podseća na osobu koja ti ju je poklonila.",
       "U ponudi su apstraktni parovi u zagrljaju, figura sa srcem, dve zaljubljene mace i svećnjak u obliku srca — sve u 7 boja, po izboru.",
     ],
     products: [
@@ -459,6 +490,25 @@ export const GIFT_PAGES: GiftPage[] = [
     ],
   },
 ];
+
+const GIFT_ORDER = [
+  "3d-stampani-pokloni",
+  "poklon-za-useljenje",
+  "poklon-za-godisnjicu",
+  "poklon-za-dan-zaljubljenih",
+  "poklon-za-8-mart",
+  "poklon-za-rodjendan",
+  "pokloni-za-novu-godinu",
+  "poklon-za-ljubitelje-macaka",
+  "pokloni-do-2000-dinara",
+];
+export const GIFT_PAGES: GiftPage[] = [...BASE_GIFT_PAGES, ...EXTRA_GIFT_PAGES].sort(
+  (a, b) => GIFT_ORDER.indexOf(a.slug) - GIFT_ORDER.indexOf(b.slug),
+);
+
+/** Stranice po stilu / prostoru: /dekoracija/<slug> */
+export const THEME_PAGES: GiftPage[] = THEME_PAGES_DATA;
+export const getThemePage = (slug: string) => THEME_PAGES.find((g) => g.slug === slug);
 
 /* ================================ VODIČI ================================ */
 

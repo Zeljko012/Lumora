@@ -1,0 +1,35 @@
+---
+import ProductLanding from "../../components/ProductLanding.astro";
+import { getProduct, type Product } from "../../data/products";
+import { THEME_PAGES, getThemePage } from "../../data/seo";
+
+export function getStaticPaths() {
+  return THEME_PAGES.map((g) => ({ params: { slug: g.slug } }));
+}
+
+const { slug } = Astro.params as { slug: string };
+const g = getThemePage(slug)!;
+const items = (g.products ?? [])
+  .map((s) => getProduct(s))
+  .filter((p): p is Product => !!p);
+
+const also = [
+  ...THEME_PAGES.filter((x) => x.slug !== g.slug).map((o) => ({
+    label: o.h1,
+    href: `/dekoracija/${o.slug}`,
+  })),
+  { label: "Ideje za poklon", href: "/pokloni" },
+  { label: "Moderne vaze", href: "/kategorija/vaze" },
+  { label: "Dekorativne figure", href: "/kategorija/figure" },
+  { label: "Kako ukrasiti policu i komodu", href: "/vodic/kako-ukrasiti-policu-i-komodu" },
+];
+---
+
+<ProductLanding
+  page={g}
+  items={items}
+  section="dekoracija"
+  hubLabel="Dekoracija za dom"
+  alsoTitle="Pogledaj i"
+  also={also}
+/>

@@ -10,7 +10,7 @@ import {
   type Category,
 } from "../data/products";
 import { money } from "../lib/format";
-import { GIFT_PAGES } from "../data/seo";
+import { GIFT_PAGES, THEME_PAGES } from "../data/seo";
 import { PRODUCTS } from "../data/products";
 import { withBase } from "../lib/url";
 
@@ -135,11 +135,12 @@ const websiteLd = {
 
   <section class="section container seo-home">
     <div class="section-head">
-      <h2>Ideje za poklon</h2>
+      <h2>Ideje za poklon i dekoraciju</h2>
       <a href={withBase("/pokloni")}>Sve ideje →</a>
     </div>
     <ul class="gift-chips">
       {GIFT_PAGES.map((g) => <li><a href={withBase(`/pokloni/${g.slug}`)}>{g.h1}</a></li>)}
+      {THEME_PAGES.map((g) => <li><a href={withBase(`/dekoracija/${g.slug}`)}>{g.h1}</a></li>)}
     </ul>
 
     <div class="seo-home__text">

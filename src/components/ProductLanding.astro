@@ -1,0 +1,135 @@
+---
+import Base from "../layouts/Base.astro";
+import ProductCard from "./ProductCard.astro";
+import Breadcrumbs from "./Breadcrumbs.astro";
+import FaqBlock from "./FaqBlock.astro";
+import { SITE } from "../data/site";
+import type { Product } from "../data/products";
+import { fill, type GiftPage, type SeoLink } from "../data/seo";
+import { money } from "../lib/format";
+import { withBase } from "../lib/url";
+
+interface Props {
+  page: GiftPage;
+  items: Product[];
+  /** "pokloni" | "dekoracija" — prvi deo putanje */
+  section: string;
+  hubLabel: string;
+  alsoTitle: string;
+  also: SeoLink[];
+}
+const { page: g, items, section, hubLabel, alsoTitle, also } = Astro.props;
+
+const prices = items.map((p) => p.price);
+const vars = {
+  count: items.length,
+  from: money(Math.min(...prices)),
+  to: money(Math.max(...prices)),
+};
+
+const ld = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: g.h1,
+  url: new URL(`/${section}/${g.slug}`, SITE.url).href,
+  inLanguage: "sr-RS",
+  mainEntity: {
+    "@type": "ItemList",
+    numberOfItems: items.length,
+    itemListElement: items.map((p, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      url: new URL(`/proizvod/${p.slug}`, SITE.url).href,
+      name: p.name,
+    })),
+  },
+};
+---
+
+<Base title={g.title} description={fill(g.description, vars)} jsonLd={[ld]}>
+  <div class="container">
+    <Breadcrumbs items={[{ label: hubLabel, href: `/${section}` }, { label: g.h1 }]} />
+    <header class="gift-head">
+      <h1>{g.h1}</h1>
+      {g.intro.map((t) => <p>{t}</p>)}
+    </header>
+
+    <div class="section">
+      <div class="product-grid">
+        {items.map((p, i) => <ProductCard product={p} eager={i < 4} />)}
+      </div>
+    </div>
+
+    <section class="gift-tips">
+      <h2>{g.tips.h2}</h2>
+      {g.tips.p.map((t) => <p>{fill(t, vars)}</p>)}
+    </section>
+
+    <div class="faq-wrap">
+      <FaqBlock faqs={g.faqs.map((f) => ({ q: fill(f.q, vars), a: fill(f.a, vars) }))} />
+    </div>
+
+    <nav class="also" aria-label={alsoTitle}>
+      <h2>{alsoTitle}</h2>
+      <ul>
+        {also.map((o) => <li><a href={withBase(o.href)}>{o.label}</a></li>)}
+      </ul>
+    </nav>
+  </div>
+</Base>
+
+<style>
+  .gift-head {
+    padding-block: 0.5rem 1.5rem;
+  }
+  .gift-head h1 {
+    font-size: var(--step-3);
+  }
+  .gift-head p {
+    color: var(--ink-soft);
+    margin-top: 0.7rem;
+    max-width: 64ch;
+  }
+  .gift-tips {
+    max-width: 760px;
+    border-top: 1px solid var(--line);
+    padding-block: 2.5rem 2rem;
+    margin-top: 1rem;
+  }
+  .gift-tips h2 {
+    font-size: var(--step-2);
+    margin-bottom: 0.7rem;
+  }
+  .gift-tips p {
+    color: var(--ink-soft);
+  }
+  .gift-tips p + p {
+    margin-top: 0.8rem;
+  }
+  .faq-wrap {
+    padding-bottom: 2.5rem;
+  }
+  .also {
+    padding-block: 0 2rem;
+  }
+  .also h2 {
+    font-size: var(--step-1);
+    margin-bottom: 0.8rem;
+  }
+  .also ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
+  }
+  .also a {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.92rem;
+  }
+  .also a:hover {
+    text-decoration: underline;
+  }
+</style>
