@@ -1,5 +1,7 @@
 import type { APIRoute } from "astro";
+import { deflateRawSync } from "node:zlib";
 import { Resend } from "resend";
+import type { SiteOrderPayload } from "../../../admin/src/lib/siteOrderCodec";
 import { SITE } from "../../data/site";
 
 export const prerender = false;
@@ -116,6 +118,32 @@ function totalsBlock(t: OrderPayload["totals"]): string {
     </table>`;
 }
 
+/** Link koji otvara admin aplikaciju i u njoj upisuje porudžbinu (v. admin/src/lib/siteOrderCodec.ts). */
+function adminLink(id: string, body: OrderPayload): string {
+  const payload: SiteOrderPayload = {
+    v: 1,
+    id,
+    at: new Date().toISOString(),
+    customer: {
+      firstName: body.customer.firstName,
+      lastName: body.customer.lastName,
+      phone: body.customer.phone,
+      email: body.customer.email,
+      address: body.customer.address,
+      city: body.customer.city,
+      zip: body.customer.zip,
+      note: body.customer.note || "",
+    },
+    items: body.items.map((i) => ({ slug: i.slug, name: i.name, color: i.color, qty: i.qty, price: i.price })),
+    subtotal: body.totals.subtotal,
+    shippingFree: !!body.totals.shippingFree,
+    total: body.totals.total,
+  };
+  const code = deflateRawSync(Buffer.from(JSON.stringify(payload), "utf8"), { level: 9 }).toString("base64url");
+  const base = (process.env.ADMIN_URL || `${SITE.url}/admin/`).replace(/\/?$/, "/");
+  return `${base}#/uvoz?d=${code}`;
+}
+
 const shell = (title: string, body: string) => `
   <div style="background:#ece5d8;padding:24px;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:#2a2420">
     <div style="max-width:600px;margin:0 auto;background:#f5f1e8;border:1px solid #d6cbb8;border-radius:16px;overflow:hidden">
@@ -153,6 +181,10 @@ export const POST: APIRoute = async ({ request }) => {
   // Uvek upiši u log (Vercel → Logs) da porudžbina ne bi bila izgubljena
   console.log("NOVA PORUDŽBINA", id, JSON.stringify({ customer: c, items: body.items, totals: body.totals }));
 
+  // Link za admin aplikaciju: u logu ostaje i kad mejl ne uspe, pa porudžbina ne može da se izgubi
+  const link = adminLink(id, body);
+  console.log("LINK ZA APLIKACIJU", id, link);
+
   const API_KEY = process.env.RESEND_API_KEY;
   const FROM = process.env.ORDER_FROM || `Lumora <onboarding@resend.dev>`;
   const TO = (process.env.ORDER_TO || SITE.email)
@@ -183,6 +215,8 @@ export const POST: APIRoute = async ({ request }) => {
   const ownerHtml = shell(
     `Nova porudžbina ${id}`,
     `<p style="color:#6e6459;font-size:13px;margin:0 0 16px">${esc(when)} · plaćanje pouzećem</p>
+     <p style="margin:0 0 6px"><a href="${esc(link)}" style="display:inline-block;background:#4f6f63;color:#ffffff;padding:13px 20px;border-radius:999px;text-decoration:none;font-weight:700;font-size:15px">📲 Otvori u aplikaciji</a></p>
+     <p style="color:#6e6459;font-size:12px;margin:0 0 18px">Dodirni dugme na telefonu na kom imaš Lumora aplikaciju — porudžbina se sama upisuje. Ako se ne otvori, kopiraj link iz ovog mejla i nalepi ga u aplikaciji (Početna → „Stigla porudžbina sa sajta?“).</p>
      ${itemsTable(body.items)}
      ${totalsBlock(body.totals)}
      <h2 style="font-size:15px;margin:20px 0 8px">Dostava</h2>
@@ -199,7 +233,8 @@ export const POST: APIRoute = async ({ request }) => {
       body.totals.shippingFree ? "Besplatno" : "Po ceni kurirske službe"
     }\nUkupno: ${money(body.totals.total)}\n\n` +
     `${c.firstName} ${c.lastName}\n${c.address}\n${c.zip} ${c.city}\nTel: ${c.phone}\nEmail: ${c.email}\n` +
-    (c.note ? `\nNapomena: ${c.note}\n` : "");
+    (c.note ? `\nNapomena: ${c.note}\n` : "") +
+    `\nOtvori u aplikaciji: ${link}\n`;
 
   const customerHtml = shell(
     `Hvala na porudžbini, ${esc(c.firstName)}!`,

@@ -8,10 +8,12 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "npm run build:admin && astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "images": "node scripts/fetch-images.mjs"
+    "images": "node scripts/fetch-images.mjs",
+    "build:admin": "npm --prefix admin install --no-audit --no-fund && npm --prefix admin run build",
+    "dev:admin": "npm --prefix admin run dev"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.2.1",

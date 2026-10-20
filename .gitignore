@@ -11,3 +11,8 @@ Thumbs.db
 
 # regenerisan iz products_export_1.csv preko scripts/parse_csv.py — nije izvor istine
 scripts/products-source.json
+
+# admin aplikacija se gradi u public/admin (v. admin/)
+admin/node_modules/
+admin/dist/
+public/admin/

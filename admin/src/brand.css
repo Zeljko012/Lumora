@@ -1,0 +1,242 @@
+/* Lumora Admin — brend i novi elementi (učitava se posle styles.css) */
+:root {
+  --brand: #4f6f63;
+  --brand-2: #3e5b4f;
+  --brand-bg: #e4eee8;
+}
+
+.bottom-nav a.fab span.fab-circle {
+  background: var(--brand);
+  box-shadow: 0 4px 14px rgb(62 91 79 / 40%);
+}
+.rank-bar i {
+  background: var(--brand);
+}
+.link-btn {
+  color: var(--brand-2);
+}
+
+/* ---------- zajedničko ---------- */
+.spark {
+  display: block;
+  width: 100%;
+}
+.spark-empty {
+  background: transparent;
+}
+.kpi .spark {
+  margin-top: 6px;
+}
+.btn.brand {
+  background: var(--brand);
+  border-color: var(--brand);
+  color: #fff;
+}
+.tab.on.brand {
+  background: var(--brand);
+  border-color: var(--brand);
+}
+
+/* ---------- Početna ---------- */
+.hello {
+  margin: 0 4px 12px;
+}
+.hello h2 {
+  font-size: 15px;
+  font-weight: 650;
+  color: var(--muted);
+  margin: 0;
+}
+.hero-card {
+  background: linear-gradient(160deg, var(--brand) 0%, var(--brand-2) 100%);
+  color: #fff;
+  border-radius: 20px;
+  padding: 16px 16px 10px;
+  box-shadow: 0 8px 24px rgb(62 91 79 / 28%);
+}
+.hero-card .lbl {
+  font-size: 13px;
+  font-weight: 650;
+  opacity: 0.8;
+}
+.hero-card .big {
+  font-size: 34px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+  margin-top: 2px;
+}
+.hero-card .row {
+  display: flex;
+  gap: 4px 14px;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 14px;
+  opacity: 0.92;
+}
+.hero-card .delta {
+  font-weight: 750;
+}
+.hero-card .spark path:first-child {
+  fill: #fff;
+}
+.hero-card .spark path:last-child {
+  stroke: #fff;
+}
+
+.steps {
+  display: grid;
+  gap: 8px;
+}
+.step {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px;
+  min-height: 72px;
+  text-decoration: none;
+  background: var(--surface);
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  width: 100%;
+  text-align: left;
+}
+.step .num {
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  flex: none;
+  font-size: 21px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  background: var(--surface-2);
+  color: var(--ink-2);
+}
+.step .main {
+  flex: 1;
+  min-width: 0;
+}
+.step .t {
+  font-weight: 720;
+  font-size: 17px;
+}
+.step .s {
+  font-size: 14px;
+  color: var(--muted);
+}
+.step .chev {
+  width: 20px;
+  height: 20px;
+  color: var(--line-strong);
+  flex: none;
+}
+.step.todo {
+  border-color: color-mix(in srgb, var(--c) 55%, var(--line));
+  background: color-mix(in srgb, var(--c) 7%, var(--surface));
+}
+.step.todo .num {
+  background: var(--c);
+  color: #fff;
+}
+.step.next {
+  box-shadow:
+    0 0 0 3px color-mix(in srgb, var(--c) 28%, transparent),
+    var(--shadow);
+}
+.step .tag {
+  font-size: 12px;
+  font-weight: 750;
+  color: var(--c);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.step.done .num {
+  background: var(--green-bg);
+  color: var(--green);
+}
+
+.import-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  background: var(--brand-bg);
+  border: 1.5px dashed color-mix(in srgb, var(--brand) 45%, transparent);
+  border-radius: var(--radius);
+  text-decoration: none;
+}
+.import-card svg {
+  width: 26px;
+  height: 26px;
+  color: var(--brand);
+  flex: none;
+}
+.import-card .grow {
+  flex: 1;
+}
+.import-card b {
+  display: block;
+}
+.import-card small {
+  color: var(--ink-2);
+}
+
+/* ---------- toplotna mapa ---------- */
+.heat {
+  display: grid;
+  gap: 3px;
+  margin-top: 6px;
+}
+.heat-row {
+  display: grid;
+  grid-template-columns: 30px repeat(24, 1fr);
+  gap: 2px;
+  align-items: center;
+}
+.heat-row i {
+  aspect-ratio: 1;
+  border-radius: 3px;
+  display: block;
+}
+.heat-day {
+  font-size: 11px;
+  color: var(--muted);
+  font-weight: 650;
+}
+.heat-axis span {
+  font-size: 10px;
+  color: var(--muted);
+  text-align: left;
+  overflow: visible;
+  white-space: nowrap;
+}
+
+/* ---------- uvoz porudžbine ---------- */
+.code-box {
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: 13px;
+  min-height: 96px;
+}
+.install-steps {
+  margin: 0;
+  padding-left: 20px;
+  display: grid;
+  gap: 8px;
+}
+.pill-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.kpi.hero {
+  background: linear-gradient(160deg, var(--brand) 0%, var(--brand-2) 100%);
+  border-color: var(--brand-2);
+  box-shadow: 0 8px 24px rgb(62 91 79 / 24%);
+}
+.kpi.hero .spark path:first-child {
+  fill: #fff;
+}

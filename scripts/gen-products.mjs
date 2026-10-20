@@ -5,6 +5,7 @@
  * Pokretanje:  node scripts/gen-products.mjs <putanja-do-products.json>
  */
 import fs from "node:fs";
+import crypto from "node:crypto";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -460,6 +461,35 @@ export const priceRange = (): [number, number] => {
 };
 `;
 
+// ── katalog za Lumora Admin aplikaciju (admin/src/data/catalog.json) ──
+const ADMIN_COLOR = {
+  white: "bela",
+  beige: "bež",
+  gray: "siva",
+  black: "crna",
+  pink: "roze",
+  green: "maslinasto zelena",
+  red: "crvena",
+};
+const catalogProducts = items.map((i) => ({
+  slug: i.slug,
+  name: i.name,
+  category: i.category,
+  price: i.price,
+  colors: i.colors.map((k) => ({ key: k, label: ADMIN_COLOR[k] ?? k })),
+  image: i.images[0] ? i.images[0].src.replace(/^\//, "") : "",
+}));
+const catalogVersion = parseInt(
+  crypto.createHash("sha1").update(JSON.stringify(catalogProducts)).digest("hex").slice(0, 7),
+  16,
+);
+fs.mkdirSync(path.join(ROOT, "admin/src/data"), { recursive: true });
+fs.writeFileSync(
+  path.join(ROOT, "admin/src/data/catalog.json"),
+  JSON.stringify({ version: catalogVersion, products: catalogProducts }, null, 1),
+  "utf8",
+);
+
 fs.writeFileSync(path.join(ROOT, "src/data/products.ts"), header, "utf8");
 fs.writeFileSync(
   path.join(ROOT, "scripts/images.json"),
@@ -474,3 +504,4 @@ for (const c of ["vaze", "figure", "svecnjaci", "dom"]) {
   console.log(`  ${c}: ${items.filter((i) => i.category === c).length}`);
 }
 console.log(`✓ ${imageJobs.length} setova slika -> scripts/images.json`);
+console.log(`✓ katalog za admin aplikaciju (v${catalogVersion}) -> admin/src/data/catalog.json`);

@@ -1,0 +1,1189 @@
+{
+ "version": 229628803,
+ "products": [
+  {
+   "slug": "arch-vaza",
+   "name": "Arch Vaza",
+   "category": "vaze",
+   "price": 2400,
+   "colors": [
+    {
+     "key": "white",
+     "label": "bela"
+    },
+    {
+     "key": "beige",
+     "label": "bež"
+    },
+    {
+     "key": "gray",
+     "label": "siva"
+    },
+    {
+     "key": "black",
+     "label": "crna"
+    },
+    {
+     "key": "pink",
+     "label": "roze"
+    },
+    {
+     "key": "green",
+     "label": "maslinasto zelena"
+    },
+    {
+     "key": "red",
+     "label": "crvena"
+    }
+   ],
+   "image": "images/products/arch-vaza/1.webp"
+  },
+  {
+   "slug": "bubble-vaza",
+   "name": "Bubble Vaza",
+   "category": "vaze",
+   "price": 2400,
+   "colors": [
+    {
+     "key": "white",
+     "label": "bela"
+    },
+    {
+     "key": "beige",
+     "label": "bež"
+    },
+    {
+     "key": "gray",
+     "label": "siva"
+    },
+    {
+     "key": "black",
+     "label": "crna"
+    },
+    {
+     "key": "pink",
+     "label": "roze"
+    },
+    {
+     "key": "green",
+     "label": "maslinasto zelena"
+    },
+    {
+     "key": "red",
+     "label": "crvena"
+    }
+   ],
+   "image": "images/products/bubble-vaza/1.webp"
+  },
+  {
+   "slug": "donut-vaza",
+   "name": "Donut Vaza",
+   "category": "vaze",
+   "price": 2400,
+   "colors": [
+    {
+     "key": "white",
+     "label": "bela"
+    },
+    {
+     "key": "beige",
+     "label": "bež"
+    },
+    {
+     "key": "gray",
+     "label": "siva"
+    },
+    {
+     "key": "black",
+     "label": "crna"
+    },
+    {
+     "key": "pink",
+     "label": "roze"
+    },
+    {
+     "key": "green",
+     "label": "maslinasto zelena"
+    },
+    {
+     "key": "red",
+     "label": "crvena"
+    }
+   ],
+   "image": "images/products/donut-vaza/1.webp"
+  },
+  {
+   "slug": "duet-vaza",
+   "name": "Duet Vaza",
+   "category": "vaze",
+   "price": 3600,
+   "colors": [
+    {
+     "key": "white",
+     "label": "bela"
+    },
+    {
+     "key": "beige",
+     "label": "bež"
+    },
+    {
+     "key": "gray",
+     "label": "siva"
+    },
+    {
+     "key": "black",
+     "label": "crna"
+    },
+    {
+     "key": "pink",
+     "label": "roze"
+    },
+    {
+     "key": "green",
+     "label": "maslinasto zelena"
+    },
+    {
+     "key": "red",
+     "label": "crvena"
+    }
+   ],
+   "image": "images/products/duet-vaza/1.webp"
+  },
+  {
+   "slug": "duo-vaza",
+   "name": "Duo Vaza",
+   "category": "vaze",
+   "price": 3600,
+   "colors": [
+    {
+     "key": "white",
+     "label": "bela"
+    },
+    {
+     "key": "beige",
+     "label": "bež"
+    },
+    {
+     "key": "gray",
+     "label": "siva"
+    },
+    {
+     "key": "black",
+     "label": "crna"
+    },
+    {
+     "key": "pink",
+     "label": "roze"
+    },
+    {
+     "key": "green",
+     "label": "maslinasto zelena"
+    },
+    {
+     "key": "red",
+     "label": "crvena"
+    }
+   ],
+   "image": "images/products/duo-vaza/1.webp"
+  },
+  {
+   "slug": "harmony-vaza",
+   "name": "Harmony Vaza",
+   "category": "vaze",
+   "price": 2400,
+   "colors": [
+    {
+     "key": "white",
+     "label": "bela"
+    },
+    {
+     "key": "beige",
+     "label": "bež"
+    },
+    {
+     "key": "gray",
+     "label": "siva"
+    },
+    {
+     "key": "black",
+     "label": "crna"
+    },
+    {
+     "key": "pink",
+     "label": "roze"
+    },
+    {
+     "key": "green",
+     "label": "maslinasto zelena"
+    },
+    {
+     "key": "red",
+     "label": "crvena"
+    }
+   ],
+   "image": "images/products/harmony-vaza/1.webp"
+  },
+  {
+   "slug": "list-vaza",
+   "name": "List Vaza",
+   "category": "vaze",
+   "price": 2400,
+   "colors": [
+    {
+     "key": "white",
+     "label": "bela"
+    },
+    {
+     "key": "beige",
+     "label": "bež"
+    },
+    {
+     "key": "gray",
+     "label": "siva"
+    },
+    {
+     "key": "black",
+     "label": "crna"
+    },
+    {
+     "key": "pink",
+     "label": "roze"
+    },
+    {
+     "key": "green",
+     "label": "maslinasto zelena"
+    },
+    {
+     "key": "red",
+     "label": "crvena"
+    }
+   ],
+   "image": "images/products/list-vaza/1.webp"
+  },
+  {
+   "slug": "spiralna-vaza",
+   "name": "Spiralna Vaza",
+   "category": "vaze",
+   "price": 2400,
+   "colors": [
+    {
+     "key": "white",
+     "label": "bela"
+    },
+    {
+     "key": "beige",
+     "label": "bež"
+    },
+    {
+     "key": "gray",
+     "label": "siva"
+    },
+    {
+     "key": "black",
+     "label": "crna"
+    },
+    {
+     "key": "pink",
+     "label": "roze"
+    },
+    {
+     "key": "green",
+     "label": "maslinasto zelena"
+    },
+    {
+     "key": "red",
+     "label": "crvena"
+    }
+   ],
+   "image": "images/products/spiralna-vaza/1.webp"
+  },
+  {
+   "slug": "split-vaza",
+   "name": "Split Vaza",
+   "category": "vaze",
+   "price": 2400,
+   "colors": [
+    {
+     "key": "white",
+     "label": "bela"
+    },
+    {
+     "key": "beige",
+     "label": "bež"
+    },
+    {
+     "key": "gray",
+     "label": "siva"
+    },
+    {
+     "key": "black",
+     "label": "crna"
+    },
+    {
+     "key": "pink",
+     "label": "roze"
+    },
+    {
+     "key": "green",
+     "label": "maslinasto zelena"
+    },
+    {
+     "key": "red",
+     "label": "crvena"
+    }
+   ],
+   "image": "images/products/split-vaza/1.webp"
+  },
+  {
+   "slug": "vaza-luna",
+   "name": "Vaza Luna",
+   "category": "vaze",
+   "price": 2000,
+   "colors": [
+    {
+     "key": "white",
+     "label": "bela"
+    },
+    {
+     "key": "beige",
+     "label": "bež"
+    },
+    {
+     "key": "gray",
+     "label": "siva"
+    },
+    {
+     "key": "black",
+     "label": "crna"
+    },
+    {
+     "key": "pink",
+     "label": "roze"
+    },
+    {
+     "key": "green",
+     "label": "maslinasto zelena"
+    },
+    {
+     "key": "red",
+     "label": "crvena"
+    }
+   ],
+   "image": "images/products/vaza-luna/1.webp"
+  },
+  {
+   "slug": "vrecica-vaza",
+   "name": "Vrećica Vaza",
+   "category": "vaze",
+   "price": 2400,
+   "colors": [
+    {
+     "key": "white",
+     "label": "bela"
+    },
+    {
+     "key": "beige",
+     "label": "bež"
+    },
+    {
+     "key": "gray",
+     "label": "siva"
+    },
+    {
+     "key": "black",
+     "label": "crna"
+    },
+    {
+     "key": "pink",
+     "label": "roze"
+    },
+    {
+     "key": "green",
+     "label": "maslinasto zelena"
+    },
+    {
+     "key": "red",
+     "label": "crvena"
+    }
+   ],
+   "image": "images/products/vrecica-vaza/1.webp"
+  },
+  {
+   "slug": "figura-sa-srcem",
+   "name": "Figura sa Srcem",
+   "category": "figure",
+   "price": 1800,
+   "colors": [
+    {
+     "key": "white",
+     "label": "bela"
+    },
+    {
+     "key": "beige",
+     "label": "bež"
+    },
+    {
+     "key": "gray",
+     "label": "siva"
+    },
+    {
+     "key": "black",
+     "label": "crna"
+    },
+    {
+     "key": "pink",
+     "label": "roze"
+    },
+    {
+     "key": "green",
+     "label": "maslinasto zelena"
+    },
+    {
+     "key": "red",
+     "label": "crvena"
+    }
+   ],
+   "image": "images/products/figura-sa-srcem/1.webp"
+  },
+  {
+   "slug": "home-figura",
+   "name": "Home Figura",
+   "category": "figure",
+   "price": 1800,
+   "colors": [
+    {
+     "key": "white",
+     "label": "bela"
+    },
+    {
+     "key": "beige",
+     "label": "bež"
+    },
+    {
+     "key": "gray",
+     "label": "siva"
+    },
+    {
+     "key": "black",
+     "label": "crna"
+    },
+    {
+     "key": "pink",
+     "label": "roze"
+    },
+    {
+     "key": "green",
+     "label": "maslinasto zelena"
+    },
+    {
+     "key": "red",
+     "label": "crvena"
+    }
+   ],
+   "image": "images/products/home-figura/1.webp"
+  },
+  {
+   "slug": "home-roze-figura",
+   "name": "Home Roze Figura",
+   "category": "figure",
+   "price": 2000,
+   "colors": [
+    {
+     "key": "white",
+     "label": "bela"
+    },
+    {
+     "key": "beige",
+     "label": "bež"
+    },
+    {
+     "key": "gray",
+     "label": "siva"
+    },
+    {
+     "key": "black",
+     "label": "crna"
+    },
+    {
+     "key": "pink",
+     "label": "roze"
+    },
+    {
+     "key": "green",
+     "label": "maslinasto zelena"
+    },
+    {
+     "key": "red",
+     "label": "crvena"
+    }
+   ],
+   "image": "images/products/home-roze-figura/1.webp"
+  },
+  {
+   "slug": "labrador-figura",
+   "name": "Labrador Figura",
+   "category": "figure",
+   "price": 1800,
+   "colors": [
+    {
+     "key": "white",
+     "label": "bela"
+    },
+    {
+     "key": "beige",
+     "label": "bež"
+    },
+    {
+     "key": "gray",
+     "label": "siva"
+    },
+    {
+     "key": "black",
+     "label": "crna"
+    },
+    {
+     "key": "pink",
+     "label": "roze"
+    },
+    {
+     "key": "green",
+     "label": "maslinasto zelena"
+    },
+    {
+     "key": "red",
+     "label": "crvena"
+    }
+   ],
+   "image": "images/products/labrador-figura/1.webp"
+  },
+  {
+   "slug": "maca-figura",
+   "name": "Maca Figura",
+   "category": "figure",
+   "price": 1800,
+   "colors": [
+    {
+     "key": "white",
+     "label": "bela"
+    },
+    {
+     "key": "beige",
+     "label": "bež"
+    },
+    {
+     "key": "gray",
+     "label": "siva"
+    },
+    {
+     "key": "black",
+     "label": "crna"
+    },
+    {
+     "key": "pink",
+     "label": "roze"
+    },
+    {
+     "key": "green",
+     "label": "maslinasto zelena"
+    },
+    {
+     "key": "red",
+     "label": "crvena"
+    }
+   ],
+   "image": "images/products/maca-figura/1.webp"
+  },
+  {
+   "slug": "maca-mreza-figura",
+   "name": "Maca Mreža Figura",
+   "category": "figure",
+   "price": 1800,
+   "colors": [
+    {
+     "key": "white",
+     "label": "bela"
+    },
+    {
+     "key": "beige",
+     "label": "bež"
+    },
+    {
+     "key": "gray",
+     "label": "siva"
+    },
+    {
+     "key": "black",
+     "label": "crna"
+    },
+    {
+     "key": "pink",
+     "label": "roze"
+    },
+    {
+     "key": "green",
+     "label": "maslinasto zelena"
+    },
+    {
+     "key": "red",
+     "label": "crvena"
+    }
+   ],
+   "image": "images/products/maca-mreza-figura/1.webp"
+  },
+  {
+   "slug": "maska-figura",
+   "name": "Maska Figura",
+   "category": "figure",
+   "price": 1800,
+   "colors": [
+    {
+     "key": "white",
+     "label": "bela"
+    },
+    {
+     "key": "beige",
+     "label": "bež"
+    },
+    {
+     "key": "gray",
+     "label": "siva"
+    },
+    {
+     "key": "black",
+     "label": "crna"
+    },
+    {
+     "key": "pink",
+     "label": "roze"
+    },
+    {
+     "key": "green",
+     "label": "maslinasto zelena"
+    },
+    {
+     "key": "red",
+     "label": "crvena"
+    }
+   ],
+   "image": "images/products/maska-figura/1.webp"
+  },
+  {
+   "slug": "mislilac-figura",
+   "name": "Mislilac Figura",
+   "category": "figure",
+   "price": 1800,
+   "colors": [
+    {
+     "key": "white",
+     "label": "bela"
+    },
+    {
+     "key": "beige",
+     "label": "bež"
+    },
+    {
+     "key": "gray",
+     "label": "siva"
+    },
+    {
+     "key": "black",
+     "label": "crna"
+    },
+    {
+     "key": "pink",
+     "label": "roze"
+    },
+    {
+     "key": "green",
+     "label": "maslinasto zelena"
+    },
+    {
+     "key": "red",
+     "label": "crvena"
+    }
+   ],
+   "image": "images/products/mislilac-figura/1.webp"
+  },
+  {
+   "slug": "uspavana-maca-figura",
+   "name": "Uspavana Maca Figura",
+   "category": "figure",
+   "price": 1800,
+   "colors": [
+    {
+     "key": "white",
+     "label": "bela"
+    },
+    {
+     "key": "beige",
+     "label": "bež"
+    },
+    {
+     "key": "gray",
+     "label": "siva"
+    },
+    {
+     "key": "black",
+     "label": "crna"
+    },
+    {
+     "key": "pink",
+     "label": "roze"
+    },
+    {
+     "key": "green",
+     "label": "maslinasto zelena"
+    },
+    {
+     "key": "red",
+     "label": "crvena"
+    }
+   ],
+   "image": "images/products/uspavana-maca-figura/1.webp"
+  },
+  {
+   "slug": "zagrljaj-ljubavi-figura",
+   "name": "Zagrljaj Ljubavi Figura",
+   "category": "figure",
+   "price": 1800,
+   "colors": [
+    {
+     "key": "white",
+     "label": "bela"
+    },
+    {
+     "key": "beige",
+     "label": "bež"
+    },
+    {
+     "key": "gray",
+     "label": "siva"
+    },
+    {
+     "key": "black",
+     "label": "crna"
+    },
+    {
+     "key": "pink",
+     "label": "roze"
+    },
+    {
+     "key": "green",
+     "label": "maslinasto zelena"
+    },
+    {
+     "key": "red",
+     "label": "crvena"
+    }
+   ],
+   "image": "images/products/zagrljaj-ljubavi-figura/1.webp"
+  },
+  {
+   "slug": "zaljubljene-mace-figura",
+   "name": "Zaljubljene Mace Figura",
+   "category": "figure",
+   "price": 1800,
+   "colors": [
+    {
+     "key": "white",
+     "label": "bela"
+    },
+    {
+     "key": "beige",
+     "label": "bež"
+    },
+    {
+     "key": "gray",
+     "label": "siva"
+    },
+    {
+     "key": "black",
+     "label": "crna"
+    },
+    {
+     "key": "pink",
+     "label": "roze"
+    },
+    {
+     "key": "green",
+     "label": "maslinasto zelena"
+    },
+    {
+     "key": "red",
+     "label": "crvena"
+    }
+   ],
+   "image": "images/products/zaljubljene-mace-figura/1.webp"
+  },
+  {
+   "slug": "zaljubljeni-par-figura",
+   "name": "Zaljubljeni Par Figura",
+   "category": "figure",
+   "price": 1800,
+   "colors": [
+    {
+     "key": "white",
+     "label": "bela"
+    },
+    {
+     "key": "beige",
+     "label": "bež"
+    },
+    {
+     "key": "gray",
+     "label": "siva"
+    },
+    {
+     "key": "black",
+     "label": "crna"
+    },
+    {
+     "key": "pink",
+     "label": "roze"
+    },
+    {
+     "key": "green",
+     "label": "maslinasto zelena"
+    },
+    {
+     "key": "red",
+     "label": "crvena"
+    }
+   ],
+   "image": "images/products/zaljubljeni-par-figura/1.webp"
+  },
+  {
+   "slug": "bubble-svecnjak",
+   "name": "Bubble Svećnjak",
+   "category": "svecnjaci",
+   "price": 700,
+   "colors": [
+    {
+     "key": "white",
+     "label": "bela"
+    },
+    {
+     "key": "beige",
+     "label": "bež"
+    },
+    {
+     "key": "gray",
+     "label": "siva"
+    },
+    {
+     "key": "black",
+     "label": "crna"
+    },
+    {
+     "key": "pink",
+     "label": "roze"
+    },
+    {
+     "key": "green",
+     "label": "maslinasto zelena"
+    },
+    {
+     "key": "red",
+     "label": "crvena"
+    }
+   ],
+   "image": "images/products/bubble-svecnjak/1.webp"
+  },
+  {
+   "slug": "hvatac-svetlosti-svecnjak",
+   "name": "Hvatač Svetlosti Svećnjak",
+   "category": "svecnjaci",
+   "price": 1800,
+   "colors": [
+    {
+     "key": "white",
+     "label": "bela"
+    },
+    {
+     "key": "beige",
+     "label": "bež"
+    },
+    {
+     "key": "gray",
+     "label": "siva"
+    },
+    {
+     "key": "black",
+     "label": "crna"
+    },
+    {
+     "key": "pink",
+     "label": "roze"
+    },
+    {
+     "key": "green",
+     "label": "maslinasto zelena"
+    },
+    {
+     "key": "red",
+     "label": "crvena"
+    }
+   ],
+   "image": "images/products/hvatac-svetlosti-svecnjak/1.webp"
+  },
+  {
+   "slug": "rebrasti-svecnjak",
+   "name": "Rebrasti Svećnjak",
+   "category": "svecnjaci",
+   "price": 1000,
+   "colors": [
+    {
+     "key": "white",
+     "label": "bela"
+    },
+    {
+     "key": "beige",
+     "label": "bež"
+    },
+    {
+     "key": "gray",
+     "label": "siva"
+    },
+    {
+     "key": "black",
+     "label": "crna"
+    },
+    {
+     "key": "pink",
+     "label": "roze"
+    },
+    {
+     "key": "green",
+     "label": "maslinasto zelena"
+    },
+    {
+     "key": "red",
+     "label": "crvena"
+    }
+   ],
+   "image": "images/products/rebrasti-svecnjak/1.webp"
+  },
+  {
+   "slug": "spiralni-svecnjak",
+   "name": "Spiralni Svećnjak",
+   "category": "svecnjaci",
+   "price": 1800,
+   "colors": [
+    {
+     "key": "white",
+     "label": "bela"
+    },
+    {
+     "key": "beige",
+     "label": "bež"
+    },
+    {
+     "key": "gray",
+     "label": "siva"
+    },
+    {
+     "key": "black",
+     "label": "crna"
+    },
+    {
+     "key": "pink",
+     "label": "roze"
+    },
+    {
+     "key": "green",
+     "label": "maslinasto zelena"
+    },
+    {
+     "key": "red",
+     "label": "crvena"
+    }
+   ],
+   "image": "images/products/spiralni-svecnjak/1.webp"
+  },
+  {
+   "slug": "srce-svecnjak",
+   "name": "Srce Svećnjak",
+   "category": "svecnjaci",
+   "price": 1800,
+   "colors": [
+    {
+     "key": "white",
+     "label": "bela"
+    },
+    {
+     "key": "beige",
+     "label": "bež"
+    },
+    {
+     "key": "gray",
+     "label": "siva"
+    },
+    {
+     "key": "black",
+     "label": "crna"
+    },
+    {
+     "key": "pink",
+     "label": "roze"
+    },
+    {
+     "key": "green",
+     "label": "maslinasto zelena"
+    },
+    {
+     "key": "red",
+     "label": "crvena"
+    }
+   ],
+   "image": "images/products/srce-svecnjak/1.webp"
+  },
+  {
+   "slug": "drvo-saksija",
+   "name": "Drvo Saksija",
+   "category": "dom",
+   "price": 2400,
+   "colors": [
+    {
+     "key": "white",
+     "label": "bela"
+    },
+    {
+     "key": "beige",
+     "label": "bež"
+    },
+    {
+     "key": "gray",
+     "label": "siva"
+    },
+    {
+     "key": "black",
+     "label": "crna"
+    },
+    {
+     "key": "pink",
+     "label": "roze"
+    },
+    {
+     "key": "green",
+     "label": "maslinasto zelena"
+    },
+    {
+     "key": "red",
+     "label": "crvena"
+    }
+   ],
+   "image": "images/products/drvo-saksija/1.webp"
+  },
+  {
+   "slug": "home-za-vrata",
+   "name": "Home Za Vrata",
+   "category": "dom",
+   "price": 1800,
+   "colors": [
+    {
+     "key": "white",
+     "label": "bela"
+    },
+    {
+     "key": "beige",
+     "label": "bež"
+    },
+    {
+     "key": "gray",
+     "label": "siva"
+    },
+    {
+     "key": "black",
+     "label": "crna"
+    },
+    {
+     "key": "pink",
+     "label": "roze"
+    },
+    {
+     "key": "green",
+     "label": "maslinasto zelena"
+    },
+    {
+     "key": "red",
+     "label": "crvena"
+    }
+   ],
+   "image": "images/products/home-za-vrata/1.webp"
+  },
+  {
+   "slug": "papir-saksija",
+   "name": "Papir Saksija",
+   "category": "dom",
+   "price": 2400,
+   "colors": [
+    {
+     "key": "white",
+     "label": "bela"
+    },
+    {
+     "key": "beige",
+     "label": "bež"
+    },
+    {
+     "key": "gray",
+     "label": "siva"
+    },
+    {
+     "key": "black",
+     "label": "crna"
+    },
+    {
+     "key": "pink",
+     "label": "roze"
+    },
+    {
+     "key": "green",
+     "label": "maslinasto zelena"
+    },
+    {
+     "key": "red",
+     "label": "crvena"
+    }
+   ],
+   "image": "images/products/papir-saksija/1.webp"
+  },
+  {
+   "slug": "sapica-saksija",
+   "name": "Šapica Saksija",
+   "category": "dom",
+   "price": 2200,
+   "colors": [
+    {
+     "key": "white",
+     "label": "bela"
+    },
+    {
+     "key": "beige",
+     "label": "bež"
+    },
+    {
+     "key": "gray",
+     "label": "siva"
+    },
+    {
+     "key": "black",
+     "label": "crna"
+    },
+    {
+     "key": "pink",
+     "label": "roze"
+    },
+    {
+     "key": "green",
+     "label": "maslinasto zelena"
+    },
+    {
+     "key": "red",
+     "label": "crvena"
+    }
+   ],
+   "image": "images/products/sapica-saksija/1.webp"
+  }
+ ]
+}

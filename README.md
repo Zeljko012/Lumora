@@ -10,6 +10,8 @@ Bez online plaćanja — plaćanje pouzećem. Kupac dobija automatsku potvrdu na
 - Slike proizvoda su preuzete sa Shopify-ja i optimizovane u `public/images/products/` (sajt je nezavisan od Shopify-ja)
 - Svetla i tamna tema
 
+- **Lumora Admin** (`/admin/`): aplikacija za telefon — porudžbine sa sajta, pakovanje, kuriri, naplata i analitika. Uputstvo: `docs/ADMIN.md`
+
 ---
 
 ## 1. Pokretanje lokalno
