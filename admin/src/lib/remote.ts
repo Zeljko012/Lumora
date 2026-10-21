@@ -23,8 +23,8 @@ export interface RemoteContactRow {
 export interface InboxAdapter {
   /** da li je aplikacija povezana i prijavljena */
   ready(): Promise<boolean>
-  fetchNewOrders(): Promise<RemoteOrderRow[]>
-  markImported(externalIds: string[]): Promise<void>
+  /** poslednjih ~200 porudžbina sa sajta (svaki uređaj preuzima sve što još nema) */
+  fetchRecentOrders(): Promise<RemoteOrderRow[]>
   fetchContacts(): Promise<RemoteContactRow[]>
   /** javlja odmah kad se u bazi pojavi nova porudžbina ili kontakt; vraća funkciju za prekid */
   subscribe(onChange: (what: 'orders' | 'contacts') => void): () => void
@@ -124,23 +124,16 @@ const supabaseAdapter: InboxAdapter = {
   async ready() {
     return (await currentUserEmail()) != null
   },
-  async fetchNewOrders() {
+  async fetchRecentOrders() {
     const c = getClient()
     if (!c) return []
     const { data, error } = await c
       .from('site_orders')
       .select('external_id, created_at, payload')
-      .eq('status', 'new')
-      .order('created_at', { ascending: true })
-      .limit(100)
+      .order('created_at', { ascending: false })
+      .limit(200)
     if (error) throw new Error(error.message)
-    return (data ?? []) as RemoteOrderRow[]
-  },
-  async markImported(ids) {
-    const c = getClient()
-    if (!c || !ids.length) return
-    const { error } = await c.from('site_orders').update({ status: 'imported', imported_at: new Date().toISOString() }).in('external_id', ids)
-    if (error) throw new Error(error.message)
+    return ((data ?? []) as RemoteOrderRow[]).reverse()
   },
   async fetchContacts() {
     const c = getClient()

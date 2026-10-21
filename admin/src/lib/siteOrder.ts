@@ -14,6 +14,11 @@ export async function findImported(externalId: string): Promise<Order | undefine
   return list.find((o) => !o.deletedAt)
 }
 
+/** Da li je porudžbina sa sajta već uvezena na ovom uređaju (i obrisana se računa, da se ne vraća). */
+export async function hasImported(externalId: string): Promise<boolean> {
+  return (await db.orders.where('externalId').equals(externalId).count()) > 0
+}
+
 /** Koliko stavki iz porudžbine nije pronađeno u katalogu (biće upisane kao slobodan tekst). */
 export async function countUnmatched(p: SiteOrderPayload): Promise<number> {
   const products = await db.products.toArray()

@@ -11,11 +11,10 @@ let failing = false
 
 const fake: InboxAdapter = {
   ready: async () => loggedIn,
-  fetchNewOrders: async () => {
+  fetchRecentOrders: async () => {
     if (failing) throw new Error('Lažna greška veze')
-    return orders.filter((o) => o.status === 'new')
+    return orders
   },
-  markImported: async (ids) => orders.forEach((o) => ids.includes(o.external_id) && (o.status = 'imported')),
   fetchContacts: async () => contacts,
   subscribe: (cb) => {
     listener = cb

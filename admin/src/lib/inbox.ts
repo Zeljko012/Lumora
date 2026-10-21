@@ -1,6 +1,6 @@
 // Automatski prijem: porudžbine koje je sajt upisao u bazu ulaze u listu čim stignu,
 // uz zvuk, a prijave na obaveštenja završavaju u listi kontakata.
-import { importSiteOrder, findImported } from './siteOrder'
+import { importSiteOrder, hasImported } from './siteOrder'
 import { upsertContact } from './contacts'
 import { adapter, remoteConfigured } from './remote'
 import { alertNewOrder } from './sound'
@@ -40,6 +40,9 @@ function setStatus(patch: Partial<InboxStatus>) {
 
 export const orderValue = (o: Order) => orderTotal(o)
 
+/** porudžbina starija od ovoga se uveze tiho, bez zvuka */
+const FRESH_MS = 15 * 60_000
+
 let running: Promise<void> | null = null
 let lastContactsPull = 0
 
@@ -72,16 +75,14 @@ async function doPull(forceContacts: boolean) {
       setStatus({ state: 'login', message: 'Prijavi se da bi porudžbine sa sajta stizale same.' })
       return
     }
-    const rows = await a.fetchNewOrders()
+    // svaki uređaj uveze sve što još nema; zvuk i traka samo za sveže (da novi telefon ne zasvira za staru istoriju)
+    const rows = await a.fetchRecentOrders()
     const fresh: Order[] = []
-    const ids: string[] = []
     for (const r of rows) {
-      const existed = await findImported(r.external_id)
-      const order = existed ?? (await importSiteOrder(r.payload))
-      if (!existed) fresh.push(order)
-      ids.push(r.external_id)
+      if (await hasImported(r.external_id)) continue
+      const order = await importSiteOrder(r.payload)
+      if (Date.now() - (Date.parse(r.created_at) || 0) < FRESH_MS) fresh.push(order)
     }
-    if (ids.length) await a.markImported(ids)
     if (forceContacts || Date.now() - lastContactsPull > 5 * 60_000) await pullContacts()
     setStatus({ state: 'ok', lastSync: Date.now(), message: '' })
     if (fresh.length) {
