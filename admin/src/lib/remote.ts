@@ -30,6 +30,30 @@ export interface InboxAdapter {
   subscribe(onChange: (what: 'orders' | 'contacts') => void): () => void
 }
 
+/* ---------- sinhronizacija svih podataka između uređaja ---------- */
+
+export interface SyncRow {
+  kind: string
+  id: string
+  data: unknown
+  updated_at: number
+  server_ts?: string
+}
+
+export interface SyncAdapter {
+  ready(): Promise<boolean>
+  /** dokumenti promenjeni u bazi od datog trenutka (uključivo), najviše `limit` */
+  pull(since: string, limit: number): Promise<SyncRow[]>
+  push(rows: SyncRow[]): Promise<void>
+  subscribe(onChange: () => void): () => void
+}
+
+let syncOverride: SyncAdapter | null = null
+/** Samo za testiranje (DEV). */
+export function setSyncAdapter(a: SyncAdapter | null) {
+  syncOverride = a
+}
+
 let override: InboxAdapter | null = null
 /** Samo za testiranje (DEV): zamenjuje pravu bazu lažnom. */
 export function setInboxAdapter(a: InboxAdapter | null) {
@@ -160,5 +184,40 @@ const supabaseAdapter: InboxAdapter = {
   },
 }
 
+const supabaseSync: SyncAdapter = {
+  ready: () => supabaseAdapter.ready(),
+  async pull(since, limit) {
+    const c = getClient()
+    if (!c) throw new Error('Nije povezano sa bazom.')
+    const { data, error } = await c
+      .from('sync_docs')
+      .select('kind, id, data, updated_at, server_ts')
+      .gte('server_ts', since)
+      .order('server_ts', { ascending: true })
+      .limit(limit)
+    if (error) throw new Error(error.message)
+    return (data ?? []) as SyncRow[]
+  },
+  async push(rows) {
+    if (!rows.length) return
+    const c = getClient()
+    if (!c) throw new Error('Nije povezano sa bazom.')
+    const { error } = await c.from('sync_docs').upsert(rows, { onConflict: 'kind,id' })
+    if (error) throw new Error(error.message)
+  },
+  subscribe(onChange) {
+    const c = getClient()
+    if (!c) return () => {}
+    const ch = c
+      .channel('lumora-sync')
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'sync_docs' }, () => onChange())
+      .subscribe()
+    return () => {
+      void c.removeChannel(ch)
+    }
+  },
+}
+
+export const syncAdapter = (): SyncAdapter => syncOverride ?? supabaseSync
 export const adapter = (): InboxAdapter => override ?? supabaseAdapter
-export const remoteConfigured = () => override != null || getRemoteConfig() != null
+export const remoteConfigured = () => override != null || syncOverride != null || getRemoteConfig() != null

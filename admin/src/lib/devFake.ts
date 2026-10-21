@@ -1,11 +1,31 @@
 // SAMO ZA RAZVOJ (import.meta.env.DEV): lažna "baza" da se auto-prijem, zvuk i kontakti mogu proveriti bez Supabase-a.
-import { setInboxAdapter, type InboxAdapter, type RemoteContactRow, type RemoteOrderRow } from './remote'
-import { pullInbox, remoteChanged } from './inbox'
+import { setInboxAdapter, setSyncAdapter, type InboxAdapter, type RemoteContactRow, type RemoteOrderRow, type SyncAdapter, type SyncRow } from './remote'
+import { pullInbox, remoteChanged, getInboxStatus } from './inbox'
+import { syncNow } from './sync'
+import { db } from '../db'
 import type { SiteOrderPayload } from './siteOrderCodec'
 
 const orders: (RemoteOrderRow & { status: string })[] = []
 const contacts: RemoteContactRow[] = []
 let listener: ((what: 'orders' | 'contacts') => void) | null = null
+/* lažna tabela sync_docs: isto pravilo kao SQL okidač (starija verzija ne pregazi noviju) */
+const docs = new Map<string, SyncRow>()
+let tick = 0
+const stamp = () => new Date(Date.UTC(2026, 0, 1) + ++tick).toISOString()
+function remotePut(r: SyncRow) {
+  const k = `${r.kind}:${r.id}`
+  const old = docs.get(k)
+  if (old && r.updated_at <= old.updated_at) return
+  docs.set(k, { ...r, server_ts: stamp() })
+}
+const fakeSync: SyncAdapter = {
+  ready: async () => loggedIn,
+  pull: async (since, limit) =>
+    [...docs.values()].filter((r) => r.server_ts! >= since).sort((a, b) => (a.server_ts! < b.server_ts! ? -1 : 1)).slice(0, limit),
+  push: async (rows) => rows.forEach(remotePut),
+  subscribe: () => () => {},
+}
+
 let loggedIn = true
 let failing = false
 
@@ -26,6 +46,7 @@ const fake: InboxAdapter = {
 
 export function installDevFake() {
   setInboxAdapter(fake)
+  setSyncAdapter(fakeSync)
   remoteChanged()
   Object.assign(window, {
     __fake: {
@@ -48,6 +69,13 @@ export function installDevFake() {
         failing = v
       },
       pull: () => pullInbox(true),
+      db,
+      syncNow,
+      status: getInboxStatus,
+      /** ponaša se kao drugi uređaj: upiše dokument u lažnu bazu */
+      remotePut,
+      docs,
+      resetCursor: () => localStorage.removeItem('lumora.sync.cursor'),
       orders,
       contacts,
     },

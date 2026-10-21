@@ -7,6 +7,8 @@ export const db = new Dexie('lumora-admin') as Dexie & {
   orders: EntityTable<Order, 'id'>
   expenses: EntityTable<Expense, 'id'>
   contacts: EntityTable<Contact, 'id'>
+  /** koju verziju svakog dokumenta je ovaj uređaj već uskladio sa bazom (v. lib/sync.ts) */
+  syncState: EntityTable<{ id: string; ts: number }, 'id'>
 }
 
 db.version(1).stores({
@@ -23,6 +25,10 @@ db.version(3).stores({
 
 db.version(4).stores({
   contacts: 'id, &key, email, phoneNorm, updatedAt',
+})
+
+db.version(5).stores({
+  syncState: 'id',
 })
 
 export const uid = () => crypto.randomUUID()
@@ -54,7 +60,8 @@ export const DEFAULT_SETTINGS: Settings = {
 export async function getSettings(): Promise<Settings> {
   const s = await db.settings.get('main')
   if (s) return { ...DEFAULT_SETTINGS, ...s, sender: { ...DEFAULT_SETTINGS.sender, ...s.sender } }
-  await db.settings.put(DEFAULT_SETTINGS)
+  // updatedAt 0: podrazumevana podešavanja nikad ne smeju da pregaze prava podešavanja sa drugog uređaja
+  await db.settings.put({ ...DEFAULT_SETTINGS, updatedAt: 0 })
   return DEFAULT_SETTINGS
 }
 

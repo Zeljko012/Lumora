@@ -59,7 +59,8 @@ export async function importSiteOrder(p: SiteOrderPayload): Promise<Order> {
   const c = p.customer
 
   const order: Order = {
-    id: uid(),
+    // isti id na svim uređajima: ista porudžbina se ne udvostručuje pri sinhronizaciji
+    id: `site:${p.id}`,
     number: await nextOrderNumber(),
     createdAt,
     updatedAt: Date.now(),

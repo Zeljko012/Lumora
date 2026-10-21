@@ -250,7 +250,7 @@ function ContactSheet({ contact, onClose, onDelete }: { contact: Contact | null;
         )}
         <Switch
           checked={marketing === true}
-          onChange={(v) => setMarketing(v ? true : null)}
+          onChange={(v) => setMarketing(v ? true : marketing === true ? false : marketing)}
           label="Pristao na obaveštenja o akcijama"
           hint="Uključi samo ako je osoba to rekla ili napisala."
         />

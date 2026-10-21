@@ -1,4 +1,4 @@
-import { db, uid } from '../db'
+import { db } from '../db'
 import { normalizePhone } from './orders'
 import type { Contact } from '../types'
 
@@ -42,9 +42,11 @@ export async function upsertContact(input: ContactInput): Promise<Contact | null
     let target = byEmail ?? byPhone
     let merged: Contact
     if (!target) {
+      const key = validEmail || `tel:${phoneNorm}`
       merged = {
-        id: uid(),
-        key: validEmail || `tel:${phoneNorm}`,
+        // isti kontakt na dva uređaja dobija isti id, pa se pri sinhronizaciji ne udvostručuje
+        id: `c:${key}`,
+        key,
         name: clean(input.name),
         email: validEmail,
         phone: clean(input.phone) || phoneNorm,
@@ -82,8 +84,11 @@ export async function upsertContact(input: ContactInput): Promise<Contact | null
       key: email2 || t.key,
       sources: t.sources.includes(input.source) ? t.sources : [...t.sources, input.source],
       marketing: input.marketing === true ? true : t.marketing,
-      updatedAt: Date.now(),
+      updatedAt: t.updatedAt,
     }
+    // ništa novo: ne diraj zapis (inače bi se svaka provera "menjala" i bez kraja slala između uređaja)
+    if (JSON.stringify(merged) === JSON.stringify(t)) return t
+    merged.updatedAt = Date.now()
     await db.contacts.put(merged)
     return merged
   })

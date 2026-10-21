@@ -84,6 +84,13 @@ Podešavanje (jednom, ~15 minuta):
 Zvuk: dok je aplikacija otvorena svira melodija (prvi dodir ekrana posle otvaranja uključuje zvuk, to traži pregledač) i telefon vibrira.
 Kad je aplikacija zatvorena, obaveštenje dolazi kao push i oglasi se **zvuk telefona** (ne mora biti isti kao u aplikaciji).
 
+### Sinhronizacija telefon ↔ računar
+Sve što radiš (porudžbine, statusi, troškovi, katalog, kontakti, podešavanja) se u roku od par sekundi prenosi na ostale uređaje na kojima si prijavljen.
+- Jednokratno u Supabase-u: **SQL Editor → New query** → nalepi sadržaj fajla `docs/supabase-sync.sql` → **Run** (ako si ceo `supabase.sql` pustio posle ovog dodatka, već je uključeno).
+- Na svakom uređaju: Podešavanja → Povezivanje sa sajtom (ista adresa baze, ključ, mejl i lozinka).
+- Prvi put poveži **jedan uređaj, sačekaj minut**, pa tek onda drugi. Probne porudžbine koje si ručno pravio odvojeno na oba uređaja će se na kraju pojaviti na oba — obriši ih pre povezivanja.
+- Statusi i unosi se ne gube: ako dva uređaja imaju isti broj porudžbine, kasnija dobija novi broj.
+
 ### Mejling lista i Viber
 - **Više → Kupci i kontakti** → **Pripremi akciju**: kopiraš mejlove (u „Bcc" svog mejla) ili preuzimaš CSV; za one **bez mejla** dobijaš brojeve u +381 obliku za Viber.
 - Podrazumevano se uzimaju samo kontakti koji su **pristali** (kvačica pri porudžbini, prijava na sajtu, ili ručno uključeno u kontaktu). Ostali ostaju u listi, ali ne ulaze u izvoz za akcije.
@@ -105,7 +112,9 @@ Brišu se jednim dodirom (i na početnoj strani, dok su uključeni); prave porud
 
 ## 9. Šta aplikacija (još) ne radi
 
-- Telefon i računar nisu sinhronizovani (svaki ima svoje podatke); povezivanje sa Supabase-om (6b) donosi samo porudžbine sa sajta i kontakte, ne i ručne unose.
+- Sinhronizacija radi samo uz vezu sa Supabase-om (6b). Bez interneta izmene se čuvaju na uređaju i šalju čim se veza vrati.
+- Ako istu porudžbinu istovremeno izmeniš na dva uređaja, pobeđuje poslednja izmena.
+- Trajno brisanje (ne „obriši porudžbinu“, već brisanje probnih podataka) se ne prenosi na druge uređaje.
 - Ne šalje poruke kupcima — samo priprema mejlove i brojeve za Viber.
 
 ---

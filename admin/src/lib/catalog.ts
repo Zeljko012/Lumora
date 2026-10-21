@@ -1,5 +1,5 @@
 import catalogFile from '../data/catalog.json'
-import { db, getSettings, saveSettings, uid } from '../db'
+import { db, getSettings, saveSettings } from '../db'
 import type { Product, Variant } from '../types'
 
 interface CatalogProduct {
@@ -63,7 +63,7 @@ export async function syncCatalog(force = false): Promise<SyncResult> {
 
     if (!cur) {
       puts.push({
-        id: uid(),
+        id: `site:${c.slug}`,
         handle: c.slug,
         title: c.name,
         imageUrl: img,
@@ -73,7 +73,7 @@ export async function syncCatalog(force = false): Promise<SyncResult> {
         category: c.category,
         lowStock: null,
         variants: c.colors.map((col) => ({
-          id: uid(),
+          id: `site:${c.slug}:${col.key}`,
           sku: `${c.slug}-${col.key}`,
           optionKey: col.key,
           color: col.label,
@@ -82,7 +82,8 @@ export async function syncCatalog(force = false): Promise<SyncResult> {
           stock: 0,
           imageUrl: img,
         })),
-        updatedAt: now,
+        // 0 = nedirnuto: izmene koje je korisnik uneo na drugom uređaju (zaliha, trošak) uvek pobeđuju
+        updatedAt: 0,
       })
       result.added++
       continue
@@ -91,7 +92,7 @@ export async function syncCatalog(force = false): Promise<SyncResult> {
     const variants: Variant[] = cur.variants.map((v) => ({ ...v, price: c.price, imageUrl: img || v.imageUrl }))
     for (const col of c.colors) {
       if (!variants.some((v) => v.optionKey === col.key)) {
-        variants.push({ id: uid(), sku: `${c.slug}-${col.key}`, optionKey: col.key, color: col.label, size: '', price: c.price, stock: 0, imageUrl: img })
+        variants.push({ id: `site:${c.slug}:${col.key}`, sku: `${c.slug}-${col.key}`, optionKey: col.key, color: col.label, size: '', price: c.price, stock: 0, imageUrl: img })
       }
     }
     const next: Product = { ...cur, title: c.name, category: c.category, imageUrl: img || cur.imageUrl, images: img ? [img] : cur.images, active: true, variants }

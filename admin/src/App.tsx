@@ -20,6 +20,8 @@ import CustomerPage from './pages/CustomerPage'
 import ContactsPage from './pages/ContactsPage'
 import NewOrderAlert from './components/NewOrderAlert'
 import { startInbox } from './lib/inbox'
+import { remoteConfigured } from './lib/remote'
+import { migrateStableIds } from './lib/migrate'
 import { installAudioUnlock } from './lib/sound'
 import { ensureContactsBackfilled } from './lib/contacts'
 import { setBadge } from './lib/badge'
@@ -42,7 +44,8 @@ function Layout() {
   }, [novih])
   useEffect(() => {
     installAudioUnlock()
-    void ensureContactsBackfilled()
+    // bez veze sa bazom odmah; sa vezom tek posle prve sinhronizacije (v. lib/inbox.ts), da ne pregazi tuđ pristanak
+    if (!remoteConfigured()) void ensureContactsBackfilled()
     return startInbox()
   }, [])
   return (
@@ -84,7 +87,10 @@ export default function App() {
   const [ready, setReady] = useState(false)
   useDbWatchdog()
   useEffect(() => {
-    seedCatalogOnce().finally(() => setReady(true))
+    migrateStableIds()
+      .catch((e) => console.error('Migracija nije uspela', e))
+      .then(() => seedCatalogOnce())
+      .finally(() => setReady(true))
   }, [])
   if (!ready) return null
 
