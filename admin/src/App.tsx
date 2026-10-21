@@ -22,6 +22,9 @@ import NewOrderAlert from './components/NewOrderAlert'
 import { startInbox } from './lib/inbox'
 import { installAudioUnlock } from './lib/sound'
 import { ensureContactsBackfilled } from './lib/contacts'
+import { setBadge } from './lib/badge'
+import { useLiveQuery } from 'dexie-react-hooks'
+import { db } from './db'
 
 // analitika (grafikoni) se učitava tek kad se otvori
 const StatsPage = lazy(() => import('./pages/StatsPage'))
@@ -33,6 +36,10 @@ function Layout() {
   const { pathname } = useLocation()
   const moreActive = MORE_PATHS.some((p) => pathname.startsWith(p))
   const ordersActive = ORDER_PATHS.some((p) => pathname.startsWith(p))
+  const novih = useLiveQuery(() => db.orders.filter((o) => !o.deletedAt && o.status === 'nova').count(), [])
+  useEffect(() => {
+    if (novih != null) setBadge(novih)
+  }, [novih])
   useEffect(() => {
     installAudioUnlock()
     void ensureContactsBackfilled()

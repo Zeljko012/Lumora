@@ -7,6 +7,8 @@ self.addEventListener('push', (event) => {
   } catch {
     d = { body: event.data ? event.data.text() : '' }
   }
+  // broj na ikoni (tačan broj postavlja aplikacija kad se otvori)
+  if (self.navigator && self.navigator.setAppBadge) self.navigator.setAppBadge().catch(() => {})
   event.waitUntil(
     self.registration.showNotification(d.title || 'Nova porudžbina', {
       body: d.body || '',

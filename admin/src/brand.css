@@ -249,13 +249,16 @@
   background: var(--brand-2); color: #fff; border-radius: 16px; padding: 6px 6px 6px 8px;
   box-shadow: 0 8px 28px rgb(0 0 0 / 28%); animation: alert-in .25s ease;
 }
-.order-alert .icon-btn { color: #fff; }
-.order-alert-main { flex: 1; min-width: 0; display: flex; align-items: center; gap: 12px; text-align: left; color: inherit; padding: 6px; }
+.order-alert .icon-btn { color: #fff; background: transparent; }
+.order-alert .icon-btn:active { background: rgb(255 255 255 / 16%); }
+.order-alert-text b { color: #fff; }
+.order-alert-text span { color: #fff; }
+.order-alert-main { background: transparent; border: 0; flex: 1; min-width: 0; display: flex; align-items: center; gap: 12px; text-align: left; color: inherit; padding: 6px; }
 .order-alert-icon { flex: none; width: 42px; height: 42px; border-radius: 12px; background: rgb(255 255 255 / 16%); display: grid; place-items: center; }
 .order-alert-icon svg { width: 22px; height: 22px; }
 .order-alert-text { display: grid; gap: 2px; min-width: 0; }
 .order-alert-text b { font-size: 16px; }
-.order-alert-text span { font-size: 14px; opacity: .9; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.order-alert-text span { font-size: 14px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 @keyframes alert-in { from { transform: translateY(-24px); opacity: 0 } }
 @media (prefers-reduced-motion: reduce) { .order-alert { animation: none; } }
 

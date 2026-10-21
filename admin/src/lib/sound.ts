@@ -65,20 +65,56 @@ export function installAudioUnlock() {
   window.addEventListener('keydown', handler)
 }
 
-function note(c: AudioContext, freq: number, start: number, dur: number, gain = 0.22) {
-  const osc = c.createOscillator()
-  const g = c.createGain()
-  osc.type = 'sine'
-  osc.frequency.value = freq
-  g.gain.setValueAtTime(0.0001, start)
-  g.gain.exponentialRampToValueAtTime(gain, start + 0.02)
-  g.gain.exponentialRampToValueAtTime(0.0001, start + dur)
-  osc.connect(g).connect(c.destination)
-  osc.start(start)
-  osc.stop(start + dur + 0.05)
+/** Metalni zvuk zvona (kao kasa): nekoliko neharmonijskih tonova koji brzo zamiru. */
+function bell(c: AudioContext, freq: number, start: number, dur: number, gain: number) {
+  const partials: [number, number][] = [
+    [1, 1],
+    [2.76, 0.55],
+    [5.4, 0.3],
+    [8.93, 0.14],
+  ]
+  for (const [ratio, amp] of partials) {
+    const osc = c.createOscillator()
+    const g = c.createGain()
+    osc.type = 'sine'
+    osc.frequency.value = freq * ratio
+    g.gain.setValueAtTime(0.0001, start)
+    g.gain.exponentialRampToValueAtTime(gain * amp, start + 0.004)
+    g.gain.exponentialRampToValueAtTime(0.0001, start + dur / Math.sqrt(ratio))
+    osc.connect(g).connect(c.destination)
+    osc.start(start)
+    osc.stop(start + dur + 0.05)
+  }
 }
 
-/** Kratka "kasa" melodija: tri tona naviše, dva puta. */
+/** „Ka": kratak mehanički klik kase. */
+function click(c: AudioContext, start: number) {
+  const len = Math.floor(c.sampleRate * 0.05)
+  const buf = c.createBuffer(1, len, c.sampleRate)
+  const data = buf.getChannelData(0)
+  for (let i = 0; i < len; i++) data[i] = (Math.random() * 2 - 1) * (1 - i / len)
+  const src = c.createBufferSource()
+  src.buffer = buf
+  const bp = c.createBiquadFilter()
+  bp.type = 'bandpass'
+  bp.frequency.value = 2200
+  const g = c.createGain()
+  g.gain.value = 0.5
+  src.connect(bp).connect(g).connect(c.destination)
+  src.start(start)
+  const thump = c.createOscillator()
+  const tg = c.createGain()
+  thump.type = 'triangle'
+  thump.frequency.setValueAtTime(220, start)
+  thump.frequency.exponentialRampToValueAtTime(90, start + 0.08)
+  tg.gain.setValueAtTime(0.3, start)
+  tg.gain.exponentialRampToValueAtTime(0.0001, start + 0.1)
+  thump.connect(tg).connect(c.destination)
+  thump.start(start)
+  thump.stop(start + 0.12)
+}
+
+/** „Ka-ching!" — zvuk naplate, dva puta. */
 export async function playChime(force = false) {
   if (!force && !soundEnabled()) return
   const c = getCtx()
@@ -86,9 +122,11 @@ export async function playChime(force = false) {
   await unlockAudio()
   if (c.state !== 'running') return
   const t = c.currentTime + 0.05
-  const seq = [659.25, 783.99, 1046.5]
   for (let rep = 0; rep < 2; rep++) {
-    seq.forEach((f, i) => note(c, f, t + rep * 0.75 + i * 0.16, rep === 1 && i === 2 ? 0.55 : 0.32))
+    const t0 = t + rep * 1.4
+    click(c, t0)
+    bell(c, 1568, t0 + 0.07, 1.0, 0.16)
+    bell(c, 2093, t0 + 0.2, 1.2, 0.2)
   }
 }
 
