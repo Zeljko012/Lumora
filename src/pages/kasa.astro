@@ -147,6 +147,8 @@ import { withBase } from "../lib/url";
     }
     .co__summary {
       order: -1;
+      /* na telefonu ostaje na svom mestu (ne prati skrol), da ne prekriva polja za unos */
+      position: static;
     }
   }
 
@@ -224,8 +226,13 @@ import { withBase } from "../lib/url";
     border: 1px solid var(--line);
     border-radius: var(--radius-lg);
     padding: 1.4rem;
-    position: sticky;
-    top: 90px;
+  }
+  /* samo na računaru prati skrol; na telefonu ostaje na svom mestu i ne prekriva polja */
+  @media (min-width: 901px) {
+    .co__summary {
+      position: sticky;
+      top: 90px;
+    }
   }
   .co__summary h2 {
     font-size: 1.2rem;

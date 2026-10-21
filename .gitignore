@@ -19,3 +19,4 @@ public/admin/
 
 # tajni ključevi za push obaveštenja (ne objavljivati)
 VAPID-kljucevi.txt
+VERCEL-vrednosti.txt
