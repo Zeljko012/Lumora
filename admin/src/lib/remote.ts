@@ -44,6 +44,16 @@ export interface RemoteConfig {
   key: string
 }
 
+/** Ostavlja samo adresu projekta (https://xxxx.supabase.co): briše /rest/v1, /auth/v1 i kose crte na kraju. */
+export function cleanProjectUrl(url: string): string {
+  const t = url.trim()
+  try {
+    return new URL(t).origin
+  } catch {
+    return t.replace(/\/+$/, '')
+  }
+}
+
 export function getRemoteConfig(): RemoteConfig | null {
   const envUrl = import.meta.env.VITE_SUPABASE_URL as string | undefined
   const envKey = import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined
@@ -52,7 +62,7 @@ export function getRemoteConfig(): RemoteConfig | null {
     const raw = localStorage.getItem(CFG_KEY)
     if (raw) {
       const c = JSON.parse(raw) as RemoteConfig
-      if (c.url && c.key) return c
+      if (c.url && c.key) return { url: cleanProjectUrl(c.url), key: c.key }
     }
   } catch {
     /* ignoriši */
@@ -62,7 +72,7 @@ export function getRemoteConfig(): RemoteConfig | null {
 
 export function saveRemoteConfig(c: RemoteConfig | null) {
   try {
-    if (c) localStorage.setItem(CFG_KEY, JSON.stringify({ url: c.url.trim().replace(/\/+$/, ''), key: c.key.trim() }))
+    if (c) localStorage.setItem(CFG_KEY, JSON.stringify({ url: cleanProjectUrl(c.url), key: c.key.trim() }))
     else localStorage.removeItem(CFG_KEY)
   } catch {
     /* ignoriši */
@@ -90,7 +100,11 @@ export async function signIn(email: string, password: string): Promise<void> {
   const c = getClient()
   if (!c) throw new Error('Prvo upiši adresu baze i javni ključ.')
   const { error } = await c.auth.signInWithPassword({ email: email.trim(), password })
-  if (error) throw new Error(/invalid/i.test(error.message) ? 'Pogrešan mejl ili lozinka.' : error.message)
+  if (error) {
+    if (/invalid login|invalid credentials/i.test(error.message)) throw new Error('Pogrešan mejl ili lozinka.')
+    if (/not confirmed/i.test(error.message)) throw new Error('Nalog nije potvrđen: u Supabase-u uključi „Auto Confirm User“ za ovog korisnika.')
+    throw new Error(/fetch|network|path/i.test(error.message) ? 'Ne mogu da stignem do baze. Proveri adresu baze (https://xxxx.supabase.co).' : error.message)
+  }
 }
 
 export async function signOut() {

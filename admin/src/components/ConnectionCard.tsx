@@ -1,7 +1,7 @@
 import { useEffect, useState, useSyncExternalStore } from 'react'
 import { Field, Switch, useUi } from './ui'
 import { Icon } from './Icon'
-import { currentUserEmail, getRemoteConfig, remoteConfigured, saveRemoteConfig, signIn, signOut } from '../lib/remote'
+import { cleanProjectUrl, currentUserEmail, getRemoteConfig, remoteConfigured, saveRemoteConfig, signIn, signOut } from '../lib/remote'
 import { getInboxStatus, onInboxStatus, pullInbox, remoteChanged } from '../lib/inbox'
 import { audioReady, playChime, setSoundEnabled, soundEnabled, unlockAudio } from '../lib/sound'
 import { dateTime } from '../lib/format'
@@ -47,6 +47,7 @@ export function ConnectionCard() {
     if (!/^https:\/\//i.test(url.trim())) return toast('Adresa baze treba da počinje sa https://')
     setBusy(true)
     try {
+      setUrl(cleanProjectUrl(url))
       saveRemoteConfig({ url, key })
       await unlockAudio()
       if (!user) {
