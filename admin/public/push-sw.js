@@ -16,6 +16,8 @@ self.addEventListener('push', (event) => {
       badge: 'pwa-64x64.png',
       tag: 'lumora-order',
       renotify: true,
+      requireInteraction: true,
+      silent: false,
       vibrate: [200, 100, 200, 100, 300],
       data: { url: d.url || '#/porudzbine' },
     }),

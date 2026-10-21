@@ -28,6 +28,9 @@ export default function NewOrderAlert() {
             body: `${o.customer.name} · ${money(orderValue(o))}${fresh.length > 1 ? ` (+${fresh.length - 1})` : ''}`,
             tag: 'lumora-order',
             icon: 'pwa-192x192.png',
+            renotify: true,
+            requireInteraction: true,
+            vibrate: [200, 100, 200, 100, 300],
           }
           // na telefonu obaveštenje mora da prođe kroz servis-worker (new Notification tamo ne radi)
           void navigator.serviceWorker
