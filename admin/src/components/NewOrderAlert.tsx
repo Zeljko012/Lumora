@@ -32,7 +32,10 @@ export default function NewOrderAlert() {
           // na telefonu obaveštenje mora da prođe kroz servis-worker (new Notification tamo ne radi)
           void navigator.serviceWorker
             ?.getRegistration()
-            .then((reg) => (reg ? reg.showNotification(title, opts) : new Notification(title, opts)))
+            .then((reg) => {
+              if (reg) return reg.showNotification(title, opts)
+              new Notification(title, opts)
+            })
             .catch(() => {})
         }
       }),
