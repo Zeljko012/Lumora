@@ -32,7 +32,7 @@ const orgLd = {
   name: SITE.name,
   url: SITE.url,
   email: SITE.email,
-  logo: new URL("/icon.svg", SITE.url).href,
+  logo: new URL("/icon.png", SITE.url).href,
   sameAs: [SITE.social.instagram],
   address: {
     "@type": "PostalAddress",
@@ -53,7 +53,9 @@ const umamiId = import.meta.env.PUBLIC_UMAMI_ID as string | undefined;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" href={withBase("/icon.svg")} type="image/svg+xml" />
+    <link rel="icon" href={withBase("/favicon.ico")} sizes="48x48" />
+    <link rel="icon" href={withBase("/favicon-48.png")} type="image/png" sizes="48x48" />
+    <link rel="icon" href={withBase("/icon.png")} type="image/png" sizes="512x512" />
     <link rel="apple-touch-icon" href={withBase("/apple-touch-icon.png")} />
     <meta name="theme-color" content="#ece5d8" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#211c18" media="(prefers-color-scheme: dark)" />

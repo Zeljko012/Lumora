@@ -10,14 +10,14 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['favicon.svg', 'apple-touch-icon-180x180.png'],
+      includeAssets: ['favicon.png', 'apple-touch-icon-180x180.png'],
       manifest: {
         name: 'Lumora Admin',
         short_name: 'Lumora',
         description: 'Upravljanje porudžbinama, pošiljkama i analitikom prodavnice Lumora',
         lang: 'sr-Latn',
         theme_color: '#4f6f63',
-        background_color: '#f6f3ee',
+        background_color: '#2c2d31',
         display: 'standalone',
         orientation: 'portrait',
         start_url: './',
