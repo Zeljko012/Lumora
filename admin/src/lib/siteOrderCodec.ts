@@ -24,6 +24,8 @@ export interface SiteOrderPayload {
   /** besplatna dostava (preko praga) — tada poštarinu plaća pošiljalac */
   shippingFree: boolean
   total: number
+  /** kupac je pristao na obaveštenja o akcijama (mejl / Viber) */
+  marketing?: boolean
 }
 
 const b64urlToBytes = (s: string) => {

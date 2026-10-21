@@ -83,6 +83,14 @@ import { withBase } from "../lib/url";
           </span>
         </label>
 
+        <label class="consent">
+          <input type="checkbox" name="marketing" />
+          <span>
+            Želim da primam obaveštenja o akcijama i novim modelima (mejl ili Viber). Mogu da se odjavim u svakom trenutku.
+            <small>Nije obavezno.</small>
+          </span>
+        </label>
+
         <input type="text" name="company" tabindex="-1" autocomplete="off" class="visually-hidden" aria-hidden="true" />
 
         <p class="form-error" data-form-error hidden></p>
@@ -408,6 +416,7 @@ import { withBase } from "../lib/url";
         note: fd.get("note") || "",
       },
       payment: "pouzecem",
+      marketing: fd.get("marketing") === "on",
       items: items.map((i) => ({
         slug: i.slug,
         name: i.name,

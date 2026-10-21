@@ -1,5 +1,6 @@
 import { db, getSettings, uid } from '../db'
 import { fold } from './format'
+import { upsertContact } from './contacts'
 import { nextOrderNumber, normalizePhone, saveOrder } from './orders'
 import type { Order, OrderItem } from '../types'
 import type { SiteOrderPayload } from './siteOrderCodec'
@@ -80,5 +81,14 @@ export async function importSiteOrder(p: SiteOrderPayload): Promise<Order> {
     externalId: p.id,
   }
   await saveOrder(order)
+  await upsertContact({
+    name: order.customer.name,
+    email: c.email,
+    phone: c.phone,
+    city: c.city,
+    source: 'sajt',
+    marketing: p.marketing === true ? true : undefined,
+    at: createdAt,
+  })
   return order
 }

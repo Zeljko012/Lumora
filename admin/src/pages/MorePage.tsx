@@ -8,6 +8,7 @@ import { syncCatalog } from '../lib/catalog'
 const ITEMS: { to: string; icon: IconName; title: string; sub: string }[] = [
   { to: '/pakovanje', icon: 'clipboard', title: 'Pakovanje', sub: 'Čeklista: crveno dok nije spakovano, zeleno kad jeste' },
   { to: '/predaja', icon: 'truck', title: 'Spisak za kurira', sub: 'Dnevni spisak predaje sa otkupninama i nalepnicama' },
+  { to: '/kontakti', icon: 'user', title: 'Kupci i kontakti', sub: 'Mejling lista, brojevi za Viber, izvoz za akcije' },
   { to: '/uvoz', icon: 'mail', title: 'Porudžbina sa sajta', sub: 'Uvezi porudžbinu iz mejla (link ili kod)' },
   { to: '/katalog', icon: 'box', title: 'Katalog', sub: 'Proizvodi, boje, cene, zaliha i trošak izrade' },
   { to: '/analitika', icon: 'wallet', title: 'Troškovi', sub: 'Materijal, ambalaža, reklame… (Analitika → Finansije)' },

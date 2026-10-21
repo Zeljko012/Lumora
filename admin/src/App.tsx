@@ -17,17 +17,27 @@ import PackingPage from './pages/PackingPage'
 import HandoverPage from './pages/HandoverPage'
 import MorePage from './pages/MorePage'
 import CustomerPage from './pages/CustomerPage'
+import ContactsPage from './pages/ContactsPage'
+import NewOrderAlert from './components/NewOrderAlert'
+import { startInbox } from './lib/inbox'
+import { installAudioUnlock } from './lib/sound'
+import { ensureContactsBackfilled } from './lib/contacts'
 
 // analitika (grafikoni) se učitava tek kad se otvori
 const StatsPage = lazy(() => import('./pages/StatsPage'))
 
-const MORE_PATHS = ['/vise', '/katalog', '/podesavanja', '/predaja', '/uvoz', '/pakovanje']
+const MORE_PATHS = ['/vise', '/kontakti', '/katalog', '/podesavanja', '/predaja', '/uvoz', '/pakovanje']
 const ORDER_PATHS = ['/porudzbine', '/porudzbina', '/kupac']
 
 function Layout() {
   const { pathname } = useLocation()
   const moreActive = MORE_PATHS.some((p) => pathname.startsWith(p))
   const ordersActive = ORDER_PATHS.some((p) => pathname.startsWith(p))
+  useEffect(() => {
+    installAudioUnlock()
+    void ensureContactsBackfilled()
+    return startInbox()
+  }, [])
   return (
     <div className="app">
       <ErrorBoundary key={pathname}>
@@ -35,6 +45,7 @@ function Layout() {
           <Outlet />
         </Suspense>
       </ErrorBoundary>
+      <NewOrderAlert />
       <nav className="bottom-nav" style={{ ['--cols' as string]: 5 }} aria-label="Glavni meni">
         <NavLink to="/" end>
           <Icon name="home" />
@@ -91,6 +102,7 @@ export default function App() {
             <Route path="statistika" element={<Navigate to="/analitika" replace />} />
             <Route path="*" element={<Navigate to="/" replace />} />
             <Route path="vise" element={<MorePage />} />
+            <Route path="kontakti" element={<ContactsPage />} />
             <Route path="kupac/:phone" element={<CustomerPage />} />
           </Route>
         </Routes>

@@ -1,11 +1,12 @@
 import Dexie, { type EntityTable } from 'dexie'
-import type { Expense, Order, Product, Settings } from './types'
+import type { Contact, Expense, Order, Product, Settings } from './types'
 
 export const db = new Dexie('lumora-admin') as Dexie & {
   settings: EntityTable<Settings, 'id'>
   products: EntityTable<Product, 'id'>
   orders: EntityTable<Order, 'id'>
   expenses: EntityTable<Expense, 'id'>
+  contacts: EntityTable<Contact, 'id'>
 }
 
 db.version(1).stores({
@@ -18,6 +19,10 @@ db.version(2).stores({
 })
 db.version(3).stores({
   orders: 'id, &number, createdAt, status, phoneNorm, updatedAt, externalId',
+})
+
+db.version(4).stores({
+  contacts: 'id, &key, email, phoneNorm, updatedAt',
 })
 
 export const uid = () => crypto.randomUUID()

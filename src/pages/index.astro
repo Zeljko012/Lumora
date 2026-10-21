@@ -163,7 +163,7 @@ const websiteLd = {
   <section class="section container newsletter">
     <div>
       <h2>Ostanite u toku</h2>
-      <p>Nove forme i sezonske boje javljamo prvi put ovde. Bez spama.</p>
+      <p>Nove forme, akcije i sezonske boje javljamo prvi put ovde. Bez spama; odjava u svakom trenutku.</p>
     </div>
     <form data-newsletter novalidate>
       <label class="visually-hidden" for="nl-email">Email adresa</label>
@@ -447,7 +447,7 @@ const websiteLd = {
 
 <script>
   const form = document.querySelector<HTMLFormElement>("[data-newsletter]");
-  form?.addEventListener("submit", (e) => {
+  form?.addEventListener("submit", async (e) => {
     e.preventDefault();
     const data = new FormData(form);
     if (data.get("company")) return; // honeypot
@@ -458,9 +458,20 @@ const websiteLd = {
       );
       return;
     }
+    const btn = form.querySelector("button");
+    if (btn) btn.disabled = true;
     try {
-      localStorage.setItem("lumora.newsletter", email);
-    } catch {}
-    form.innerHTML = "<p style='color:var(--accent);font-weight:600'>Hvala! Javićemo se sa novostima.</p>";
+      const res = await fetch(withBase("/api/subscribe"), {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, company: data.get("company") || "" }),
+      });
+      const out = await res.json().catch(() => ({}));
+      if (!res.ok || !out.ok) throw new Error(out.error || "Prijava trenutno nije moguća.");
+      form.innerHTML = "<p style='color:var(--accent);font-weight:600'>Hvala! Javićemo se sa novostima.</p>";
+    } catch (err) {
+      if (btn) btn.disabled = false;
+      window.dispatchEvent(new CustomEvent("lumora:toast", { detail: (err as Error).message }));
+    }
   });
 </script>

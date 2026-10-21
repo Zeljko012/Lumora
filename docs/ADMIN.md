@@ -60,6 +60,36 @@ Analitika prodaje se računa iz porudžbina. Broj posetilaca i konverzija se mer
 2. Token upiši u Vercel → Settings → Environment Variables: `PUBLIC_CF_BEACON` (ili `PUBLIC_UMAMI_ID`), pa Redeploy.
 3. Adresu statistike nalepi u **Podešavanja → Poseta sajta** — u Analitici se pojavi dugme „Otvori statistiku posete".
 
+## 6b. Automatski prijem porudžbina, zvuk i lista kontakata (Supabase, besplatno)
+
+Šta dobijaš kad se ovo podesi:
+- Porudžbina sa sajta **sama uđe u listu** u aplikaciji (bez kopiranja linka), uz **zvuk** i traku „Nova porudžbina".
+- **Mejl** sa porudžbinom i dalje stiže — to je rezerva ako aplikacija ili baza ne rade.
+- Svaki mejl/telefon koji neko ostavi (porudžbina ili prijava na sajtu) ulazi u **Više → Kupci i kontakti**.
+- Porudžbine sa društvenih mreža i dalje unosiš ručno (dugme **+**); mejl i telefon kupca se upišu u kontakte.
+
+Podešavanje (jednom, ~15 minuta):
+1. Napravi besplatan nalog na **supabase.com**, pa **New project** (region: Frankfurt).
+2. **SQL Editor → New query** → nalepi ceo sadržaj fajla `docs/supabase.sql` → **Run**.
+3. **Authentication → Users → Add user**: mejl `homedecorlumora@gmail.com` i lozinka koju izabereš (čekiraj „Auto confirm"). 
+   Zatim **Authentication → Sign In / Providers → isključi „Allow new users to sign up"** (da se niko drugi ne može registrovati).
+4. **Project Settings → API Keys** — trebaju ti tri stvari:
+   - *Project URL*,
+   - *publishable (anon)* ključ — ide u aplikaciju,
+   - *secret* ključ — ide **samo** u Vercel (nikad u aplikaciju ni u kod).
+5. Vercel → Settings → Environment Variables: `SUPABASE_URL`, `SUPABASE_SERVICE_KEY`, plus tri `VAPID_*` vrednosti iz fajla `VAPID-kljucevi.txt` (za obaveštenja na telefonu). Pa **Redeploy**.
+6. U aplikaciji: **Više → Podešavanja → Povezivanje sa sajtom** → upiši Project URL, publishable ključ, mejl i lozinku → **Poveži**.
+7. Isto mesto: **Uključi obaveštenja na ovom telefonu** (iPhone: prvo „Dodaj na početni ekran").
+
+Zvuk: dok je aplikacija otvorena svira melodija (prvi dodir ekrana posle otvaranja uključuje zvuk, to traži pregledač) i telefon vibrira.
+Kad je aplikacija zatvorena, obaveštenje dolazi kao push i oglasi se **zvuk telefona** (ne mora biti isti kao u aplikaciji).
+
+### Mejling lista i Viber
+- **Više → Kupci i kontakti** → **Pripremi akciju**: kopiraš mejlove (u „Bcc" svog mejla) ili preuzimaš CSV; za one **bez mejla** dobijaš brojeve u +381 obliku za Viber.
+- Podrazumevano se uzimaju samo kontakti koji su **pristali** (kvačica pri porudžbini, prijava na sajtu, ili ručno uključeno u kontaktu). Ostali ostaju u listi, ali ne ulaze u izvoz za akcije.
+- Svaka poruka treba da ima jasnu mogućnost odjave (napiši „odgovori STOP", pa takvog kupca u kontaktu označi „Odjavljen").
+- Napomena (nije pravni savet): za marketinške poruke treba saglasnost kupca; kvačica na kasi i prijava na sajtu to pokrivaju.
+
 ## 7. Rezervna kopija i prelazak sa stare aplikacije „Porudžbine"
 
 Podaci se čuvaju **na uređaju** (u pregledaču) i ne šalju se nigde.
@@ -75,9 +105,8 @@ Brišu se jednim dodirom (i na početnoj strani, dok su uključeni); prave porud
 
 ## 9. Šta aplikacija (još) ne radi
 
-- Ne šalje obaveštenja na telefon — obaveštenje je mejl sa dugmetom.
-- Telefon i računar nisu sinhronizovani (svaki ima svoje podatke). Automatska sinhronizacija zahteva besplatan Supabase nalog;
-  može da se doda kasnije, a podaci su već pripremljeni za to.
+- Telefon i računar nisu sinhronizovani (svaki ima svoje podatke); povezivanje sa Supabase-om (6b) donosi samo porudžbine sa sajta i kontakte, ne i ručne unose.
+- Ne šalje poruke kupcima — samo priprema mejlove i brojeve za Viber.
 
 ---
 

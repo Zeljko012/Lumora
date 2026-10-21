@@ -16,3 +16,6 @@ scripts/products-source.json
 admin/node_modules/
 admin/dist/
 public/admin/
+
+# tajni ključevi za push obaveštenja (ne objavljivati)
+VAPID-kljucevi.txt

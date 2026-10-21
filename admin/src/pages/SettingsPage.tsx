@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { db, getSettings, saveSettings } from '../db'
 import { Icon } from '../components/Icon'
+import { ConnectionCard } from '../components/ConnectionCard'
 import { Field, NumberField, Segmented, Switch, TopBar, useUi } from '../components/ui'
 import { exportJson, exportOrdersCsv, exportProductsCsv, importJson } from '../lib/backup'
 import { addDemoData, hasDemoData, removeDemoData } from '../lib/demo'
@@ -81,6 +82,8 @@ export default function SettingsPage() {
       <TopBar title="Podešavanja" back="/vise" />
 
       <div className="section">
+        <ConnectionCard />
+
         <div className="section-title">Moji podaci (pošiljalac)</div>
         <div className="card stack">
           <Field label="Ime ili firma" value={s.sender.name} onChange={(e) => setSender({ name: e.target.value })} />

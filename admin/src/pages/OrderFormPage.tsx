@@ -3,10 +3,11 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { db, DEFAULT_SETTINGS, getSettings, uid } from '../db'
 import { Icon } from '../components/Icon'
-import { ColorDot, Field, NumberField, Segmented, Stepper, TopBar, useUi } from '../components/ui'
+import { ColorDot, Field, NumberField, Segmented, Stepper, Switch, TopBar, useUi } from '../components/ui'
 import { ProductPicker } from '../components/ProductPicker'
 import { codAmount, findCustomer, findDuplicates, itemsTotal, nextOrderNumber, normalizePhone, orderTotal, saveOrder, SOURCES } from '../lib/orders'
 import { dateShort, money, plural } from '../lib/format'
+import { emailOk, upsertContact } from '../lib/contacts'
 import type { Customer, Order, OrderItem, ShippingPayer } from '../types'
 
 function emptyOrder(courierId: string, shippingPrice: number, shippingPayer: ShippingPayer): Order {
@@ -43,6 +44,7 @@ export default function OrderFormPage() {
   const [known, setKnown] = useState<Awaited<ReturnType<typeof findCustomer>>>(null)
   const [errors, setErrors] = useState<Record<string, boolean>>({})
   const [saving, setSaving] = useState(false)
+  const [marketing, setMarketing] = useState(false)
   const orderRef = useRef(order)
   orderRef.current = order
 
@@ -135,6 +137,14 @@ export default function OrderFormPage() {
         customer: { ...c, name: c.name.trim(), address: c.address.trim(), city: c.city.trim(), zip: c.zip.trim(), phone: c.phone.trim() },
       }
       await saveOrder(final, original.current)
+      await upsertContact({
+        name: final.customer.name,
+        email: final.customer.email,
+        phone: final.customer.phone,
+        city: final.customer.city,
+        source: final.source,
+        marketing: marketing ? true : undefined,
+      })
       toast(id ? 'Izmene su sačuvane' : `Porudžbina #${final.number} je sačuvana`)
       nav(`/porudzbina/${final.id}`, { replace: true })
     } finally {
@@ -183,6 +193,17 @@ export default function OrderFormPage() {
             <Field label="Grad" autoComplete="off" value={order.customer.city} onChange={(e) => setCustomer({ city: e.target.value })} className={errors.city ? 'uncertain' : ''} />
             <Field label="Poštanski br." inputMode="numeric" autoComplete="off" value={order.customer.zip} onChange={(e) => setCustomer({ zip: e.target.value.replace(/\D/g, '').slice(0, 5) })} />
           </div>
+          <Field
+            label="Mejl (nije obavezno)"
+            type="email"
+            inputMode="email"
+            autoComplete="off"
+            hint="Za mejling listu. Ako kupac nema mejl, koristi se broj telefona (Viber)."
+            value={order.customer.email ?? ''}
+            onChange={(e) => setCustomer({ email: e.target.value })}
+            className={order.customer.email && !emailOk(order.customer.email.trim()) ? 'uncertain' : ''}
+          />
+          <Switch checked={marketing} onChange={setMarketing} label="Kupac je pristao na obaveštenja o akcijama" hint="Uključi samo ako je kupac to rekao ili napisao." />
         </div>
       </div>
 

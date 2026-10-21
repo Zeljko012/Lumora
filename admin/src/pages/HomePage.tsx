@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useState, useSyncExternalStore } from 'react'
 import { Link } from 'react-router-dom'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { db, DEFAULT_SETTINGS } from '../db'
@@ -13,6 +13,7 @@ import { codAmount, lowStockVariants, unpaidOverdue } from '../lib/orders'
 import { dateShort, money, plural } from '../lib/format'
 import { canPromptInstall, isIos, isStandalone, onInstallChange, promptInstall } from '../lib/install'
 import { removeDemoData } from '../lib/demo'
+import { getInboxStatus, onInboxStatus } from '../lib/inbox'
 
 const pct = new Intl.NumberFormat('sr-Latn-RS', { maximumFractionDigits: 0, signDisplay: 'always' })
 
@@ -38,6 +39,7 @@ export default function HomePage() {
   const expenses = useLiveQuery(() => db.expenses.toArray(), [])
   const settings = useLiveQuery(() => db.settings.get('main'), []) ?? DEFAULT_SETTINGS
   const { confirm, toast } = useUi()
+  const inbox = useSyncExternalStore(onInboxStatus, getInboxStatus)
   const install = useInstallState()
   const [installHidden, setInstallHidden] = useState(() => {
     try {
@@ -226,6 +228,27 @@ export default function HomePage() {
       </div>
 
       {/* ---------- upozorenja ---------- */}
+      {inbox.state !== 'ok' && (
+        <Link to="/podesavanja" className={`notice ${inbox.state === 'off' ? 'blue' : 'amber'}`} style={{ textDecoration: 'none', marginBottom: 10 }}>
+          <Icon name="inbox" />
+          <span className="grow">
+            {inbox.state === 'off' ? (
+              <>
+                <b>Sajt nije povezan</b> — porudžbine ne ulaze same. Poveži ga u Podešavanjima (do tada ih uvozi iz mejla).
+              </>
+            ) : inbox.state === 'login' ? (
+              <>
+                <b>Prijavi se</b> da bi porudžbine sa sajta stizale same.
+              </>
+            ) : (
+              <>
+                <b>Veza sa sajtom ne radi</b> — porudžbine i dalje stižu mejlom. {inbox.message}
+              </>
+            )}
+          </span>
+          <Icon name="chevron" />
+        </Link>
+      )}
       {senderMissing && (
         <Link to="/podesavanja" className="notice blue" style={{ textDecoration: 'none', marginBottom: 10 }}>
           <Icon name="info" />

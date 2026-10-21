@@ -3,6 +3,8 @@ import { deflateRawSync } from "node:zlib";
 import { Resend } from "resend";
 import type { SiteOrderPayload } from "../../../admin/src/lib/siteOrderCodec";
 import { SITE } from "../../data/site";
+import { sbInsert, supabaseConfigured, upsertContact } from "../../lib/supabase";
+import { sendPush } from "../../lib/push";
 
 export const prerender = false;
 
@@ -26,6 +28,8 @@ interface OrderPayload {
     note?: string;
   };
   payment: string;
+  /** kupac je pristao na obaveštenja o akcijama i novim modelima */
+  marketing?: boolean;
   items: OrderItem[];
   totals: { subtotal: number; shippingFree: boolean; total: number };
   currency: string;
@@ -119,8 +123,8 @@ function totalsBlock(t: OrderPayload["totals"]): string {
 }
 
 /** Link koji otvara admin aplikaciju i u njoj upisuje porudžbinu (v. admin/src/lib/siteOrderCodec.ts). */
-function adminLink(id: string, body: OrderPayload): string {
-  const payload: SiteOrderPayload = {
+function buildSitePayload(id: string, body: OrderPayload): SiteOrderPayload {
+  return {
     v: 1,
     id,
     at: new Date().toISOString(),
@@ -138,7 +142,12 @@ function adminLink(id: string, body: OrderPayload): string {
     subtotal: body.totals.subtotal,
     shippingFree: !!body.totals.shippingFree,
     total: body.totals.total,
+    marketing: body.marketing === true,
   };
+}
+
+function adminLink(id: string, body: OrderPayload): string {
+  const payload = buildSitePayload(id, body);
   const code = deflateRawSync(Buffer.from(JSON.stringify(payload), "utf8"), { level: 9 }).toString("base64url");
   const base = (process.env.ADMIN_URL || `${SITE.url}/admin/`).replace(/\/?$/, "/");
   return `${base}#/uvoz?d=${code}`;
@@ -185,6 +194,44 @@ export const POST: APIRoute = async ({ request }) => {
   const link = adminLink(id, body);
   console.log("LINK ZA APLIKACIJU", id, link);
 
+  // 1) Prvo u bazu (ako je podešena): odatle porudžbina sama ulazi u aplikaciju na telefonu
+  let stored = false;
+  if (supabaseConfigured()) {
+    try {
+      await sbInsert(
+        "site_orders",
+        { external_id: id, status: "new", payload: buildSitePayload(id, body) },
+        { onConflict: "external_id", ignoreDuplicates: true },
+      );
+      stored = true;
+    } catch (e) {
+      console.error("Porudžbina nije upisana u bazu", e);
+    }
+    try {
+      await upsertContact({
+        name: `${c.firstName} ${c.lastName}`,
+        email: c.email,
+        phone: c.phone,
+        city: c.city,
+        source: "porudzbina",
+        marketing: body.marketing === true,
+      });
+    } catch (e) {
+      console.error("Kontakt nije upisan", e);
+    }
+  }
+
+  // 2) Obaveštenje na telefon (zvuk i kad je aplikacija zatvorena); ne sme da uspori ni obori porudžbinu
+  if (stored) {
+    const total = Number(body.totals?.total ?? 0);
+    await Promise.race([
+      sendPush("Nova porudžbina 🛍️", `${c.firstName} ${c.lastName} · ${total.toLocaleString("sr-Latn-RS")} RSD`).catch((e) =>
+        console.error("Push greška", e),
+      ),
+      new Promise((r) => setTimeout(r, 4000)),
+    ]);
+  }
+
   const API_KEY = process.env.RESEND_API_KEY;
   const FROM = process.env.ORDER_FROM || `Lumora <onboarding@resend.dev>`;
   const TO = (process.env.ORDER_TO || SITE.email)
@@ -193,6 +240,8 @@ export const POST: APIRoute = async ({ request }) => {
     .filter(Boolean);
 
   if (!API_KEY) {
+    // porudžbina je bar u bazi — kupcu javljamo da je primljena
+    if (stored) return json({ ok: true, orderId: id, emailed: false });
     return json(
       {
         ok: false,
@@ -273,6 +322,7 @@ export const POST: APIRoute = async ({ request }) => {
 
     if (owner.error) {
       console.error("Resend owner error", owner.error);
+      if (stored) return json({ ok: true, orderId: id, emailed: false });
       return json(
         { ok: false, error: "Porudžbina je zabeležena, ali slanje mejla nije uspelo." },
         502,
@@ -283,6 +333,7 @@ export const POST: APIRoute = async ({ request }) => {
     return json({ ok: true, orderId: id });
   } catch (e) {
     console.error("Order send failed", e);
+    if (stored) return json({ ok: true, orderId: id, emailed: false });
     return json(
       { ok: false, error: "Došlo je do greške pri slanju. Pokušajte ponovo." },
       500,

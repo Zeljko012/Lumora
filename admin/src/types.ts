@@ -162,3 +162,24 @@ export interface ReturnInfo {
   restocked: boolean
   at: number
 }
+
+/** Kupac / kontakt za mejling listu i Viber. Spaja se po mejlu, a kad ga nema po broju telefona. */
+export interface Contact {
+  id: string
+  /** mejl malim slovima, ili `tel:0641234567` kad nema mejla */
+  key: string
+  name: string
+  email: string
+  phone: string
+  /** telefon bez razmaka, počinje sa 0 */
+  phoneNorm: string
+  city: string
+  /** odakle je kontakt stigao: sajt, newsletter, instagram, viber, rucno… */
+  sources: string[]
+  /** true = pristao na obaveštenja o akcijama; false = odjavio se; null = nije se izjasnio */
+  marketing: boolean | null
+  note: string
+  createdAt: number
+  updatedAt: number
+  deletedAt?: number
+}
