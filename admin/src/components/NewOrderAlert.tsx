@@ -23,14 +23,17 @@ export default function NewOrderAlert() {
         // ako je aplikacija u pozadini, pokaži i obaveštenje telefona (kad je dozvoljeno)
         if (document.visibilityState === 'hidden' && 'Notification' in window && Notification.permission === 'granted') {
           const o = fresh[0]
-          try {
-            new Notification('Nova porudžbina', {
-              body: `${o.customer.name} · ${money(orderValue(o))}${fresh.length > 1 ? ` (+${fresh.length - 1})` : ''}`,
-              tag: 'lumora-order',
-            })
-          } catch {
-            /* nije podržano */
+          const title = 'Nova porudžbina'
+          const opts = {
+            body: `${o.customer.name} · ${money(orderValue(o))}${fresh.length > 1 ? ` (+${fresh.length - 1})` : ''}`,
+            tag: 'lumora-order',
+            icon: 'pwa-192x192.png',
           }
+          // na telefonu obaveštenje mora da prođe kroz servis-worker (new Notification tamo ne radi)
+          void navigator.serviceWorker
+            ?.getRegistration()
+            .then((reg) => (reg ? reg.showNotification(title, opts) : new Notification(title, opts)))
+            .catch(() => {})
         }
       }),
     [],

@@ -114,7 +114,7 @@ function click(c: AudioContext, start: number) {
   thump.stop(start + 0.12)
 }
 
-/** „Ka-ching!" — zvuk naplate, dva puta. */
+/** „Ka-ching!" — kratak zvuk naplate (jednom). */
 export async function playChime(force = false) {
   if (!force && !soundEnabled()) return
   const c = getCtx()
@@ -122,12 +122,9 @@ export async function playChime(force = false) {
   await unlockAudio()
   if (c.state !== 'running') return
   const t = c.currentTime + 0.05
-  for (let rep = 0; rep < 2; rep++) {
-    const t0 = t + rep * 1.4
-    click(c, t0)
-    bell(c, 1568, t0 + 0.07, 1.0, 0.16)
-    bell(c, 2093, t0 + 0.2, 1.2, 0.2)
-  }
+  click(c, t)
+  bell(c, 1568, t + 0.07, 0.6, 0.16)
+  bell(c, 2093, t + 0.2, 0.8, 0.2)
 }
 
 export function vibrate() {
