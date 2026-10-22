@@ -1,5 +1,392 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "astro",
-  "buildCommand": "npm run build"
+  "buildCommand": "npm run build",
+  "redirects": [
+    {
+      "source": "/products/u-vaza",
+      "destination": "/proizvod/arch-vaza",
+      "permanent": true
+    },
+    {
+      "source": "/collections/:c/products/u-vaza",
+      "destination": "/proizvod/arch-vaza",
+      "permanent": true
+    },
+    {
+      "source": "/products/bubble-vaza",
+      "destination": "/proizvod/bubble-vaza",
+      "permanent": true
+    },
+    {
+      "source": "/collections/:c/products/bubble-vaza",
+      "destination": "/proizvod/bubble-vaza",
+      "permanent": true
+    },
+    {
+      "source": "/products/krofna-vaza",
+      "destination": "/proizvod/donut-vaza",
+      "permanent": true
+    },
+    {
+      "source": "/collections/:c/products/krofna-vaza",
+      "destination": "/proizvod/donut-vaza",
+      "permanent": true
+    },
+    {
+      "source": "/products/duo-vaza",
+      "destination": "/proizvod/duet-vaza",
+      "permanent": true
+    },
+    {
+      "source": "/collections/:c/products/duo-vaza",
+      "destination": "/proizvod/duet-vaza",
+      "permanent": true
+    },
+    {
+      "source": "/products/duo-vaza-1",
+      "destination": "/proizvod/duo-vaza",
+      "permanent": true
+    },
+    {
+      "source": "/collections/:c/products/duo-vaza-1",
+      "destination": "/proizvod/duo-vaza",
+      "permanent": true
+    },
+    {
+      "source": "/products/bez-vaza",
+      "destination": "/proizvod/harmony-vaza",
+      "permanent": true
+    },
+    {
+      "source": "/collections/:c/products/bez-vaza",
+      "destination": "/proizvod/harmony-vaza",
+      "permanent": true
+    },
+    {
+      "source": "/products/list-vaza",
+      "destination": "/proizvod/list-vaza",
+      "permanent": true
+    },
+    {
+      "source": "/collections/:c/products/list-vaza",
+      "destination": "/proizvod/list-vaza",
+      "permanent": true
+    },
+    {
+      "source": "/products/spiralna-vaza",
+      "destination": "/proizvod/spiralna-vaza",
+      "permanent": true
+    },
+    {
+      "source": "/collections/:c/products/spiralna-vaza",
+      "destination": "/proizvod/spiralna-vaza",
+      "permanent": true
+    },
+    {
+      "source": "/products/vaza-vaza",
+      "destination": "/proizvod/split-vaza",
+      "permanent": true
+    },
+    {
+      "source": "/collections/:c/products/vaza-vaza",
+      "destination": "/proizvod/split-vaza",
+      "permanent": true
+    },
+    {
+      "source": "/products/mesec-vaza",
+      "destination": "/proizvod/vaza-luna",
+      "permanent": true
+    },
+    {
+      "source": "/collections/:c/products/mesec-vaza",
+      "destination": "/proizvod/vaza-luna",
+      "permanent": true
+    },
+    {
+      "source": "/products/vrecica-vaza",
+      "destination": "/proizvod/vrecica-vaza",
+      "permanent": true
+    },
+    {
+      "source": "/collections/:c/products/vrecica-vaza",
+      "destination": "/proizvod/vrecica-vaza",
+      "permanent": true
+    },
+    {
+      "source": "/products/skulptura-sa-srcem",
+      "destination": "/proizvod/figura-sa-srcem",
+      "permanent": true
+    },
+    {
+      "source": "/collections/:c/products/skulptura-sa-srcem",
+      "destination": "/proizvod/figura-sa-srcem",
+      "permanent": true
+    },
+    {
+      "source": "/products/home-figura",
+      "destination": "/proizvod/home-figura",
+      "permanent": true
+    },
+    {
+      "source": "/collections/:c/products/home-figura",
+      "destination": "/proizvod/home-figura",
+      "permanent": true
+    },
+    {
+      "source": "/products/home-roze-figura",
+      "destination": "/proizvod/home-roze-figura",
+      "permanent": true
+    },
+    {
+      "source": "/collections/:c/products/home-roze-figura",
+      "destination": "/proizvod/home-roze-figura",
+      "permanent": true
+    },
+    {
+      "source": "/products/labrador-figura",
+      "destination": "/proizvod/labrador-figura",
+      "permanent": true
+    },
+    {
+      "source": "/collections/:c/products/labrador-figura",
+      "destination": "/proizvod/labrador-figura",
+      "permanent": true
+    },
+    {
+      "source": "/products/maca-figura",
+      "destination": "/proizvod/maca-figura",
+      "permanent": true
+    },
+    {
+      "source": "/collections/:c/products/maca-figura",
+      "destination": "/proizvod/maca-figura",
+      "permanent": true
+    },
+    {
+      "source": "/products/maca-mreza",
+      "destination": "/proizvod/maca-mreza-figura",
+      "permanent": true
+    },
+    {
+      "source": "/collections/:c/products/maca-mreza",
+      "destination": "/proizvod/maca-mreza-figura",
+      "permanent": true
+    },
+    {
+      "source": "/products/maska",
+      "destination": "/proizvod/maska-figura",
+      "permanent": true
+    },
+    {
+      "source": "/collections/:c/products/maska",
+      "destination": "/proizvod/maska-figura",
+      "permanent": true
+    },
+    {
+      "source": "/products/mislilac-figura",
+      "destination": "/proizvod/mislilac-figura",
+      "permanent": true
+    },
+    {
+      "source": "/collections/:c/products/mislilac-figura",
+      "destination": "/proizvod/mislilac-figura",
+      "permanent": true
+    },
+    {
+      "source": "/products/maca-figura-1",
+      "destination": "/proizvod/uspavana-maca-figura",
+      "permanent": true
+    },
+    {
+      "source": "/collections/:c/products/maca-figura-1",
+      "destination": "/proizvod/uspavana-maca-figura",
+      "permanent": true
+    },
+    {
+      "source": "/products/zagljeni-par-figura",
+      "destination": "/proizvod/zagrljaj-ljubavi-figura",
+      "permanent": true
+    },
+    {
+      "source": "/collections/:c/products/zagljeni-par-figura",
+      "destination": "/proizvod/zagrljaj-ljubavi-figura",
+      "permanent": true
+    },
+    {
+      "source": "/products/zaljubljene-mace",
+      "destination": "/proizvod/zaljubljene-mace-figura",
+      "permanent": true
+    },
+    {
+      "source": "/collections/:c/products/zaljubljene-mace",
+      "destination": "/proizvod/zaljubljene-mace-figura",
+      "permanent": true
+    },
+    {
+      "source": "/products/zaljubljeni-par-figura",
+      "destination": "/proizvod/zaljubljeni-par-figura",
+      "permanent": true
+    },
+    {
+      "source": "/collections/:c/products/zaljubljeni-par-figura",
+      "destination": "/proizvod/zaljubljeni-par-figura",
+      "permanent": true
+    },
+    {
+      "source": "/products/booble-svecnjak",
+      "destination": "/proizvod/bubble-svecnjak",
+      "permanent": true
+    },
+    {
+      "source": "/collections/:c/products/booble-svecnjak",
+      "destination": "/proizvod/bubble-svecnjak",
+      "permanent": true
+    },
+    {
+      "source": "/products/rasorsivac-svecnjak",
+      "destination": "/proizvod/hvatac-svetlosti-svecnjak",
+      "permanent": true
+    },
+    {
+      "source": "/collections/:c/products/rasorsivac-svecnjak",
+      "destination": "/proizvod/hvatac-svetlosti-svecnjak",
+      "permanent": true
+    },
+    {
+      "source": "/products/skupljac-svetla-svecnjak",
+      "destination": "/proizvod/rebrasti-svecnjak",
+      "permanent": true
+    },
+    {
+      "source": "/collections/:c/products/skupljac-svetla-svecnjak",
+      "destination": "/proizvod/rebrasti-svecnjak",
+      "permanent": true
+    },
+    {
+      "source": "/products/uvijeni-svecnjak",
+      "destination": "/proizvod/spiralni-svecnjak",
+      "permanent": true
+    },
+    {
+      "source": "/collections/:c/products/uvijeni-svecnjak",
+      "destination": "/proizvod/spiralni-svecnjak",
+      "permanent": true
+    },
+    {
+      "source": "/products/srce-svecnjak",
+      "destination": "/proizvod/srce-svecnjak",
+      "permanent": true
+    },
+    {
+      "source": "/collections/:c/products/srce-svecnjak",
+      "destination": "/proizvod/srce-svecnjak",
+      "permanent": true
+    },
+    {
+      "source": "/products/drvo-vaza",
+      "destination": "/proizvod/drvo-saksija",
+      "permanent": true
+    },
+    {
+      "source": "/collections/:c/products/drvo-vaza",
+      "destination": "/proizvod/drvo-saksija",
+      "permanent": true
+    },
+    {
+      "source": "/products/home-za-vrata",
+      "destination": "/proizvod/home-za-vrata",
+      "permanent": true
+    },
+    {
+      "source": "/collections/:c/products/home-za-vrata",
+      "destination": "/proizvod/home-za-vrata",
+      "permanent": true
+    },
+    {
+      "source": "/products/kesa-vaza",
+      "destination": "/proizvod/papir-saksija",
+      "permanent": true
+    },
+    {
+      "source": "/collections/:c/products/kesa-vaza",
+      "destination": "/proizvod/papir-saksija",
+      "permanent": true
+    },
+    {
+      "source": "/products/sapica-vaza",
+      "destination": "/proizvod/sapica-saksija",
+      "permanent": true
+    },
+    {
+      "source": "/collections/:c/products/sapica-vaza",
+      "destination": "/proizvod/sapica-saksija",
+      "permanent": true
+    },
+    {
+      "source": "/collections/vaze",
+      "destination": "/kategorija/vaze",
+      "permanent": true
+    },
+    {
+      "source": "/collections/figure",
+      "destination": "/kategorija/figure",
+      "permanent": true
+    },
+    {
+      "source": "/collections/svecnjaci",
+      "destination": "/kategorija/svecnjaci",
+      "permanent": true
+    },
+    {
+      "source": "/collections/all",
+      "destination": "/prodavnica",
+      "permanent": true
+    },
+    {
+      "source": "/collections/:slug*",
+      "destination": "/prodavnica",
+      "permanent": true
+    },
+    {
+      "source": "/products/:slug*",
+      "destination": "/prodavnica",
+      "permanent": true
+    },
+    {
+      "source": "/cart",
+      "destination": "/korpa",
+      "permanent": true
+    },
+    {
+      "source": "/pages/contact",
+      "destination": "/kontakt",
+      "permanent": true
+    },
+    {
+      "source": "/pages/kontakt",
+      "destination": "/kontakt",
+      "permanent": true
+    },
+    {
+      "source": "/pages/:slug*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/blogs/:slug*",
+      "destination": "/vodic",
+      "permanent": true
+    },
+    {
+      "source": "/account/:slug*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/account",
+      "destination": "/",
+      "permanent": true
+    }
+  ]
 }
