@@ -200,7 +200,7 @@ export const CATEGORY_SEO: Record<Category, CategorySeo> = {
       {
         h2: "Bezbedno korišćenje",
         p: [
-          "Svećnjaci su štampani od PLA materijala, koji ne podnosi visoku temperaturu. Namenjeni su isključivo LED svećicama i ne smeju se koristiti sa otvorenim plamenom.",
+          "Svećnjaci su štampani od PLA materijala, koji ne podnosi visoku temperaturu. Uz svećnjak dobijaš LED svećicu i baterije. Namenjeni su isključivo LED svećicama i ne smeju se koristiti sa otvorenim plamenom.",
         ],
       },
       {
@@ -213,7 +213,7 @@ export const CATEGORY_SEO: Record<Category, CategorySeo> = {
     faqs: [
       {
         q: "Koje sveće mogu da koristim?",
-        a: "Samo LED svećice. Svećnjaci su štampani od PLA materijala koji ne podnosi toplotu, pa se ne smeju koristiti sa otvorenim plamenom (običnim ni čajnim svećicama).",
+        a: "Samo LED svećice, a one se dobijaju uz svećnjak zajedno sa baterijama. Svećnjaci su štampani od PLA materijala koji ne podnosi toplotu, pa se ne smeju koristiti sa otvorenim plamenom (običnim ni čajnim svećicama).",
       },
       {
         q: "Da li svećnjaci dolaze u više boja?",
@@ -612,7 +612,7 @@ export const GUIDES: Guide[] = [
       {
         h2: "Svećnjaci",
         p: [
-          "Svećnjaci su namenjeni isključivo LED svećicama i ne smeju se koristiti sa otvorenim plamenom. PLA ne podnosi toplotu.",
+          "Uz svećnjak dobijaš LED svećicu i baterije. Svećnjaci su namenjeni isključivo LED svećicama i ne smeju se koristiti sa otvorenim plamenom, jer PLA ne podnosi toplotu.",
         ],
       },
       {

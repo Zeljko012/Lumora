@@ -241,7 +241,7 @@ export const PRODUCT_COPY: Record<string, ProductCopy> = {
       "Srce svećnjak je namenjen jednoj LED svećici: mali gest sa velikim značenjem. Na stolu za večeru, uz knjigu ili na polici, daje toplinu bez ikakvog dodatnog uređenja.",
       "Odličan je poklon za Dan zaljubljenih, godišnjicu ili bez razloga. Kao poklon se lako pakuje i šalje.",
     ],
-    faq: { q: "Koju svećicu koristi Srce svećnjak?", a: "Namenjen je isključivo jednoj LED svećici. Ne sme se koristiti sa otvorenim plamenom." },
+    faq: { q: "Koju svećicu koristi Srce svećnjak?", a: "Namenjen je isključivo LED svećici, koja se dobija uz svećnjak zajedno sa baterijama. Ne sme se koristiti sa otvorenim plamenom." },
   },
 
   /* ───────────── SAKSIJE I DETALJI ZA DOM ───────────── */
@@ -290,8 +290,8 @@ export const CATEGORY_FAQ: Record<Category, { q: string; a: string }> = {
     a: "Na polici, komodi, radnom stolu ili prozorskoj dasci. Lako se kombinuje sa knjigama, biljkama i vazama.",
   },
   svecnjaci: {
-    q: "Koju svećicu da koristim?",
-    a: "Samo LED svećice. Svećnjaci su štampani od PLA materijala koji ne podnosi toplotu, pa se ne smeju koristiti sa otvorenim plamenom (običnim ni čajnim svećicama).",
+    q: "Da li se svećica i baterije dobijaju uz svećnjak?",
+    a: "Da, uz svećnjak dobijate LED svećicu i baterije. Svećnjaci su štampani od PLA materijala koji ne podnosi toplotu, pa se ne smeju koristiti sa otvorenim plamenom (običnim ni čajnim svećicama).",
   },
   dom: {
     q: "Kako da održavam dekoraciju?",
@@ -303,6 +303,6 @@ export const CATEGORY_FAQ: Record<Category, { q: string; a: string }> = {
 export const CATEGORY_USE: Record<Category, string> = {
   vaze: "Namena: ukrasna vaza za suvo cveće i pampas travu — ne puni se vodom",
   figure: "Namena: dekorativna figura za policu, komodu ili radni sto",
-  svecnjaci: "Namena: dekorativni svećnjak — isključivo za LED svećice, ne koristiti sa otvorenim plamenom",
+  svecnjaci: "Namena: dekorativni svećnjak — uz njega dobijate LED svećicu i baterije; ne koristiti sa otvorenim plamenom",
   dom: "Namena: dekorativni detalj za dom, sto, policu ili ulaz",
 };

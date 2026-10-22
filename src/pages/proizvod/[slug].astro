@@ -229,6 +229,7 @@ const gallery = p.images.map((im) => ({
               <li>Materijal: PLA (polimlečna kiselina), plastika biljnog porekla</li>
               <li>Izrada: precizna 3D štampa, po porudžbini</li>
               <li>{CATEGORY_USE[p.category]}</li>
+              {p.category === "svecnjaci" && <li>U pakovanju: LED svećica i baterije</li>}
             </ul>
           </details>
           <details>
