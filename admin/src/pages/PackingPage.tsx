@@ -10,10 +10,12 @@ import { swatch } from '../lib/colors'
 import { packProgress } from '../lib/orders'
 import { plural } from '../lib/format'
 import { Loading } from '../components/Guard'
+import { Thumb, useItemImage } from '../components/ItemThumb'
 
 type Range = 'sve' | 'danas'
 
 interface Group {
+  img: string
   key: string
   title: string
   color: string
@@ -30,6 +32,7 @@ export default function PackingPage() {
   const [range, setRange] = useState<Range>('sve')
   const [open, setOpen] = useState<string | null>(null)
   const [printing, setPrinting] = useState(false)
+  const imageOf = useItemImage()
 
   const pending = useMemo(() => {
     const start = new Date()
@@ -50,7 +53,7 @@ export default function PackingPage() {
       for (const i of o.items) {
         if (i.packed) continue
         const key = i.variantId ?? `${i.title}|${i.color}|${i.size}`
-        const g = m.get(key) ?? { key, title: i.title, color: i.color, size: i.size, qty: 0, make: 0, orders: [] }
+        const g = m.get(key) ?? { img: imageOf(i), key, title: i.title, color: i.color, size: i.size, qty: 0, make: 0, orders: [] }
         g.qty += i.qty
         g.orders.push({ id: o.id, number: o.number, name: o.customer.name, qty: i.qty })
         m.set(key, g)
@@ -111,6 +114,7 @@ export default function PackingPage() {
             {groups.map((g) => (
               <div key={g.key}>
                 <button type="button" className="sum-row" style={{ width: '100%', background: 'none', border: 0, textAlign: 'left' }} onClick={() => setOpen(open === g.key ? null : g.key)}>
+                  <Thumb src={g.img} size={56} />
                   <span className="main">
                     <span className="name" style={{ display: 'block' }}>
                       {g.title}

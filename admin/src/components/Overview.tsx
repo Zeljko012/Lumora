@@ -5,6 +5,7 @@ import { Kpi } from './Kpi'
 import { SalesChart, type Metric } from './SalesChart'
 import { Heatmap } from './Heatmap'
 import { RankList, pct } from './StatBits'
+import { TrafficCard } from './TrafficCard'
 import { categoryLabel } from '../lib/catalog'
 import { sourceLabel } from '../lib/orders'
 import { categoryStats, customerStats, delta, heatmap, salesSeries, type Kpis, type Range } from '../lib/stats'
@@ -148,24 +149,8 @@ export function Overview({ orders, products, cur, prev, k, kp, o, p, c, settings
       </div>
 
       <div className="section">
-        <div className="card">
-          <div className="chart-title">
-            <span>Poseta sajta</span>
-            <span className="muted small">posetioci i konverzija</span>
-          </div>
-          <p className="small muted" style={{ margin: '0 0 10px' }}>
-            Broj posetilaca, odakle dolaze i koliko njih kupi se meri na samom sajtu, a ne u porudžbinama. Besplatna statistika bez kolačića (Cloudflare Web Analytics ili Umami) daje taj deo slike.
-          </p>
-          {settings.trafficUrl ? (
-            <a className="btn brand block" href={settings.trafficUrl} target="_blank" rel="noopener">
-              <Icon name="globe" /> Otvori statistiku posete
-            </a>
-          ) : (
-            <Link className="btn block" to="/podesavanja">
-              <Icon name="settings" /> Poveži statistiku posete
-            </Link>
-          )}
-        </div>
+        <div className="section-title">Poseta sajta</div>
+        <TrafficCard from={cur.from} to={cur.to} orders={k.brojPorudzbina} settings={settings} />
       </div>
     </>
   )

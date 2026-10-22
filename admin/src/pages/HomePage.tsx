@@ -14,6 +14,7 @@ import { dateShort, money, plural } from '../lib/format'
 import { canPromptInstall, isIos, isStandalone, onInstallChange, promptInstall } from '../lib/install'
 import { removeDemoData } from '../lib/demo'
 import { getInboxStatus, onInboxStatus } from '../lib/inbox'
+import { LiveSite } from '../components/LiveSite'
 
 const pct = new Intl.NumberFormat('sr-Latn-RS', { maximumFractionDigits: 0, signDisplay: 'always' })
 
@@ -225,6 +226,10 @@ export default function HomePage() {
             Kuriri ti ukupno duguju <b style={{ color: 'var(--ink)' }}>{money(d.wait.amount)}</b> ({d.wait.count} {plural(d.wait.count, 'pošiljka', 'pošiljke', 'pošiljaka')}).
           </p>
         )}
+      </div>
+
+      <div style={{ marginBottom: 10 }}>
+        <LiveSite ordersToday={d.kToday.brojPorudzbina} />
       </div>
 
       {/* ---------- upozorenja ---------- */}

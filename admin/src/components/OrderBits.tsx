@@ -1,3 +1,4 @@
+import { ThumbRow } from './ItemThumb'
 import { Link } from 'react-router-dom'
 import type { Order, OrderStatus } from '../types'
 import { codAmount, itemLabel, orderTotal, packProgress, sourceLabel, statusLabel } from '../lib/orders'
@@ -60,6 +61,7 @@ export function OrderCard({ order, courierName, overdueDays, selecting, selected
           </>
         )}
       </div>
+      <ThumbRow items={order.items} />
       <div className="oc-items">
         {order.items.length === 0 ? (
           <span className="muted">Nema stavki</span>

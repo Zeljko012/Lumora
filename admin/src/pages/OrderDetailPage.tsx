@@ -26,12 +26,14 @@ import {
 import { dateTime, money } from '../lib/format'
 import type { Order, OrderStatus } from '../types'
 import { Loading } from '../components/Guard'
+import { Thumb, useItemImage } from '../components/ItemThumb'
 
 export default function OrderDetailPage() {
   const { id } = useParams()
   const nav = useNavigate()
   const { confirm, toast } = useUi()
   const order = useLiveQuery(() => db.orders.get(id!), [id])
+  const imageOf = useItemImage()
   const settings = useLiveQuery(() => db.settings.get('main'), []) ?? DEFAULT_SETTINGS
   const [picker, setPicker] = useState(false)
   const [returning, setReturning] = useState(false)
@@ -217,6 +219,7 @@ export default function OrderDetailPage() {
               <span className="box">
                 <Icon name="check" />
               </span>
+              <Thumb src={imageOf(i)} size={56} />
               <span className="main">
                 <span className="name" style={{ display: 'block' }}>
                   {i.title}

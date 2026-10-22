@@ -69,6 +69,10 @@ export function installDevFake() {
         failing = v
       },
       pull: () => pullInbox(true),
+      /** lažna statistika posete: __fake.setVisits({...}) ili null da se sakrije */
+      setVisits: (v: unknown) => {
+        ;(window as unknown as { __fakeVisits?: unknown }).__fakeVisits = v
+      },
       db,
       syncNow,
       status: getInboxStatus,

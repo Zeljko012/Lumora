@@ -106,6 +106,7 @@ const umamiId = import.meta.env.PUBLIC_UMAMI_ID as string | undefined;
     <div class="toast-wrap" data-toast-wrap aria-live="polite"></div>
 
     <script>
+      import "../lib/track";
       // Globalni toast helper
       window.addEventListener("lumora:toast", (e) => {
         const msg = (e as CustomEvent<string>).detail;

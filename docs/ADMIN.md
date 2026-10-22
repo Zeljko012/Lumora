@@ -53,12 +53,13 @@ u aplikaciji dodirni **Više → Osveži katalog sa sajta** (zaliha i trošak iz
 
 Proizvodi se prave po porudžbini, pa se zaliha podrazumevano **ne vodi**. Uključi je u Podešavanjima ako želiš.
 
-## 6. Poseta sajta (opciono, besplatno)
+## 6. Poseta sajta i „uživo na sajtu"
 
-Analitika prodaje se računa iz porudžbina. Broj posetilaca i konverzija se mere na samom sajtu:
-1. Napravi besplatan nalog na **Cloudflare Web Analytics** (ili **Umami Cloud**) — radi bez kolačića, pa nije potreban baner.
-2. Token upiši u Vercel → Settings → Environment Variables: `PUBLIC_CF_BEACON` (ili `PUBLIC_UMAMI_ID`), pa Redeploy.
-3. Adresu statistike nalepi u **Podešavanja → Poseta sajta** — u Analitici se pojavi dugme „Otvori statistiku posete".
+Sajt sam broji posete (anonimno: bez kolačića, bez IP adresa i bez ličnih podataka) i upisuje ih u istu Supabase bazu.
+1. Jednokratno u Supabase-u: **SQL Editor → New query** → nalepi sadržaj fajla `docs/supabase-visits.sql` → **Run**.
+2. U aplikaciji (mora biti povezana, v. 6b): na **Početnoj** se pojavi kartica „X posetilaca je sada na sajtu" (koje stranice gledaju), a u **Analitici → Pregled → Poseta sajta**: posetioci, pregledi, koliko ih je kupilo, najgledanije stranice i odakle dolaze (Instagram, Google…).
+3. Tvoje posete se ne broje: dok si prijavljen u aplikaciju u tom pregledaču, ili ako jednom otvoriš sajt sa `?notrack` na kraju adrese.
+4. (Opciono) Cloudflare Web Analytics ili Umami i dalje mogu da se dodaju za dublju statistiku: `PUBLIC_CF_BEACON` / `PUBLIC_UMAMI_ID` u Vercel-u, pa adresu u Podešavanja → Poseta sajta.
 
 ## 6b. Automatski prijem porudžbina, zvuk i lista kontakata (Supabase, besplatno)
 
