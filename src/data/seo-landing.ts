@@ -21,7 +21,7 @@ export const EXTRA_GIFT_PAGES: GiftPage[] = [
       "3D štampani pokloni za svaku priliku: vaze, figure, svećnjaci i saksije. Izrađeno u Srbiji po porudžbini, 7 boja, od {from}. Plaćanje pouzećem.",
     intro: [
       "3D štampa omogućava poklone kakve teško nalaziš u klasičnim prodavnicama: skulpture sa otvorenim krugovima, spiralne teksture i apstraktne forme, štampane po tvojoj porudžbini u boji koju izabereš.",
-      "Izdvojili smo komade koji se najlakše poklanjaju: vaze za suvo cveće, figure, svećnjake i saksije. Svaki je izrađen u Srbiji od eko PLA materijala.",
+      "Izdvojili smo komade koji se najlakše poklanjaju: vaze za suvo cveće, figure, svećnjake i saksije. Svaki je izrađen u Srbiji od PLA materijala.",
     ],
     products: [
       "donut-vaza",
@@ -46,7 +46,7 @@ export const EXTRA_GIFT_PAGES: GiftPage[] = [
     faqs: [
       {
         q: "Šta je 3D štampani poklon?",
-        a: "To je predmet napravljen 3D štampom, sloj po sloj, na osnovu digitalnog modela. Naši komadi se štampaju u Srbiji od eko PLA materijala.",
+        a: "To je predmet napravljen 3D štampom, sloj po sloj, na osnovu digitalnog modela. Naši komadi se štampaju u Srbiji od PLA materijala.",
       },
       {
         q: "Da li se poklon štampa po porudžbini?",
@@ -248,6 +248,150 @@ export const EXTRA_GIFT_PAGES: GiftPage[] = [
       "poklon za Božić",
       "svećnjak za poklon",
     ],
+  },
+  {
+    slug: "poklon-za-mamu",
+    title: "Poklon za mamu – ideje za rođendan i Materice",
+    h1: "Poklon za mamu",
+    description:
+      "Poklon za mamu: moderne vaze za suvo cveće, svećnjaci i figure sa srcem. 3D štampano u Srbiji, 7 boja, od {from}. Plaćanje pouzećem.",
+    intro: [
+      "Dobar poklon za mamu je onaj koji raduje svaki dan, a ne samo kada se uruči. Vaza, svećnjak ili mala figura stoje na polici ili komodi i dugo podsećaju na pažnju — bez održavanja i bez uvenuća.",
+      "Za mame koje vole cveće tu su vaze za suvo cveće i pampas travu: ne pune se vodom, pa aranžman traje mesecima. Za one koje vole mir i svetlost, svećnjaci. Za sentimentalne, figura sa srcem. Boju biraš po njenom ukusu i domu.",
+    ],
+    products: [
+      "list-vaza",
+      "harmony-vaza",
+      "vaza-luna",
+      "donut-vaza",
+      "drvo-saksija",
+      "srce-svecnjak",
+      "rebrasti-svecnjak",
+      "hvatac-svetlosti-svecnjak",
+      "figura-sa-srcem",
+    ],
+    tips: {
+      h2: "Kako izabrati poklon za mamu",
+      p: [
+        "Ako mama voli biljke, izaberi Drvo saksiju ili vazu uz granu suve trave. Ako voli uređen dom i police, Harmony ili List vaza u neutralnoj boji uklopiće se uz sve. Ako voli atmosferu, tu su Srce i Rebrasti svećnjak. Za mamu koja ima sve, najbolja je sitna, lepa stvar koju još nema.",
+        `Komadi se štampaju po porudžbini, a izrada i dostava traju ${DELIVERY}, pa porudžbinu ostavi bar dve nedelje pre rođendana ili praznika.`,
+      ],
+    },
+    faqs: [
+      {
+        q: "Šta pokloniti mami koja ima sve?",
+        a: "Sitnu dekoraciju koju još nema: svećnjak, malu figuru ili vazu u boji koja odgovara njenom domu. Najpristupačniji komad košta od {from}.",
+      },
+      {
+        q: "Da li je vaza dobar poklon za mamu?",
+        a: "Jeste. Lumora vaze su ukrasne i ne pune se vodom, pa stoje na polici i bez cveća, a uz granu suve trave su gotov aranžman koji ne treba menjati.",
+      },
+      {
+        q: "Koja boja je najsigurnija za poklon?",
+        a: "Bela, bež i siva uklapaju se u većinu domova, a roze i maslinasto zelena su toplije i prirodnije.",
+      },
+      {
+        q: "Koliko košta poklon za mamu?",
+        a: "Od {from} do {to}. Besplatna dostava važi za porudžbine preko 6.000 RSD.",
+      },
+    ],
+    keywords: ["poklon za mamu", "šta pokloniti mami", "poklon za majku", "poklon za mamu za rođendan"],
+  },
+  {
+    slug: "poklon-za-materice",
+    title: "Pokloni za Materice i Oce – ideje i dekoracije",
+    h1: "Pokloni za Materice i Oce",
+    description:
+      "Pokloni za Materice i Oce: vaze, svećnjaci i figure za mamu i tatu. 3D štampano u Srbiji, 7 boja, od {from}. Plaćanje pouzećem.",
+    intro: [
+      "Materice i Oci su tradicionalni dani majki i očeva u Srbiji. Slave se u nedelje pred pravoslavni Božić (7. januar): Detinjci treće, Materice druge, a Oci poslednje nedelje pred praznik. Ove godine Materice su 27. decembra 2026, a Oci 3. januara 2027.",
+      "Poklon ne mora da bude veliki, ali treba da ostane: vaza, svećnjak ili figura koja stoji na vidnom mestu. U izboru su komadi za mame i za tate, u boji koju sam biraš.",
+    ],
+    products: [
+      "harmony-vaza",
+      "vaza-luna",
+      "list-vaza",
+      "srce-svecnjak",
+      "figura-sa-srcem",
+      "mislilac-figura",
+      "labrador-figura",
+      "rebrasti-svecnjak",
+      "spiralni-svecnjak",
+    ],
+    tips: {
+      h2: "Do kada poručiti za Materice i Oce",
+      p: [
+        `Komadi se štampaju po porudžbini, a izrada i dostava traju ${DELIVERY}. Pred praznike su kuriri opterećeniji, pa porudžbinu ostavi do sredine decembra.`,
+        "Za mamu su pogodne vaze za suvo cveće, svećnjaci i figura sa srcem. Za tatu, Mislilac za radni sto, Labrador za ljubitelje pasa i svećnjaci čistih linija.",
+      ],
+    },
+    faqs: [
+      {
+        q: "Kada su Materice 2026?",
+        a: "Materice su druga nedelja pre Božića, što je 27. decembra 2026. Oci su 3. januara 2027, a Detinjci 20. decembra 2026.",
+      },
+      {
+        q: "Šta pokloniti mami za Materice?",
+        a: "Vazu za suvo cveće, svećnjak ili figuru sa srcem. Sve se štampa u boji koju izabereš, a najpristupačniji komad košta od {from}.",
+      },
+      {
+        q: "Šta pokloniti tati za Oce?",
+        a: "Figuru za radni sto kao što je Mislilac, Labrador za ljubitelje pasa ili svećnjak čistih linija.",
+      },
+      {
+        q: "Do kada da poručim da poklon stigne na vreme?",
+        a: "Najbolje do sredine decembra. Komadi se štampaju po porudžbini, pa uz izradu i dostavu računaj bar dve nedelje.",
+      },
+    ],
+    keywords: ["pokloni za Materice", "šta pokloniti za Materice", "pokloni za Oce", "Materice poklon za mamu"],
+  },
+  {
+    slug: "pokloni-za-bozic",
+    title: "Pokloni za Božić – dekoracije za dom i porodicu",
+    h1: "Pokloni za Božić",
+    description:
+      "Pokloni za Božić: svećnjaci, vaze i figure za porodicu i dom. 3D štampano u Srbiji, 7 boja, od {from}. Plaćanje pouzećem.",
+    intro: [
+      "Za Božić se okuplja cela porodica, pa je poklon za dom ili domaćina pogodan za sve: ne zavisi od uzrasta i ne zauzima mnogo mesta. Svećnjak sa toplim odsjajima ili vaza na stolu odmah menjaju atmosferu praznične sobe.",
+      "U izboru su svećnjaci koji lepo oblikuju svetlost, vaze za suvo cveće i figure za komodu. Boju biraš po domu u koji poklon ide: crvena i bela su praznične, a bež i siva diskretne.",
+    ],
+    products: [
+      "hvatac-svetlosti-svecnjak",
+      "spiralni-svecnjak",
+      "rebrasti-svecnjak",
+      "srce-svecnjak",
+      "bubble-svecnjak",
+      "duo-vaza",
+      "harmony-vaza",
+      "home-figura",
+      "home-za-vrata",
+    ],
+    tips: {
+      h2: "Do kada poručiti za Božić",
+      p: [
+        `Komadi se štampaju po porudžbini, a izrada i dostava traju ${DELIVERY}. Pred praznike su kuriri opterećeniji, pa porudžbinu ostavi do 20. decembra.`,
+        "Za domaćina najbolje rade svećnjaci i vaza uz granu suve trave. Za porodicu, Duo vaza je set od dve vaze, a natpis HOME je lep poklon za one koji tek uređuju dom.",
+      ],
+    },
+    faqs: [
+      {
+        q: "Šta pokloniti za Božić?",
+        a: "Svećnjak, vazu za suvo cveće ili malu figuru za dom. Sve se štampa u boji koju izabereš, a najpristupačniji komad košta od {from}.",
+      },
+      {
+        q: "Da li prodajete božićne ukrase?",
+        a: "Ne pravimo klasične božićne ukrase. Nudimo dekoracije za dom koje se često poklanjaju za praznike: svećnjake, vaze i figure.",
+      },
+      {
+        q: "Koliko košta poklon za Božić?",
+        a: "Od {from} do {to}. Besplatna dostava važi za porudžbine preko 6.000 RSD.",
+      },
+      {
+        q: "Do kada poručiti da stigne pre Božića?",
+        a: "Za pravoslavni Božić 7. januara najbolje do 20. decembra, jer se komadi štampaju po porudžbini i kuriri su pred praznike opterećeniji.",
+      },
+    ],
+    keywords: ["pokloni za Božić", "božićni poklon", "poklon za domaćina", "šta pokloniti za Božić"],
   },
 ];
 

@@ -61,20 +61,21 @@ export const CATEGORY_SEO: Record<Category, CategorySeo> = {
       {
         h2: "Zašto 3D štampane vaze",
         p: [
-          "3D štampa omogućava forme koje se teško pravi klasičnom proizvodnjom: otvoreni krugovi, spiralne teksture, rebra i mehurići. Svaka vaza se štampa po porudžbini, sloj po sloj, od eko PLA materijala, u boji koju izabereš — bela, bež, siva, crna, roze, maslinasto zelena ili crvena.",
+          "3D štampa omogućava forme koje se teško pravi klasičnom proizvodnjom: otvoreni krugovi, spiralne teksture, rebra i mehurići. Svaka vaza se štampa po porudžbini, sloj po sloj, od PLA materijala, u boji koju izabereš — bela, bež, siva, crna, roze, maslinasto zelena ili crvena.",
         ],
       },
       {
-        h2: "Važna napomena o upotrebi",
+        h2: "Zašto su Lumora vaze samo za suvo cveće",
         p: [
-          "Vaze su namenjene suvom cveću, pampas travi i samostalnoj dekoraciji i nisu vodootporne. Čiste se suvom ili blago vlažnom krpom; izbegavaj direktno sunce i izvore toplote.",
+          "Lumora vaze su ukrasne i ne pune se vodom. Namenjene su suvom cveću, pampas travi i grančicama, ili da stoje same kao skulptura. Zato su idealne za aranžmane koji traju mesecima, bez menjanja vode.",
+          "Čiste se suvom ili blago vlažnom krpom; izbegavaj direktno sunce i izvore toplote.",
         ],
       },
     ],
     faqs: [
       {
         q: "Da li se u ove vaze stavlja voda?",
-        a: "Ne. Vaze su namenjene suvom cveću, pampas travi i dekoraciji i nisu vodootporne.",
+        a: "Ne. Lumora vaze su ukrasne i ne pune se vodom. Namenjene su suvom cveću, pampas travi i dekoraciji, ili da stoje same kao skulptura.",
       },
       {
         q: "Koja vaza je najbolja za pampas travu?",
@@ -98,7 +99,7 @@ export const CATEGORY_SEO: Record<Category, CategorySeo> = {
       },
       {
         q: "Šta je 3D štampana vaza?",
-        a: "Vaza napravljena 3D štampom, sloj po sloj, od eko PLA materijala. Oblik je precizan, a boju biraš sam.",
+        a: "Vaza napravljena 3D štampom, sloj po sloj, od PLA materijala. Oblik je precizan, a boju biraš sam.",
       },
     ],
     related: [
@@ -140,7 +141,7 @@ export const CATEGORY_SEO: Record<Category, CategorySeo> = {
       {
         h2: "Boja i materijal",
         p: [
-          "Svaka figura se štampa po porudžbini od eko PLA materijala u boji po izboru (7 boja). Crna figura daje jak kontrast na svetlim policama, dok se bela i bež tiho uklapaju u minimalistički enterijer.",
+          "Svaka figura se štampa po porudžbini od PLA materijala u boji po izboru (7 boja). Crna figura daje jak kontrast na svetlim policama, dok se bela i bež tiho uklapaju u minimalistički enterijer.",
         ],
       },
     ],
@@ -497,8 +498,11 @@ const GIFT_ORDER = [
   "poklon-za-godisnjicu",
   "poklon-za-dan-zaljubljenih",
   "poklon-za-8-mart",
+  "poklon-za-mamu",
+  "poklon-za-materice",
   "poklon-za-rodjendan",
   "pokloni-za-novu-godinu",
+  "pokloni-za-bozic",
   "poklon-za-ljubitelje-macaka",
   "pokloni-do-2000-dinara",
 ];
@@ -679,6 +683,166 @@ export const GUIDES: Guide[] = [
       "minimalistička dekoracija",
     ],
     published: "2026-10-21",
+  },
+  {
+    slug: "pokloni-za-novu-godinu-do-2000-dinara",
+    title: "Pokloni za Novu godinu do 2.000 dinara: 17 ideja",
+    description:
+      "17 ideja za poklon za Novu godinu do 2.000 dinara: svećnjaci, figure i vaze za dom. Šta izabrati za mamu, prijatelja, kolegu i partnera.",
+    intro:
+      "Novogodišnji pokloni ne moraju da budu skupi da bi bili lepi. Dekoracija za dom je siguran izbor: ne zavisi od uzrasta, ne zauzima mnogo mesta i ostaje na polici dugo posle praznika. Evo 17 ideja do 2.000 dinara, razvrstanih po tome kome poklanjaš.",
+    sections: [
+      {
+        h2: "Za mamu, baku i drugaricu",
+        p: [
+          "Srce Svećnjak je mali gest sa velikim značenjem. Hvatač Svetlosti lomi plamen svećice u sitne odsjaje po zidu i dobar je za one koje vole atmosferu. Vaza Luna ima oblik polumeseca i, uz granu suve trave, deluje kao gotov aranžman. Figura sa Srcem je za sentimentalne. To su četiri ideje.",
+        ],
+      },
+      {
+        h2: "Za partnera ili partnerku",
+        p: [
+          "Zaljubljeni Par i Zagrljaj Ljubavi su apstraktne figure o bliskosti, bez lica i detalja. Za parove koji vole mačke postoje Zaljubljene Mace. To su još tri ideje.",
+        ],
+      },
+      {
+        h2: "Za prijatelje, kolege i radni sto",
+        p: [
+          "Mislilac je sedeća figura u pozi razmišljanja i lepo stoji na radnom stolu ili polici sa knjigama. Maska je dekorativna skulptura za policu ili zid. Labrador je za vlasnike pasa. To su tri ideje za nekoga koga ne poznaješ previše, a želiš da mu poklon bude upečatljiv.",
+        ],
+      },
+      {
+        h2: "Za ljubitelje mačaka",
+        p: [
+          "Maca, Uspavana Maca i Maca Mreža su tri različite figure mačke, od uspravne do sklupčane. Za ljubitelje mačaka dovoljno je izabrati koja odgovara njihovoj mački.",
+        ],
+      },
+      {
+        h2: "Za novi dom i jeftinije komade",
+        p: [
+          "Natpis HOME je lep poklon za one koji se useljavaju ili tek uređuju stan. Bubble Svećnjak počinje od 700 dinara i staje na dlan, pa je odličan sitan poklon za više osoba odjednom. Rebrasti Svećnjak, od 1.000 dinara, ima vertikalna rebra koja bacaju pravilne senke. Spiralni Svećnjak je skulpturalan i kada nije upaljen.",
+        ],
+      },
+      {
+        h2: "Kada poručiti",
+        p: [
+          `Komadi se štampaju po porudžbini, a izrada i dostava traju ${DELIVERY}. Pred praznike su kuriri opterećeniji, pa porudžbinu ostavi do sredine decembra. Plaćanje je pouzećem, a besplatna dostava važi preko 6.000 dinara.`,
+        ],
+      },
+    ],
+    related: [
+      { label: "Pokloni do 2.000 dinara", href: "/pokloni/pokloni-do-2000-dinara" },
+      { label: "Pokloni za Novu godinu", href: "/pokloni/pokloni-za-novu-godinu" },
+      { label: "Pokloni za Božić", href: "/pokloni/pokloni-za-bozic" },
+      { label: "Svi svećnjaci", href: "/kategorija/svecnjaci" },
+    ],
+    keywords: [
+      "pokloni za Novu godinu do 2000 dinara",
+      "jeftini pokloni za Novu godinu",
+      "ideje za poklon za Novu godinu",
+    ],
+    published: "2026-10-22",
+  },
+  {
+    slug: "materice-i-oci-sta-pokloniti",
+    title: "Materice i Oci: šta pokloniti mami i tati",
+    description:
+      "Materice 27. decembra 2026, Oci 3. januara 2027: šta pokloniti mami i tati, kako izabrati dekoraciju za dom i do kada poručiti da stigne na vreme.",
+    intro:
+      "Materice i Oci su tradicionalni dani majki i očeva u Srbiji, pred pravoslavni Božić. Poklon za roditelje najbolje je da bude nešto što će stajati na vidnom mestu.",
+    sections: [
+      {
+        h2: "Kada su Detinjci, Materice i Oci",
+        p: [
+          "Detinjci, Materice i Oci su tri nedelje pred Božić: Detinjci treće, Materice druge, Oci poslednje nedelje pre praznika. Pravoslavni Božić je 7. januara, pa su ove godine Detinjci 20. decembra, Materice 27. decembra 2026, a Oci 3. januara 2027. U Srbiji upravo Materice imaju ulogu Dana majki.",
+        ],
+      },
+      {
+        h2: "Šta pokloniti mami",
+        p: [
+          "Mama obično dobije ono što je praktično, a retko nešto samo lepo. Vaza za suvo cveće, kao što je Harmony ili List, ne puni se vodom, pa stoji na polici i uz granu suve trave. Srce Svećnjak i Figura sa Srcem su sitan, topao gest. Ako voli biljke, Drvo Saksija je za sukulente i manje biljke.",
+        ],
+      },
+      {
+        h2: "Šta pokloniti tati",
+        p: [
+          "Za tatu su najbolje figure koje stoje na radnom stolu ili polici sa knjigama: Mislilac, Labrador za ljubitelje pasa ili Maska za one koji vole umetnost. Rebrasti i Spiralni Svećnjak su pogodni za dnevnu sobu.",
+        ],
+      },
+      {
+        h2: "Kako izabrati boju",
+        p: [
+          "Bela, bež i siva uklapaju se u većinu domova. Crna daje kontrast, a roze i maslinasto zelena su toplije i prirodnije. Ako ne znaš koja boja odgovara, pitaj nekoga ko često viđa dom roditelja ili izaberi neutralnu.",
+        ],
+      },
+      {
+        h2: "Do kada poručiti",
+        p: [
+          `Komadi se štampaju po porudžbini, a izrada i dostava traju ${DELIVERY}. Pred praznike su kuriri opterećeniji, pa porudžbinu ostavi do sredine decembra.`,
+        ],
+      },
+    ],
+    related: [
+      { label: "Pokloni za Materice i Oce", href: "/pokloni/poklon-za-materice" },
+      { label: "Poklon za mamu", href: "/pokloni/poklon-za-mamu" },
+      { label: "Pokloni za Božić", href: "/pokloni/pokloni-za-bozic" },
+      { label: "Sve figure", href: "/kategorija/figure" },
+    ],
+    keywords: ["šta pokloniti za Materice", "Materice 2026", "pokloni za Oce", "Oci 2027"],
+    published: "2026-10-22",
+  },
+  {
+    slug: "kako-ukrasiti-dom-za-novu-godinu-i-bozic",
+    title: "Kako ukrasiti dom za praznike bez klasičnih ukrasa",
+    description:
+      "Kako ukrasiti dom za Novu godinu i Božić bez klasičnih ukrasa: svećnjaci, suve grane u vazi i toplo svetlo. Ideje za sto, policu i komodu.",
+    intro:
+      "Ne mora svaki praznik da znači lampice i kuglice. Dom može da izgleda svečano i sa nekoliko dobro odabranih detalja: toplim svetlom, jednom ili dve grane u vazi i stolom koji je uređen, a ne pretrpan.",
+    sections: [
+      {
+        h2: "Počni od svetla",
+        p: [
+          "Svećnjaci su najbrži način da se prostor promeni. Hvatač Svetlosti lomi plamen u sitne odsjaje po zidu, pa najbolje deluje u zatamnjenoj sobi. Spiralni i Rebrasti Svećnjak su skulpturalni i kada svećica nije upaljena. Srce Svećnjak je za jednu čajnu svećicu.",
+          "Za sveće koristi čajne ili LED svećice i ne ostavljaj upaljenu svećicu bez nadzora, naročito pored zavesa i papira.",
+        ],
+      },
+      {
+        h2: "Jedna grana u vazi",
+        p: [
+          "Umesto bujnog buketa, probaj jednu do tri suve grane u vazi na komodi ili stolu. Lumora vaze su ukrasne i ne pune se vodom, pa aranžman traje ceo praznik i duže. Arch, Donut i Spiralna vaza su skulpturalne i dobre za ovakav minimalistički pristup.",
+        ],
+      },
+      {
+        h2: "Izaberi paletu",
+        p: [
+          "Za praznično, a ne preterano, drži se dve ili tri boje: crvena i bela za jasnu poruku, bež i siva za mirniji izgled, ili crna za kontrast uz sveće. Komadi se štampaju u 7 boja, pa lako možeš da složiš paletu.",
+        ],
+      },
+      {
+        h2: "Raspored za sto i komodu",
+        p: [
+          "Na sredinu stola stavi dva ili tri svećnjaka različitih visina i jednu vazu sa granom. Na komodi dovoljna je grupa od tri predmeta: vaza, svećnjak i mala figura. Više o rasporedu pročitaj u vodiču o tome kako ukrasiti policu i komodu.",
+        ],
+      },
+      {
+        h2: "Poklon koji je i dekoracija",
+        p: [
+          `Ako tražiš i poklon i ukras u jednom, svećnjak ili vaza rade oba posla. Komadi se štampaju po porudžbini, izrada i dostava traju ${DELIVERY}, pa porudžbinu ostavi do sredine decembra.`,
+        ],
+      },
+    ],
+    related: [
+      { label: "Svi svećnjaci", href: "/kategorija/svecnjaci" },
+      { label: "Sve vaze", href: "/kategorija/vaze" },
+      { label: "Kako ukrasiti policu i komodu", href: "/vodic/kako-ukrasiti-policu-i-komodu" },
+      { label: "Pokloni za Božić", href: "/pokloni/pokloni-za-bozic" },
+    ],
+    keywords: [
+      "dekoracija za Novu godinu",
+      "dekoracija za Božić",
+      "kako ukrasiti dom za praznike",
+      "svećnjaci za sto",
+    ],
+    published: "2026-10-22",
   },
 ];
 
