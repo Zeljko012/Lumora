@@ -52,7 +52,7 @@ export default function ContactsPage() {
   const copyList = async (text: string, what: string) => toast((await copy(text)) ? `${what} kopirano ✓` : 'Kopiranje nije uspelo — preuzmi fajl')
 
   return (
-    <div className="page">
+    <div className="page narrow">
       <TopBar
         title="Kupci i kontakti"
         sub={`${live.length} ${plural(live.length, 'kontakt', 'kontakta', 'kontakata')}`}
@@ -92,7 +92,7 @@ export default function ContactsPage() {
         <Switch checked={filter.consentOnly} onChange={(consentOnly) => setFilter({ ...filter, consentOnly })} label="Samo oni koji su pristali na obaveštenja" />
       </div>
 
-      <div className="list mt-lg">
+      <div className="list grid-d mt-lg">
         {shown.length === 0 && (
           <div className="empty">
             {live.length === 0 ? 'Još nema kontakata. Pojaviće se čim neko poruči ili se prijavi na sajtu.' : 'Nema kontakata za ovaj filter.'}

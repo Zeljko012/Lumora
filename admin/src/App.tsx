@@ -19,6 +19,7 @@ import MorePage from './pages/MorePage'
 import CustomerPage from './pages/CustomerPage'
 import ContactsPage from './pages/ContactsPage'
 import NewOrderAlert from './components/NewOrderAlert'
+import { Sidebar } from './components/Sidebar'
 import { startInbox } from './lib/inbox'
 import { remoteConfigured } from './lib/remote'
 import { migrateStableIds } from './lib/migrate'
@@ -50,6 +51,7 @@ function Layout() {
   }, [])
   return (
     <div className="app">
+      <Sidebar />
       <ErrorBoundary key={pathname}>
         <Suspense fallback={<Loading />}>
           <Outlet />

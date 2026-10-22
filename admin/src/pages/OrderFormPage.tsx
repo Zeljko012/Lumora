@@ -153,7 +153,7 @@ export default function OrderFormPage() {
   }
 
   return (
-    <div className="page with-footer">
+    <div className="page narrow with-footer">
       <TopBar title={id ? `Izmena #${order.number}` : 'Nova porudžbina'} back />
 
       <div className="section">

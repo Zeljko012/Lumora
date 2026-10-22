@@ -78,7 +78,7 @@ export function Overview({ orders, products, cur, prev, k, kp, o, p, c, settings
         </Link>
       )}
 
-      <div className="section">
+      <div className="section wide">
         <div className="card chart-card">
           <div className="chart-title" style={{ flexWrap: 'wrap' }}>
             <span>Prodaja tokom vremena</span>

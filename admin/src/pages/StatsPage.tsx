@@ -115,7 +115,7 @@ export default function StatsPage() {
   }
 
   return (
-    <div className="page">
+    <div className="page flow">
       <TopBar
         title="Analitika"
         sub={periodLabel}

@@ -80,7 +80,7 @@ export default function CatalogPage() {
           )}
         </div>
       ) : (
-        <div className="list">
+        <div className="list grid-d">
           {list.map((p) => {
             const prices = p.variants.map((v) => v.price)
             const min = prices.length ? Math.min(...prices) : 0

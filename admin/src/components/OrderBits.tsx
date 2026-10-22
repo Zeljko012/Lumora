@@ -1,5 +1,5 @@
 import { ThumbRow } from './ItemThumb'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import type { Order, OrderStatus } from '../types'
 import { codAmount, itemLabel, orderTotal, packProgress, sourceLabel, statusLabel } from '../lib/orders'
 import { dateRelative, money } from '../lib/format'
@@ -93,5 +93,92 @@ export function OrderCard({ order, courierName, overdueDays, selecting, selected
     <Link to={`/porudzbina/${order.id}`} className={cls}>
       {body}
     </Link>
+  )
+}
+
+/** Tabela porudžbina za širok ekran (računar). Klik na red otvara porudžbinu, a u režimu biranja štiklira red. */
+export function OrdersTable({
+  orders,
+  courierName,
+  overdue,
+  selecting,
+  selected,
+  onToggle,
+}: {
+  orders: Order[]
+  courierName: (id: string) => string | undefined
+  overdue: Map<string, number>
+  selecting: boolean
+  selected: Set<string>
+  onToggle: (id: string) => void
+}) {
+  const nav = useNavigate()
+  return (
+    <div className="otable-wrap">
+      <table className="otable">
+        <thead>
+          <tr>
+            {selecting && <th className="c-sel" />}
+            <th>Broj</th>
+            <th>Kupac</th>
+            <th>Proizvodi</th>
+            <th>Datum</th>
+            <th className="num">Iznos</th>
+            <th>Status</th>
+            <th>Naplata</th>
+          </tr>
+        </thead>
+        <tbody>
+          {orders.map((o) => {
+            const tone = packTone(o)
+            const od = overdue.get(o.id)
+            return (
+              <tr
+                key={o.id}
+                className={`${tone ? `pack-${tone}` : ''} ${selected.has(o.id) ? 'selected' : ''}`}
+                onClick={() => (selecting ? onToggle(o.id) : nav(`/porudzbina/${o.id}`))}
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') selecting ? onToggle(o.id) : nav(`/porudzbina/${o.id}`)
+                }}
+              >
+                {selecting && (
+                  <td className="c-sel">
+                    <input type="checkbox" checked={selected.has(o.id)} readOnly tabIndex={-1} aria-label={`Izaberi #${o.number}`} />
+                  </td>
+                )}
+                <td className="c-num">#{o.number}</td>
+                <td>
+                  <div className="c-name">{o.customer.name || 'Bez imena'}</div>
+                  <div className="c-sub">
+                    {[o.customer.city, o.customer.phone].filter(Boolean).join(' · ') || '—'}
+                    {o.source !== 'rucno' ? ` · ${sourceLabel(o.source)}` : ''}
+                  </div>
+                </td>
+                <td>
+                  <div className="c-items">
+                    <ThumbRow items={o.items} />
+                    <span className="c-sub">{o.items.map((i) => `${itemLabel(i)}${i.qty > 1 ? ` × ${i.qty}` : ''}`).join(', ')}</span>
+                  </div>
+                </td>
+                <td className="c-date">
+                  {dateRelative(o.createdAt)}
+                  {courierName(o.courierId) && <div className="c-sub">{courierName(o.courierId)}</div>}
+                </td>
+                <td className="num c-total">{money(orderTotal(o))}</td>
+                <td>
+                  <div className="c-status">
+                    <StatusBadge status={o.status} />
+                    <PackPill order={o} />
+                    {od != null && <span className="badge amber">Nenaplaćeno {od} d</span>}
+                  </div>
+                </td>
+                <td>{o.paymentMethod === 'uplaceno' ? <span className="badge green">Uplaćeno</span> : <span className="badge">Otkup {money(codAmount(o))}</span>}</td>
+              </tr>
+            )
+          })}
+        </tbody>
+      </table>
+    </div>
   )
 }

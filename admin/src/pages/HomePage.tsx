@@ -154,7 +154,7 @@ export default function HomePage() {
   const todayLabel = new Date().toLocaleDateString('sr-Latn-RS', { weekday: 'long', day: 'numeric', month: 'long' })
 
   return (
-    <div className="page">
+    <div className="page home">
       <TopBar title="Početna" sub={todayLabel} />
 
       <div className="hello">
@@ -195,7 +195,7 @@ export default function HomePage() {
       </div>
 
       {/* ---------- šta je na redu ---------- */}
-      <div className="section">
+      <div className="section home-steps">
         <div className="section-title">
           <span className="grow">Šta je na redu</span>
         </div>
@@ -228,7 +228,7 @@ export default function HomePage() {
         )}
       </div>
 
-      <div style={{ marginBottom: 10 }}>
+      <div className="home-live" style={{ marginBottom: 10 }}>
         <LiveSite ordersToday={d.kToday.brojPorudzbina} />
       </div>
 
@@ -296,7 +296,7 @@ export default function HomePage() {
       </Link>
 
       {/* ---------- ovaj mesec ---------- */}
-      <div className="section">
+      <div className="section home-month">
         <div className="section-title">
           <span className="grow">Ovaj mesec</span>
           <Link to="/analitika" className="link-btn" style={{ textTransform: 'none', letterSpacing: 0 }}>
@@ -312,7 +312,7 @@ export default function HomePage() {
       </div>
 
       {/* ---------- poslednje porudžbine ---------- */}
-      <div className="section">
+      <div className="section home-recent">
         <div className="section-title">
           <span className="grow">Poslednje porudžbine</span>
           {d.live.length > 0 && (

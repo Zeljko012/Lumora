@@ -128,7 +128,7 @@ export default function OrderDetailPage() {
   }
 
   return (
-    <div className="page">
+    <div className="page flow">
       <TopBar
         title={`#${order.number}`}
         sub={dateTime(order.createdAt)}

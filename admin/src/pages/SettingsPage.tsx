@@ -79,7 +79,7 @@ export default function SettingsPage() {
   }
 
   return (
-    <div className="page with-footer">
+    <div className="page flow with-footer">
       <TopBar title="Podešavanja" back="/vise" />
 
       <div className="section">

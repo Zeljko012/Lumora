@@ -4,7 +4,8 @@ import { useLiveQuery } from 'dexie-react-hooks'
 import { db, DEFAULT_SETTINGS } from '../db'
 import { Icon } from '../components/Icon'
 import { TopBar, useUi } from '../components/ui'
-import { OrderCard } from '../components/OrderBits'
+import { OrderCard, OrdersTable } from '../components/OrderBits'
+import { useIsDesktop } from '../lib/useDesktop'
 import { StatusPicker } from '../components/StatusSheets'
 import { PrintSheet } from '../components/PrintSheet'
 import { changeStatus, lowStockVariants, normalizePhone, STATUSES, statusLabel, unpaidOverdue } from '../lib/orders'
@@ -16,6 +17,7 @@ type Tab = OrderStatus | 'sve'
 const TAB_KEY = 'porudzbine.tab'
 
 export default function OrdersPage() {
+  const desktop = useIsDesktop()
   const [search] = useSearchParams()
   const orders = useLiveQuery(() => db.orders.orderBy('createdAt').reverse().toArray(), [])
   const settings = useLiveQuery(() => db.settings.get('main'), []) ?? DEFAULT_SETTINGS
@@ -213,6 +215,8 @@ export default function OrdersPage() {
             <h2>{q ? 'Ništa nije pronađeno' : 'Nema porudžbina u ovom statusu'}</h2>
           </div>
         )
+      ) : desktop ? (
+        <OrdersTable orders={filtered} courierName={courierName} overdue={overdue} selecting={selecting} selected={selected} onToggle={toggleSel} />
       ) : (
         filtered.map((o) => (
           <OrderCard
