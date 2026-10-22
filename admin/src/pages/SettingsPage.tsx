@@ -4,6 +4,7 @@ import { Icon } from '../components/Icon'
 import { ConnectionCard } from '../components/ConnectionCard'
 import { Field, NumberField, Segmented, Switch, TopBar, useUi } from '../components/ui'
 import { exportJson, exportOrdersCsv, exportProductsCsv, importJson } from '../lib/backup'
+import { resetOrdersLocal } from '../lib/reset'
 import { addDemoData, hasDemoData, removeDemoData } from '../lib/demo'
 import type { Courier, Settings } from '../types'
 
@@ -195,6 +196,40 @@ export default function SettingsPage() {
           </p>
           <button className="btn block" disabled={busy} onClick={toggleDemo}>
             <Icon name="flask" /> {demo ? 'Obriši probne podatke' : 'Dodaj probne podatke'}
+          </button>
+        </div>
+      </div>
+
+      <div className="section">
+        <div className="section-title">Početak brojanja porudžbina</div>
+        <div className="card stack">
+          <p className="small muted" style={{ margin: 0 }}>
+            Briše SVE porudžbine sa ovog uređaja (probne i prave) da brojanje krene ispočetka od #1000. Radi to jednom, pre prve prave prodaje.
+            U bazi se prethodno puštaju naredbe iz fajla docs/supabase-reset-orders.sql, a zatim se isto uradi na svakom uređaju.
+          </p>
+          <button
+            className="btn block danger"
+            disabled={busy}
+            onClick={async () => {
+              if (
+                !(await confirm({
+                  title: 'Obrisati sve porudžbine na ovom uređaju?',
+                  message: 'Ovo se ne može poništiti. Kupci i katalog ostaju. Nastavi samo ako su sve porudžbine probne.',
+                  confirmText: 'Obriši sve',
+                  danger: true,
+                }))
+              )
+                return
+              setBusy(true)
+              try {
+                const n = await resetOrdersLocal()
+                toast(`Obrisano: ${n}. Sledeća porudžbina je #1000.`)
+              } finally {
+                setBusy(false)
+              }
+            }}
+          >
+            <Icon name="trash" /> Obriši porudžbine i kreni od #1000
           </button>
         </div>
       </div>

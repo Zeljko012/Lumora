@@ -38,6 +38,13 @@ export async function sbSelect<T = unknown>(table: string, query: string): Promi
   return (await res.json()) as T[];
 }
 
+/** Poziva funkciju u bazi (npr. brojač porudžbina). */
+export async function sbRpc<T = unknown>(fn: string, args: Record<string, unknown> = {}): Promise<T> {
+  const res = await fetch(`${base()}/rest/v1/rpc/${fn}`, { method: "POST", headers: headers(), body: JSON.stringify(args) });
+  if (!res.ok) throw new Error(`Supabase rpc ${fn}: ${res.status} ${(await res.text()).slice(0, 200)}`);
+  return (await res.json()) as T;
+}
+
 export async function sbDelete(table: string, query: string): Promise<void> {
   await fetch(`${base()}/rest/v1/${table}?${query}`, { method: "DELETE", headers: headers() });
 }

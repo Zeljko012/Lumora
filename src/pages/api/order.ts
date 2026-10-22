@@ -3,7 +3,7 @@ import { deflateRawSync } from "node:zlib";
 import { Resend } from "resend";
 import type { SiteOrderPayload } from "../../../admin/src/lib/siteOrderCodec";
 import { SITE } from "../../data/site";
-import { sbInsert, supabaseConfigured, upsertContact } from "../../lib/supabase";
+import { sbInsert, sbRpc, supabaseConfigured, upsertContact } from "../../lib/supabase";
 import { sendPush } from "../../lib/push";
 
 export const prerender = false;
@@ -83,50 +83,49 @@ function validate(b: any): string | null {
   return null;
 }
 
+const BORDER = "#e3dccb";
+const MUTED = "#6e6459";
+
+/** Stavke kao redovi: naziv levo, iznos desno (bez široke tabele, da staje u telefon). */
 function itemsTable(items: OrderItem[]): string {
   const rows = items
     .map(
       (i) => `
       <tr>
-        <td style="padding:8px 10px;border-bottom:1px solid #e3dccb">${esc(i.name)}<br>
-          <span style="color:#6e6459;font-size:13px">Boja: ${esc(i.color)}</span></td>
-        <td style="padding:8px 10px;border-bottom:1px solid #e3dccb;text-align:center">${i.qty}</td>
-        <td style="padding:8px 10px;border-bottom:1px solid #e3dccb;text-align:right">${money(i.price)}</td>
-        <td style="padding:8px 10px;border-bottom:1px solid #e3dccb;text-align:right"><strong>${money(i.lineTotal)}</strong></td>
+        <td style="padding:12px 0;border-bottom:1px solid ${BORDER};vertical-align:top">
+          <div style="font-size:15px;font-weight:600;line-height:1.35">${esc(i.name)}</div>
+          <div style="color:${MUTED};font-size:13px;line-height:1.5;margin-top:2px">Boja: ${esc(i.color)} &middot; ${i.qty} &times; ${money(i.price)}</div>
+        </td>
+        <td align="right" style="padding:12px 0 12px 12px;border-bottom:1px solid ${BORDER};vertical-align:top;white-space:nowrap;font-size:15px;font-weight:700">${money(i.lineTotal)}</td>
       </tr>`,
     )
     .join("");
-  return `
-    <table role="presentation" width="100%" style="border-collapse:collapse;font-size:14px">
-      <thead>
-        <tr style="text-align:left;color:#6e6459;font-size:12px;text-transform:uppercase;letter-spacing:.06em">
-          <th style="padding:8px 10px">Proizvod</th>
-          <th style="padding:8px 10px;text-align:center">Kol.</th>
-          <th style="padding:8px 10px;text-align:right">Cena</th>
-          <th style="padding:8px 10px;text-align:right">Ukupno</th>
-        </tr>
-      </thead>
-      <tbody>${rows}</tbody>
-    </table>`;
+  return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse"><tbody>${rows}</tbody></table>`;
 }
 
 function totalsBlock(t: OrderPayload["totals"]): string {
-  return `
-    <table role="presentation" style="border-collapse:collapse;font-size:14px;margin-top:10px">
-      <tr><td style="padding:3px 10px;color:#6e6459">Međuzbir</td>
-        <td style="padding:3px 10px;text-align:right">${money(t.subtotal)}</td></tr>
-      <tr><td style="padding:3px 10px;color:#6e6459">Dostava</td>
-        <td style="padding:3px 10px;text-align:right">${t.shippingFree ? "Besplatno" : "Po ceni kurirske službe"}</td></tr>
-      <tr><td style="padding:6px 10px;font-size:16px"><strong>Ukupno</strong></td>
-        <td style="padding:6px 10px;text-align:right;font-size:16px"><strong>${money(t.total)}</strong></td></tr>
+  const row = (label: string, value: string, strong = false) => {
+    const pad = strong ? "12px 0 0" : "5px 0";
+    const font = strong ? "font-size:17px;font-weight:700;border-top:2px solid " + BORDER + ";" : "font-size:14px;";
+    return `
+      <tr>
+        <td style="padding:${pad};color:${strong ? "#2a2420" : MUTED};${font}">${label}</td>
+        <td align="right" style="padding:${pad};${font}">${value}</td>
+      </tr>`;
+  };
+  return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;margin-top:8px">
+      ${row("Međuzbir", money(t.subtotal))}
+      ${row("Dostava", t.shippingFree ? "Besplatno" : "Po ceni kurirske službe")}
+      ${row("Ukupno", money(t.total), true)}
     </table>`;
 }
 
 /** Link koji otvara admin aplikaciju i u njoj upisuje porudžbinu (v. admin/src/lib/siteOrderCodec.ts). */
-function buildSitePayload(id: string, body: OrderPayload): SiteOrderPayload {
+function buildSitePayload(id: string, body: OrderPayload, number: number | null): SiteOrderPayload {
   return {
     v: 1,
     id,
+    ...(number ? { number } : {}),
     at: new Date().toISOString(),
     customer: {
       firstName: body.customer.firstName,
@@ -146,29 +145,39 @@ function buildSitePayload(id: string, body: OrderPayload): SiteOrderPayload {
   };
 }
 
-function adminLink(id: string, body: OrderPayload): string {
-  const payload = buildSitePayload(id, body);
+function adminLink(id: string, body: OrderPayload, number: number | null): string {
+  const payload = buildSitePayload(id, body, number);
   const code = deflateRawSync(Buffer.from(JSON.stringify(payload), "utf8"), { level: 9 }).toString("base64url");
   const base = (process.env.ADMIN_URL || `${SITE.url}/admin/`).replace(/\/?$/, "/");
   return `${base}#/uvoz?d=${code}`;
 }
 
-const shell = (title: string, body: string) => `
-  <div style="background:#ece5d8;padding:24px;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:#2a2420">
-    <div style="max-width:600px;margin:0 auto;background:#f5f1e8;border:1px solid #d6cbb8;border-radius:16px;overflow:hidden">
-      <div style="padding:20px 24px;border-bottom:1px solid #d6cbb8">
-        <span style="font-size:20px;font-weight:700;letter-spacing:.02em">Lumora</span>
-      </div>
-      <div style="padding:24px">
-        <h1 style="font-size:19px;margin:0 0 12px">${esc(title)}</h1>
-        ${body}
-      </div>
-      <div style="padding:16px 24px;border-top:1px solid #d6cbb8;color:#6e6459;font-size:12px">
-        Lumora · ${esc(SITE.address.country)} ·
-        <a href="mailto:${esc(SITE.email)}" style="color:#4f6f63">${esc(SITE.email)}</a>
-      </div>
-    </div>
-  </div>`;
+const shell = (title: string, body: string) => `<!doctype html>
+<html lang="sr"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="supported-color-schemes" content="light">
+</head>
+<body style="margin:0;padding:0;background:#ece5d8" bgcolor="#ece5d8">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#ece5d8" style="background:#ece5d8">
+    <tr><td align="center" style="padding:16px 10px">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#f5f1e8" style="max-width:560px;background:#f5f1e8;border:1px solid #d6cbb8;border-radius:14px;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:#2a2420">
+        <tr><td style="padding:18px 22px;border-bottom:1px solid #d6cbb8">
+          <span style="font-size:20px;font-weight:700;letter-spacing:.02em;color:#2a2420">Lumora</span>
+        </td></tr>
+        <tr><td style="padding:22px;font-size:15px;line-height:1.55;color:#2a2420">
+          <h1 style="font-size:20px;line-height:1.3;margin:0 0 14px;color:#2a2420">${esc(title)}</h1>
+          ${body}
+        </td></tr>
+        <tr><td style="padding:14px 22px;border-top:1px solid #d6cbb8;color:${MUTED};font-size:12px;line-height:1.5">
+          Lumora &middot; ${esc(SITE.address.country)} &middot;
+          <a href="mailto:${esc(SITE.email)}" style="color:#4f6f63">${esc(SITE.email)}</a>
+        </td></tr>
+      </table>
+    </td></tr>
+  </table>
+</body></html>`;
 
 export const POST: APIRoute = async ({ request }) => {
   let body: OrderPayload;
@@ -190,8 +199,19 @@ export const POST: APIRoute = async ({ request }) => {
   // Uvek upiši u log (Vercel → Logs) da porudžbina ne bi bila izgubljena
   console.log("NOVA PORUDŽBINA", id, JSON.stringify({ customer: c, items: body.items, totals: body.totals }));
 
+  // Broj porudžbine (#1000, #1001…) iz zajedničkog brojača u bazi; bez baze ostaje dugi broj (LUM-…)
+  let number: number | null = null;
+  if (supabaseConfigured()) {
+    try {
+      number = Number(await sbRpc<number>("next_order_number")) || null;
+    } catch (e) {
+      console.error("Broj porudžbine nije dobijen iz baze", e);
+    }
+  }
+  const label = number ? `#${number}` : id;
+
   // Link za admin aplikaciju: u logu ostaje i kad mejl ne uspe, pa porudžbina ne može da se izgubi
-  const link = adminLink(id, body);
+  const link = adminLink(id, body, number);
   console.log("LINK ZA APLIKACIJU", id, link);
 
   // 1) Prvo u bazu (ako je podešena): odatle porudžbina sama ulazi u aplikaciju na telefonu
@@ -200,7 +220,7 @@ export const POST: APIRoute = async ({ request }) => {
     try {
       await sbInsert(
         "site_orders",
-        { external_id: id, status: "new", payload: buildSitePayload(id, body) },
+        { external_id: id, status: "new", payload: buildSitePayload(id, body, number) },
         { onConflict: "external_id", ignoreDuplicates: true },
       );
       stored = true;
@@ -241,7 +261,7 @@ export const POST: APIRoute = async ({ request }) => {
 
   if (!API_KEY) {
     // porudžbina je bar u bazi — kupcu javljamo da je primljena
-    if (stored) return json({ ok: true, orderId: id, emailed: false });
+    if (stored) return json({ ok: true, orderId: label, emailed: false });
     return json(
       {
         ok: false,
@@ -262,7 +282,7 @@ export const POST: APIRoute = async ({ request }) => {
     <p style="margin:0">Email: <a href="mailto:${esc(c.email)}" style="color:#4f6f63">${esc(c.email)}</a></p>`;
 
   const ownerHtml = shell(
-    `Nova porudžbina ${id}`,
+    `Nova porudžbina ${label}`,
     `<p style="color:#6e6459;font-size:13px;margin:0 0 16px">${esc(when)} · plaćanje pouzećem</p>
      <p style="margin:0 0 6px"><a href="${esc(link)}" style="display:inline-block;background:#4f6f63;color:#ffffff;padding:13px 20px;border-radius:999px;text-decoration:none;font-weight:700;font-size:15px">📲 Otvori u aplikaciji</a></p>
      <p style="color:#6e6459;font-size:12px;margin:0 0 18px">Dodirni dugme na telefonu na kom imaš Lumora aplikaciju — porudžbina se sama upisuje. Ako se ne otvori, kopiraj link iz ovog mejla i nalepi ga u aplikaciji (Početna → „Stigla porudžbina sa sajta?“).</p>
@@ -274,7 +294,7 @@ export const POST: APIRoute = async ({ request }) => {
   );
 
   const ownerText =
-    `Nova porudžbina ${id} (${when})\n\n` +
+    `Nova porudžbina ${label} (${when})\n\n` +
     body.items
       .map((i) => `- ${i.name} / ${i.color} x${i.qty} = ${money(i.lineTotal)}`)
       .join("\n") +
@@ -287,7 +307,7 @@ export const POST: APIRoute = async ({ request }) => {
 
   const customerHtml = shell(
     `Hvala na porudžbini, ${esc(c.firstName)}!`,
-    `<p style="margin:0 0 14px">Primili smo vašu porudžbinu <strong>${id}</strong> i uskoro je potvrđujemo telefonom.</p>
+    `<p style="margin:0 0 14px">Primili smo vašu porudžbinu <strong>${label}</strong> i uskoro je potvrđujemo telefonom.</p>
      ${itemsTable(body.items)}
      ${totalsBlock(body.totals)}
      <p style="margin:16px 0 4px"><strong>Način plaćanja:</strong> pouzećem (gotovinom kuriru).</p>
@@ -297,7 +317,7 @@ export const POST: APIRoute = async ({ request }) => {
   );
 
   const customerText =
-    `Hvala na porudžbini, ${c.firstName}!\n\nBroj porudžbine: ${id}\n\n` +
+    `Hvala na porudžbini, ${c.firstName}!\n\nBroj porudžbine: ${label}\n\n` +
     body.items.map((i) => `- ${i.name} / ${i.color} x${i.qty} = ${money(i.lineTotal)}`).join("\n") +
     `\n\nUkupno: ${money(body.totals.total)}\nPlaćanje: pouzećem\nDostava: ${SITE.deliveryTime}\n\nLumora`;
 
@@ -307,7 +327,7 @@ export const POST: APIRoute = async ({ request }) => {
         from: FROM,
         to: TO,
         replyTo: c.email,
-        subject: `🛒 Porudžbina ${id} — ${c.firstName} ${c.lastName} — ${money(body.totals.total)}`,
+        subject: `🛒 Porudžbina ${label} — ${c.firstName} ${c.lastName} — ${money(body.totals.total)}`,
         html: ownerHtml,
         text: ownerText,
       }),
@@ -316,7 +336,7 @@ export const POST: APIRoute = async ({ request }) => {
         to: c.email,
         // odgovor kupca stiže u tvoj sandučić (adresa pošiljaoca nema sopstveni)
         replyTo: TO[0],
-        subject: `Potvrda porudžbine ${id} — Lumora`,
+        subject: `Potvrda porudžbine ${label} — Lumora`,
         html: customerHtml,
         text: customerText,
       }),
@@ -324,7 +344,7 @@ export const POST: APIRoute = async ({ request }) => {
 
     if (owner.error) {
       console.error("Resend owner error", owner.error);
-      if (stored) return json({ ok: true, orderId: id, emailed: false });
+      if (stored) return json({ ok: true, orderId: label, emailed: false });
       return json(
         { ok: false, error: "Porudžbina je zabeležena, ali slanje mejla nije uspelo." },
         502,
@@ -332,10 +352,10 @@ export const POST: APIRoute = async ({ request }) => {
     }
     if (customer.error) console.error("Resend customer error", customer.error);
 
-    return json({ ok: true, orderId: id });
+    return json({ ok: true, orderId: label });
   } catch (e) {
     console.error("Order send failed", e);
-    if (stored) return json({ ok: true, orderId: id, emailed: false });
+    if (stored) return json({ ok: true, orderId: label, emailed: false });
     return json(
       { ok: false, error: "Došlo je do greške pri slanju. Pokušajte ponovo." },
       500,

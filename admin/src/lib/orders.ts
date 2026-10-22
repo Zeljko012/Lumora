@@ -1,4 +1,5 @@
 import { db, getSettings } from '../db'
+import { remoteNextOrderNumber } from './remote'
 import type { Customer, Order, OrderItem, OrderSource, OrderStatus, PaymentMethod, Product, ShippingPayer } from '../types'
 
 export const STATUSES: { id: OrderStatus; label: string }[] = [
@@ -62,9 +63,32 @@ export function codAmount(o: Pick<Order, 'items' | 'discount' | 'paymentMethod'>
 export const itemLabel = (i: Pick<OrderItem, 'title' | 'color' | 'size'>) =>
   [i.title, i.color, i.size].filter(Boolean).join(' · ')
 
+/** Brojevi porudžbina kreću od 1000. Računaju se samo prave (neobrisane, ne probne), a zauzeti brojevi se preskaču. */
 export async function nextOrderNumber() {
-  const last = await db.orders.orderBy('number').last()
-  return (last?.number ?? 1000) + 1
+  const used = new Set<number>()
+  let max = 999
+  await db.orders.each((o) => {
+    used.add(o.number)
+    if (!o.deletedAt && !o.demo && o.number > max) max = o.number
+  })
+  let n = max + 1
+  while (used.has(n)) n++
+  return n
+}
+
+/**
+ * Broj za novu ručnu porudžbinu: ako je aplikacija povezana sa bazom, uzima se sledeći broj iz zajedničkog brojača
+ * (isti brojač koristi i sajt, pa se brojevi sa sajta i ručni ne sudaraju). Bez veze koristi se lokalni sledeći broj.
+ */
+export async function reserveOrderNumber() {
+  const local = await nextOrderNumber()
+  try {
+    const r = await remoteNextOrderNumber()
+    if (r && !(await db.orders.where('number').equals(r).first())) return r
+  } catch {
+    /* bez veze: lokalni broj */
+  }
+  return local
 }
 
 /** Poslednja porudžbina istog kupca (po telefonu) + da li je ikad vraćao paket. */

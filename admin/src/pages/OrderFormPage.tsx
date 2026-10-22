@@ -5,7 +5,7 @@ import { db, DEFAULT_SETTINGS, getSettings, uid } from '../db'
 import { Icon } from '../components/Icon'
 import { ColorDot, Field, NumberField, Segmented, Stepper, Switch, TopBar, useUi } from '../components/ui'
 import { ProductPicker } from '../components/ProductPicker'
-import { codAmount, findCustomer, findDuplicates, itemsTotal, nextOrderNumber, normalizePhone, orderTotal, saveOrder, SOURCES } from '../lib/orders'
+import { codAmount, findCustomer, findDuplicates, itemsTotal, reserveOrderNumber, normalizePhone, orderTotal, saveOrder, SOURCES } from '../lib/orders'
 import { dateShort, money, plural } from '../lib/format'
 import { emailOk, upsertContact } from '../lib/contacts'
 import type { Customer, Order, OrderItem, ShippingPayer } from '../types'
@@ -132,7 +132,7 @@ export default function OrderFormPage() {
     try {
       const final: Order = {
         ...order,
-        number: order.number || (await nextOrderNumber()),
+        number: order.number || (await reserveOrderNumber()),
         statusHistory: id ? [...order.statusHistory, { status: order.status, at: Date.now(), note: 'Izmenjeni podaci porudžbine' }] : order.statusHistory,
         customer: { ...c, name: c.name.trim(), address: c.address.trim(), city: c.city.trim(), zip: c.zip.trim(), phone: c.phone.trim() },
       }

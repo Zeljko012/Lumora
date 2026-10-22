@@ -61,7 +61,8 @@ export async function importSiteOrder(p: SiteOrderPayload): Promise<Order> {
   const order: Order = {
     // isti id na svim uređajima: ista porudžbina se ne udvostručuje pri sinhronizaciji
     id: `site:${p.id}`,
-    number: await nextOrderNumber(),
+    // broj koji je kupac dobio u mejlu; ako je zauzet na ovom uređaju, uzima se sledeći slobodan
+    number: p.number && !(await db.orders.where('number').equals(p.number).first()) ? p.number : await nextOrderNumber(),
     createdAt,
     updatedAt: Date.now(),
     source: 'sajt',

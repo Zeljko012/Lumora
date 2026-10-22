@@ -218,6 +218,14 @@ const supabaseSync: SyncAdapter = {
   },
 }
 
+/** Sledeći broj porudžbine iz zajedničkog brojača u bazi (null ako nema veze). */
+export async function remoteNextOrderNumber(): Promise<number | null> {
+  const c = getClient()
+  if (!c || !(await currentUserEmail())) return null
+  const call = c.rpc('next_order_number').then(({ data, error }) => (error ? null : Number(data) || null))
+  return Promise.race([call, new Promise<null>((r) => setTimeout(() => r(null), 4000))])
+}
+
 export const syncAdapter = (): SyncAdapter => syncOverride ?? supabaseSync
 export const adapter = (): InboxAdapter => override ?? supabaseAdapter
 export const remoteConfigured = () => override != null || syncOverride != null || getRemoteConfig() != null

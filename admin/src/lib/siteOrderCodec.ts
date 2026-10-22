@@ -7,6 +7,8 @@ export interface SiteOrderPayload {
   v: 1
   /** broj porudžbine na sajtu, npr. LUM-20261021-AB12 */
   id: string
+  /** broj porudžbine iz zajedničkog brojača (#1000, #1001…), ako ga je sajt dobio od baze */
+  number?: number
   /** ISO vreme kad je kupac poručio */
   at: string
   customer: {
