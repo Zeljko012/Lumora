@@ -194,13 +194,13 @@ export const CATEGORY_SEO: Record<Category, CategorySeo> = {
       {
         h2: "Svećnjaci koji oblikuju svetlo",
         p: [
-          "Dobar svećnjak radi i kada sveća ne gori. Mehurići, rebra, spirale i srce bacaju na zid zanimljive senke i odsjaje, a Hvatač svetlosti lomi plamen u desetine sitnih tačaka. Savršeni su za dnevni boravak, trpezarijski sto i večernju atmosferu.",
+          "Dobar svećnjak radi i kada sveća ne gori. Mehurići, rebra, spirale i srce bacaju na zid zanimljive senke i odsjaje, a Hvatač svetlosti lomi svetlost LED svećice u desetine sitnih tačaka. Savršeni su za dnevni boravak, trpezarijski sto i večernju atmosferu.",
         ],
       },
       {
         h2: "Bezbedno korišćenje",
         p: [
-          "Svećnjaci su štampani od PLA materijala, koji ne podnosi visoku temperaturu. Koristi čajne ili LED svećice u njihovom držaču i nikada ne ostavljaj upaljenu sveću bez nadzora.",
+          "Svećnjaci su štampani od PLA materijala, koji ne podnosi visoku temperaturu. Namenjeni su isključivo LED svećicama i ne smeju se koristiti sa otvorenim plamenom.",
         ],
       },
       {
@@ -213,7 +213,7 @@ export const CATEGORY_SEO: Record<Category, CategorySeo> = {
     faqs: [
       {
         q: "Koje sveće mogu da koristim?",
-        a: "Preporučujemo čajne ili LED svećice u njihovom držaču. Plamen ne sme dugo da bude u direktnom kontaktu sa materijalom, a upaljenu sveću ne treba ostavljati bez nadzora.",
+        a: "Samo LED svećice. Svećnjaci su štampani od PLA materijala koji ne podnosi toplotu, pa se ne smeju koristiti sa otvorenim plamenom (običnim ni čajnim svećicama).",
       },
       {
         q: "Da li svećnjaci dolaze u više boja?",
@@ -237,7 +237,7 @@ export const CATEGORY_SEO: Record<Category, CategorySeo> = {
       "svećnjak",
       "dekorativni svećnjak",
       "moderni svećnjak",
-      "svećnjak za čajne svećice",
+      "svećnjak za LED svećice",
       "svećnjak u obliku srca",
       "3D štampani svećnjak",
     ],
@@ -585,7 +585,7 @@ export const GUIDES: Guide[] = [
     slug: "kako-odrzavati-3d-stampane-dekoracije",
     title: "Kako održavati 3D štampane dekoracije (PLA)",
     description:
-      "Kako da očuvaš 3D štampane vaze, figure i svećnjake: čišćenje, temperatura, sunce, voda i bezbedno korišćenje sveća.",
+      "Kako da očuvaš 3D štampane vaze, figure i svećnjake: čišćenje, temperatura, sunce, voda i bezbedno korišćenje LED svećica.",
     intro:
       "3D štampane dekoracije se lako održavaju, ali PLA materijal ima nekoliko osobina koje vredi znati. Evo kako da ti komadi dugo izgledaju kao prvog dana.",
     sections: [
@@ -610,7 +610,7 @@ export const GUIDES: Guide[] = [
       {
         h2: "Svećnjaci",
         p: [
-          "Koristi čajne ili LED svećice u njihovom držaču, a upaljenu sveću nikada ne ostavljaj bez nadzora. Plamen ne sme dugo da bude u direktnom kontaktu sa materijalom.",
+          "Svećnjaci su namenjeni isključivo LED svećicama i ne smeju se koristiti sa otvorenim plamenom. PLA ne podnosi toplotu.",
         ],
       },
       {
@@ -695,7 +695,7 @@ export const GUIDES: Guide[] = [
       {
         h2: "Za mamu, baku i drugaricu",
         p: [
-          "Srce Svećnjak je mali gest sa velikim značenjem. Hvatač Svetlosti lomi plamen svećice u sitne odsjaje po zidu i dobar je za one koje vole atmosferu. Vaza Luna ima oblik polumeseca i, uz granu suve trave, deluje kao gotov aranžman. Figura sa Srcem je za sentimentalne. To su četiri ideje.",
+          "Srce Svećnjak je mali gest sa velikim značenjem. Hvatač Svetlosti lomi svetlost LED svećice u sitne odsjaje po zidu i dobar je za one koje vole atmosferu. Vaza Luna ima oblik polumeseca i, uz granu suve trave, deluje kao gotov aranžman. Figura sa Srcem je za sentimentalne. To su četiri ideje.",
         ],
       },
       {
@@ -725,7 +725,7 @@ export const GUIDES: Guide[] = [
       {
         h2: "Kada poručiti",
         p: [
-          `Komadi se štampaju po porudžbini, a izrada i dostava traju ${DELIVERY}. Pred praznike su kuriri opterećeniji, pa porudžbinu ostavi do sredine decembra. Plaćanje je pouzećem, a besplatna dostava važi preko 6.000 dinara.`,
+          `Komadi se štampaju po porudžbini. Izrada i dostava obično traju ${DELIVERY}, a pred praznike ${SITE.deliveryTimeBusy}, pa porudžbinu ostavi do sredine decembra. Plaćanje je pouzećem, a besplatna dostava važi preko 6.000 dinara.`,
         ],
       },
     ],
@@ -777,7 +777,7 @@ export const GUIDES: Guide[] = [
       {
         h2: "Do kada poručiti",
         p: [
-          `Komadi se štampaju po porudžbini, a izrada i dostava traju ${DELIVERY}. Pred praznike su kuriri opterećeniji, pa porudžbinu ostavi do sredine decembra.`,
+          `Komadi se štampaju po porudžbini. Izrada i dostava obično traju ${DELIVERY}, a pred praznike ${SITE.deliveryTimeBusy}, pa porudžbinu ostavi do sredine decembra.`,
         ],
       },
     ],
@@ -801,8 +801,8 @@ export const GUIDES: Guide[] = [
       {
         h2: "Počni od svetla",
         p: [
-          "Svećnjaci su najbrži način da se prostor promeni. Hvatač Svetlosti lomi plamen u sitne odsjaje po zidu, pa najbolje deluje u zatamnjenoj sobi. Spiralni i Rebrasti Svećnjak su skulpturalni i kada svećica nije upaljena. Srce Svećnjak je za jednu čajnu svećicu.",
-          "Za sveće koristi čajne ili LED svećice i ne ostavljaj upaljenu svećicu bez nadzora, naročito pored zavesa i papira.",
+          "Svećnjaci su najbrži način da se prostor promeni. Hvatač Svetlosti lomi svetlost LED svećice u sitne odsjaje po zidu, pa najbolje deluje u zatamnjenoj sobi. Spiralni i Rebrasti Svećnjak su skulpturalni i kada svećica nije upaljena. Srce Svećnjak je za jednu LED svećicu.",
+          "Svećnjaci su namenjeni isključivo LED svećicama i ne smeju se koristiti sa otvorenim plamenom.",
         ],
       },
       {
@@ -826,7 +826,7 @@ export const GUIDES: Guide[] = [
       {
         h2: "Poklon koji je i dekoracija",
         p: [
-          `Ako tražiš i poklon i ukras u jednom, svećnjak ili vaza rade oba posla. Komadi se štampaju po porudžbini, izrada i dostava traju ${DELIVERY}, pa porudžbinu ostavi do sredine decembra.`,
+          `Ako tražiš i poklon i ukras u jednom, svećnjak ili vaza rade oba posla. Komadi se štampaju po porudžbini. Izrada i dostava obično traju ${DELIVERY}, a pred praznike ${SITE.deliveryTimeBusy}, pa porudžbinu ostavi do sredine decembra.`,
         ],
       },
     ],

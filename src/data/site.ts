@@ -39,6 +39,8 @@ export const SITE = {
    * kurirske službe" na sajtu).
    */
   deliveryTime: "3–5 radnih dana",
+  /** pred praznike i u vreme pojačane potražnje */
+  deliveryTimeBusy: "5–7 radnih dana",
   paymentNote: "Plaćanje pouzećem — gotovinom kuriru pri preuzimanju.",
 
   currency: "RSD",

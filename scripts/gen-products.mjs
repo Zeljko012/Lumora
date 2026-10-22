@@ -141,11 +141,11 @@ const COPY = {
     forWhom: "Za ljubitelje wabi-sabi estetike i nesavršenih, ručnih formi.",
   },
   "srce-svecnjak": {
-    lead: "Svećnjak u obliku srca za jednu čajnu svećicu — mali gest sa velikim značenjem.",
+    lead: "Svećnjak u obliku srca za jednu LED svećicu — mali gest sa velikim značenjem.",
     forWhom: "Poklon za Dan zaljubljenih, godišnjicu ili „bez razloga”.",
   },
   "rasorsivac-svecnjak": {
-    lead: "Perforirana forma koja lomi plamen svećice u desetine sitnih odsjaja po zidu i plafonu.",
+    lead: "Perforirana forma koja lomi svetlost LED svećice u desetine sitnih odsjaja po zidu i plafonu.",
     forWhom: "Za one koji vole atmosferu sveća i toplu večernju svetlost.",
   },
   "booble-svecnjak": {
@@ -422,9 +422,9 @@ export const CATEGORY_META: Record<
     title: "Svećnjaci",
     heading: "3D štampani svećnjaci",
     intro:
-      "Svećnjaci za čajne svećice koji oblikuju svetlo — mehurići, rebra, spirale, srce. Topla večernja atmosfera u 7 boja.",
+      "Svećnjaci za LED svećice koji oblikuju svetlo — mehurići, rebra, spirale, srce. Topla večernja atmosfera u 7 boja.",
     seoDescription:
-      "3D štampani svećnjaci za čajne svećice — Bubble, Rebrasti, Spiralni, Srce. 7 boja, dostava po Srbiji. Lumora.",
+      "3D štampani svećnjaci za LED svećice — Bubble, Rebrasti, Spiralni, Srce. 7 boja, dostava po Srbiji. Lumora.",
   },
   dom: {
     slug: "dom",

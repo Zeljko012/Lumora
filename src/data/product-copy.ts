@@ -90,7 +90,7 @@ export const PRODUCT_COPY: Record<string, ProductCopy> = {
   "vaza-luna": {
     title: "Vaza Luna – ukrasna vaza u obliku polumeseca",
     body: [
-      "Vaza Luna ima oblik polumeseca, nežne zaobljene linije koje unose mirnu, večernju notu u prostor. Posebno lepo stoji u spavaćoj sobi, na noćnom stočiću ili polici pored sveće.",
+      "Vaza Luna ima oblik polumeseca, nežne zaobljene linije koje unose mirnu, večernju notu u prostor. Posebno lepo stoji u spavaćoj sobi, na noćnom stočiću ili polici uz mekano svetlo.",
       "Najbolje je u mekim tonovima, kao što su bež, roze ili bela, uz nekoliko suvih cvetova. Cena joj je među pristupačnijim u kolekciji vaza, pa je česta kao mali poklon za dom.",
     ],
     faq: { q: "Gde najbolje stoji Vaza Luna?", a: "Na noćnom stočiću, komodi ili polici u spavaćoj i dnevnoj sobi, gde njena mekana silueta unosi mirnu atmosferu." },
@@ -212,12 +212,12 @@ export const PRODUCT_COPY: Record<string, ProductCopy> = {
     faq: { q: "Može li Bubble svećnjak u grupi?", a: "Da, dva ili tri komada u različitim bojama prave toplu kompoziciju na stolu ili polici." },
   },
   "hvatac-svetlosti-svecnjak": {
-    title: "Hvatač svetlosti – svećnjak koji lomi plamen",
+    title: "Hvatač svetlosti – svećnjak za LED svećicu",
     body: [
-      "Hvatač svetlosti je perforiran svećnjak koji lomi plamen svećice u mnogo sitnih odsjaja po zidu i plafonu. Najbolje deluje u zatamnjenoj sobi, na stolu ili polici uz ravan zid.",
-      "Za one koji vole atmosferu sveća i toplu večernju svetlost. Iako je jednostavan, pravi efekat koji se ne vidi na slici, pa je dobar poklon za nekoga ko je neće očekivati.",
+      "Hvatač svetlosti je perforiran svećnjak koji lomi svetlost LED svećice u mnogo sitnih odsjaja po zidu i plafonu. Najbolje deluje u zatamnjenoj sobi, na stolu ili polici uz ravan zid.",
+      "Za one koji vole toplu večernju svetlost. Iako je jednostavan, pravi efekat koji se ne vidi na slici, pa je dobar poklon za nekoga ko je neće očekivati.",
     ],
-    faq: { q: "Gde najbolje deluje Hvatač svetlosti?", a: "U zatamnjenoj sobi, uz ravan zid, gde se vide odsjaji koje stvara plamen kroz perforacije." },
+    faq: { q: "Gde najbolje deluje Hvatač svetlosti?", a: "U zatamnjenoj sobi, uz ravan zid, gde se vide odsjaji koje stvara svetlost LED svećice kroz perforacije." },
   },
   "rebrasti-svecnjak": {
     title: "Rebrasti svećnjak – dekorativni svećnjak",
@@ -238,10 +238,10 @@ export const PRODUCT_COPY: Record<string, ProductCopy> = {
   "srce-svecnjak": {
     title: "Srce svećnjak – svećnjak u obliku srca, poklon",
     body: [
-      "Srce svećnjak je napravljen za jednu čajnu svećicu: mali gest sa velikim značenjem. Na stolu za večeru, uz knjigu ili na polici, daje toplinu bez ikakvog dodatnog uređenja.",
+      "Srce svećnjak je namenjen jednoj LED svećici: mali gest sa velikim značenjem. Na stolu za večeru, uz knjigu ili na polici, daje toplinu bez ikakvog dodatnog uređenja.",
       "Odličan je poklon za Dan zaljubljenih, godišnjicu ili bez razloga. Kao poklon se lako pakuje i šalje.",
     ],
-    faq: { q: "Koju svećicu koristi Srce svećnjak?", a: "Namenjen je jednoj čajnoj svećici. Ne ostavljajte upaljenu svećicu bez nadzora." },
+    faq: { q: "Koju svećicu koristi Srce svećnjak?", a: "Namenjen je isključivo jednoj LED svećici. Ne sme se koristiti sa otvorenim plamenom." },
   },
 
   /* ───────────── SAKSIJE I DETALJI ZA DOM ───────────── */
@@ -291,7 +291,7 @@ export const CATEGORY_FAQ: Record<Category, { q: string; a: string }> = {
   },
   svecnjaci: {
     q: "Koju svećicu da koristim?",
-    a: "Preporučujemo čajne ili LED svećice. Ne ostavljajte upaljenu svećicu bez nadzora i držite plamen dalje od zavesa i papira.",
+    a: "Samo LED svećice. Svećnjaci su štampani od PLA materijala koji ne podnosi toplotu, pa se ne smeju koristiti sa otvorenim plamenom (običnim ni čajnim svećicama).",
   },
   dom: {
     q: "Kako da održavam dekoraciju?",
@@ -303,6 +303,6 @@ export const CATEGORY_FAQ: Record<Category, { q: string; a: string }> = {
 export const CATEGORY_USE: Record<Category, string> = {
   vaze: "Namena: ukrasna vaza za suvo cveće i pampas travu — ne puni se vodom",
   figure: "Namena: dekorativna figura za policu, komodu ili radni sto",
-  svecnjaci: "Namena: dekorativni svećnjak — čajne ili LED svećice, ne ostavljati upaljenu svećicu bez nadzora",
+  svecnjaci: "Namena: dekorativni svećnjak — isključivo za LED svećice, ne koristiti sa otvorenim plamenom",
   dom: "Namena: dekorativni detalj za dom, sto, policu ili ulaz",
 };

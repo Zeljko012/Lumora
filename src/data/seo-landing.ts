@@ -238,8 +238,8 @@ export const EXTRA_GIFT_PAGES: GiftPage[] = [
         a: "Od {from} do {to}. Besplatna dostava važi za porudžbine preko 6.000 RSD.",
       },
       {
-        q: "Da li je bezbedno koristiti sveće u svećnjacima?",
-        a: "Koristi čajne ili LED svećice u njihovom držaču i nikada ne ostavljaj upaljenu sveću bez nadzora.",
+        q: "Koje sveće mogu da koristim u svećnjacima?",
+        a: "Samo LED svećice. Svećnjaci su štampani od PLA materijala koji ne podnosi toplotu, pa se ne smeju koristiti sa otvorenim plamenom.",
       },
     ],
     keywords: [
@@ -274,7 +274,7 @@ export const EXTRA_GIFT_PAGES: GiftPage[] = [
       h2: "Kako izabrati poklon za mamu",
       p: [
         "Ako mama voli biljke, izaberi Drvo saksiju ili vazu uz granu suve trave. Ako voli uređen dom i police, Harmony ili List vaza u neutralnoj boji uklopiće se uz sve. Ako voli atmosferu, tu su Srce i Rebrasti svećnjak. Za mamu koja ima sve, najbolja je sitna, lepa stvar koju još nema.",
-        `Komadi se štampaju po porudžbini, a izrada i dostava traju ${DELIVERY}, pa porudžbinu ostavi bar dve nedelje pre rođendana ili praznika.`,
+        `Komadi se štampaju po porudžbini. Izrada i dostava obično traju ${DELIVERY}, a u vreme praznika ${SITE.deliveryTimeBusy}, pa porudžbinu ostavi bar dve nedelje pre rođendana ili praznika.`,
       ],
     },
     faqs: [
@@ -321,7 +321,7 @@ export const EXTRA_GIFT_PAGES: GiftPage[] = [
     tips: {
       h2: "Do kada poručiti za Materice i Oce",
       p: [
-        `Komadi se štampaju po porudžbini, a izrada i dostava traju ${DELIVERY}. Pred praznike su kuriri opterećeniji, pa porudžbinu ostavi do sredine decembra.`,
+        `Komadi se štampaju po porudžbini. Izrada i dostava obično traju ${DELIVERY}, a pred praznike ${SITE.deliveryTimeBusy}, pa porudžbinu ostavi do sredine decembra.`,
         "Za mamu su pogodne vaze za suvo cveće, svećnjaci i figura sa srcem. Za tatu, Mislilac za radni sto, Labrador za ljubitelje pasa i svećnjaci čistih linija.",
       ],
     },
@@ -340,7 +340,7 @@ export const EXTRA_GIFT_PAGES: GiftPage[] = [
       },
       {
         q: "Do kada da poručim da poklon stigne na vreme?",
-        a: "Najbolje do sredine decembra. Komadi se štampaju po porudžbini, pa uz izradu i dostavu računaj bar dve nedelje.",
+        a: "Najbolje do sredine decembra. Komadi se štampaju po porudžbini, a pred praznike izrada i dostava traju 5–7 radnih dana.",
       },
     ],
     keywords: ["pokloni za Materice", "šta pokloniti za Materice", "pokloni za Oce", "Materice poklon za mamu"],
@@ -369,7 +369,7 @@ export const EXTRA_GIFT_PAGES: GiftPage[] = [
     tips: {
       h2: "Do kada poručiti za Božić",
       p: [
-        `Komadi se štampaju po porudžbini, a izrada i dostava traju ${DELIVERY}. Pred praznike su kuriri opterećeniji, pa porudžbinu ostavi do 20. decembra.`,
+        `Komadi se štampaju po porudžbini. Izrada i dostava obično traju ${DELIVERY}, a pred praznike ${SITE.deliveryTimeBusy}, pa porudžbinu ostavi do 20. decembra.`,
         "Za domaćina najbolje rade svećnjaci i vaza uz granu suve trave. Za porodicu, Duo vaza je set od dve vaze, a natpis HOME je lep poklon za one koji tek uređuju dom.",
       ],
     },
@@ -388,7 +388,7 @@ export const EXTRA_GIFT_PAGES: GiftPage[] = [
       },
       {
         q: "Do kada poručiti da stigne pre Božića?",
-        a: "Za pravoslavni Božić 7. januara najbolje do 20. decembra, jer se komadi štampaju po porudžbini i kuriri su pred praznike opterećeniji.",
+        a: "Za pravoslavni Božić 7. januara najbolje do 20. decembra. Komadi se štampaju po porudžbini, a pred praznike izrada i dostava traju 5–7 radnih dana.",
       },
     ],
     keywords: ["pokloni za Božić", "božićni poklon", "poklon za domaćina", "šta pokloniti za Božić"],

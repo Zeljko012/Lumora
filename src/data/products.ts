@@ -61,9 +61,9 @@ export const CATEGORY_META: Record<
     title: "Svećnjaci",
     heading: "3D štampani svećnjaci",
     intro:
-      "Svećnjaci za čajne svećice koji oblikuju svetlo — mehurići, rebra, spirale, srce. Topla večernja atmosfera u 7 boja.",
+      "Svećnjaci za LED svećice koji oblikuju svetlo — mehurići, rebra, spirale, srce. Topla večernja atmosfera u 7 boja.",
     seoDescription:
-      "3D štampani svećnjaci za čajne svećice — Bubble, Rebrasti, Spiralni, Srce. 7 boja, dostava po Srbiji. Lumora.",
+      "3D štampani svećnjaci za LED svećice — Bubble, Rebrasti, Spiralni, Srce. 7 boja, dostava po Srbiji. Lumora.",
   },
   dom: {
     slug: "dom",
@@ -991,7 +991,7 @@ export const PRODUCTS: Product[] = [
     "category": "svecnjaci",
     "price": 1800,
     "compareAt": null,
-    "lead": "Perforirana forma koja lomi plamen svećice u desetine sitnih odsjaja po zidu i plafonu.",
+    "lead": "Perforirana forma koja lomi svetlost LED svećice u desetine sitnih odsjaja po zidu i plafonu.",
     "forWhom": "Za one koji vole atmosferu sveća i toplu večernju svetlost.",
     "dimension": "",
     "colors": [
@@ -1018,7 +1018,7 @@ export const PRODUCTS: Product[] = [
       }
     ],
     "seoTitle": "Hvatač Svetlosti Svećnjak – 3D Dekorativni Svećnjak | Lumora",
-    "seoDescription": "Hvatač Svetlosti Svećnjak: Perforirana forma koja lomi plamen svećice u desetine sitnih odsjaja po zidu i plafonu. 1.800 RSD · 7 boja · dostava po Srbiji.",
+    "seoDescription": "Hvatač Svetlosti Svećnjak: Perforirana forma koja lomi svetlost LED svećice u desetine sitnih odsjaja po zidu i plafonu. 1.800 RSD · 7 boja · dostava po Srbiji.",
     "featured": false,
     "bestseller": false,
     "sourceHandle": "rasorsivac-svecnjak"
@@ -1105,7 +1105,7 @@ export const PRODUCTS: Product[] = [
     "category": "svecnjaci",
     "price": 1800,
     "compareAt": null,
-    "lead": "Svećnjak u obliku srca za jednu čajnu svećicu — mali gest sa velikim značenjem.",
+    "lead": "Svećnjak u obliku srca za jednu LED svećicu — mali gest sa velikim značenjem.",
     "forWhom": "Poklon za Dan zaljubljenih, godišnjicu ili „bez razloga”.",
     "dimension": "",
     "colors": [
@@ -1132,7 +1132,7 @@ export const PRODUCTS: Product[] = [
       }
     ],
     "seoTitle": "Srce Svećnjak – 3D Svećnjak u Obliku Srca Poklon | Lumora",
-    "seoDescription": "Srce Svećnjak: Svećnjak u obliku srca za jednu čajnu svećicu — mali gest sa velikim značenjem. 1.800 RSD · 7 boja · dostava po Srbiji.",
+    "seoDescription": "Srce Svećnjak: Svećnjak u obliku srca za jednu LED svećicu — mali gest sa velikim značenjem. 1.800 RSD · 7 boja · dostava po Srbiji.",
     "featured": false,
     "bestseller": true,
     "sourceHandle": "srce-svecnjak"
