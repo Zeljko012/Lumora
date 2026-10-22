@@ -393,6 +393,100 @@ export const EXTRA_GIFT_PAGES: GiftPage[] = [
     ],
     keywords: ["pokloni za Božić", "božićni poklon", "poklon za domaćina", "šta pokloniti za Božić"],
   },
+  {
+    slug: "poklon-za-muskarca",
+    title: "Poklon za muškarca – dekorativni pokloni za dom",
+    h1: "Poklon za muškarca",
+    description:
+      "Poklon za muškarca: figure za radni sto, svećnjaci i vaze čistih linija. 3D štampano u Srbiji, 7 boja, od {from}. Plaćanje pouzećem.",
+    intro: [
+      "Muškarcima je često najteže birati poklon, jer kažu da im ništa ne treba. Dekoracija koja stoji na radnom stolu ili polici rešava to: ne zauzima mnogo mesta, ne traži održavanje i vidi se svaki dan.",
+      "Za ljubitelje umetnosti tu je Mislilac, za vlasnike pasa Labrador, a za čiste linije Rebrasti i Spiralni svećnjak (za LED svećice). Sve se štampa u boji koju izabereš.",
+    ],
+    products: [
+      "mislilac-figura",
+      "labrador-figura",
+      "maska-figura",
+      "rebrasti-svecnjak",
+      "spiralni-svecnjak",
+      "hvatac-svetlosti-svecnjak",
+      "home-figura",
+      "harmony-vaza",
+    ],
+    tips: {
+      h2: "Kako izabrati poklon za muškarca",
+      p: [
+        "Crna, siva i maslinasto zelena su sigurni izbori, a bela ili bež odgovaraju svetlijim prostorima. Ako ne znaš gde će poklon stajati, izaberi figuru: stoji na radnom stolu, polici ili komodi.",
+        `Komadi se štampaju po porudžbini. Izrada i dostava obično traju ${DELIVERY}, a pred praznike ${SITE.deliveryTimeBusy}, pa porudžbinu ostavi bar dve nedelje ranije.`,
+      ],
+    },
+    faqs: [
+      {
+        q: "Šta pokloniti muškarcu koji ima sve?",
+        a: "Nešto malo i lepo što još nema: figuru za radni sto, svećnjak čistih linija ili vazu uz granu suve trave. Najpristupačniji komad košta od {from}.",
+      },
+      {
+        q: "Koja boja je najbolja za poklon za muškarca?",
+        a: "Crna, siva i maslinasto zelena su najčešći izbor. Bela i bež odgovaraju svetlijem enterijeru.",
+      },
+      {
+        q: "Da li je ovo dobar poklon za kolegu ili šefa?",
+        a: "Da. Male figure za radni sto, kao što je Mislilac, su neutralne i uklapaju se u svaku kancelariju.",
+      },
+      {
+        q: "Koliko košta poklon za muškarca?",
+        a: "Od {from} do {to}. Besplatna dostava važi za porudžbine preko 6.000 RSD.",
+      },
+    ],
+    keywords: ["poklon za muškarca", "šta pokloniti muškarcu", "poklon za tatu", "poklon za kolegu"],
+  },
+  {
+    slug: "poklon-za-mladence",
+    title: "Poklon za mladence – dekoracije za novi dom",
+    h1: "Poklon za mladence",
+    description:
+      "Poklon za mladence i venčanje: figure Zaljubljeni par i Zagrljaj ljubavi, vaze i svećnjaci. 3D štampano u Srbiji, od {from}. Plaćanje pouzećem.",
+    intro: [
+      "Poklon za mladence treba da ostane i kada prođe slavlje. Dekoracija za dom je siguran izbor: ne dupliraju se kao uređaji, ne zauzimaju mnogo mesta i vezuju se za prvi zajednički dom.",
+      "Zaljubljeni Par i Zagrljaj Ljubavi su apstraktne figure o bliskosti, Duet Vaza je jedan komad sa dva otvora, a Duo je set od dve vaze. Boju biraš po domu mladenaca ili boji venčanja.",
+    ],
+    products: [
+      "zaljubljeni-par-figura",
+      "zagrljaj-ljubavi-figura",
+      "duet-vaza",
+      "duo-vaza",
+      "srce-svecnjak",
+      "figura-sa-srcem",
+      "home-figura",
+      "harmony-vaza",
+    ],
+    tips: {
+      h2: "Kada poručiti za venčanje",
+      p: [
+        `Komadi se štampaju po porudžbini. Izrada i dostava obično traju ${DELIVERY}, a u sezoni venčanja i pred praznike ${SITE.deliveryTimeBusy}, pa porudžbinu ostavi bar dve do tri nedelje pre venčanja.`,
+        "Za kumove i goste koji se udružuju u poklon, Duo set i figura para su pogodni jer deluju zaokruženo.",
+      ],
+    },
+    faqs: [
+      {
+        q: "Šta pokloniti mladencima?",
+        a: "Figuru para u zagrljaju, set vaza ili svećnjak. Sve se štampa u boji koju izabereš, a najpristupačniji komad košta od {from}.",
+      },
+      {
+        q: "Da li je Zaljubljeni par dobar poklon za venčanje?",
+        a: "Da, to je apstraktna figura bez lica i detalja, pa se uklapa u svaki dom. Često se bira za venčanje, veridbu i godišnjicu.",
+      },
+      {
+        q: "Koja boja je najbolja za poklon za mladence?",
+        a: "Bela, bež i siva se uklapaju u većinu domova; roze i crvena su romantičnije. Ako znaš boju venčanja, možeš da je ponoviš.",
+      },
+      {
+        q: "Koliko košta poklon za mladence?",
+        a: "Od {from} do {to}. Besplatna dostava važi za porudžbine preko 6.000 RSD.",
+      },
+    ],
+    keywords: ["poklon za mladence", "poklon za venčanje", "poklon za veridbu", "poklon za kumove"],
+  },
 ];
 
 export const THEME_PAGES: GiftPage[] = [
@@ -563,5 +657,48 @@ export const THEME_PAGES: GiftPage[] = [
       "saksija za sukulente",
       "moderna saksija",
     ],
+  },
+  {
+    slug: "dekoracija-za-radnu-sobu",
+    title: "Dekoracija za radnu sobu – ideje za radni sto",
+    h1: "Dekoracija za radnu sobu",
+    description:
+      "Dekoracija za radnu sobu i radni sto: male figure, vaza sa suvom granom i svećnjak. 3D štampano u Srbiji, 7 boja, od {from}. Plaćanje pouzećem.",
+    intro: [
+      "Radni sto je mesto na kojem provodiš dosta sati, pa mali dekorativni detalji mnogo znače. Ne treba ti puno: jedna figura, jedna biljka ili vaza sa granom suve trave dovoljni su da prostor izgleda uređeno i da ti ne smeta pri radu.",
+      "Mislilac se sam nameće za radnu sobu, Maca i Labrador unose toplinu, a Drvo Saksija je dom za mali sukulent. Boje biraš tako da se slažu sa stolom i zidom.",
+    ],
+    products: [
+      "mislilac-figura",
+      "maca-figura",
+      "labrador-figura",
+      "drvo-saksija",
+      "harmony-vaza",
+      "rebrasti-svecnjak",
+      "maska-figura",
+      "home-figura",
+    ],
+    tips: {
+      h2: "Kako ukrasiti radni sto",
+      p: [
+        "Drži se pravila do tri predmeta na stolu: jedna figura, jedna biljka ili vaza i jedan svećnjak ili natpis. Ostalo prepusti prostoru, jer radna površina mora ostati slobodna.",
+        "Visine neka se razlikuju: nižu figuru stavi ispred, a vazu sa granom pozadi ili sa strane. U neutralnim bojama (bela, bež, siva) dekoracija se stapa sa stolom, a crna ili maslinasto zelena daju kontrast.",
+      ],
+    },
+    faqs: [
+      {
+        q: "Šta staviti na radni sto da izgleda lepo, a ne smeta?",
+        a: "Jednu malu figuru i jednu biljku ili vazu sa suvom granom. Do tri predmeta su dovoljna, ostatak ostavi slobodan.",
+      },
+      {
+        q: "Koja figura je najbolja za radnu sobu?",
+        a: "Mislilac je najčešći izbor za radni sto i biblioteku, a Maca i Labrador za ljubitelje životinja.",
+      },
+      {
+        q: "Da li mogu da stavim biljku u saksiju?",
+        a: "Drvo Saksija ima otvor za drenažu i namenjena je sukulentima i manjim biljkama.",
+      },
+    ],
+    keywords: ["dekoracija za radnu sobu", "dekoracija radnog stola", "ukrasi za radni sto", "dekor za kancelariju"],
   },
 ];

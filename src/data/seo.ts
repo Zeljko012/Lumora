@@ -496,10 +496,12 @@ const GIFT_ORDER = [
   "3d-stampani-pokloni",
   "poklon-za-useljenje",
   "poklon-za-godisnjicu",
+  "poklon-za-mladence",
   "poklon-za-dan-zaljubljenih",
   "poklon-za-8-mart",
   "poklon-za-mamu",
   "poklon-za-materice",
+  "poklon-za-muskarca",
   "poklon-za-rodjendan",
   "pokloni-za-novu-godinu",
   "pokloni-za-bozic",
@@ -843,6 +845,98 @@ export const GUIDES: Guide[] = [
       "svećnjaci za sto",
     ],
     published: "2026-10-22",
+  },
+  {
+    slug: "da-li-se-3d-stampana-vaza-puni-vodom",
+    title: "Da li se 3D štampana vaza puni vodom?",
+    description:
+      "Da li se 3D štampana vaza puni vodom? Ne: Lumora vaze su ukrasne, za suvo cveće i pampas travu. Šta staviti u vazu umesto vode i kako da aranžman traje.",
+    intro:
+      "Kratak odgovor: ne. Lumora vaze su ukrasne i ne pune se vodom. To nije mana, nego način da ih koristiš: suvo cveće i pampas trava traju mesecima i ne traže zalivanje, a vaza i prazna izgleda kao skulptura.",
+    sections: [
+      {
+        h2: "Šta staviti u vazu umesto vode",
+        p: [
+          "Suvo cveće, pampas travu, klasje, suve grane ili grančice. Nekoliko vitkih grana izgleda elegantnije od gustog buketa, naročito u vazama sa upečatljivim oblikom, kao što su Arch, Donut ili Spiralna vaza.",
+        ],
+      },
+      {
+        h2: "Vaza i bez cveća",
+        p: [
+          "Mnoge Lumora vaze su napravljene da deluju i kada su prazne: lučni otvor, krug sa otvorenom sredinom, mehurići, spirala. Postavi ih na komodu, policu ili sto kao malu skulpturu.",
+        ],
+      },
+      {
+        h2: "Kako da aranžman traje",
+        p: [
+          "Drži suvo cveće dalje od vlage i direktnog sunca, koje može da izbledi boju. Pampas ostavlja vlakna, pa ga pre postavljanja protresi napolju. Vazu čisti suvom ili blago vlažnom krpom.",
+        ],
+      },
+      {
+        h2: "A ako želiš sveže cveće?",
+        p: [
+          "Za sveže cveće koristi običnu staklenu vazu, a Lumora vazu ostavi kao ukras pored nje. Tako dobijaš oba efekta, a vaza se ne dovodi u kontakt sa vodom.",
+        ],
+      },
+    ],
+    related: [
+      { label: "Sve vaze", href: "/kategorija/vaze" },
+      { label: "Kako izabrati vazu za suvo cveće", href: "/vodic/kako-izabrati-vazu-za-suvo-cvece" },
+      { label: "Kako održavati 3D štampane dekoracije", href: "/vodic/kako-odrzavati-3d-stampane-dekoracije" },
+    ],
+    keywords: [
+      "da li se 3D štampana vaza puni vodom",
+      "vaza za suvo cveće",
+      "šta staviti u vazu umesto vode",
+    ],
+    published: "2026-10-23",
+  },
+  {
+    slug: "dekoracija-radnog-stola-ideje",
+    title: "Dekoracija radnog stola: 8 ideja",
+    description:
+      "8 ideja za dekoraciju radnog stola: mala figura, vaza sa suvom granom, sukulent u saksiji i natpis. Kako da sto izgleda uređeno, a ostane funkcionalan.",
+    intro:
+      "Dobro uređen radni sto ne mora da bude prazan, ali ne sme da bude pretrpan. Dovoljno je dva ili tri predmeta koja ti prijaju svaki put kad podigneš pogled sa ekrana. Evo osam ideja koje se lako kombinuju.",
+    sections: [
+      {
+        h2: "Figure koje daju karakter",
+        p: [
+          "Mislilac je sedeća figura u pozi razmišljanja i najčešći je izbor za radni sto i biblioteku. Za ljubitelje životinja tu su Maca, Uspavana Maca i Labrador. Maska je za one koji vole umetnost i etno detalje. To su četiri ideje.",
+        ],
+      },
+      {
+        h2: "Zelenilo",
+        p: [
+          "Drvo Saksija ima oblik stilizovanog stabla, otvor za drenažu i namenjena je sukulentima i manjim biljkama. Peta ideja za sto koji dobija malo prirode.",
+        ],
+      },
+      {
+        h2: "Vaza sa suvom granom",
+        p: [
+          "Jedna vitka suva grana u Harmony ili Donut vazi dovoljna je za mirniji sto. Vaza se ne puni vodom, pa nema zalivanja ni prosipanja. To je šesta ideja.",
+        ],
+      },
+      {
+        h2: "Natpis i svetlo",
+        p: [
+          "Natpis HOME unosi domaći osećaj i u kućnoj kancelariji. Rebrasti svećnjak sa LED svećicom daje toplo svetlo uvečer. To su sedma i osma ideja.",
+        ],
+      },
+      {
+        h2: "Pravila da sto ostane funkcionalan",
+        p: [
+          "Drži se najviše tri predmeta. Visine neka se razlikuju: niža figura ispred, vaza ili biljka pozadi. U neutralnim bojama dekoracija se stapa sa stolom, a crna ili maslinasto zelena daju kontrast.",
+        ],
+      },
+    ],
+    related: [
+      { label: "Dekoracija za radnu sobu", href: "/dekoracija/dekoracija-za-radnu-sobu" },
+      { label: "Sve figure", href: "/kategorija/figure" },
+      { label: "Poklon za muškarca", href: "/pokloni/poklon-za-muskarca" },
+    ],
+    keywords: ["dekoracija radnog stola", "ukrasi za radni sto", "ideje za radni sto"],
+    published: "2026-10-23",
   },
 ];
 
