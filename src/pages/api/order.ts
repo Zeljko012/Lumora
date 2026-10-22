@@ -314,6 +314,8 @@ export const POST: APIRoute = async ({ request }) => {
       resend.emails.send({
         from: FROM,
         to: c.email,
+        // odgovor kupca stiže u tvoj sandučić (adresa pošiljaoca nema sopstveni)
+        replyTo: TO[0],
         subject: `Potvrda porudžbine ${id} — Lumora`,
         html: customerHtml,
         text: customerText,
