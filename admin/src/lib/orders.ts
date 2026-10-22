@@ -1,5 +1,6 @@
 import { db, getSettings } from '../db'
 import { remoteNextOrderNumber } from './remote'
+import { fixCase } from './siteOrderCodec'
 import type { Customer, Order, OrderItem, OrderSource, OrderStatus, PaymentMethod, Product, ShippingPayer } from '../types'
 
 export const STATUSES: { id: OrderStatus; label: string }[] = [
@@ -143,7 +144,9 @@ export async function saveOrder(order: Order, previous?: Order) {
       if (previous && holdsStock(previous)) await adjustStock(previous.items, 1)
       if (holdsStock(order)) await adjustStock(order.items, -1)
     }
-    await db.orders.put({ ...order, phoneNorm: normalizePhone(order.customer.phone), updatedAt: Date.now() })
+    const c = order.customer
+    const customer = { ...c, name: fixCase(c.name), address: fixCase(c.address), city: fixCase(c.city) }
+    await db.orders.put({ ...order, customer, phoneNorm: normalizePhone(order.customer.phone), updatedAt: Date.now() })
   })
 }
 

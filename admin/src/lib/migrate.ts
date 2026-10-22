@@ -1,6 +1,7 @@
 // Jednokratno: proizvodi sa sajta i porudžbine sa sajta dobijaju stalne id-jeve (isti na svim uređajima),
 // da se pri sinhronizaciji ne udvostruče. Veze porudžbina → proizvod/varijanta se prepisuju.
 import { db } from '../db'
+import { fixCase } from './siteOrderCodec'
 
 const FLAG = 'lumora.stableIds.v1'
 
@@ -47,6 +48,34 @@ export async function migrateStableIds(): Promise<void> {
   })
   try {
     localStorage.setItem(FLAG, '1')
+  } catch {
+    /* ignoriši */
+  }
+}
+
+const CASE_FLAG = 'lumora.fixCase.v1'
+
+/** Jednokratno: ispravlja "SurČin" → "Surčin" u već sačuvanim porudžbinama i kontaktima. */
+export async function fixStoredCase(): Promise<void> {
+  try {
+    if (localStorage.getItem(CASE_FLAG)) return
+  } catch {
+    /* ponavlja se, a bezbedno je */
+  }
+  const now = Date.now()
+  await db.transaction('rw', db.orders, db.contacts, async () => {
+    for (const o of await db.orders.toArray()) {
+      const c = { ...o.customer, name: fixCase(o.customer.name), address: fixCase(o.customer.address), city: fixCase(o.customer.city) }
+      if (c.name !== o.customer.name || c.address !== o.customer.address || c.city !== o.customer.city) await db.orders.put({ ...o, customer: c, updatedAt: now })
+    }
+    for (const k of await db.contacts.toArray()) {
+      const name = fixCase(k.name)
+      const city = fixCase(k.city)
+      if (name !== k.name || city !== k.city) await db.contacts.put({ ...k, name, city, updatedAt: now })
+    }
+  })
+  try {
+    localStorage.setItem(CASE_FLAG, '1')
   } catch {
     /* ignoriši */
   }

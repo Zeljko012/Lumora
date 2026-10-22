@@ -30,6 +30,11 @@ export interface SiteOrderPayload {
   marketing?: boolean
 }
 
+/** "SurČin" → "Surčin", "BaČka Topola" → "Bačka Topola": velika slova sa kvačicom usred reči se spuštaju (cela reč velikim slovima ostaje). */
+export function fixCase(s: string): string {
+  return (s || '').replace(/(\p{Ll})([ČĆŠŽĐ]+)/gu, (_m, a: string, b: string) => a + b.toLowerCase())
+}
+
 const b64urlToBytes = (s: string) => {
   const b64 = s.replace(/-/g, '+').replace(/_/g, '/').padEnd(Math.ceil(s.length / 4) * 4, '=')
   const bin = atob(b64)

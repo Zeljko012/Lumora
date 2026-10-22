@@ -22,7 +22,7 @@ import NewOrderAlert from './components/NewOrderAlert'
 import { Sidebar } from './components/Sidebar'
 import { startInbox } from './lib/inbox'
 import { remoteConfigured } from './lib/remote'
-import { migrateStableIds } from './lib/migrate'
+import { fixStoredCase, migrateStableIds } from './lib/migrate'
 import { installAudioUnlock } from './lib/sound'
 import { ensureContactsBackfilled } from './lib/contacts'
 import { setBadge } from './lib/badge'
@@ -90,6 +90,7 @@ export default function App() {
   useDbWatchdog()
   useEffect(() => {
     migrateStableIds()
+      .then(() => fixStoredCase())
       .catch((e) => console.error('Migracija nije uspela', e))
       .then(() => seedCatalogOnce())
       .finally(() => setReady(true))

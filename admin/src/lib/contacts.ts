@@ -1,5 +1,6 @@
 import { db } from '../db'
 import { normalizePhone } from './orders'
+import { fixCase } from './siteOrderCodec'
 import type { Contact } from '../types'
 
 export interface ContactInput {
@@ -14,7 +15,7 @@ export interface ContactInput {
   at?: number
 }
 
-const clean = (s?: string) => (s ?? '').trim()
+const clean = (s?: string) => fixCase((s ?? '').trim())
 export const emailOk = (e: string) => /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(e)
 
 /** "0641234567" → "+381641234567" (oblik za Viber) */

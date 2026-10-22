@@ -1,7 +1,7 @@
 import type { APIRoute } from "astro";
 import { deflateRawSync } from "node:zlib";
 import { Resend } from "resend";
-import type { SiteOrderPayload } from "../../../admin/src/lib/siteOrderCodec";
+import { fixCase, type SiteOrderPayload } from "../../../admin/src/lib/siteOrderCodec";
 import { SITE } from "../../data/site";
 import { sbInsert, sbRpc, supabaseConfigured, upsertContact } from "../../lib/supabase";
 import { sendPush } from "../../lib/push";
@@ -193,6 +193,8 @@ export const POST: APIRoute = async ({ request }) => {
   if (err) return json({ ok: false, error: err }, 400);
 
   const id = orderId();
+  // kupci na telefonu ponekad ukucaju velika slova sa kvačicom usred reči (SurČin): ispravi pre upisa i mejlova
+  for (const k of ["firstName", "lastName", "address", "city"] as const) body.customer[k] = fixCase(body.customer[k] || "");
   const c = body.customer;
   const when = new Date().toLocaleString("sr-RS", { timeZone: "Europe/Belgrade" });
 
