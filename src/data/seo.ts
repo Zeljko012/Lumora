@@ -185,7 +185,7 @@ export const CATEGORY_SEO: Record<Category, CategorySeo> = {
   },
 
   svecnjaci: {
-    title: "Dekorativni svećnjaci – moderni 3D štampani svećnjaci",
+    title: "Dekorativni svećnjaci – moderni 3D štampani",
     h1: "Dekorativni svećnjaci za toplu atmosferu",
     description:
       "{count} modernih 3D štampanih svećnjaka — Bubble, Rebrasti, Spiralni, Srce i Hvatač svetlosti. 7 boja, od {from}. Plaćanje pouzećem, dostava po Srbiji.",
@@ -310,7 +310,7 @@ export interface GiftPage {
 const BASE_GIFT_PAGES: GiftPage[] = [
   {
     slug: "poklon-za-useljenje",
-    title: "Poklon za useljenje u novi stan – ideje i dekoracije",
+    title: "Poklon za useljenje u novi stan – dekoracije",
     h1: "Poklon za useljenje u novi stan",
     description:
       "Ideje za poklon za useljenje: natpis HOME, moderne vaze, svećnjaci i saksije. 3D štampano u Srbiji, 7 boja, od {from}. Plaćanje pouzećem.",

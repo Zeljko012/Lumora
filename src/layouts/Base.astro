@@ -30,8 +30,21 @@ const orgLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: SITE.name,
+  // da Google razdvoji ovaj brend od drugih "Lumora" naziva
+  alternateName: ["Lumora Home Decor", "Home Decor Lumora"],
   url: SITE.url,
   email: SITE.email,
+  telephone: SITE.phone,
+  contactPoint: [
+    {
+      "@type": "ContactPoint",
+      contactType: "customer service",
+      telephone: SITE.phone,
+      email: SITE.email,
+      areaServed: "RS",
+      availableLanguage: ["sr"],
+    },
+  ],
   logo: new URL("/icon.png", SITE.url).href,
   sameAs: [SITE.social.instagram],
   address: {

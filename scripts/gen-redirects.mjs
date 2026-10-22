@@ -33,6 +33,13 @@ const out = {
   framework: "astro",
   buildCommand: "npm run build",
   redirects,
+  // slike proizvoda se retko menjaju: dugi keš ubrzava ponovne posete (30 dana)
+  headers: [
+    {
+      source: "/images/(.*)",
+      headers: [{ key: "Cache-Control", value: "public, max-age=2592000, stale-while-revalidate=86400" }],
+    },
+  ],
 };
 writeFileSync(new URL("../vercel.json", import.meta.url), JSON.stringify(out, null, 2) + "\n");
 console.log(`${pairs.length} proizvoda, ${redirects.length} preusmerenja`);

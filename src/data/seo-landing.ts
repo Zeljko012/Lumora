@@ -66,7 +66,7 @@ export const EXTRA_GIFT_PAGES: GiftPage[] = [
   },
   {
     slug: "poklon-za-dan-zaljubljenih",
-    title: "Poklon za Dan zaljubljenih – romantične 3D dekoracije",
+    title: "Poklon za Dan zaljubljenih – romantični 3D pokloni",
     h1: "Poklon za Dan zaljubljenih",
     description:
       "Poklon za Dan zaljubljenih (Valentinovo): srce svećnjak, figura sa srcem, parovi u zagrljaju. 3D štampano u Srbiji, 7 boja, od {from}. Dostava po Srbiji.",
@@ -203,7 +203,7 @@ export const EXTRA_GIFT_PAGES: GiftPage[] = [
   },
   {
     slug: "pokloni-za-novu-godinu",
-    title: "Pokloni za Novu godinu i praznike – dekoracije za dom",
+    title: "Pokloni za Novu godinu – dekoracije za dom",
     h1: "Pokloni za Novu godinu i praznike",
     description:
       "Pokloni za Novu godinu i praznike: svećnjaci, vaze i figure za dom. 3D štampano u Srbiji, 7 boja, od {from}. Plaćanje pouzećem, dostava po Srbiji.",
@@ -299,7 +299,7 @@ export const THEME_PAGES: GiftPage[] = [
   },
   {
     slug: "boho-dekoracija-za-dom",
-    title: "Boho dekoracija za dom – vaze za pampas travu i saksije",
+    title: "Boho dekoracija za dom: vaze za pampas travu",
     h1: "Boho dekoracija za dom",
     description:
       "Boho dekoracija za dom: vaze za pampas travu i suvo cveće, saksije i prirodni tonovi. 3D štampano u Srbiji, 7 boja, od {from}. Plaćanje pouzećem.",
@@ -343,7 +343,7 @@ export const THEME_PAGES: GiftPage[] = [
   },
   {
     slug: "dekoracija-za-dnevnu-sobu",
-    title: "Dekoracija za dnevnu sobu – vaze, figure i svećnjaci",
+    title: "Dekoracija za dnevnu sobu: vaze, figure, svećnjaci",
     h1: "Dekoracija za dnevnu sobu",
     description:
       "Dekoracija za dnevnu sobu: moderne vaze, figure i svećnjaci za policu, komodu i klub sto. 3D štampano u Srbiji, 7 boja, od {from}. Dostava po Srbiji.",

@@ -9,6 +9,7 @@ import {
   relatedProducts,
   CATEGORY_META,
 } from "../../data/products";
+import { PRODUCT_COPY, CATEGORY_FAQ, CATEGORY_USE } from "../../data/product-copy";
 import { money, discountPct } from "../../lib/format";
 import { withBase } from "../../lib/url";
 
@@ -24,6 +25,31 @@ const cat = CATEGORY_META[p.category];
 const off = discountPct(p.price, p.compareAt);
 const swatches = PRODUCT_COLORS.filter((c) => p.colors.includes(c.key));
 const related = relatedProducts(p, 4);
+const copy = PRODUCT_COPY[p.slug];
+const pageTitle = copy?.title ?? p.seoTitle;
+
+// pitanja: jedno specifično za proizvod, jedno za kategoriju i dva opšta
+const faqs = [
+  ...(copy ? [copy.faq] : []),
+  CATEGORY_FAQ[p.category],
+  {
+    q: "Koliko traje izrada i dostava?",
+    a: `Komad se štampa po porudžbini, izrada i slanje traju ${SITE.deliveryTime}. Dostava kurirskom službom po celoj Srbiji, plaćanje pouzećem.`,
+  },
+  {
+    q: "Mogu li da izaberem boju?",
+    a: `Da, komad je dostupan u ${swatches.length} boja: ${swatches.map((c) => c.label.toLowerCase()).join(", ")}. Boju birate pri poručivanju.`,
+  },
+];
+const faqLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
 const url = new URL(`/proizvod/${p.slug}`, SITE.url).href;
 
 const productLd = {
@@ -45,6 +71,12 @@ const productLd = {
     availability: "https://schema.org/InStock",
     itemCondition: "https://schema.org/NewCondition",
     seller: { "@type": "Organization", name: SITE.name },
+    hasMerchantReturnPolicy: {
+      "@type": "MerchantReturnPolicy",
+      applicableCountry: "RS",
+      returnPolicyCategory: "https://schema.org/MerchantReturnFiniteReturnWindow",
+      merchantReturnDays: 14,
+    },
     // shippingDetails namerno izostavljen dok cena dostave nije konačna
     // (nema još potpisan ugovor sa kurirskom službom) — izuzev za besplatnu dostavu.
     ...(p.price >= SITE.freeShippingThreshold
@@ -77,11 +109,11 @@ const gallery = p.images.map((im) => ({
 ---
 
 <Base
-  title={p.seoTitle}
+  title={pageTitle}
   description={p.seoDescription}
   image={p.images[0]?.src}
   type="product"
-  jsonLd={[productLd]}
+  jsonLd={[productLd, faqLd]}
 >
   <div class="container">
     <Breadcrumbs
@@ -186,7 +218,7 @@ const gallery = p.images.map((im) => ({
           <li>Besplatna dostava preko {money(SITE.freeShippingThreshold)}</li>
           <li>Izrada u Srbiji, {SITE.deliveryTime}</li>
           <li>{SITE.paymentNote}</li>
-          <li>Eko PLA — biorazgradiv materijal</li>
+          <li>Materijal: PLA, plastika biljnog porekla</li>
         </ul>
 
         <div class="acc">
@@ -194,9 +226,9 @@ const gallery = p.images.map((im) => ({
             <summary>Detalji</summary>
             <ul class="specs">
               {specs.map((s) => <li>{s}</li>)}
-              <li>Materijal: Eko PLA (polimlečna kiselina) — biorazgradiv</li>
+              <li>Materijal: PLA (polimlečna kiselina), plastika biljnog porekla</li>
               <li>Izrada: precizna 3D štampa, po porudžbini</li>
-              <li>Namena: suvo cveće, pampas trava ili samostalna skulptura</li>
+              <li>{CATEGORY_USE[p.category]}</li>
             </ul>
           </details>
           <details>
@@ -220,24 +252,34 @@ const gallery = p.images.map((im) => ({
       <div class="desc__col">
         <h2>O komadu</h2>
         <p>{p.lead}</p>
+        {copy ? copy.body.map((t) => <p>{t}</p>) : null}
         <p>
-          Lumora {p.name} nastaje preciznom 3D štampom, sloj po sloj, sve dok ne dobije
-          konačnu formu koja spaja moderan dizajn i skulpturalnu eleganciju. Štampa se
-          tek kad poručite, u boji koju izaberete — jedinstven i trajan komad.
-        </p>
-        <p>
-          Najlepše izgleda u minimalističkom okruženju — ostavite mu prostor da dođe do
-          izražaja. Kombinujte sa sušenim cvećem ili pampas travom za kompletan efekat.
+          Lumora {p.name} nastaje preciznom 3D štampom, sloj po sloj, tek kad poručite, u boji
+          koju izaberete.
         </p>
       </div>
       <div class="desc__col">
         <h2>Zašto Lumora</h2>
         <ul class="why">
           <li>Precizna 3D izrada — tekstura i forma kakvu ne nalazite u klasičnim prodavnicama</li>
-          <li>Eko PLA materijal — biorazgradiv, otporan, bezbedan za dom</li>
+          <li>PLA materijal — plastika biljnog porekla, lagana i čvrsta</li>
           <li>Domaća proizvodnja — svaki komad nastaje u Srbiji</li>
           <li>Dostupno u 7 boja — bela, bež, siva, crna, roze, maslinasto zelena, crvena</li>
         </ul>
+      </div>
+    </section>
+
+    <section class="section pfaq">
+      <h2>Česta pitanja</h2>
+      <div class="acc">
+        {
+          faqs.map((f, i) => (
+            <details open={i === 0}>
+              <summary>{f.q}</summary>
+              <p>{f.a}</p>
+            </details>
+          ))
+        }
       </div>
     </section>
 
