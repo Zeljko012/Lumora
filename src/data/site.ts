@@ -43,6 +43,9 @@ export const SITE = {
   deliveryTimeBusy: "5–7 radnih dana",
   paymentNote: "Plaćanje pouzećem — gotovinom kuriru pri preuzimanju.",
 
+  /** Meta Pixel (Events Manager). Učitava se samo uz saglasnost posetioca. */
+  metaPixelId: "1593355432274921",
+
   currency: "RSD",
   locale: "sr-RS",
 

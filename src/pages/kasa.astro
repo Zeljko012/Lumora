@@ -307,6 +307,7 @@ import { withBase } from "../lib/url";
   import { money, toFreeShipping, amount } from "../lib/format";
   import { SITE } from "../data/site";
   import { withBase } from "../lib/url";
+  import { px } from "../lib/pixel";
 
   const coEl = document.querySelector<HTMLElement>("[data-co]")!;
   const emptyEl = document.querySelector<HTMLElement>("[data-empty]")!;
@@ -361,6 +362,19 @@ import { withBase } from "../lib/url";
 
   renderSummary();
   window.addEventListener("lumora:cart", renderSummary);
+
+  {
+    const start = getCart();
+    if (start.length) {
+      px("InitiateCheckout", {
+        content_ids: start.map((i) => i.slug),
+        content_type: "product",
+        num_items: start.reduce((s, i) => s + i.qty, 0),
+        value: cartSubtotal(),
+        currency: "RSD",
+      });
+    }
+  }
 
   const RULES: Record<string, (v: string) => string | null> = {
     firstName: (v) => (v.trim().length >= 2 ? null : "Unesite ime."),
@@ -451,7 +465,12 @@ import { withBase } from "../lib/url";
       try {
         sessionStorage.setItem(
           "lumora.lastOrder",
-          JSON.stringify({ id: data.orderId, total, email: payload.customer.email }),
+          JSON.stringify({
+            id: data.orderId,
+            total,
+            email: payload.customer.email,
+            items: items.map((i) => ({ id: i.slug, qty: i.qty })),
+          }),
         );
       } catch {}
       clearCart();

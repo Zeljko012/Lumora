@@ -89,10 +89,28 @@ import { withBase } from "../lib/url";
 
 <script>
   import { money } from "../lib/format";
+  import { px } from "../lib/pixel";
   try {
     const raw = sessionStorage.getItem("lumora.lastOrder");
     if (raw) {
       const o = JSON.parse(raw);
+      // kupovina se javlja Meta-i samo jednom po porudžbini (eventID = broj porudžbine)
+      const pk = "lumora.px.purchase." + o.id;
+      if (o.id && !sessionStorage.getItem(pk)) {
+        const items: { id: string; qty: number }[] = Array.isArray(o.items) ? o.items : [];
+        px(
+          "Purchase",
+          {
+            content_ids: items.map((i) => i.id),
+            content_type: "product",
+            num_items: items.reduce((s, i) => s + i.qty, 0),
+            value: Number(o.total) || 0,
+            currency: "RSD",
+          },
+          { eventID: String(o.id) },
+        );
+        sessionStorage.setItem(pk, "1");
+      }
       const meta = document.querySelector<HTMLElement>("[data-meta]")!;
       document.querySelector<HTMLElement>("[data-id]")!.textContent = o.id ?? "—";
       document.querySelector<HTMLElement>("[data-total]")!.textContent = o.total

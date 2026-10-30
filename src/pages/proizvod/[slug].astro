@@ -564,6 +564,7 @@ const gallery = p.images.map((im) => ({
 
 <script>
   import { addItem } from "../../lib/cart";
+  import { px } from "../../lib/pixel";
 
   // ── Galerija ────────────────────────────────────────────────────────
   const gallery = document.querySelector<HTMLElement>("[data-gallery]");
@@ -589,6 +590,13 @@ const gallery = p.images.map((im) => ({
   // ── Kupovina ───────────────────────────────────────────────────────
   const form = document.querySelector<HTMLFormElement>("[data-buy]");
   if (form) {
+    px("ViewContent", {
+      content_ids: [form.dataset.slug],
+      content_type: "product",
+      content_name: form.dataset.name,
+      value: Number(form.dataset.price),
+      currency: "RSD",
+    });
     const qty = form.querySelector<HTMLInputElement>("[data-qty]")!;
     const nameEl = form.querySelector<HTMLElement>("[data-color-name]");
     const clamp = () => {

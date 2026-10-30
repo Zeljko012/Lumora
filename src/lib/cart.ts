@@ -13,6 +13,8 @@ export interface CartItem {
   qty: number;
 }
 
+import { px } from "./pixel";
+
 export type CartInput = Omit<CartItem, "key" | "qty">;
 
 const KEY = "lumora.cart.v1";
@@ -69,6 +71,13 @@ export function addItem(input: CartInput, qty = 1): CartItem[] {
     items.push({ ...input, key, qty: Math.min(MAX_QTY, Math.max(1, qty)) });
   }
   write(items);
+  px("AddToCart", {
+    content_ids: [input.slug],
+    content_type: "product",
+    content_name: input.name,
+    value: input.price * qty,
+    currency: "RSD",
+  });
   return items;
 }
 

@@ -4,6 +4,7 @@ import Seo from "../components/Seo.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import CartDrawer from "../components/CartDrawer.astro";
+import ConsentBanner from "../components/ConsentBanner.astro";
 import { SITE } from "../data/site";
 import { withBase } from "../lib/url";
 
@@ -116,10 +117,12 @@ const umamiId = import.meta.env.PUBLIC_UMAMI_ID as string | undefined;
     </main>
     <Footer />
     <CartDrawer />
+    <ConsentBanner />
     <div class="toast-wrap" data-toast-wrap aria-live="polite"></div>
 
     <script>
       import "../lib/track";
+      import "../lib/pixel";
       // Globalni toast helper
       window.addEventListener("lumora:toast", (e) => {
         const msg = (e as CustomEvent<string>).detail;

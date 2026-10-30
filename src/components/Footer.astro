@@ -37,6 +37,7 @@ const L = withBase;
         <li><a href={L("/kontakt")}>Kontakt</a></li>
         <li><a href={L("/uslovi-koriscenja")}>Uslovi korišćenja</a></li>
         <li><a href={L("/politika-privatnosti")}>Politika privatnosti</a></li>
+        <li><button type="button" class="linklike" data-consent-open>Podešavanje kolačića</button></li>
       </ul>
     </nav>
 
@@ -56,6 +57,20 @@ const L = withBase;
 </footer>
 
 <style>
+  .linklike {
+    background: none;
+    border: 0;
+    padding: 0;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+    text-align: left;
+    opacity: 0.85;
+  }
+  .linklike:hover {
+    opacity: 1;
+    text-decoration: underline;
+  }
   .site-footer {
     border-top: 1px solid var(--line);
     background: var(--surface);
