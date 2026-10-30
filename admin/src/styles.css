@@ -53,7 +53,7 @@ a { color: inherit; }
 img { display: block; max-width: 100%; }
 :focus-visible { outline: 3px solid color-mix(in srgb, var(--blue) 55%, transparent); outline-offset: 2px; }
 
-.app { max-width: 560px; margin: 0 auto; min-height: 100dvh; position: relative; }
+.app { max-width: 560px; margin: 0 auto; min-height: 100dvh; position: relative; overflow-x: clip; }
 .page { padding: 0 16px calc(var(--nav-h) + var(--safe-b) + 24px); }
 .page.with-footer { padding-bottom: calc(var(--nav-h) + var(--safe-b) + 120px); }
 
@@ -102,7 +102,9 @@ img { display: block; max-width: 100%; }
   border: 1.5px solid var(--line-strong); background: var(--surface);
   font-weight: 650; font-size: 16px;
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-  text-decoration: none; white-space: nowrap; transition: transform .08s ease;
+  text-decoration: none; transition: transform .08s ease;
+  /* dugi natpisi se prelamaju u više redova i ostaju centrirani, a ne probijaju karticu */
+  white-space: normal; text-align: center; line-height: 1.25; padding-block: 10px; max-width: 100%;
 }
 .btn:active { transform: scale(0.98); }
 .btn svg { width: 20px; height: 20px; flex: none; }
@@ -111,6 +113,10 @@ img { display: block; max-width: 100%; }
 .btn.danger.solid { background: var(--red); border-color: var(--red); color: #fff; }
 .btn.ghost { border-color: transparent; background: transparent; }
 .btn.block { width: 100%; }
+.stack > *, .card > * { min-width: 0; }
+/* par dugmića u istom redu: dele širinu na jednake delove */
+.row.gap { display: flex; flex-wrap: wrap; gap: 10px; }
+.row.gap > .btn { flex: 1 1 150px; }
 .btn.small { min-height: 40px; padding: 0 14px; font-size: 15px; border-radius: var(--radius-sm); }
 .btn[disabled] { opacity: .45; pointer-events: none; }
 .btn-row { display: flex; gap: 10px; }
