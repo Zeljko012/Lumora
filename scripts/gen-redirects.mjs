@@ -7,7 +7,9 @@ const pairs = [];
 for (const m of src.matchAll(/"slug":\s*"([^"]+)"[\s\S]*?"sourceHandle":\s*"([^"]+)"/g)) pairs.push([m[2], m[1]]);
 
 const redirects = [];
-const add = (source, destination) => redirects.push({ source, destination, permanent: true });
+// odredište uvek sa kosom crtom na kraju (kanonska adresa), da ne nastaju duple adrese
+const slash = (d) => (d === "/" || d.endsWith("/") ? d : d + "/");
+const add = (source, destination) => redirects.push({ source, destination: slash(destination), permanent: true });
 
 for (const [handle, slug] of pairs) {
   add(`/products/${handle}`, `/proizvod/${slug}`);
@@ -20,6 +22,8 @@ add("/collections/svecnjaci", "/kategorija/svecnjaci");
 add("/collections/all", "/prodavnica");
 add("/collections/:slug*", "/prodavnica");
 add("/products/:slug*", "/prodavnica");
+add("/search/:slug*", "/prodavnica");
+add("/search", "/prodavnica");
 add("/cart", "/korpa");
 add("/pages/contact", "/kontakt");
 add("/pages/kontakt", "/kontakt");
