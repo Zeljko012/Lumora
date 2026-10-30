@@ -4,7 +4,7 @@ import { Icon } from '../components/Icon'
 import { ConnectionCard } from '../components/ConnectionCard'
 import { Field, NumberField, Segmented, Switch, TopBar, useUi } from '../components/ui'
 import { exportJson, exportOrdersCsv, exportProductsCsv, importJson } from '../lib/backup'
-import { resetOrdersLocal } from '../lib/reset'
+import { countOrdersFrom, purgeOrdersFrom, resetOrdersLocal } from '../lib/reset'
 import { addDemoData, hasDemoData, removeDemoData } from '../lib/demo'
 import type { Courier, Settings } from '../types'
 
@@ -15,6 +15,7 @@ export default function SettingsPage() {
   const [stats, setStats] = useState({ orders: 0, products: 0 })
   const [demo, setDemo] = useState(false)
   const [busy, setBusy] = useState(false)
+  const [purgeFrom, setPurgeFrom] = useState('')
 
   useEffect(() => {
     getSettings().then(setS)
@@ -231,6 +232,40 @@ export default function SettingsPage() {
           >
             <Icon name="trash" /> Obriši porudžbine i kreni od #1000
           </button>
+          <div className="stack" style={{ marginTop: 14, paddingTop: 14, borderTop: '1px solid var(--line)' }}>
+            <p className="small muted" style={{ margin: 0 }}>
+              Ili obriši samo probne: sve porudžbine sa brojem od izabranog naviše (npr. od 1004). Manji brojevi ostaju. Posle toga u bazi pusti docs/supabase-reset-from.sql.
+            </p>
+            <Field label="Obriši porudžbine sa brojem od" inputMode="numeric" placeholder="npr. 1004" value={purgeFrom} onChange={(e) => setPurgeFrom(e.target.value.replace(/\D/g, ''))} />
+            <button
+              className="btn block danger"
+              disabled={busy || !purgeFrom}
+              onClick={async () => {
+                const from = Number(purgeFrom)
+                const c = await countOrdersFrom(from)
+                if (!c.count) return toast(`Nema porudžbina sa brojem od #${from}`)
+                if (
+                  !(await confirm({
+                    title: `Trajno obrisati ${c.count} ${c.count === 1 ? 'porudžbinu' : 'porudžbina'}?`,
+                    message: `Brojevi #${c.min}–#${c.max}. Porudžbine sa manjim brojem ostaju. Ovo se ne može poništiti.`,
+                    confirmText: 'Obriši',
+                    danger: true,
+                  }))
+                )
+                  return
+                setBusy(true)
+                try {
+                  const n = await purgeOrdersFrom(from)
+                  setPurgeFrom('')
+                  toast(`Obrisano: ${n}`)
+                } finally {
+                  setBusy(false)
+                }
+              }}
+            >
+              <Icon name="trash" /> Obriši od tog broja naviše
+            </button>
+          </div>
         </div>
       </div>
 
