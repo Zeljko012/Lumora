@@ -97,11 +97,12 @@ import { withBase } from "../lib/url";
       // kupovina se javlja Meta-i samo jednom po porudžbini (eventID = broj porudžbine)
       const pk = "lumora.px.purchase." + o.id;
       if (o.id && !sessionStorage.getItem(pk)) {
-        const items: { id: string; qty: number }[] = Array.isArray(o.items) ? o.items : [];
+        const items: { id: string; qty: number; price?: number }[] = Array.isArray(o.items) ? o.items : [];
         px(
           "Purchase",
           {
             content_ids: items.map((i) => i.id),
+            contents: items.map((i) => ({ id: i.id, quantity: i.qty, item_price: i.price ?? 0 })),
             content_type: "product",
             num_items: items.reduce((s, i) => s + i.qty, 0),
             value: Number(o.total) || 0,

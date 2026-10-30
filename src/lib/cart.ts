@@ -73,6 +73,7 @@ export function addItem(input: CartInput, qty = 1): CartItem[] {
   write(items);
   px("AddToCart", {
     content_ids: [input.slug],
+    contents: [{ id: input.slug, quantity: qty, item_price: input.price }],
     content_type: "product",
     content_name: input.name,
     value: input.price * qty,

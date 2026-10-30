@@ -23,6 +23,12 @@ Pixel ID: `1593355432274921` (u `src/data/site.ts` → `metaPixelId`).
 - Vrednost u Purchase je **iznos proizvoda** bez poštarine (poštarina se plaća kuriru).
 - Plaćanje je pouzećem, pa je Purchase = „porudžbina poslata", a ne naplaćeno.
 
+## Katalog proizvoda (ID-jevi se poklapaju sami)
+Sajt sam pravi katalog za Meta: **https://www.homedecorlumora.com/meta-katalog.csv** (32 proizvoda, `id` = slug).
+- Meta: Commerce Manager → Katalog → **Data sources → Data feed → Scheduled feed** → nalepi gornju adresu, izaberi „svakog dana".
+- Slike su JPEG (`public/images/meta/`), jer Meta garantuje samo JPEG/PNG. Posle novih proizvoda: `python scripts/gen-meta-images.py`.
+- Dostupnost je uvek „in stock" (štampa se po porudžbini); cena = cena proizvoda u RSD.
+
 ## Provera
 Chrome ekstenzija **Meta Pixel Helper**: prihvati kolačiće, otvori proizvod, dodaj u korpu, otvori kasu i pošalji porudžbinu. Mora da se vide svih pet događaja.
 

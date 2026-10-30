@@ -368,6 +368,7 @@ import { withBase } from "../lib/url";
     if (start.length) {
       px("InitiateCheckout", {
         content_ids: start.map((i) => i.slug),
+        contents: start.map((i) => ({ id: i.slug, quantity: i.qty, item_price: i.price })),
         content_type: "product",
         num_items: start.reduce((s, i) => s + i.qty, 0),
         value: cartSubtotal(),
@@ -469,7 +470,7 @@ import { withBase } from "../lib/url";
             id: data.orderId,
             total,
             email: payload.customer.email,
-            items: items.map((i) => ({ id: i.slug, qty: i.qty })),
+            items: items.map((i) => ({ id: i.slug, qty: i.qty, price: i.price })),
           }),
         );
       } catch {}
