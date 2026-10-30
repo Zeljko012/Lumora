@@ -30,6 +30,8 @@ Sajt sam pravi katalog za Meta: **https://www.homedecorlumora.com/meta-katalog.c
 - Dostupnost je uvek „in stock" (štampa se po porudžbini); cena = cena proizvoda u RSD.
 
 ## Provera
+Dok si prijavljen u aplikaciju, sajt te namerno ne meri. Za proveru otvori sajt kao **https://www.homedecorlumora.com/?pxtest=1** (važi dok ne zatvoriš tu karticu).
+
 Chrome ekstenzija **Meta Pixel Helper**: prihvati kolačiće, otvori proizvod, dodaj u korpu, otvori kasu i pošalji porudžbinu. Mora da se vide svih pet događaja.
 
 ## Conversions API (opciono, kasnije)

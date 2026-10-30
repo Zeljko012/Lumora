@@ -42,6 +42,13 @@ export function setConsent(v: Consent): void {
 /** true = ovde se nikad ne meri (vlasnik, probna adresa, ?notrack, "Do Not Track"). */
 export function measuringBlocked(): boolean {
   if (typeof window === "undefined") return true;
+  // ?pxtest=1 uključuje merenje u ovoj kartici i za vlasnika (za proveru Meta Pixel Helper-om); traje dok se kartica ne zatvori
+  try {
+    if (new URLSearchParams(location.search).has("pxtest")) sessionStorage.setItem("lumora.pxtest", "1");
+    if (sessionStorage.getItem("lumora.pxtest")) return false;
+  } catch {
+    /* bez sessionStorage-a nema provere */
+  }
   const host = location.hostname;
   const local = host === "localhost" || host === "127.0.0.1" || host.endsWith(".github.io");
   // lumora.pxDebug: samo za proveru na lokalnom računaru
