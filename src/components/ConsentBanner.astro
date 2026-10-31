@@ -4,7 +4,7 @@ import { withBase } from "../lib/url";
 
 <div class="consent" data-consent role="dialog" aria-label="Kolačići" hidden>
   <p>
-    Sajt koristi kolačiće. <a href={withBase("/politika-privatnosti")}>Više</a>
+    Sajt koristi kolačiće za merenje posete i oglasa. <a href={withBase("/politika-privatnosti")}>Više</a>
   </p>
   <div class="consent__btns">
     <button type="button" class="btn btn--ghost" data-consent-no>Odbijam</button>
@@ -47,6 +47,20 @@ import { withBase } from "../lib/url";
     display: flex;
     gap: 0.35rem;
     flex-shrink: 0;
+  }
+  @media (max-width: 560px) {
+    .consent {
+      max-width: none;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      gap: 0.5rem;
+      padding: 0.7rem 0.85rem;
+      border-radius: 16px;
+    }
+    .consent__btns {
+      justify-content: center;
+    }
   }
   .consent__btns .btn {
     padding: 0.35rem 0.8rem;
