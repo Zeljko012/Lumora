@@ -1,6 +1,9 @@
 // ⚠️  GENERISANO iz Shopify izvoza — ne menjati ručno.
 // Regeneriši sa:  node scripts/gen-products.mjs
+// NAPOMENA: novi proizvodi se NE dodaju ovde nego u src/data/novo.json.
 // Jedinstveni opisi (lead / forWhom) se uređuju u scripts/gen-products.mjs → COPY.
+
+import { NOVO_PRODUCTS } from "./novo";
 
 export type Category = "vaze" | "figure" | "svecnjaci" | "dom";
 
@@ -76,7 +79,7 @@ export const CATEGORY_META: Record<
   },
 };
 
-export const PRODUCTS: Product[] = [
+const BASE_PRODUCTS: Product[] = [
   {
     "slug": "arch-vaza",
     "name": "Arch Vaza",
@@ -1290,6 +1293,9 @@ export const PRODUCTS: Product[] = [
     "sourceHandle": "sapica-vaza"
   }
 ];
+
+// Novi proizvodi (nedeljni dodaci) žive u novo.json — vidi src/data/novo.ts.
+export const PRODUCTS: Product[] = [...BASE_PRODUCTS, ...NOVO_PRODUCTS];
 
 export const getProduct = (slug: string): Product | undefined =>
   PRODUCTS.find((p) => p.slug === slug);

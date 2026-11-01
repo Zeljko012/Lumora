@@ -75,6 +75,7 @@ export const NAV = [
   { label: "Figure", href: "/kategorija/figure" },
   { label: "Svećnjaci", href: "/kategorija/svecnjaci" },
   { label: "Dom", href: "/kategorija/dom" },
+  { label: "Novo", href: "/novo" },
   { label: "Pokloni", href: "/pokloni" },
   { label: "O nama", href: "/o-nama" },
   { label: "Kontakt", href: "/kontakt" },

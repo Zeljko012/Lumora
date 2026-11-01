@@ -3,6 +3,7 @@
 // Naslov: bez "| Lumora" (dodaje ga Seo.astro); do 51 znak, da ukupno stane u 60.
 
 import type { Category } from "./products";
+import { NOVO_COPY } from "./novo";
 
 export interface ProductCopy {
   /** naslov u rezultatima pretrage (bez "| Lumora") */
@@ -13,7 +14,7 @@ export interface ProductCopy {
   faq: { q: string; a: string };
 }
 
-export const PRODUCT_COPY: Record<string, ProductCopy> = {
+const BASE_COPY: Record<string, ProductCopy> = {
   /* ───────────── VAZE ───────────── */
   "arch-vaza": {
     title: "Arch vaza – moderna lučna vaza za policu",
@@ -278,6 +279,9 @@ export const PRODUCT_COPY: Record<string, ProductCopy> = {
     faq: { q: "Koje biljke odgovaraju Šapici?", a: "Sukulenti i kaktusi. Poklon je za ljubitelje mačaka i biljaka." },
   },
 };
+
+/** Ručno pisani tekstovi + novi proizvodi iz novo.json. */
+export const PRODUCT_COPY: Record<string, ProductCopy> = { ...BASE_COPY, ...NOVO_COPY };
 
 /** Pitanja koja važe za celu kategoriju (dodaju se uz pitanje specifično za proizvod). */
 export const CATEGORY_FAQ: Record<Category, { q: string; a: string }> = {

@@ -1,5 +1,5 @@
 {
- "version": 229628803,
+ "version": 250484820,
  "products": [
   {
    "slug": "arch-vaza",
@@ -1184,6 +1184,43 @@
     }
    ],
    "image": "images/products/sapica-saksija/1.webp"
+  },
+  {
+   "slug": "eternal-duo-figura",
+   "name": "Eternal Duo Figura",
+   "category": "figure",
+   "price": 1800,
+   "colors": [
+    {
+     "key": "white",
+     "label": "bela"
+    },
+    {
+     "key": "beige",
+     "label": "bež"
+    },
+    {
+     "key": "gray",
+     "label": "siva"
+    },
+    {
+     "key": "black",
+     "label": "crna"
+    },
+    {
+     "key": "pink",
+     "label": "roze"
+    },
+    {
+     "key": "green",
+     "label": "maslinasto zelena"
+    },
+    {
+     "key": "red",
+     "label": "crvena"
+    }
+   ],
+   "image": "images/products/eternal-duo-figura/1.webp"
   }
  ]
 }

@@ -79,6 +79,7 @@ export const EXTRA_GIFT_PAGES: GiftPage[] = [
       "figura-sa-srcem",
       "zaljubljeni-par-figura",
       "zagrljaj-ljubavi-figura",
+      "eternal-duo-figura",
       "zaljubljene-mace-figura",
       "hvatac-svetlosti-svecnjak",
       "home-roze-figura",
@@ -453,6 +454,7 @@ export const EXTRA_GIFT_PAGES: GiftPage[] = [
     products: [
       "zaljubljeni-par-figura",
       "zagrljaj-ljubavi-figura",
+      "eternal-duo-figura",
       "duet-vaza",
       "duo-vaza",
       "srce-svecnjak",
@@ -507,6 +509,7 @@ export const THEME_PAGES: GiftPage[] = [
       "split-vaza",
       "mislilac-figura",
       "zagrljaj-ljubavi-figura",
+      "eternal-duo-figura",
       "zaljubljeni-par-figura",
       "figura-sa-srcem",
       "rebrasti-svecnjak",

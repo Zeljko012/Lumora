@@ -1,0 +1,39 @@
+{
+  "_uputstvo": "NOVO U PONUDI. Svaki novi proizvod se dodaje na VRH ove liste (najnoviji prvi). Baner na početnoj strani i stranica /novo/ prikazuju najnovije sami. 'addedAt' je datum dodavanja. Slike idu u public/images/products/<slug>/1.webp (+ 1-lg.webp). Posle izmene pokreni: node scripts/sync-novo.mjs",
+  "products": [
+    {
+      "slug": "eternal-duo-figura",
+      "name": "Eternal Duo Figura",
+      "category": "figure",
+      "price": 1800,
+      "compareAt": null,
+      "lead": "Dve figure priljubljene jedna uz drugu u jednoj mekoj formi sa otvorom u sredini — tih simbol bliskosti i zajedništva.",
+      "forWhom": "Poklon za par, godišnjicu, venčanje ili Dan zaljubljenih.",
+      "dimension": "Visina: 18 cm",
+      "colors": ["white", "beige", "gray", "black", "pink", "green", "red"],
+      "images": [
+        {
+          "src": "/images/products/eternal-duo-figura/1.webp",
+          "alt": "Eternal Duo Figura 3D štampana skulptura para u zagrljaju, bež, Lumora"
+        }
+      ],
+      "seoTitle": "Eternal Duo Figura – 3D Skulptura Para, Poklon | Lumora",
+      "seoDescription": "Eternal Duo Figura: dve figure priljubljene u jednoj mekoj formi, visina 18 cm. Poklon za par i godišnjicu. 1.800 RSD · 7 boja · dostava po Srbiji.",
+      "featured": false,
+      "bestseller": false,
+      "sourceHandle": "eternal-duo-figura",
+      "addedAt": "2026-11-01",
+      "copy": {
+        "title": "Eternal Duo figura – skulptura para, poklon",
+        "body": [
+          "Eternal Duo čine dve figure bez lica, priljubljene glava uz glavu i spojene u jednu mekanu formu sa ovalnim otvorom u sredini. Zbog zaobljenih linija deluje mirno i toplo, kao simbol bliskosti, a ne kao klasična figurica.",
+          "Visoka je 18 cm, pa lepo stoji na komodi, polici ili noćnom stočiću, samostalno ili u društvu vaze i svećnjaka. Dobar je poklon za godišnjicu, venčanje ili Dan zaljubljenih, a u beloj ili bež boji najbolje se vidi igra svetla i senke na zaobljenoj površini."
+        ],
+        "faq": {
+          "q": "Koliko je visoka Eternal Duo figura?",
+          "a": "Visoka je 18 cm, pa stane na policu, komodu ili noćni stočić. Štampa se po porudžbini u boji koju izaberete."
+        }
+      }
+    }
+  ]
+}

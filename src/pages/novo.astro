@@ -1,0 +1,65 @@
+---
+import Base from "../layouts/Base.astro";
+import ProductCard from "../components/ProductCard.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import { SITE } from "../data/site";
+import { NOVO_SORTED } from "../data/novo";
+import { withBase } from "../lib/url";
+
+const itemListLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Novo u ponudi — Lumora",
+  numberOfItems: NOVO_SORTED.length,
+  itemListElement: NOVO_SORTED.map((p, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    url: new URL(`/proizvod/${p.slug}`, SITE.url).href,
+    name: p.name,
+  })),
+};
+---
+
+<Base
+  title="Novo u ponudi – nove 3D dekoracije za dom"
+  description="Najnoviji komadi u Lumora ponudi: nove 3D štampane figure, vaze i svećnjaci. Svake nedelje stižu novi modeli. Dostava po celoj Srbiji, plaćanje pouzećem."
+  jsonLd={[itemListLd]}
+>
+  <div class="container">
+    <Breadcrumbs items={[{ label: "Novo u ponudi" }]} />
+    <header class="listing-head">
+      <h1>Novo u ponudi</h1>
+      <p>
+        Najnoviji komadi u Lumora ponudi. Svake nedelje dodajemo nove modele, a svaki se štampa po porudžbini
+        u boji koju izabereš, uz dostavu {SITE.deliveryTime}.
+      </p>
+    </header>
+
+    <div class="section">
+      <div class="product-grid">
+        {NOVO_SORTED.map((p, i) => <ProductCard product={p} eager={i < 4} />)}
+      </div>
+      <p class="more">
+        Tražiš nešto drugo? <a href={withBase("/prodavnica")}>Pogledaj celu ponudu →</a>
+      </p>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .listing-head {
+    padding-block: 0.5rem 1.5rem;
+  }
+  .listing-head h1 {
+    font-size: var(--step-3);
+  }
+  .listing-head p {
+    color: var(--ink-soft);
+    margin-top: 0.5rem;
+    max-width: 60ch;
+  }
+  .more {
+    margin-top: 2rem;
+    color: var(--ink-soft);
+  }
+</style>

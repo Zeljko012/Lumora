@@ -418,6 +418,7 @@ const BASE_GIFT_PAGES: GiftPage[] = [
     products: [
       "zaljubljeni-par-figura",
       "zagrljaj-ljubavi-figura",
+      "eternal-duo-figura",
       "figura-sa-srcem",
       "zaljubljene-mace-figura",
       "srce-svecnjak",
