@@ -5,6 +5,8 @@ import { money } from "../lib/format";
 import { withBase } from "../lib/url";
 
 const items = NOVO_SORTED.slice(0, 2);
+// jedan novi proizvod sa širokom slikom = veliki baner; inače dve kartice sa kvadratnim slikama
+const wide = items.length === 1 && !!items[0].banner;
 ---
 
 {
@@ -16,13 +18,13 @@ const items = NOVO_SORTED.slice(0, 2);
       </div>
       <div class={`novo__grid novo__grid--${items.length}`}>
         {items.map((p, i) => (
-          <a class="novo__card" href={withBase(`/proizvod/${p.slug}`)}>
+          <a class={`novo__card${wide ? " novo__card--wide" : ""}`} href={withBase(`/proizvod/${p.slug}`)}>
             <div class="novo__img">
               <img
-                src={withBase(p.images[0].src)}
+                src={withBase(wide ? p.banner! : p.images[0].src)}
                 alt={p.images[0].alt}
-                width="864"
-                height="864"
+                width={wide ? 1600 : 864}
+                height={wide ? 1167 : 864}
                 loading={i === 0 ? "eager" : "lazy"}
                 decoding="async"
               />
@@ -89,6 +91,12 @@ const items = NOVO_SORTED.slice(0, 2);
   }
   .novo__grid--1 .novo__card {
     grid-template-columns: minmax(0, 340px) minmax(0, 1fr);
+  }
+  .novo__grid--1 .novo__card--wide {
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  }
+  .novo__card--wide .novo__img {
+    aspect-ratio: 1600 / 1167;
   }
   .novo__grid--1 .novo__body {
     padding-inline: clamp(1.25rem, 5vw, 4rem);
@@ -164,10 +172,12 @@ const items = NOVO_SORTED.slice(0, 2);
   }
   @media (max-width: 520px) {
     .novo__card,
-    .novo__grid--1 .novo__card {
+    .novo__grid--1 .novo__card,
+    .novo__grid--1 .novo__card--wide {
       grid-template-columns: 1fr;
     }
-    .novo__img {
+    .novo__img,
+    .novo__card--wide .novo__img {
       aspect-ratio: 4 / 3;
     }
     .novo__body {

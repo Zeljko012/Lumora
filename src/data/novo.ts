@@ -4,11 +4,11 @@ import type { Product } from "./products";
 import type { ProductCopy } from "./product-copy";
 import data from "./novo.json";
 
-type NovoEntry = Product & { addedAt: string; copy: ProductCopy };
+type NovoEntry = Product & { addedAt: string; copy: ProductCopy; /** široka slika za baner (nije obavezna) */ banner?: string };
 const entries = data.products as unknown as NovoEntry[];
 
 /** Novi proizvodi u obliku običnih proizvoda (bez dodatnih polja). */
-export const NOVO_PRODUCTS: Product[] = entries.map(({ addedAt: _a, copy: _c, ...p }) => p);
+export const NOVO_PRODUCTS: Product[] = entries.map(({ addedAt: _a, copy: _c, banner: _b, ...p }) => p);
 
 /** Jedinstven tekst za stranicu proizvoda, po slug-u. */
 export const NOVO_COPY: Record<string, ProductCopy> = Object.fromEntries(
@@ -16,7 +16,7 @@ export const NOVO_COPY: Record<string, ProductCopy> = Object.fromEntries(
 );
 
 /** Najnoviji prvi. Dva najnovija idu u baner na početnoj strani. */
-export const NOVO_SORTED: Product[] = [...entries]
+export const NOVO_SORTED: (Product & { banner?: string })[] = [...entries]
   .sort((a, b) => b.addedAt.localeCompare(a.addedAt))
   .map(({ addedAt: _a, copy: _c, ...p }) => p);
 
