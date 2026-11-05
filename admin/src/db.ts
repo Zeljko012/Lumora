@@ -54,6 +54,7 @@ export const DEFAULT_SETTINGS: Settings = {
   catalogSeeded: false,
   catalogVersion: 0,
   trafficUrl: '',
+  customerMails: true,
   updatedAt: Date.now(),
 }
 

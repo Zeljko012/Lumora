@@ -1,5 +1,6 @@
 import { db, getSettings } from '../db'
 import { remoteNextOrderNumber } from './remote'
+import { mailCustomer } from './customerMail'
 import { fixCase } from './siteOrderCodec'
 import type { Customer, Order, OrderItem, OrderSource, OrderStatus, PaymentMethod, Product, ShippingPayer } from '../types'
 
@@ -169,6 +170,7 @@ export async function changeStatus(order: Order, status: OrderStatus, extra: Par
   }
   if (status !== 'vraceno') delete next.returnInfo
   await saveOrder(next, order)
+  if (status !== order.status) void mailCustomer(order.id, status)
 }
 
 /** Štiklira stavku; kad je sve spakovano a status je "nova", prelazi u "spakovano" (i obrnuto). */
@@ -186,6 +188,9 @@ export async function togglePacked(orderId: string, itemId: string): Promise<{ f
     if (status !== order.status) history = [...history, { status, at: Date.now() }]
     await db.orders.put({ ...order, items, status, statusHistory: history, updatedAt: Date.now() })
     return { from: order.status, to: status }
+  }).then((r) => {
+    if (r && r.to !== r.from) void mailCustomer(orderId, r.to)
+    return r
   })
 }
 

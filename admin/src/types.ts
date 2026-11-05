@@ -38,6 +38,8 @@ export interface Settings {
   catalogVersion: number
   /** adresa javne statistike posete sajta (Cloudflare Web Analytics, Umami…) */
   trafficUrl: string
+  /** šalji kupcu mejl kad porudžbina pređe u spakovano / poslato / naplaćeno */
+  customerMails?: boolean
   updatedAt: number
 }
 
@@ -150,6 +152,8 @@ export interface Order {
   returnInfo?: ReturnInfo
   /** broj porudžbine sa sajta (npr. LUM-20261021-AB12) — sprečava dvostruki uvoz */
   externalId?: string
+  /** kad je kupcu poslat mejl za koji status (da se ne šalje dvaput) */
+  mailed?: Partial<Record<OrderStatus, number>>
   /** probni podatak (može da se obriše jednim dodirom) */
   demo?: boolean
 }

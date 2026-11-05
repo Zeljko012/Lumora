@@ -148,6 +148,18 @@ export default function SettingsPage() {
       </div>
 
       <div className="section">
+        <div className="section-title">Mejlovi kupcu</div>
+        <div className="card stack">
+          <Switch
+            checked={s.customerMails !== false}
+            onChange={(customerMails) => set({ customerMails })}
+            label="Šalji kupcu mejl kad se promeni status"
+            hint="Spakovano → „spremno za slanje“, Poslato → „pošiljka je na putu“ (sa kurirom i brojem pošiljke), Naplaćeno → zahvalnica. Samo ako kupac ima mejl i aplikacija je povezana sa sajtom. Potvrdu porudžbine šalje sajt."
+          />
+        </div>
+      </div>
+
+      <div className="section">
         <div className="section-title">Zaliha i upozorenja</div>
         <div className="card stack">
           <Switch
