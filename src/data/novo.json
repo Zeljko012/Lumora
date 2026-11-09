@@ -1,5 +1,5 @@
 {
-  "_uputstvo": "NOVO U PONUDI. Svaki novi proizvod se dodaje na VRH ove liste (najnoviji prvi). Baner na početnoj strani i stranica /novo/ prikazuju najnovije sami. 'addedAt' je datum dodavanja. Slike idu u public/images/products/<slug>/1.webp (+ 1-lg.webp). Posle izmene pokreni: node scripts/sync-novo.mjs",
+  "_uputstvo": "NOVO U PONUDI. Svaki novi proizvod se dodaje na VRH ove liste (najnoviji prvi). Iskačući prozor (3 sekunde po ulasku na sajt, prikazuje najnoviji proizvod) i stranica /novo/ se ažuriraju sami. Za probu prozora dodaj ?novo=1 na adresu sajta. 'addedAt' je datum dodavanja. Slike idu u public/images/products/<slug>/1.webp (+ 1-lg.webp). Posle izmene pokreni: node scripts/sync-novo.mjs",
   "products": [
     {
       "slug": "home-set",

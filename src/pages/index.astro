@@ -1,7 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
 import ProductCard from "../components/ProductCard.astro";
-import NovoBanner from "../components/NovoBanner.astro";
 import { SITE } from "../data/site";
 import {
   bestsellers,
@@ -39,8 +38,6 @@ const websiteLd = {
   description={SITE.description}
   jsonLd={[websiteLd]}
 >
-  <NovoBanner />
-
   <section class="hero container">
     <div class="hero__copy">
       <span class="eyebrow">Štampano u 3D-u · dizajnirano u Srbiji</span>

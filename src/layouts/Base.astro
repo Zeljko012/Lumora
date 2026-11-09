@@ -5,6 +5,7 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import CartDrawer from "../components/CartDrawer.astro";
 import ConsentBanner from "../components/ConsentBanner.astro";
+import NovoPopup from "../components/NovoPopup.astro";
 import { SITE } from "../data/site";
 import { withBase } from "../lib/url";
 
@@ -118,6 +119,7 @@ const umamiId = import.meta.env.PUBLIC_UMAMI_ID as string | undefined;
     <Footer />
     <CartDrawer />
     <ConsentBanner />
+    <NovoPopup />
     <div class="toast-wrap" data-toast-wrap aria-live="polite"></div>
 
     <script>

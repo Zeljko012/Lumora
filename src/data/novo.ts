@@ -15,7 +15,7 @@ export const NOVO_COPY: Record<string, ProductCopy> = Object.fromEntries(
   entries.map((e) => [e.slug, e.copy]),
 );
 
-/** Najnoviji prvi. Dva najnovija idu u baner na početnoj strani. */
+/** Najnoviji prvi. Najnoviji ide u iskačući prozor (NovoPopup), svi na stranicu /novo/. */
 export const NOVO_SORTED: Product[] = [...entries]
   .sort((a, b) => b.addedAt.localeCompare(a.addedAt))
   .map(({ addedAt: _a, copy: _c, ...p }) => p);
