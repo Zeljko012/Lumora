@@ -2,6 +2,14 @@ import { db, getSettings } from '../db'
 import { getClient } from './remote'
 import type { Order, OrderStatus } from '../types'
 
+/** Adresa sajta sa serverskom rutom. Aplikacija otvorena sa druge adrese (npr. GitHub Pages) zove sajt direktno. */
+const LIVE_SITE = 'https://www.homedecorlumora.com'
+function statusMailUrl(): string {
+  const h = location.hostname
+  const onSite = h.endsWith('homedecorlumora.com') || h.endsWith('.vercel.app')
+  return onSite ? new URL('../api/status-mail', document.baseURI).href : `${LIVE_SITE}/api/status-mail`
+}
+
 /** Statusi za koje kupac dobija mejl (potvrdu porudžbine šalje sam sajt). */
 export const MAIL_STATUSES: OrderStatus[] = ['spakovano', 'poslato', 'naplaceno']
 
@@ -52,7 +60,7 @@ export async function mailCustomer(orderId: string, status: OrderStatus): Promis
       return
     }
 
-    const res = await fetch(new URL('../api/status-mail', document.baseURI).href, {
+    const res = await fetch(statusMailUrl(), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
       body: JSON.stringify({

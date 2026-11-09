@@ -32,8 +32,23 @@ interface Body {
   courier?: string;
 }
 
-const json = (data: unknown, status = 200) =>
-  new Response(JSON.stringify(data), { status, headers: { "Content-Type": "application/json" } });
+/** Aplikacija se može otvoriti i sa stare probne adrese (GitHub Pages), pa joj dozvoljavamo poziv sa nje. Svaki poziv ipak traži prijavu vlasnika. */
+const ALLOWED_ORIGINS = ["https://zeljko012.github.io"];
+
+const corsHeaders = (request: Request): Record<string, string> => {
+  const origin = request.headers.get("origin") || "";
+  return ALLOWED_ORIGINS.includes(origin)
+    ? {
+        "Access-Control-Allow-Origin": origin,
+        "Access-Control-Allow-Headers": "Authorization, Content-Type",
+        "Access-Control-Allow-Methods": "POST, OPTIONS",
+        Vary: "Origin",
+      }
+    : {};
+};
+
+const json = (request: Request, data: unknown, status = 200) =>
+  new Response(JSON.stringify(data), { status, headers: { "Content-Type": "application/json", ...corsHeaders(request) } });
 
 const esc = (s: unknown) =>
   String(s ?? "")
@@ -179,22 +194,24 @@ function build(b: Body): { subject: string; html: string; text: string } {
   };
 }
 
+export const OPTIONS: APIRoute = async ({ request }) => new Response(null, { status: 204, headers: corsHeaders(request) });
+
 export const POST: APIRoute = async ({ request }) => {
-  if (!(await isOwner(request))) return json({ ok: false, error: "Niste prijavljeni u aplikaciju." }, 401);
+  if (!(await isOwner(request))) return json(request, { ok: false, error: "Niste prijavljeni u aplikaciju." }, 401);
 
   let body: Body;
   try {
     const raw = await request.text();
-    if (raw.length > 20_000) return json({ ok: false, error: "Zahtev je prevelik." }, 413);
+    if (raw.length > 20_000) return json(request, { ok: false, error: "Zahtev je prevelik." }, 413);
     body = JSON.parse(raw);
   } catch {
-    return json({ ok: false, error: "Neispravan JSON." }, 400);
+    return json(request, { ok: false, error: "Neispravan JSON." }, 400);
   }
   const err = validate(body);
-  if (err) return json({ ok: false, error: err }, 400);
+  if (err) return json(request, { ok: false, error: err }, 400);
 
   const API_KEY = process.env.RESEND_API_KEY;
-  if (!API_KEY) return json({ ok: false, error: "Slanje mejla nije podešeno (RESEND_API_KEY)." }, 503);
+  if (!API_KEY) return json(request, { ok: false, error: "Slanje mejla nije podešeno (RESEND_API_KEY)." }, 503);
   const FROM = process.env.ORDER_FROM || `${SITE.name} <onboarding@resend.dev>`;
 
   const { subject, html, text } = build(body);
@@ -210,7 +227,7 @@ export const POST: APIRoute = async ({ request }) => {
     if (error) throw new Error(error.message);
   } catch (e) {
     console.error("Mejl kupcu nije poslat", body.number, body.kind, e);
-    return json({ ok: false, error: "Mejl nije poslat." }, 502);
+    return json(request, { ok: false, error: "Mejl nije poslat." }, 502);
   }
-  return json({ ok: true });
+  return json(request, { ok: true });
 };
