@@ -213,6 +213,7 @@ export const EXTRA_GIFT_PAGES: GiftPage[] = [
       "Svaki komad se štampa u boji koju izabereš, pa se lako uklapa u praznični ili svakodnevni enterijer.",
     ],
     products: [
+      "home-set",
       "hvatac-svetlosti-svecnjak",
       "spiralni-svecnjak",
       "rebrasti-svecnjak",
@@ -357,6 +358,7 @@ export const EXTRA_GIFT_PAGES: GiftPage[] = [
       "U izboru su svećnjaci koji lepo oblikuju svetlost, vaze za suvo cveće i figure za komodu. Boju biraš po domu u koji poklon ide: crvena i bela su praznične, a bež i siva diskretne.",
     ],
     products: [
+      "home-set",
       "hvatac-svetlosti-svecnjak",
       "spiralni-svecnjak",
       "rebrasti-svecnjak",

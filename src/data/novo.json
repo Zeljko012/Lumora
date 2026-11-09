@@ -2,6 +2,52 @@
   "_uputstvo": "NOVO U PONUDI. Svaki novi proizvod se dodaje na VRH ove liste (najnoviji prvi). Baner na početnoj strani i stranica /novo/ prikazuju najnovije sami. 'addedAt' je datum dodavanja. Slike idu u public/images/products/<slug>/1.webp (+ 1-lg.webp). Posle izmene pokreni: node scripts/sync-novo.mjs",
   "products": [
     {
+      "slug": "home-set",
+      "name": "Home Set",
+      "category": "dom",
+      "price": 2800,
+      "compareAt": null,
+      "lead": "Poslužavnik sa dve kućice, slovima HOME i rebrastom vazom: gotova topla dekoracija za komodu ili sto i poklon za praznike.",
+      "forWhom": "Poklon za Božić, Novu godinu, useljenje i prvi zajednički dom.",
+      "dimension": "",
+      "colors": [
+        "white",
+        "beige",
+        "gray",
+        "black",
+        "pink",
+        "green",
+        "red"
+      ],
+      "images": [
+        {
+          "src": "/images/products/home-set/1.webp",
+          "alt": "Home Set 3D štampana dekoracija: poslužavnik, kućice, slova HOME i rebrasta vaza, Lumora"
+        },
+        {
+          "src": "/images/products/home-set/2.webp",
+          "alt": "Home Set u dnevnoj sobi na kafe stolu, 3D štampana dekoracija za dom Lumora"
+        }
+      ],
+      "seoTitle": "Home Set – Dekoracija za Dom, Poklon za Praznike | Lumora",
+      "seoDescription": "Home Set: dve kućice, slova HOME, rebrasta vaza i poslužavnik u jednom setu. Poklon za Božić i Novu godinu. 2.800 RSD · 7 boja · dostava po Srbiji.",
+      "featured": false,
+      "bestseller": false,
+      "sourceHandle": "home-set",
+      "addedAt": "2026-11-09",
+      "copy": {
+        "title": "Home set – dekoracija za dom, poklon za praznike",
+        "body": [
+          "Home Set spaja na jednom poslužavniku sve što čini topao kutak: dve kućice, slova HOME i rebrastu vazu. Postavi ga na komodu, kafe sto ili trpezarijski sto, a u vazu stavi suvu travu ili grančice, pa dobijaš gotovu dekoraciju bez ikakvog slaganja.",
+          "Zbog poruke „HOME“ i toplog izgleda, to je jedan od najlakših poklona za praznike: za Božić, Novu godinu, ali i za useljenje i prvi zajednički dom. Štampa se po porudžbini u boji koju izabereš, a pred praznike izrada traje 5–7 radnih dana, pa poruči na vreme."
+        ],
+        "faq": {
+          "q": "Da li je Home Set dobar poklon za Božić i Novu godinu?",
+          "a": "Da. Deluje svečano i toplo, a ne zavisi od uzrasta, pa je čest izbor za Božić, Novu godinu i useljenje. Pred praznike izrada traje 5–7 radnih dana, zato poruči bar dve nedelje ranije."
+        }
+      }
+    },
+    {
       "slug": "eternal-duo-figura",
       "name": "Eternal Duo Figura",
       "category": "figure",

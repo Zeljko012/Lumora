@@ -1,5 +1,5 @@
 {
- "version": 250484820,
+ "version": 152288125,
  "products": [
   {
    "slug": "arch-vaza",
@@ -1221,6 +1221,43 @@
     }
    ],
    "image": "images/products/eternal-duo-figura/1.webp"
+  },
+  {
+   "slug": "home-set",
+   "name": "Home Set",
+   "category": "dom",
+   "price": 2800,
+   "colors": [
+    {
+     "key": "white",
+     "label": "bela"
+    },
+    {
+     "key": "beige",
+     "label": "bež"
+    },
+    {
+     "key": "gray",
+     "label": "siva"
+    },
+    {
+     "key": "black",
+     "label": "crna"
+    },
+    {
+     "key": "pink",
+     "label": "roze"
+    },
+    {
+     "key": "green",
+     "label": "maslinasto zelena"
+    },
+    {
+     "key": "red",
+     "label": "crvena"
+    }
+   ],
+   "image": "images/products/home-set/1.webp"
   }
  ]
 }

@@ -320,6 +320,7 @@ const BASE_GIFT_PAGES: GiftPage[] = [
       "U izboru su natpisi HOME za ulaz i policu, moderne vaze za suvo cveće, svećnjaci i saksije. Svaki komad se štampa u boji koju izabereš, pa se lako uklapa u stil onoga ko se useljava.",
     ],
     products: [
+      "home-set",
       "home-figura",
       "home-roze-figura",
       "home-za-vrata",
