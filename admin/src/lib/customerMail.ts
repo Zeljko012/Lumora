@@ -11,6 +11,20 @@ const MAIL_LABEL: Partial<Record<OrderStatus, string>> = {
   naplaceno: 'zahvalnica za kupovinu',
 }
 
+/** Upiši u istoriju porudžbine zašto mejl nije otišao (inače vlasnik ne bi znao). */
+async function logFailure(orderId: string, reason: string): Promise<void> {
+  const now = Date.now()
+  await db.transaction('rw', db.orders, async () => {
+    const fresh = await db.orders.get(orderId)
+    if (!fresh) return
+    await db.orders.put({
+      ...fresh,
+      statusHistory: [...fresh.statusHistory, { status: fresh.status, at: now, note: `📧 Mejl kupcu nije poslat: ${reason}` }],
+      updatedAt: now,
+    })
+  })
+}
+
 const total = (o: Order) => Math.max(0, o.items.reduce((s, i) => s + i.qty * i.price, 0) - (o.discount || 0))
 
 /**
@@ -25,11 +39,18 @@ export async function mailCustomer(orderId: string, status: OrderStatus): Promis
     const o = await db.orders.get(orderId)
     if (!o || o.demo || o.deletedAt || o.status !== status) return
     const email = (o.customer.email || '').trim()
-    if (!email || o.mailed?.[status]) return
+    if (o.mailed?.[status]) return
+    if (!email) {
+      await logFailure(orderId, 'kupac nema upisan mejl')
+      return
+    }
 
     const client = getClient()
     const token = client ? (await client.auth.getSession()).data.session?.access_token : undefined
-    if (!token) return
+    if (!token) {
+      await logFailure(orderId, 'aplikacija nije prijavljena na sajt (Podešavanja → Veza sa sajtom)')
+      return
+    }
 
     const res = await fetch(new URL('../api/status-mail', document.baseURI).href, {
       method: 'POST',
@@ -48,7 +69,15 @@ export async function mailCustomer(orderId: string, status: OrderStatus): Promis
       }),
     })
     if (!res.ok) {
-      console.warn('Mejl kupcu nije poslat', status, res.status, await res.text().catch(() => ''))
+      const text = await res.text().catch(() => '')
+      console.warn('Mejl kupcu nije poslat', status, res.status, text)
+      let msg = ''
+      try {
+        msg = (JSON.parse(text) as { error?: string }).error || ''
+      } catch {
+        /* nije JSON */
+      }
+      await logFailure(orderId, `${msg || 'greška sajta'} (${res.status})`)
       return
     }
 
@@ -66,5 +95,6 @@ export async function mailCustomer(orderId: string, status: OrderStatus): Promis
     })
   } catch (e) {
     console.warn('Mejl kupcu nije poslat', e)
+    await logFailure(orderId, 'nema veze sa sajtom').catch(() => {})
   }
 }
