@@ -2,6 +2,62 @@
   "_uputstvo": "NOVO U PONUDI. Svaki novi proizvod se dodaje na VRH ove liste (najnoviji prvi). Iskačući prozor (3 sekunde po ulasku na sajt, prikazuje najnoviji proizvod) i stranica /novo/ se ažuriraju sami. Za probu prozora dodaj ?novo=1 na adresu sajta. 'addedAt' je datum dodavanja. Slike idu u public/images/products/<slug>/1.webp (+ 1-lg.webp). Posle izmene pokreni: node scripts/sync-novo.mjs",
   "products": [
     {
+      "slug": "kucni-cuvar-maca",
+      "name": "Kućni Čuvar Maca",
+      "category": "figure",
+      "price": 1800,
+      "compareAt": null,
+      "lead": "Rebrasta figura mačke koja čuva dom: elegantna silueta i mekane vertikalne linije. Poruči jednu ili par.",
+      "forWhom": "Poklon za ljubitelje mačaka, za parove i za one koji vole skulpturalne figure.",
+      "dimension": "",
+      "colors": [
+        "white",
+        "beige",
+        "gray",
+        "black",
+        "pink",
+        "green",
+        "red"
+      ],
+      "options": [
+        {
+          "id": "pojedinacno",
+          "label": "Pojedinačno",
+          "price": 1800,
+          "pieces": 1
+        },
+        {
+          "id": "par",
+          "label": "Par",
+          "price": 2400,
+          "pieces": 2
+        }
+      ],
+      "images": [
+        {
+          "src": "/images/products/kucni-cuvar-maca/1.webp",
+          "alt": "Kućni Čuvar Maca rebrasta 3D figura mačke u zelenoj i crnoj boji, Lumora"
+        }
+      ],
+      "seoTitle": "Kućni Čuvar Maca – Rebrasta 3D Figura Mačke | Lumora",
+      "seoDescription": "Kućni Čuvar Maca: rebrasta figura mačke u 7 boja, pojedinačno 1.800 RSD ili par 2.400 RSD. Poklon za ljubitelje mačaka. Dostava po Srbiji.",
+      "featured": false,
+      "bestseller": false,
+      "sourceHandle": "kucni-cuvar-maca",
+      "addedAt": "2026-11-12",
+      "copy": {
+        "title": "Kućni Čuvar Maca – rebrasta figura mačke, poklon",
+        "body": [
+          "Kućni Čuvar je rebrasta figura mačke koja sedi uspravno i gleda u daljinu, kao tihi čuvar doma. Vertikalna rebra hvataju svetlo i prave nežne senke, pa izgleda kao prava skulptura na komodi, polici ili kraj ulaza.",
+          "Možeš da poručiš jednu figuru ili par. Kod para biraš boju svake figure posebno, pa možeš da složiš dva stila, na primer svetlu i tamnu, kao na fotografiji, ili da uzmeš dve u istoj boji. Odličan je poklon za ljubitelje mačaka i za parove."
+        ],
+        "faq": {
+          "q": "Da li mogu da poručim samo jednu figuru?",
+          "a": "Da. Pri poručivanju biraš pojedinačnu figuru za 1.800 RSD ili par za 2.400 RSD, a kod para biraš boju za svaku figuru."
+        }
+      }
+    },
+    {
       "slug": "home-set",
       "name": "Home Set",
       "category": "dom",

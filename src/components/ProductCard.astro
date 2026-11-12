@@ -59,7 +59,7 @@ const swatches = PRODUCT_COLORS.filter((c) => p.colors.includes(c.key));
           <span class="price__old">{money(p.compareAt)}</span>
         )
       }
-      <span class:list={["price", { "price__now--sale": !!p.compareAt }]}>{money(p.price)}</span>
+      <span class:list={["price", { "price__now--sale": !!p.compareAt }]}>{p.options ? "od " : ""}{money(p.price)}</span>
     </p>
   </div>
 </article>

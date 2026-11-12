@@ -12,6 +12,14 @@ export interface ProductImage {
   alt: string;
 }
 
+/** Izbor pri poručivanju koji menja cenu, npr. pojedinačno / par (pieces = broj komada). */
+export interface ProductOption {
+  id: string;
+  label: string;
+  price: number;
+  pieces: number;
+}
+
 export interface Product {
   slug: string;
   name: string;
@@ -33,6 +41,8 @@ export interface Product {
   seoDescription: string;
   featured: boolean;
   bestseller: boolean;
+  /** opcije sa različitom cenom (pojedinačno / par); bez njih proizvod ima samo `price` */
+  options?: ProductOption[];
   /** Originalni Shopify handle — samo za referencu */
   sourceHandle: string;
 }

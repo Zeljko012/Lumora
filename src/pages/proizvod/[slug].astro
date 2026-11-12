@@ -167,7 +167,7 @@ const gallery = p.images.map((im) => ({
 
         <p class="info__price">
           {p.compareAt && <span class="price__old">{money(p.compareAt)}</span>}
-          <span class:list={["price", "info__now", { "price__now--sale": !!p.compareAt }]}>
+          <span class:list={["price", "info__now", { "price__now--sale": !!p.compareAt }]} data-price-now>
             {money(p.price)}
           </span>
         </p>
@@ -182,8 +182,34 @@ const gallery = p.images.map((im) => ({
           data-price={p.price}
           data-image={gallery[0]?.src}
         >
+          {
+            p.options && (
+              <fieldset class="opts">
+                <legend>
+                  Izaberite: <b data-opt-name>{p.options[0].label}</b>
+                </legend>
+                <div class="opts__grid">
+                  {p.options.map((o, i) => (
+                    <label class="opt">
+                      <input
+                        type="radio"
+                        name="option"
+                        value={o.id}
+                        data-label={o.label}
+                        data-price={o.price}
+                        data-pieces={o.pieces}
+                        checked={i === 0}
+                      />
+                      <span class="opt__l">{o.label}{o.pieces > 1 ? ` (${o.pieces} komada)` : ""}</span>
+                      <span class="opt__p">{money(o.price)}</span>
+                    </label>
+                  ))}
+                </div>
+              </fieldset>
+            )
+          }
           <fieldset class="colors">
-            <legend>Boja: <b data-color-name>{swatches[0]?.label}</b></legend>
+            <legend><span data-color-legend>Boja</span>: <b data-color-name>{swatches[0]?.label}</b></legend>
             <div class="colors__grid">
               {
                 swatches.map((c, i) => (
@@ -203,6 +229,23 @@ const gallery = p.images.map((im) => ({
               }
             </div>
           </fieldset>
+
+          {
+            p.options && (
+              <fieldset class="colors" data-colors2 hidden>
+                <legend>Boja druge figure: <b data-color2-name>{swatches[0]?.label}</b></legend>
+                <div class="colors__grid">
+                  {swatches.map((c, i) => (
+                    <label class="swatch" style={`--sw:${c.hex}`} title={c.label}>
+                      <input type="radio" name="color2" value={c.key} data-label={c.label} checked={i === 0} />
+                      <span aria-hidden="true" />
+                      <span class="visually-hidden">{c.label}</span>
+                    </label>
+                  ))}
+                </div>
+              </fieldset>
+            )
+          }
 
           <div class="buy__row">
             <div class="qty" role="group" aria-label="Količina">
@@ -391,6 +434,62 @@ const gallery = p.images.map((im) => ({
   .colors legend b {
     color: var(--ink);
     font-weight: 600;
+  }
+  .opts {
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+  .opts legend {
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    margin-bottom: 0.5rem;
+  }
+  .opts legend b {
+    color: var(--ink);
+    font-weight: 600;
+  }
+  .opts__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.6rem;
+  }
+  .opt {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.15rem;
+    padding: 0.65rem 0.5rem;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius);
+    cursor: pointer;
+    text-align: center;
+    background: var(--surface);
+  }
+  .opt input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .opt__l {
+    font-weight: 600;
+    font-size: 0.92rem;
+  }
+  .opt__p {
+    color: var(--ink-soft);
+    font-size: 0.85rem;
+  }
+  .opt:has(input:checked) {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 1.5px var(--accent);
+  }
+  .opt:has(input:focus-visible) {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px var(--accent);
+  }
+  .colors[hidden] {
+    display: none;
   }
   .colors__grid {
     display: flex;
@@ -620,6 +719,31 @@ const gallery = p.images.map((im) => ({
       });
     });
 
+    // ── Izbor pojedinačno / par (samo proizvodi sa opcijama) ──
+    const fmt = new Intl.NumberFormat("sr-RS", { maximumFractionDigits: 0 });
+    const priceEl = document.querySelector<HTMLElement>("[data-price-now]");
+    const optName = form.querySelector<HTMLElement>("[data-opt-name]");
+    const colors2 = form.querySelector<HTMLElement>("[data-colors2]");
+    const color2Name = form.querySelector<HTMLElement>("[data-color2-name]");
+    const colorLegend = form.querySelector<HTMLElement>("[data-color-legend]");
+    const selectedOption = () => form.querySelector<HTMLInputElement>('input[name="option"]:checked');
+    const syncOption = () => {
+      const o = selectedOption();
+      if (!o) return;
+      const pair = Number(o.dataset.pieces || 1) > 1;
+      if (optName) optName.textContent = o.dataset.label || "";
+      if (priceEl) priceEl.textContent = `${fmt.format(Number(o.dataset.price))} RSD`;
+      if (colors2) colors2.hidden = !pair;
+      if (colorLegend) colorLegend.textContent = pair ? "Boja prve figure" : "Boja";
+    };
+    form.querySelectorAll<HTMLInputElement>('input[name="option"]').forEach((r) => r.addEventListener("change", syncOption));
+    form.querySelectorAll<HTMLInputElement>('input[name="color2"]').forEach((r) => {
+      r.addEventListener("change", () => {
+        if (color2Name && r.checked) color2Name.textContent = r.dataset.label || r.value;
+      });
+    });
+    syncOption();
+
     form.addEventListener("submit", (e) => {
       e.preventDefault();
       const fd = new FormData(form);
@@ -631,20 +755,36 @@ const gallery = p.images.map((im) => ({
         window.dispatchEvent(new CustomEvent("lumora:toast", { detail: "Izaberite boju." }));
         return;
       }
+      let name = form.dataset.name!;
+      let price = Number(form.dataset.price);
+      let cartColor = color;
+      let colorLabel = colorInput?.dataset.label || color;
+      const opt = selectedOption();
+      if (opt) {
+        price = Number(opt.dataset.price);
+        if (Number(opt.dataset.pieces || 1) > 1) {
+          const c2 = String(fd.get("color2") || color);
+          const c2Input = form.querySelector<HTMLInputElement>(`input[name="color2"][value="${c2}"]`);
+          const l2 = c2Input?.dataset.label || c2;
+          name = `${name} – ${(opt.dataset.label || "par").toLowerCase()}`;
+          cartColor = `par:${color}+${c2}`;
+          colorLabel = c2 === color ? `${colorLabel} (obe figure)` : `${colorLabel} + ${l2}`;
+        }
+      }
       addItem(
         {
           slug: form.dataset.slug!,
-          name: form.dataset.name!,
-          price: Number(form.dataset.price),
-          color,
-          colorLabel: colorInput?.dataset.label || color,
+          name,
+          price,
+          color: cartColor,
+          colorLabel,
           image: form.dataset.image!,
         },
         clamp(),
       );
       window.dispatchEvent(new CustomEvent("lumora:added"));
       window.dispatchEvent(
-        new CustomEvent("lumora:toast", { detail: `„${form.dataset.name}” dodato u korpu` }),
+        new CustomEvent("lumora:toast", { detail: `„${name}” dodato u korpu` }),
       );
     });
   }

@@ -1,5 +1,5 @@
 {
- "version": 152288125,
+ "version": 197153617,
  "products": [
   {
    "slug": "arch-vaza",
@@ -1258,6 +1258,43 @@
     }
    ],
    "image": "images/products/home-set/1.webp"
+  },
+  {
+   "slug": "kucni-cuvar-maca",
+   "name": "Kućni Čuvar Maca",
+   "category": "figure",
+   "price": 1800,
+   "colors": [
+    {
+     "key": "white",
+     "label": "bela"
+    },
+    {
+     "key": "beige",
+     "label": "bež"
+    },
+    {
+     "key": "gray",
+     "label": "siva"
+    },
+    {
+     "key": "black",
+     "label": "crna"
+    },
+    {
+     "key": "pink",
+     "label": "roze"
+    },
+    {
+     "key": "green",
+     "label": "maslinasto zelena"
+    },
+    {
+     "key": "red",
+     "label": "crvena"
+    }
+   ],
+   "image": "images/products/kucni-cuvar-maca/1.webp"
   }
  ]
 }

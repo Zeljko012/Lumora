@@ -372,6 +372,7 @@ const BASE_GIFT_PAGES: GiftPage[] = [
       "Biraj između uspavane mace, istegnute mace od mreže, elegantne sede figure i dve zaljubljene mace — ili saksiju u obliku šapice za biljku koju vlasnik mačke već voli.",
     ],
     products: [
+      "kucni-cuvar-maca",
       "maca-figura",
       "uspavana-maca-figura",
       "maca-mreza-figura",

@@ -25,7 +25,7 @@ const p = NOVO_SORTED[0];
         <div class="novo-pop__body">
           <h2>{p.name}</h2>
           <p>{p.lead}</p>
-          <div class="novo-pop__price">{money(p.price)}</div>
+          <div class="novo-pop__price">{p.options ? "od " : ""}{money(p.price)}</div>
           <a class="btn novo-pop__cta" href={withBase(`/proizvod/${p.slug}`)}>
             Pogledaj
           </a>
