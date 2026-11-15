@@ -112,7 +112,7 @@ function build(kind: 1 | 2, items: ReminderItem[], first: string): { subject: st
   const link = `${SITE.url}/kasa/`;
   const hello = first ? `Zdravo, ${esc(first)}!` : "Zdravo!";
   const button = `<p style="margin:0 0 6px"><a href="${esc(link)}" style="display:inline-block;background:${ACCENT};color:#ffffff;padding:13px 22px;border-radius:999px;text-decoration:none;font-weight:700;font-size:15px">Završi porudžbinu</a></p>`;
-  const sum = `<p style="margin:0 0 16px"><strong>Ukupno: ${money(total)}</strong> &middot; plaćanje pouzećem, bez registracije.</p>`;
+  const sum = `<p style="margin:0 0 16px"><strong>Ukupno: ${money(total)}</strong> &middot; plaćanje pouzećem.</p>`;
   const lines = items.map((i) => `- ${PRODUCTS.find((p) => p.slug === i.slug)!.name} x${i.qty}`).join("\n");
   if (kind === 1) {
     return {
