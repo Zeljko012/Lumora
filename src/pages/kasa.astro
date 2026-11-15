@@ -33,7 +33,7 @@ import { withBase } from "../lib/url";
             <div class="field">
               <label for="email">Email *</label>
               <input id="email" name="email" type="email" autocomplete="email" placeholder="vas@email.rs" required />
-              <span class="hint">Na ovu adresu šaljemo potvrdu porudžbine.</span>
+              <span class="hint">Na ovu adresu šaljemo potvrdu porudžbine. Ako je ne završiš, poslaćemo ti i podsetnik.</span>
               <span class="error" data-error-for="email"></span>
             </div>
           </div>
@@ -303,7 +303,7 @@ import { withBase } from "../lib/url";
 </style>
 
 <script>
-  import { getCart, cartSubtotal, clearCart } from "../lib/cart";
+  import { getCart, cartSubtotal, clearCart, getCartId } from "../lib/cart";
   import { money, toFreeShipping, amount } from "../lib/format";
   import { SITE } from "../data/site";
   import { withBase } from "../lib/url";
@@ -408,6 +408,31 @@ import { withBase } from "../lib/url";
     return ok;
   }
 
+  // Podsetnik za napuštenu korpu: kad kupac upiše ispravan mejl, server zakazuje podsetnike (posle 1 h i 24 h).
+  // Kad završi porudžbinu, oni se otkazuju (api/order).
+  const emailInput = form.elements.namedItem("email") as HTMLInputElement;
+  let lastSig = "";
+  emailInput.addEventListener("change", () => {
+    const email = emailInput.value.trim();
+    const cart = getCart();
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email) || cart.length === 0) return;
+    const firstName = (form.elements.namedItem("firstName") as HTMLInputElement | null)?.value || "";
+    const sig = email + "|" + cart.map((i) => `${i.slug}:${i.color}:${i.qty}:${i.price}`).join(",");
+    if (sig === lastSig) return;
+    lastSig = sig;
+    void fetch(withBase("/api/cart-reminder"), {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        cartId: getCartId(),
+        email,
+        firstName,
+        items: cart.map((i) => ({ slug: i.slug, qty: i.qty, price: i.price, color: i.colorLabel })),
+      }),
+      keepalive: true,
+    }).catch(() => undefined);
+  });
+
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     formError.hidden = true;
@@ -450,6 +475,7 @@ import { withBase } from "../lib/url";
       totals: { subtotal: sub, shippingFree, total },
       currency: SITE.currency,
       pageUrl: location.href,
+      cartId: getCartId(),
     };
 
     submitBtn.disabled = true;

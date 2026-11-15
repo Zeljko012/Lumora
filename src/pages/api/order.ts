@@ -5,6 +5,7 @@ import { fixCase, type SiteOrderPayload } from "../../../admin/src/lib/siteOrder
 import { SITE } from "../../data/site";
 import { sbInsert, sbRpc, supabaseConfigured, upsertContact } from "../../lib/supabase";
 import { sendPush } from "../../lib/push";
+import { cancelCartReminders } from "../../lib/cartReminder";
 
 export const prerender = false;
 
@@ -34,6 +35,8 @@ interface OrderPayload {
   totals: { subtotal: number; shippingFree: boolean; total: number };
   currency: string;
   pageUrl?: string;
+  /** ID korpe u pregledaču: otkazuje zakazane podsetnike za napuštenu korpu */
+  cartId?: string;
 }
 
 const json = (data: unknown, status = 200) =>
@@ -191,6 +194,12 @@ export const POST: APIRoute = async ({ request }) => {
 
   const err = validate(body);
   if (err) return json({ ok: false, error: err }, 400);
+
+  // kupac je završio porudžbinu: otkaži zakazane podsetnike za napuštenu korpu (ne sme da uspori porudžbinu)
+  await Promise.race([
+    cancelCartReminders({ cartId: typeof body.cartId === "string" ? body.cartId : "", email: body.customer.email }),
+    new Promise((r) => setTimeout(r, 3000)),
+  ]);
 
   const id = orderId();
   // kupci na telefonu ponekad ukucaju velika slova sa kvačicom usred reči (SurČin): ispravi pre upisa i mejlova

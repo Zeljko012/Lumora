@@ -49,6 +49,20 @@ function write(items: CartItem[]): void {
 
 const keyFor = (slug: string, color: string) => `${slug}::${color}`;
 
+/** Nasumičan ID ove korpe u pregledaču (za podsetnik o napuštenoj korpi). */
+export function getCartId(): string {
+  try {
+    let id = localStorage.getItem("lumora.cartId") || "";
+    if (!/^[A-Za-z0-9-]{8,64}$/.test(id)) {
+      id = crypto.randomUUID();
+      localStorage.setItem("lumora.cartId", id);
+    }
+    return id;
+  } catch {
+    return "";
+  }
+}
+
 export function getCart(): CartItem[] {
   return read();
 }
