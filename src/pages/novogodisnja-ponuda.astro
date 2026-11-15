@@ -3,7 +3,7 @@ import Base from "../layouts/Base.astro";
 import ProductCard from "../components/ProductCard.astro";
 import Breadcrumbs from "../components/Breadcrumbs.astro";
 import FaqBlock from "../components/FaqBlock.astro";
-import { SITE } from "../data/site";
+import { SITE, HOLIDAY_DEADLINES } from "../data/site";
 import { collectionProducts } from "../data/novo";
 import { money } from "../lib/format";
 import { withBase } from "../lib/url";
@@ -18,7 +18,7 @@ const faqs = [
   },
   {
     q: "Do kada da poručim da stigne pre praznika?",
-    a: `Što ranije. Komadi se štampaju po porudžbini, a pred praznike izrada traje ${SITE.deliveryTimeBusy}, pa porudžbinu ostavi bar dve nedelje pre datuma kada ti ukras treba.`,
+    a: `Što ranije. Komadi se štampaju po porudžbini, a pred praznike izrada traje ${SITE.deliveryTimeBusy}. Preporučujemo da poručiš ${HOLIDAY_DEADLINES.map((d) => `do ${d.orderBy} za isporuku do ${d.goal}`).join(", ")}.`,
   },
   {
     q: "Mogu li da izaberem boju?",
@@ -27,6 +27,14 @@ const faqs = [
   {
     q: "Da li su ovi ukrasi dobar poklon za Novu godinu?",
     a: "Jesu. Mali su, ne zauzimaju mnogo mesta i ostaju u domu i posle praznika, pa su dobar izbor za porodicu, prijatelje i kolege. Cene počinju od " + money(from) + ".",
+  },
+  {
+    q: "Mogu li ukrasi da stoje uz lampice i sveće?",
+    a: "Uz LED lampice mogu. Pošto su od plastike (PLA), ne stavljaj ih blizu otvorenog plamena ni jake toplote.",
+  },
+  {
+    q: "Da li mogu da ih koristim i sledeće godine?",
+    a: "Da. Čuvaj ih na suvom i briši suvom ili blago vlažnom krpom, pa mogu da ukrašavaju dom svake zime.",
   },
   {
     q: "Kako se plaća?",
@@ -54,8 +62,8 @@ const ld = {
 ---
 
 <Base
-  title="Novogodišnja ponuda – ukrasi i pokloni za praznike"
-  description={`Novogodišnji i božićni ukrasi za dom: patuljci, irvas i Merry Christmas natpis. 3D štampano u Srbiji, 7 boja, od ${money(from)}. Dostava po Srbiji.`}
+  title="Novogodišnja dekoracija za dom – patuljci i irvas"
+  description={`Novogodišnja i božićna dekoracija za dom: novogodišnji patuljci, irvas figura i Merry Christmas natpis. 3D štampano u Srbiji, 7 boja, od ${money(from)}.`}
   jsonLd={[ld]}
 >
   <div class="container">
@@ -63,14 +71,22 @@ const ld = {
     <header class="listing-head">
       <h1>Novogodišnja ponuda</h1>
       <p>
-        Novogodišnji i božićni ukrasi koji unose toplinu na komodu, policu ili sto: pleteni patuljci, irvas sa šalom
-        i natpis Merry Christmas sa medenjacima. Svaki komad se 3D štampa u Srbiji, po porudžbini, u boji koju
+        Novogodišnja i božićna dekoracija za dom: pleteni novogodišnji patuljci (vilenjaci), irvas figura sa šalom
+        i božićni natpis Merry Christmas sa medenjacima, za komodu, policu, sto ili uz jelku. Svaki komad se 3D štampa u Srbiji, po porudžbini, u boji koju
         izabereš. Cene od {money(from)}.
       </p>
       <p>
         Pred praznike izrada traje {SITE.deliveryTimeBusy}, pa porudžbinu ostavi na vreme.
       </p>
     </header>
+
+    <aside class="deadlines" aria-label="Rokovi za praznike">
+      <h2>Do kada poručiti</h2>
+      <ul>
+        {HOLIDAY_DEADLINES.map((d) => <li>Za isporuku do <b>{d.goal}</b>: poruči do <b>{d.orderBy}</b></li>)}
+      </ul>
+      <p>Preporučeni rokovi (izrada {SITE.deliveryTimeBusy} i dostava). Što ranije poručiš, to bolje.</p>
+    </aside>
 
     <div class="section">
       <div class="product-grid">
@@ -120,6 +136,29 @@ const ld = {
     color: var(--ink-soft);
     margin-top: 0.5rem;
     max-width: 62ch;
+  }
+  .deadlines {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 1rem 1.25rem;
+    max-width: 62ch;
+  }
+  .deadlines h2 {
+    font-size: var(--step-1);
+    margin: 0 0 0.4rem;
+  }
+  .deadlines ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 0.25rem;
+  }
+  .deadlines p {
+    margin: 0.6rem 0 0;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
   }
   .tips {
     margin-top: 3rem;

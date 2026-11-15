@@ -70,6 +70,13 @@ export function colorLabel(key: string): string {
   return PRODUCT_COLORS.find((c) => c.key === key)?.label ?? key;
 }
 
+/** Preporučeni poslednji datumi za porudžbinu pred praznike (izrada 5–7 radnih dana + dostava). Menjaj ovde: prikazuju se na stranici Novogodišnja ponuda i na tim proizvodima. */
+export const HOLIDAY_DEADLINES = [
+  { goal: "24. decembra", orderBy: "10. decembra" },
+  { goal: "31. decembra", orderBy: "18. decembra" },
+  { goal: "7. januara (Božić)", orderBy: "27. decembra" },
+] as const;
+
 export const NAV = [
   { label: "Vaze", href: "/kategorija/vaze" },
   { label: "Figure", href: "/kategorija/figure" },
