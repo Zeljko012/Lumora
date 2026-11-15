@@ -18,6 +18,12 @@ export interface ProductOption {
   label: string;
   price: number;
   pieces: number;
+  /** natpisi boje po komadu u padežu "Boja ...", npr. "velikog patuljka" */
+  pieceLabels?: string[];
+  /** kratka imena komada za porudžbinu, npr. "veliki", "srednji" */
+  pieceNames?: string[];
+  /** dodatak nazivu u korpi (npr. "par"); bez njega: za više komada naziv opcije */
+  cartName?: string;
 }
 
 export interface Product {
@@ -43,6 +49,8 @@ export interface Product {
   bestseller: boolean;
   /** opcije sa različitom cenom (pojedinačno / par); bez njih proizvod ima samo `price` */
   options?: ProductOption[];
+  /** posebna ponuda kojoj proizvod pripada (npr. "novogodisnja-ponuda") */
+  collection?: string;
   /** Originalni Shopify handle — samo za referencu */
   sourceHandle: string;
 }

@@ -198,6 +198,9 @@ const gallery = p.images.map((im) => ({
                         data-label={o.label}
                         data-price={o.price}
                         data-pieces={o.pieces}
+                        data-labels={JSON.stringify(o.pieceLabels ?? [])}
+                        data-names={JSON.stringify(o.pieceNames ?? [])}
+                        data-cartname={o.cartName ?? ""}
                         checked={i === 0}
                       />
                       <span class="opt__l">{o.label}{o.pieces > 1 ? ` (${o.pieces} komada)` : ""}</span>
@@ -231,20 +234,23 @@ const gallery = p.images.map((im) => ({
           </fieldset>
 
           {
-            p.options && (
-              <fieldset class="colors" data-colors2 hidden>
-                <legend>Boja druge figure: <b data-color2-name>{swatches[0]?.label}</b></legend>
-                <div class="colors__grid">
-                  {swatches.map((c, i) => (
-                    <label class="swatch" style={`--sw:${c.hex}`} title={c.label}>
-                      <input type="radio" name="color2" value={c.key} data-label={c.label} checked={i === 0} />
-                      <span aria-hidden="true" />
-                      <span class="visually-hidden">{c.label}</span>
-                    </label>
-                  ))}
-                </div>
-              </fieldset>
-            )
+            p.options &&
+              Array.from({ length: Math.max(...p.options.map((o) => o.pieces)) - 1 }, (_, k) => k + 2).map((n) => (
+                <fieldset class="colors" data-colors-n={n} hidden>
+                  <legend>
+                    <span data-color-n-legend>Boja</span>: <b data-color-n-name>{swatches[0]?.label}</b>
+                  </legend>
+                  <div class="colors__grid">
+                    {swatches.map((c, i) => (
+                      <label class="swatch" style={`--sw:${c.hex}`} title={c.label}>
+                        <input type="radio" name={`color${n}`} value={c.key} data-label={c.label} checked={i === 0} />
+                        <span aria-hidden="true" />
+                        <span class="visually-hidden">{c.label}</span>
+                      </label>
+                    ))}
+                  </div>
+                </fieldset>
+              ))
           }
 
           <div class="buy__row">
@@ -451,7 +457,7 @@ const gallery = p.images.map((im) => ({
   }
   .opts__grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr));
     gap: 0.6rem;
   }
   .opt {
@@ -723,23 +729,30 @@ const gallery = p.images.map((im) => ({
     const fmt = new Intl.NumberFormat("sr-RS", { maximumFractionDigits: 0 });
     const priceEl = document.querySelector<HTMLElement>("[data-price-now]");
     const optName = form.querySelector<HTMLElement>("[data-opt-name]");
-    const colors2 = form.querySelector<HTMLElement>("[data-colors2]");
-    const color2Name = form.querySelector<HTMLElement>("[data-color2-name]");
     const colorLegend = form.querySelector<HTMLElement>("[data-color-legend]");
     const selectedOption = () => form.querySelector<HTMLInputElement>('input[name="option"]:checked');
     const syncOption = () => {
       const o = selectedOption();
       if (!o) return;
-      const pair = Number(o.dataset.pieces || 1) > 1;
+      const pieces = Number(o.dataset.pieces || 1);
+      const labels: string[] = JSON.parse(o.dataset.labels || "[]");
+      const fallback = ["prve figure", "druge figure", "treće figure"];
+      const legendFor = (i: number) => (pieces > 1 || labels.length ? `Boja ${labels[i] ?? fallback[i] ?? ""}`.trim() : "Boja");
       if (optName) optName.textContent = o.dataset.label || "";
       if (priceEl) priceEl.textContent = `${fmt.format(Number(o.dataset.price))} RSD`;
-      if (colors2) colors2.hidden = !pair;
-      if (colorLegend) colorLegend.textContent = pair ? "Boja prve figure" : "Boja";
+      if (colorLegend) colorLegend.textContent = legendFor(0);
+      form.querySelectorAll<HTMLElement>("[data-colors-n]").forEach((fs) => {
+        const n = Number(fs.dataset.colorsN);
+        fs.hidden = n > pieces;
+        const lg = fs.querySelector<HTMLElement>("[data-color-n-legend]");
+        if (lg) lg.textContent = legendFor(n - 1);
+      });
     };
     form.querySelectorAll<HTMLInputElement>('input[name="option"]').forEach((r) => r.addEventListener("change", syncOption));
-    form.querySelectorAll<HTMLInputElement>('input[name="color2"]').forEach((r) => {
+    form.querySelectorAll<HTMLInputElement>('fieldset[data-colors-n] input[type="radio"]').forEach((r) => {
       r.addEventListener("change", () => {
-        if (color2Name && r.checked) color2Name.textContent = r.dataset.label || r.value;
+        const out = r.closest("fieldset")?.querySelector<HTMLElement>("[data-color-n-name]");
+        if (out && r.checked) out.textContent = r.dataset.label || r.value;
       });
     });
     syncOption();
@@ -762,13 +775,23 @@ const gallery = p.images.map((im) => ({
       const opt = selectedOption();
       if (opt) {
         price = Number(opt.dataset.price);
-        if (Number(opt.dataset.pieces || 1) > 1) {
-          const c2 = String(fd.get("color2") || color);
-          const c2Input = form.querySelector<HTMLInputElement>(`input[name="color2"][value="${c2}"]`);
-          const l2 = c2Input?.dataset.label || c2;
-          name = `${name} – ${(opt.dataset.label || "par").toLowerCase()}`;
-          cartColor = `par:${color}+${c2}`;
-          colorLabel = c2 === color ? `${colorLabel} (obe figure)` : `${colorLabel} + ${l2}`;
+        const pieces = Number(opt.dataset.pieces || 1);
+        const suffix = opt.dataset.cartname || (pieces > 1 ? (opt.dataset.label || "").toLowerCase() : "");
+        if (suffix) name = `${name} – ${suffix}`;
+        if (pieces > 1) {
+          const keys = [color];
+          const labels = [colorLabel];
+          for (let n = 2; n <= pieces; n++) {
+            const k = String(fd.get(`color${n}`) || color);
+            const inp = form.querySelector<HTMLInputElement>(`input[name="color${n}"][value="${k}"]`);
+            keys.push(k);
+            labels.push(inp?.dataset.label || k);
+          }
+          const names: string[] = JSON.parse(opt.dataset.names || "[]");
+          cartColor = `set:${keys.join("+")}`;
+          colorLabel = keys.every((k) => k === keys[0])
+            ? `${labels[0]} (${pieces === 2 ? "obe figure" : "sve figure"})`
+            : labels.map((l, i) => (names[i] ? `${names[i]}: ${l}` : l)).join(names.length ? ", " : " + ");
         }
       }
       addItem(

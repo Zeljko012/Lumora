@@ -2,6 +2,245 @@
   "_uputstvo": "NOVO U PONUDI. Svaki novi proizvod se dodaje na VRH ove liste (najnoviji prvi). Iskačući prozor (3 sekunde po ulasku na sajt, prikazuje najnoviji proizvod) i stranica /novo/ se ažuriraju sami. Za probu prozora dodaj ?novo=1 na adresu sajta. 'addedAt' je datum dodavanja. Slike idu u public/images/products/<slug>/1.webp (+ 1-lg.webp). Posle izmene pokreni: node scripts/sync-novo.mjs",
   "products": [
     {
+      "slug": "bozicni-patuljak-sa-soljom",
+      "name": "Božićni Patuljak sa Šoljom",
+      "category": "figure",
+      "price": 1200,
+      "compareAt": null,
+      "lead": "Patuljak u pletenoj kapi i džemperu, sa dugom bradom i šoljom sa pahuljom u ruci: topli novogodišnji ukras za komodu, policu ili sto.",
+      "forWhom": "Poklon za Novu godinu i Božić, za porodicu, prijatelje i kolege.",
+      "dimension": "",
+      "colors": [
+        "white",
+        "beige",
+        "gray",
+        "black",
+        "pink",
+        "green",
+        "red"
+      ],
+      "collection": "novogodisnja-ponuda",
+      "images": [
+        {
+          "src": "/images/products/bozicni-patuljak-sa-soljom/1.webp",
+          "alt": "Božićni patuljak sa šoljom, 3D štampan novogodišnji ukras u pletenoj kapi, Lumora"
+        },
+        {
+          "src": "/images/products/bozicni-patuljak-sa-soljom/2.webp",
+          "alt": "Božićni patuljak sa šoljom na stolu uz jelku i novogodišnje lampice, Lumora"
+        }
+      ],
+      "seoTitle": "Božićni Patuljak sa Šoljom – Novogodišnji Ukras | Lumora",
+      "seoDescription": "Božićni patuljak sa šoljom: 3D štampan novogodišnji ukras u 7 boja, poklon za Božić i Novu godinu. 1.200 RSD · dostava po Srbiji.",
+      "featured": false,
+      "bestseller": false,
+      "sourceHandle": "bozicni-patuljak-sa-soljom",
+      "addedAt": "2026-11-15",
+      "showInNovo": false,
+      "copy": {
+        "title": "Božićni patuljak sa šoljom – novogodišnji ukras",
+        "body": [
+          "Božićni patuljak sa šoljom je 3D štampana figura u pletenoj kapi i džemperu, sa dugom bradom i šoljom u ruci. Tekstura pletenja i brade hvata svetlo, pa deluje toplo i na polici pored lampica i na komodi uz jelku.",
+          "Patuljci su omiljen skandinavski novogodišnji ukras, a ovaj je i mali poklon koji se lako poklanja: za Božić, Novu godinu, kolege ili komšije. Štampa se po porudžbini u boji koju izabereš, a pred praznike izrada traje 5–7 radnih dana, pa poruči na vreme."
+        ],
+        "faq": {
+          "q": "Gde najbolje stoji božićni patuljak?",
+          "a": "Na komodi, polici, polici iznad kamina ili na stolu uz jelku, a lepo stoji i na radnom stolu. U beloj ili bež boji izgleda kao pleteni ukras, a u crnoj ili maslinastoj je kontrastniji."
+        }
+      }
+    },
+    {
+      "slug": "bozicni-irvas-sa-salom",
+      "name": "Božićni Irvas sa Šalom",
+      "category": "figure",
+      "price": 1200,
+      "compareAt": null,
+      "lead": "Irvas sa pletenom šalom i nasmejanim očima: nežna skulptura koja donosi zimsku atmosferu na komodu ili policu.",
+      "forWhom": "Poklon za Božić i Novu godinu, za one koji vole nežne, simpatične ukrase.",
+      "dimension": "",
+      "colors": [
+        "white",
+        "beige",
+        "gray",
+        "black",
+        "pink",
+        "green",
+        "red"
+      ],
+      "collection": "novogodisnja-ponuda",
+      "images": [
+        {
+          "src": "/images/products/bozicni-irvas-sa-salom/1.webp",
+          "alt": "Božićni irvas sa šalom, 3D štampana novogodišnja dekoracija, Lumora"
+        },
+        {
+          "src": "/images/products/bozicni-irvas-sa-salom/2.webp",
+          "alt": "Božićni irvas sa šalom na drvenom stolu uz novogodišnju jelku, Lumora"
+        }
+      ],
+      "seoTitle": "Božićni Irvas sa Šalom – Novogodišnja Dekoracija | Lumora",
+      "seoDescription": "Božićni irvas sa šalom: 3D štampana novogodišnja dekoracija u 7 boja, topao poklon za praznike. 1.200 RSD · dostava po Srbiji.",
+      "featured": false,
+      "bestseller": false,
+      "sourceHandle": "bozicni-irvas-sa-salom",
+      "addedAt": "2026-11-15",
+      "showInNovo": false,
+      "copy": {
+        "title": "Božićni irvas sa šalom – novogodišnja dekoracija",
+        "body": [
+          "Božićni irvas sa šalom je mekana, simpatična figura sa zatvorenim, nasmejanim očima i rebrastom šalom. Rogovi i rebra hvataju svetlost lampica, pa lepo izgleda uz jelku, na komodi ili na polici.",
+          "Zimska tema ostaje lepa i posle praznika, pa irvas može da ostane na polici cele zime. Dobar je poklon za Božić i Novu godinu. Štampa se po porudžbini u boji koju izabereš, a pred praznike izrada traje 5–7 radnih dana."
+        ],
+        "faq": {
+          "q": "Da li je irvas samo za Božić?",
+          "a": "Ne. Mekana forma sa šalom lepo se uklapa u zimsku dekoraciju cele sezone i može da ostane na polici i posle praznika."
+        }
+      }
+    },
+    {
+      "slug": "bozicni-patuljci-trio",
+      "name": "Božićni Patuljci Trio",
+      "category": "figure",
+      "price": 1200,
+      "compareAt": null,
+      "lead": "Tri pletena patuljka u tri veličine: poruči jednog, dva ili sva tri i za svakog izaberi boju.",
+      "forWhom": "Poklon za Novu godinu i Božić, za dekoraciju stola, komode i police.",
+      "dimension": "",
+      "colors": [
+        "white",
+        "beige",
+        "gray",
+        "black",
+        "pink",
+        "green",
+        "red"
+      ],
+      "options": [
+        {
+          "id": "najveci",
+          "label": "Najveći",
+          "price": 1200,
+          "pieces": 1,
+          "pieceLabels": [
+            "najvećeg patuljka"
+          ],
+          "pieceNames": [
+            "najveći"
+          ],
+          "cartName": "najveći"
+        },
+        {
+          "id": "veliki-srednji",
+          "label": "Veliki + srednji",
+          "price": 1800,
+          "pieces": 2,
+          "pieceLabels": [
+            "velikog patuljka",
+            "srednjeg patuljka"
+          ],
+          "pieceNames": [
+            "veliki",
+            "srednji"
+          ],
+          "cartName": "veliki + srednji"
+        },
+        {
+          "id": "sva-tri",
+          "label": "Sva tri",
+          "price": 2000,
+          "pieces": 3,
+          "pieceLabels": [
+            "najvećeg patuljka",
+            "velikog patuljka",
+            "srednjeg patuljka"
+          ],
+          "pieceNames": [
+            "najveći",
+            "veliki",
+            "srednji"
+          ],
+          "cartName": "sva tri"
+        }
+      ],
+      "collection": "novogodisnja-ponuda",
+      "images": [
+        {
+          "src": "/images/products/bozicni-patuljci-trio/1.webp",
+          "alt": "Tri božićna patuljka u tri veličine, 3D štampani novogodišnji ukras, Lumora"
+        },
+        {
+          "src": "/images/products/bozicni-patuljci-trio/2.webp",
+          "alt": "Božićni patuljci trio na stolu uz novogodišnju jelku i lampice, Lumora"
+        }
+      ],
+      "seoTitle": "Božićni Patuljci Trio – Novogodišnji Ukras | Lumora",
+      "seoDescription": "Tri božićna patuljka u tri veličine: jedan 1.200 RSD, dva 1.800 RSD, sva tri 2.000 RSD. 7 boja, novogodišnji ukras, dostava po Srbiji.",
+      "featured": false,
+      "bestseller": false,
+      "sourceHandle": "bozicni-patuljci-trio",
+      "addedAt": "2026-11-15",
+      "showInNovo": false,
+      "copy": {
+        "title": "Božićni patuljci trio – novogodišnji ukras",
+        "body": [
+          "Tri patuljka u pletenim kapama i dugim bradama, u tri veličine, čine malu porodicu za policu, komodu ili sto uz jelku. Možeš da poručiš samo najvećeg, velikog i srednjeg ili sva tri, a boju biraš za svakog posebno.",
+          "Različite visine prave lepu kompoziciju: složeni u nizu izgledaju kao porodica, a u različitim bojama daju ton celoj polici. Dobar su izbor za novogodišnji poklon i dekoraciju stola, a pred praznike izrada traje 5–7 radnih dana."
+        ],
+        "faq": {
+          "q": "Koje opcije mogu da izaberem za Božićne patuljke?",
+          "a": "Najvećeg patuljka za 1.200 RSD, velikog i srednjeg za 1.800 RSD ili sva tri za 2.000 RSD. Boju biraš za svakog patuljka posebno."
+        }
+      }
+    },
+    {
+      "slug": "merry-christmas-natpis-medenjaci",
+      "name": "Merry Christmas Natpis sa Medenjacima",
+      "category": "figure",
+      "price": 1400,
+      "compareAt": null,
+      "lead": "Natpis „Merry Christmas“ sa dva medenjaka sa strane: praznična dekoracija za komodu, policu ili sto.",
+      "forWhom": "Poklon za Božić i Novu godinu, za one koji vole bajkoviti Božić i medenjake.",
+      "dimension": "",
+      "colors": [
+        "white",
+        "beige",
+        "gray",
+        "black",
+        "pink",
+        "green",
+        "red"
+      ],
+      "collection": "novogodisnja-ponuda",
+      "images": [
+        {
+          "src": "/images/products/merry-christmas-natpis-medenjaci/1.webp",
+          "alt": "Merry Christmas natpis sa dva medenjaka, 3D štampana božićna dekoracija, Lumora"
+        },
+        {
+          "src": "/images/products/merry-christmas-natpis-medenjaci/2.webp",
+          "alt": "Merry Christmas natpis sa medenjacima na stolu uz jelku, Lumora"
+        }
+      ],
+      "seoTitle": "Merry Christmas Natpis sa Medenjacima – Ukras | Lumora",
+      "seoDescription": "Merry Christmas natpis sa medenjacima: 3D štampana božićna dekoracija u 7 boja za komodu ili sto. 1.400 RSD · dostava po Srbiji.",
+      "featured": false,
+      "bestseller": false,
+      "sourceHandle": "merry-christmas-natpis-medenjaci",
+      "addedAt": "2026-11-15",
+      "showInNovo": false,
+      "copy": {
+        "title": "Merry Christmas natpis sa medenjacima – ukras",
+        "body": [
+          "Natpis „Merry Christmas“ u kaligrafskom pismu, sa dva medenjaka sa strane, jedna je celina koja stoji na ravnoj površini. Lepo ide na komodu, policu iznad kamina ili u sredinu stola, uz lampice i jelku.",
+          "Poklon je za one koji vole bajkoviti Božić i medenjake, a kao dekoracija radi sama, bez dodatnih ukrasa. Štampa se po porudžbini u boji koju izabereš, a pred praznike izrada traje 5–7 radnih dana."
+        ],
+        "faq": {
+          "q": "Gde da postavim Merry Christmas natpis?",
+          "a": "Na ravnu površinu: komodu, policu, policu iznad kamina ili sto. Medenjaci su deo istog komada, pa ne treba ništa da se slaže."
+        }
+      }
+    },
+    {
       "slug": "kucni-cuvar-maca",
       "name": "Kućni Čuvar Maca",
       "category": "figure",

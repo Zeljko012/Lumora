@@ -1,5 +1,5 @@
 {
- "version": 197153617,
+ "version": 8847184,
  "products": [
   {
    "slug": "arch-vaza",
@@ -1295,6 +1295,154 @@
     }
    ],
    "image": "images/products/kucni-cuvar-maca/1.webp"
+  },
+  {
+   "slug": "bozicni-patuljak-sa-soljom",
+   "name": "Božićni Patuljak sa Šoljom",
+   "category": "figure",
+   "price": 1200,
+   "colors": [
+    {
+     "key": "white",
+     "label": "bela"
+    },
+    {
+     "key": "beige",
+     "label": "bež"
+    },
+    {
+     "key": "gray",
+     "label": "siva"
+    },
+    {
+     "key": "black",
+     "label": "crna"
+    },
+    {
+     "key": "pink",
+     "label": "roze"
+    },
+    {
+     "key": "green",
+     "label": "maslinasto zelena"
+    },
+    {
+     "key": "red",
+     "label": "crvena"
+    }
+   ],
+   "image": "images/products/bozicni-patuljak-sa-soljom/1.webp"
+  },
+  {
+   "slug": "bozicni-irvas-sa-salom",
+   "name": "Božićni Irvas sa Šalom",
+   "category": "figure",
+   "price": 1200,
+   "colors": [
+    {
+     "key": "white",
+     "label": "bela"
+    },
+    {
+     "key": "beige",
+     "label": "bež"
+    },
+    {
+     "key": "gray",
+     "label": "siva"
+    },
+    {
+     "key": "black",
+     "label": "crna"
+    },
+    {
+     "key": "pink",
+     "label": "roze"
+    },
+    {
+     "key": "green",
+     "label": "maslinasto zelena"
+    },
+    {
+     "key": "red",
+     "label": "crvena"
+    }
+   ],
+   "image": "images/products/bozicni-irvas-sa-salom/1.webp"
+  },
+  {
+   "slug": "bozicni-patuljci-trio",
+   "name": "Božićni Patuljci Trio",
+   "category": "figure",
+   "price": 1200,
+   "colors": [
+    {
+     "key": "white",
+     "label": "bela"
+    },
+    {
+     "key": "beige",
+     "label": "bež"
+    },
+    {
+     "key": "gray",
+     "label": "siva"
+    },
+    {
+     "key": "black",
+     "label": "crna"
+    },
+    {
+     "key": "pink",
+     "label": "roze"
+    },
+    {
+     "key": "green",
+     "label": "maslinasto zelena"
+    },
+    {
+     "key": "red",
+     "label": "crvena"
+    }
+   ],
+   "image": "images/products/bozicni-patuljci-trio/1.webp"
+  },
+  {
+   "slug": "merry-christmas-natpis-medenjaci",
+   "name": "Merry Christmas Natpis sa Medenjacima",
+   "category": "figure",
+   "price": 1400,
+   "colors": [
+    {
+     "key": "white",
+     "label": "bela"
+    },
+    {
+     "key": "beige",
+     "label": "bež"
+    },
+    {
+     "key": "gray",
+     "label": "siva"
+    },
+    {
+     "key": "black",
+     "label": "crna"
+    },
+    {
+     "key": "pink",
+     "label": "roze"
+    },
+    {
+     "key": "green",
+     "label": "maslinasto zelena"
+    },
+    {
+     "key": "red",
+     "label": "crvena"
+    }
+   ],
+   "image": "images/products/merry-christmas-natpis-medenjaci/1.webp"
   }
  ]
 }

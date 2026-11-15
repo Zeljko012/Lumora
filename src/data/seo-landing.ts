@@ -214,6 +214,10 @@ export const EXTRA_GIFT_PAGES: GiftPage[] = [
     ],
     products: [
       "home-set",
+      "bozicni-patuljak-sa-soljom",
+      "bozicni-irvas-sa-salom",
+      "bozicni-patuljci-trio",
+      "merry-christmas-natpis-medenjaci",
       "hvatac-svetlosti-svecnjak",
       "spiralni-svecnjak",
       "rebrasti-svecnjak",
@@ -359,6 +363,10 @@ export const EXTRA_GIFT_PAGES: GiftPage[] = [
     ],
     products: [
       "home-set",
+      "bozicni-patuljak-sa-soljom",
+      "bozicni-irvas-sa-salom",
+      "bozicni-patuljci-trio",
+      "merry-christmas-natpis-medenjaci",
       "hvatac-svetlosti-svecnjak",
       "spiralni-svecnjak",
       "rebrasti-svecnjak",

@@ -1,0 +1,158 @@
+---
+import Base from "../layouts/Base.astro";
+import ProductCard from "../components/ProductCard.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import FaqBlock from "../components/FaqBlock.astro";
+import { SITE } from "../data/site";
+import { collectionProducts } from "../data/novo";
+import { money } from "../lib/format";
+import { withBase } from "../lib/url";
+
+const items = collectionProducts("novogodisnja-ponuda");
+const from = Math.min(...items.map((p) => p.price));
+
+const faqs = [
+  {
+    q: "Šta ulazi u novogodišnju ponudu?",
+    a: "Novogodišnji i božićni ukrasi štampani u 3D-u: božićni patuljci, irvas sa šalom i natpis Merry Christmas sa medenjacima. Sve se štampa po porudžbini, u 7 boja.",
+  },
+  {
+    q: "Do kada da poručim da stigne pre praznika?",
+    a: `Što ranije. Komadi se štampaju po porudžbini, a pred praznike izrada traje ${SITE.deliveryTimeBusy}, pa porudžbinu ostavi bar dve nedelje pre datuma kada ti ukras treba.`,
+  },
+  {
+    q: "Mogu li da izaberem boju?",
+    a: "Da. Svaki komad je dostupan u svih 7 boja, a kod Božićnih patuljaka biraš boju za svakog patuljka posebno.",
+  },
+  {
+    q: "Da li su ovi ukrasi dobar poklon za Novu godinu?",
+    a: "Jesu. Mali su, ne zauzimaju mnogo mesta i ostaju u domu i posle praznika, pa su dobar izbor za porodicu, prijatelje i kolege. Cene počinju od " + money(from) + ".",
+  },
+  {
+    q: "Kako se plaća?",
+    a: "Pouzećem, gotovinom kuriru pri preuzimanju. Za porudžbine preko " + money(SITE.freeShippingThreshold) + " dostava je besplatna.",
+  },
+];
+
+const ld = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: "Novogodišnja ponuda",
+  url: new URL("/novogodisnja-ponuda", SITE.url).href,
+  inLanguage: "sr-RS",
+  mainEntity: {
+    "@type": "ItemList",
+    numberOfItems: items.length,
+    itemListElement: items.map((p, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      url: new URL(`/proizvod/${p.slug}`, SITE.url).href,
+      name: p.name,
+    })),
+  },
+};
+---
+
+<Base
+  title="Novogodišnja ponuda – ukrasi i pokloni za praznike"
+  description={`Novogodišnji i božićni ukrasi za dom: patuljci, irvas i Merry Christmas natpis. 3D štampano u Srbiji, 7 boja, od ${money(from)}. Dostava po Srbiji.`}
+  jsonLd={[ld]}
+>
+  <div class="container">
+    <Breadcrumbs items={[{ label: "Novogodišnja ponuda" }]} />
+    <header class="listing-head">
+      <h1>Novogodišnja ponuda</h1>
+      <p>
+        Novogodišnji i božićni ukrasi koji unose toplinu na komodu, policu ili sto: pleteni patuljci, irvas sa šalom
+        i natpis Merry Christmas sa medenjacima. Svaki komad se 3D štampa u Srbiji, po porudžbini, u boji koju
+        izabereš. Cene od {money(from)}.
+      </p>
+      <p>
+        Pred praznike izrada traje {SITE.deliveryTimeBusy}, pa porudžbinu ostavi na vreme.
+      </p>
+    </header>
+
+    <div class="section">
+      <div class="product-grid">
+        {items.map((p, i) => <ProductCard product={p} eager={i < 4} />)}
+      </div>
+    </div>
+
+    <section class="tips">
+      <h2>Novogodišnja dekoracija koja ostaje i posle praznika</h2>
+      <p>
+        Sitni ukrasi poput patuljaka i irvasa lako menjaju utisak cele police: dovoljno je nekoliko komada uz jelku i
+        lampice da prostor dobije prazničnu atmosferu. Pošto su štampani u boji koju biraš, mogu da prate tvoj stil,
+        od svetlih bež tonova do crnih i maslinastih.
+      </p>
+      <p>
+        Kao novogodišnji poklon rade dobro jer su mali, ne zahtevaju održavanje i mogu da ostanu u domu cele zime.
+        Za više ideja pogledaj <a href={withBase("/pokloni/pokloni-za-novu-godinu")}>poklone za Novu godinu</a> i
+        <a href={withBase("/pokloni/pokloni-za-bozic")}>poklone za Božić</a>.
+      </p>
+    </section>
+
+    <div class="faq-wrap">
+      <FaqBlock faqs={faqs} />
+    </div>
+
+    <nav class="also" aria-label="Još ideja">
+      <h2>Još ideja</h2>
+      <ul>
+        <li><a href={withBase("/pokloni/pokloni-za-novu-godinu")}>Pokloni za Novu godinu</a></li>
+        <li><a href={withBase("/pokloni/pokloni-za-bozic")}>Pokloni za Božić</a></li>
+        <li><a href={withBase("/kategorija/figure")}>Dekorativne figure</a></li>
+        <li><a href={withBase("/kategorija/svecnjaci")}>Svećnjaci</a></li>
+        <li><a href={withBase("/novo")}>Novo u ponudi</a></li>
+      </ul>
+    </nav>
+  </div>
+</Base>
+
+<style>
+  .listing-head {
+    padding-block: 0.5rem 1.5rem;
+  }
+  .listing-head h1 {
+    font-size: var(--step-3);
+  }
+  .listing-head p {
+    color: var(--ink-soft);
+    margin-top: 0.5rem;
+    max-width: 62ch;
+  }
+  .tips {
+    margin-top: 3rem;
+    max-width: 68ch;
+  }
+  .tips h2 {
+    font-size: var(--step-2);
+  }
+  .tips p {
+    margin-top: 0.75rem;
+    color: var(--ink-soft);
+  }
+  .tips a,
+  .also a {
+    color: var(--accent);
+  }
+  .faq-wrap {
+    margin-top: 3rem;
+    max-width: 68ch;
+  }
+  .also {
+    margin-top: 3rem;
+    padding-bottom: 2rem;
+  }
+  .also h2 {
+    font-size: var(--step-1);
+  }
+  .also ul {
+    list-style: none;
+    padding: 0;
+    margin: 0.75rem 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
+  }
+</style>

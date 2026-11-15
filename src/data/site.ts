@@ -76,6 +76,7 @@ export const NAV = [
   { label: "Svećnjaci", href: "/kategorija/svecnjaci" },
   { label: "Dom", href: "/kategorija/dom" },
   { label: "Novo", href: "/novo" },
+  { label: "Novogodišnja ponuda", href: "/novogodisnja-ponuda" },
   { label: "Pokloni", href: "/pokloni" },
   { label: "O nama", href: "/o-nama" },
   { label: "Kontakt", href: "/kontakt" },
