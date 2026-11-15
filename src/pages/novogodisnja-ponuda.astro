@@ -3,7 +3,7 @@ import Base from "../layouts/Base.astro";
 import ProductCard from "../components/ProductCard.astro";
 import Breadcrumbs from "../components/Breadcrumbs.astro";
 import FaqBlock from "../components/FaqBlock.astro";
-import { SITE, HOLIDAY_DEADLINES } from "../data/site";
+import { SITE } from "../data/site";
 import { collectionProducts } from "../data/novo";
 import { money } from "../lib/format";
 import { withBase } from "../lib/url";
@@ -18,7 +18,7 @@ const faqs = [
   },
   {
     q: "Do kada da poručim da stigne pre praznika?",
-    a: `Što ranije. Komadi se štampaju po porudžbini, a pred praznike izrada traje ${SITE.deliveryTimeBusy}. Preporučujemo da poručiš ${HOLIDAY_DEADLINES.map((d) => `do ${d.orderBy} za isporuku do ${d.goal}`).join(", ")}.`,
+    a: `Komadi se štampaju po porudžbini, a pred praznike izrada traje ${SITE.deliveryTimeBusy}. Poruči čim ti se ukras dopadne, pa će stići na vreme za praznike.`,
   },
   {
     q: "Mogu li da izaberem boju?",
@@ -76,17 +76,9 @@ const ld = {
         izabereš. Cene od {money(from)}.
       </p>
       <p>
-        Pred praznike izrada traje {SITE.deliveryTimeBusy}, pa porudžbinu ostavi na vreme.
+        Pred praznike izrada traje {SITE.deliveryTimeBusy}.
       </p>
     </header>
-
-    <aside class="deadlines" aria-label="Rokovi za praznike">
-      <h2>Do kada poručiti</h2>
-      <ul>
-        {HOLIDAY_DEADLINES.map((d) => <li>Za isporuku do <b>{d.goal}</b>: poruči do <b>{d.orderBy}</b></li>)}
-      </ul>
-      <p>Preporučeni rokovi (izrada {SITE.deliveryTimeBusy} i dostava). Što ranije poručiš, to bolje.</p>
-    </aside>
 
     <div class="section">
       <div class="product-grid">
@@ -136,29 +128,6 @@ const ld = {
     color: var(--ink-soft);
     margin-top: 0.5rem;
     max-width: 62ch;
-  }
-  .deadlines {
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    padding: 1rem 1.25rem;
-    max-width: 62ch;
-  }
-  .deadlines h2 {
-    font-size: var(--step-1);
-    margin: 0 0 0.4rem;
-  }
-  .deadlines ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: grid;
-    gap: 0.25rem;
-  }
-  .deadlines p {
-    margin: 0.6rem 0 0;
-    font-size: 0.85rem;
-    color: var(--ink-soft);
   }
   .tips {
     margin-top: 3rem;

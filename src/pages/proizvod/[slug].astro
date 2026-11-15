@@ -2,7 +2,7 @@
 import Base from "../../layouts/Base.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import ProductCard from "../../components/ProductCard.astro";
-import { SITE, PRODUCT_COLORS, HOLIDAY_DEADLINES } from "../../data/site";
+import { SITE, PRODUCT_COLORS } from "../../data/site";
 import {
   PRODUCTS,
   getProduct,
@@ -267,13 +267,6 @@ const gallery = p.images.map((im) => ({
           <li>Besplatna dostava preko {money(SITE.freeShippingThreshold)}</li>
           <li>Izrada u Srbiji, {SITE.deliveryTime}</li>
           <li>{SITE.paymentNote}</li>
-          {
-            p.collection === "novogodisnja-ponuda" && (
-              <li>
-                Za praznike poruči na vreme: {HOLIDAY_DEADLINES.map((d) => `do ${d.orderBy} (isporuka do ${d.goal})`).join(", ")}.
-              </li>
-            )
-          }
           <li>Materijal: PLA, plastika biljnog porekla</li>
         </ul>
 
