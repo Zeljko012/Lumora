@@ -32,6 +32,7 @@ const pageTitle = copy?.title ?? p.seoTitle;
 const faqs = [
   ...(copy ? [copy.faq].flat() : []),
   CATEGORY_FAQ[p.category],
+  ...(p.priceNote ? [{ q: "Da li se cena odnosi na jedan komad?", a: p.priceNote.replace(/^Napomena:\s*/, "").replace(/^./, (c) => c.toUpperCase()) }] : []),
   {
     q: "Koliko traje izrada i dostava?",
     a: `Komad se štampa po porudžbini, izrada i slanje obično traju ${SITE.deliveryTime}, a pred praznike ${SITE.deliveryTimeBusy}. Dostava kurirskom službom po celoj Srbiji, plaćanje pouzećem.`,
@@ -307,6 +308,7 @@ const gallery = p.images.map((im) => ({
           Lumora {p.name} nastaje preciznom 3D štampom, sloj po sloj, tek kad poručite, u boji
           koju izaberete.
         </p>
+        {p.priceNote && <p class="pnote">{p.priceNote}</p>}
       </div>
       <div class="desc__col">
         <h2>Zašto Lumora</h2>
@@ -642,6 +644,12 @@ const gallery = p.images.map((im) => ({
     grid-template-columns: 1.3fr 0.7fr;
     gap: clamp(1.5rem, 4vw, 3rem);
     border-top: 1px solid var(--line);
+  }
+  .pnote {
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    border-top: 1px solid var(--line);
+    padding-top: 0.75rem;
   }
   .desc h2 {
     font-size: var(--step-2);

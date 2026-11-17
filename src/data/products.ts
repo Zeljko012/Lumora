@@ -49,6 +49,8 @@ export interface Product {
   bestseller: boolean;
   /** opcije sa različitom cenom (pojedinačno / par); bez njih proizvod ima samo `price` */
   options?: ProductOption[];
+  /** napomena na dnu stranice proizvoda (npr. da cena važi za jedan komad) */
+  priceNote?: string;
   /** posebna ponuda kojoj proizvod pripada (npr. "novogodisnja-ponuda") */
   collection?: string;
   /** Originalni Shopify handle — samo za referencu */

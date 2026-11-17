@@ -126,7 +126,8 @@
             "a": "Stoji na ravnoj osnovi, pa je stabilan na ravnoj površini. Postavi ga na policu, komodu ili sto, dalje od ivice."
           }
         ]
-      }
+      },
+      "priceNote": "Napomena: cena važi za jednu figuru, u izabranoj boji."
     },
     {
       "slug": "masna-ukras-za-jelku",
@@ -180,7 +181,8 @@
             "a": "Da. Svaki komad se naručuje u jednoj boji, a za više boja dodaj više komada u korpu, svaki u željenoj boji."
           }
         ]
-      }
+      },
+      "priceNote": "Napomena: cena važi za jednu mašnu, u izabranoj boji."
     },
     {
       "slug": "pletene-zvezde-ukras-za-jelku",
@@ -234,7 +236,8 @@
             "a": "Da. Svaka zvezda se naručuje u jednoj boji, a za više boja dodaj više komada u korpu, svaki u željenoj boji."
           }
         ]
-      }
+      },
+      "priceNote": "Napomena: cena važi za jednu zvezdu, u izabranoj boji. Na fotografijama je prikazano više komada u različitim bojama, samo radi primera."
     },
     {
       "slug": "spiralna-jelka",
@@ -288,7 +291,8 @@
             "a": "Stoji na ravnoj osnovi, pa je stabilna na ravnoj površini. Postavi je na sto ili komodu, dalje od ivice."
           }
         ]
-      }
+      },
+      "priceNote": "Napomena: cena važi za jednu jelku, u izabranoj boji. Na fotografijama su prikazane dve jelke različite veličine, samo radi primera."
     },
     {
       "slug": "kugla-sa-porukom",
@@ -346,7 +350,8 @@
             "a": "Da. Zbog poruke unutra je to romantičan i lični poklon za Novu godinu, ali se jednako lepo poklanja roditeljima, prijateljima i kolegama."
           }
         ]
-      }
+      },
+      "priceNote": "Napomena: cena važi za jednu kuglu, u izabranoj boji. Na fotografijama je prikazano više komada u različitim bojama, samo radi primera."
     },
     {
       "slug": "pletena-kugla-ukras-za-jelku",
@@ -400,7 +405,8 @@
             "a": "Kugla se naručuje pojedinačno, u jednoj boji. Za više kugli dodaj više komada u korpu, u istim ili različitim bojama."
           }
         ]
-      }
+      },
+      "priceNote": "Napomena: cena važi za jednu kuglu, u izabranoj boji. Na fotografijama je prikazano više komada u različitim bojama, samo radi primera."
     },
     {
       "slug": "venac-od-masni",
@@ -454,7 +460,8 @@
             "a": "Na zidu, prozoru, ogledalu ili polici, jer je namenjen unutrašnjoj dekoraciji. Lepo izgleda i uz jelku."
           }
         ]
-      }
+      },
+      "priceNote": "Napomena: cena važi za jedan venac, u izabranoj boji."
     },
     {
       "slug": "jelka-od-rebrastih-kugli",
@@ -508,7 +515,8 @@
             "a": "Da. Dodaj više komada u korpu, svaki u željenoj boji. Za porudžbine preko 6.000 RSD dostava je besplatna."
           }
         ]
-      }
+      },
+      "priceNote": "Napomena: cena važi za jednu jelku, u izabranoj boji."
     },
     {
       "slug": "irvas-i-jelka-svecnjak",
@@ -562,7 +570,8 @@
             "a": "Ne. Svećnjak je namenjen isključivo LED svećici, jer je od plastike (PLA) i ne sme da se koristi sa otvorenim plamenom."
           }
         ]
-      }
+      },
+      "priceNote": "Napomena: cena važi za jedan svećnjak sa LED svećicom, u izabranoj boji."
     },
     {
       "slug": "kucica-sisarka-ukras",
@@ -616,7 +625,8 @@
             "a": "Preko kanapa za kačenje: okači ga na granu jelke ili kuku na prozoru. Drži ga dalje od izvora toplote."
           }
         ]
-      }
+      },
+      "priceNote": "Napomena: cena važi za jednu kućicu sa LED svećicom, u izabranoj boji. Na fotografijama su prikazane dve kućice u različitim bojama, samo radi primera."
     },
     {
       "slug": "bozicni-patuljak-sa-soljom",
