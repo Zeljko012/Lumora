@@ -10,8 +10,8 @@ export interface ProductCopy {
   title: string;
   /** dva kratka pasusa: gde stoji, uz šta ide, u kojoj boji */
   body: [string, string];
-  /** jedno pitanje specifično za proizvod */
-  faq: { q: string; a: string };
+  /** jedno ili više pitanja specifičnih za proizvod */
+  faq: { q: string; a: string } | { q: string; a: string }[];
 }
 
 const BASE_COPY: Record<string, ProductCopy> = {

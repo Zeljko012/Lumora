@@ -30,7 +30,7 @@ const pageTitle = copy?.title ?? p.seoTitle;
 
 // pitanja: jedno specifično za proizvod, jedno za kategoriju i dva opšta
 const faqs = [
-  ...(copy ? [copy.faq] : []),
+  ...(copy ? [copy.faq].flat() : []),
   CATEGORY_FAQ[p.category],
   {
     q: "Koliko traje izrada i dostava?",
