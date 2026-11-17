@@ -14,7 +14,7 @@ const from = Math.min(...items.map((p) => p.price));
 const faqs = [
   {
     q: "Šta ulazi u novogodišnju ponudu?",
-    a: "Novogodišnji i božićni ukrasi štampani u 3D-u: božićni patuljci, irvas sa šalom i natpis Merry Christmas sa medenjacima. Sve se štampa po porudžbini, u 7 boja.",
+    a: "Novogodišnji i božićni ukrasi štampani u 3D-u: patuljci i Deda Mraz figure, irvas, mašne, pletene kugle i zvezde za jelku, venac od mašni, dekorativne jelke, natpis Merry Christmas i svećnjak sa LED svećicom. Sve se štampa po porudžbini, u 7 boja.",
   },
   {
     q: "Do kada da poručim da stigne pre praznika?",
@@ -22,15 +22,19 @@ const faqs = [
   },
   {
     q: "Mogu li da izaberem boju?",
-    a: "Da. Svaki komad je dostupan u svih 7 boja, a kod Božićnih patuljaka biraš boju za svakog patuljka posebno.",
+    a: "Da. Svaki komad je dostupan u svih 7 boja, a kod setova (Božićni patuljci, Mali Deda Mraz Trio) biraš boju za svakog patuljka ili Deda Mraza posebno.",
   },
   {
     q: "Da li su ovi ukrasi dobar poklon za Novu godinu?",
     a: "Jesu. Mali su, ne zauzimaju mnogo mesta i ostaju u domu i posle praznika, pa su dobar izbor za porodicu, prijatelje i kolege. Cene počinju od " + money(from) + ".",
   },
   {
+    q: "Koji novogodišnji ukras je poklon sa porukom?",
+    a: "Kugla koja se otvara: unutra staviš porukicu za voljenu osobu, a ona je okači na jelku. Nije samo ukras nego i poklon sa značenjem.",
+  },
+  {
     q: "Mogu li ukrasi da stoje uz lampice i sveće?",
-    a: "Uz LED lampice mogu. Pošto su od plastike (PLA), ne stavljaj ih blizu otvorenog plamena ni jake toplote.",
+    a: "Uz LED lampice mogu. Pošto su od plastike (PLA), ne stavljaj ih blizu otvorenog plamena ni jake toplote. Svećnjak sa irvasom i šišarka kućica koriste isključivo LED svećice.",
   },
   {
     q: "Da li mogu da ih koristim i sledeće godine?",
@@ -62,8 +66,8 @@ const ld = {
 ---
 
 <Base
-  title="Novogodišnja dekoracija za dom – patuljci i irvas"
-  description={`Novogodišnja i božićna dekoracija za dom: novogodišnji patuljci, irvas figura i Merry Christmas natpis. 3D štampano u Srbiji, 7 boja, od ${money(from)}.`}
+  title="Novogodišnja dekoracija za dom – ukrasi za jelku i figure"
+  description={`Novogodišnja i božićna dekoracija za dom: ukrasi za jelku, patuljci, Deda Mraz figure, venac od mašni i svećnjaci sa LED svećicom. 3D štampano u Srbiji, 7 boja, od ${money(from)}.`}
   jsonLd={[ld]}
 >
   <div class="container">
@@ -71,9 +75,9 @@ const ld = {
     <header class="listing-head">
       <h1>Novogodišnja ponuda</h1>
       <p>
-        Novogodišnja i božićna dekoracija za dom: pleteni novogodišnji patuljci (vilenjaci), irvas figura sa šalom
-        i božićni natpis Merry Christmas sa medenjacima, za komodu, policu, sto ili uz jelku. Svaki komad se 3D štampa u Srbiji, po porudžbini, u boji koju
-        izabereš. Cene od {money(from)}.
+        Novogodišnja i božićna dekoracija za dom: ukrasi za jelku (mašne, pletene kugle i zvezde, kugla koja se otvara
+        sa porukom), patuljci i mali Deda Mraz, irvas, venac od mašni, dekorativne jelke i svećnjaci sa LED svećicom.
+        Svaki komad se 3D štampa u Srbiji, po porudžbini, u boji koju izabereš. Cene od {money(from)}.
       </p>
       <p>
         Pred praznike izrada traje {SITE.deliveryTimeBusy}, pa porudžbinu ostavi na vreme.

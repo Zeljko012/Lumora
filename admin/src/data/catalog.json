@@ -1,5 +1,5 @@
 {
- "version": 8847184,
+ "version": 108749045,
  "products": [
   {
    "slug": "arch-vaza",
@@ -1443,6 +1443,413 @@
     }
    ],
    "image": "images/products/merry-christmas-natpis-medenjaci/1.webp"
+  },
+  {
+   "slug": "mali-deda-mraz-trio",
+   "name": "Mali Deda Mraz Trio",
+   "category": "figure",
+   "price": 900,
+   "colors": [
+    {
+     "key": "white",
+     "label": "bela"
+    },
+    {
+     "key": "beige",
+     "label": "bež"
+    },
+    {
+     "key": "gray",
+     "label": "siva"
+    },
+    {
+     "key": "black",
+     "label": "crna"
+    },
+    {
+     "key": "pink",
+     "label": "roze"
+    },
+    {
+     "key": "green",
+     "label": "maslinasto zelena"
+    },
+    {
+     "key": "red",
+     "label": "crvena"
+    }
+   ],
+   "image": "images/products/mali-deda-mraz-trio/1.webp"
+  },
+  {
+   "slug": "skandinavski-patuljak",
+   "name": "Skandinavski Patuljak sa Visokom Kapom",
+   "category": "figure",
+   "price": 1200,
+   "colors": [
+    {
+     "key": "white",
+     "label": "bela"
+    },
+    {
+     "key": "beige",
+     "label": "bež"
+    },
+    {
+     "key": "gray",
+     "label": "siva"
+    },
+    {
+     "key": "black",
+     "label": "crna"
+    },
+    {
+     "key": "pink",
+     "label": "roze"
+    },
+    {
+     "key": "green",
+     "label": "maslinasto zelena"
+    },
+    {
+     "key": "red",
+     "label": "crvena"
+    }
+   ],
+   "image": "images/products/skandinavski-patuljak/1.webp"
+  },
+  {
+   "slug": "masna-ukras-za-jelku",
+   "name": "Mašna Ukras za Jelku",
+   "category": "dom",
+   "price": 600,
+   "colors": [
+    {
+     "key": "white",
+     "label": "bela"
+    },
+    {
+     "key": "beige",
+     "label": "bež"
+    },
+    {
+     "key": "gray",
+     "label": "siva"
+    },
+    {
+     "key": "black",
+     "label": "crna"
+    },
+    {
+     "key": "pink",
+     "label": "roze"
+    },
+    {
+     "key": "green",
+     "label": "maslinasto zelena"
+    },
+    {
+     "key": "red",
+     "label": "crvena"
+    }
+   ],
+   "image": "images/products/masna-ukras-za-jelku/1.webp"
+  },
+  {
+   "slug": "pletene-zvezde-ukras-za-jelku",
+   "name": "Pletene Zvezde Ukras za Jelku",
+   "category": "dom",
+   "price": 600,
+   "colors": [
+    {
+     "key": "white",
+     "label": "bela"
+    },
+    {
+     "key": "beige",
+     "label": "bež"
+    },
+    {
+     "key": "gray",
+     "label": "siva"
+    },
+    {
+     "key": "black",
+     "label": "crna"
+    },
+    {
+     "key": "pink",
+     "label": "roze"
+    },
+    {
+     "key": "green",
+     "label": "maslinasto zelena"
+    },
+    {
+     "key": "red",
+     "label": "crvena"
+    }
+   ],
+   "image": "images/products/pletene-zvezde-ukras-za-jelku/1.webp"
+  },
+  {
+   "slug": "spiralna-jelka",
+   "name": "Spiralna Novogodišnja Jelka",
+   "category": "figure",
+   "price": 1200,
+   "colors": [
+    {
+     "key": "white",
+     "label": "bela"
+    },
+    {
+     "key": "beige",
+     "label": "bež"
+    },
+    {
+     "key": "gray",
+     "label": "siva"
+    },
+    {
+     "key": "black",
+     "label": "crna"
+    },
+    {
+     "key": "pink",
+     "label": "roze"
+    },
+    {
+     "key": "green",
+     "label": "maslinasto zelena"
+    },
+    {
+     "key": "red",
+     "label": "crvena"
+    }
+   ],
+   "image": "images/products/spiralna-jelka/1.webp"
+  },
+  {
+   "slug": "kugla-sa-porukom",
+   "name": "Kugla koja se Otvara sa Porukom",
+   "category": "dom",
+   "price": 1200,
+   "colors": [
+    {
+     "key": "white",
+     "label": "bela"
+    },
+    {
+     "key": "beige",
+     "label": "bež"
+    },
+    {
+     "key": "gray",
+     "label": "siva"
+    },
+    {
+     "key": "black",
+     "label": "crna"
+    },
+    {
+     "key": "pink",
+     "label": "roze"
+    },
+    {
+     "key": "green",
+     "label": "maslinasto zelena"
+    },
+    {
+     "key": "red",
+     "label": "crvena"
+    }
+   ],
+   "image": "images/products/kugla-sa-porukom/1.webp"
+  },
+  {
+   "slug": "pletena-kugla-ukras-za-jelku",
+   "name": "Pletena Kugla Ukras za Jelku",
+   "category": "dom",
+   "price": 600,
+   "colors": [
+    {
+     "key": "white",
+     "label": "bela"
+    },
+    {
+     "key": "beige",
+     "label": "bež"
+    },
+    {
+     "key": "gray",
+     "label": "siva"
+    },
+    {
+     "key": "black",
+     "label": "crna"
+    },
+    {
+     "key": "pink",
+     "label": "roze"
+    },
+    {
+     "key": "green",
+     "label": "maslinasto zelena"
+    },
+    {
+     "key": "red",
+     "label": "crvena"
+    }
+   ],
+   "image": "images/products/pletena-kugla-ukras-za-jelku/1.webp"
+  },
+  {
+   "slug": "venac-od-masni",
+   "name": "Venac od Mašni za Vrata",
+   "category": "dom",
+   "price": 1200,
+   "colors": [
+    {
+     "key": "white",
+     "label": "bela"
+    },
+    {
+     "key": "beige",
+     "label": "bež"
+    },
+    {
+     "key": "gray",
+     "label": "siva"
+    },
+    {
+     "key": "black",
+     "label": "crna"
+    },
+    {
+     "key": "pink",
+     "label": "roze"
+    },
+    {
+     "key": "green",
+     "label": "maslinasto zelena"
+    },
+    {
+     "key": "red",
+     "label": "crvena"
+    }
+   ],
+   "image": "images/products/venac-od-masni/1.webp"
+  },
+  {
+   "slug": "jelka-od-rebrastih-kugli",
+   "name": "Jelka od Rebrastih Kugli",
+   "category": "figure",
+   "price": 1800,
+   "colors": [
+    {
+     "key": "white",
+     "label": "bela"
+    },
+    {
+     "key": "beige",
+     "label": "bež"
+    },
+    {
+     "key": "gray",
+     "label": "siva"
+    },
+    {
+     "key": "black",
+     "label": "crna"
+    },
+    {
+     "key": "pink",
+     "label": "roze"
+    },
+    {
+     "key": "green",
+     "label": "maslinasto zelena"
+    },
+    {
+     "key": "red",
+     "label": "crvena"
+    }
+   ],
+   "image": "images/products/jelka-od-rebrastih-kugli/1.webp"
+  },
+  {
+   "slug": "irvas-i-jelka-svecnjak",
+   "name": "Svećnjak Irvas i Jelka sa LED Svećicom",
+   "category": "svecnjaci",
+   "price": 1800,
+   "colors": [
+    {
+     "key": "white",
+     "label": "bela"
+    },
+    {
+     "key": "beige",
+     "label": "bež"
+    },
+    {
+     "key": "gray",
+     "label": "siva"
+    },
+    {
+     "key": "black",
+     "label": "crna"
+    },
+    {
+     "key": "pink",
+     "label": "roze"
+    },
+    {
+     "key": "green",
+     "label": "maslinasto zelena"
+    },
+    {
+     "key": "red",
+     "label": "crvena"
+    }
+   ],
+   "image": "images/products/irvas-i-jelka-svecnjak/1.webp"
+  },
+  {
+   "slug": "kucica-sisarka-ukras",
+   "name": "Šišarka Kućica Viseći Ukras sa LED Svećicom",
+   "category": "dom",
+   "price": 1800,
+   "colors": [
+    {
+     "key": "white",
+     "label": "bela"
+    },
+    {
+     "key": "beige",
+     "label": "bež"
+    },
+    {
+     "key": "gray",
+     "label": "siva"
+    },
+    {
+     "key": "black",
+     "label": "crna"
+    },
+    {
+     "key": "pink",
+     "label": "roze"
+    },
+    {
+     "key": "green",
+     "label": "maslinasto zelena"
+    },
+    {
+     "key": "red",
+     "label": "crvena"
+    }
+   ],
+   "image": "images/products/kucica-sisarka-ukras/1.webp"
   }
  ]
 }

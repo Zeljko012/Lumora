@@ -186,9 +186,9 @@ const gallery = p.images.map((im) => ({
             p.options && (
               <fieldset class="opts">
                 <legend>
-                  Izaberite: <b data-opt-name>{p.options[0].label}</b>
+                  {p.options.length > 1 ? "Izaberite" : "Cena važi za"}: <b data-opt-name>{p.options[0].label}</b>
                 </legend>
-                <div class="opts__grid">
+                <div class="opts__grid" hidden={p.options.length === 1}>
                   {p.options.map((o, i) => (
                     <label class="opt">
                       <input
@@ -454,6 +454,9 @@ const gallery = p.images.map((im) => ({
   .opts legend b {
     color: var(--ink);
     font-weight: 600;
+  }
+  .opts__grid[hidden] {
+    display: none;
   }
   .opts__grid {
     display: grid;

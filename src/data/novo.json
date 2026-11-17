@@ -2,6 +2,553 @@
   "_uputstvo": "NOVO U PONUDI. Svaki novi proizvod se dodaje na VRH ove liste (najnoviji prvi). Iskačući prozor (3 sekunde po ulasku na sajt, prikazuje najnoviji proizvod) i stranica /novo/ se ažuriraju sami. Za probu prozora dodaj ?novo=1 na adresu sajta. 'addedAt' je datum dodavanja. Slike idu u public/images/products/<slug>/1.webp (+ 1-lg.webp). Posle izmene pokreni: node scripts/sync-novo.mjs",
   "products": [
     {
+      "slug": "mali-deda-mraz-trio",
+      "name": "Mali Deda Mraz Trio",
+      "category": "figure",
+      "price": 900,
+      "compareAt": null,
+      "lead": "Set od tri mala ukrasna Deda Mraza sa vrećom poklona. Cena od 900 RSD važi za sva tri, a boju biraš za svakog posebno.",
+      "forWhom": "Poklon za Novu godinu i Božić, za dekoraciju police, komode i stola.",
+      "dimension": "",
+      "colors": [
+        "white",
+        "beige",
+        "gray",
+        "black",
+        "pink",
+        "green",
+        "red"
+      ],
+      "options": [
+        {
+          "id": "set-od-3",
+          "label": "Set od 3 Deda Mraza",
+          "price": 900,
+          "pieces": 3,
+          "pieceLabels": [
+            "prvog Deda Mraza",
+            "drugog Deda Mraza",
+            "trećeg Deda Mraza"
+          ],
+          "pieceNames": [
+            "prvi",
+            "drugi",
+            "treći"
+          ],
+          "cartName": "set od 3"
+        }
+      ],
+      "collection": "novogodisnja-ponuda",
+      "images": [
+        {
+          "src": "/images/products/mali-deda-mraz-trio/1.webp",
+          "alt": "Set od tri mala ukrasna Deda Mraza, 3D štampane novogodišnje figure, Lumora"
+        },
+        {
+          "src": "/images/products/mali-deda-mraz-trio/2.webp",
+          "alt": "Mali ukrasni Deda Mraz set na drvenom stolu uz novogodišnju jelku i lampice, Lumora"
+        }
+      ],
+      "seoTitle": "Set 3 Deda Mraz Figure – Novogodišnja Dekoracija | Lumora",
+      "seoDescription": "Mali ukrasni Deda Mraz, set od 3 figure: 3D štampano, boju biraš za svakog posebno, 7 boja. 900 RSD za sva tri · dostava po Srbiji.",
+      "featured": false,
+      "bestseller": false,
+      "sourceHandle": "mali-deda-mraz-trio",
+      "addedAt": "2026-11-17",
+      "showInNovo": false,
+      "copy": {
+        "title": "Set od 3 mala ukrasna Deda Mraza – novogodišnja dekoracija",
+        "body": [
+          "Mali ukrasni Deda Mraz u setu od tri figure: svaki ima pletenu kapu, dugu rebrastu bradu i vreću poklona u rukama. Cena od 900 RSD važi za sva tri Deda Mraza, a boju biraš za svakog posebno, pa ih možeš složiti u istom tonu ili u tri različita.",
+          "Ovo su mali ukrasi koji staju na policu, komodu, sto ili uz jelku, a rebrasta tekstura lepo hvata svetlost lampica. Dobar su novogodišnji poklon i dekoracija za praznike. Štampa se po porudžbini u boji koju izabereš, a pred praznike izrada traje 5–7 radnih dana, pa poruči na vreme."
+        ],
+        "faq": {
+          "q": "Da li se cena odnosi na jednog ili na sva tri Deda Mraza?",
+          "a": "Cena od 900 RSD važi za set od tri mala Deda Mraza. Boju biraš za svakog posebno, od 7 dostupnih boja."
+        }
+      }
+    },
+    {
+      "slug": "skandinavski-patuljak",
+      "name": "Skandinavski Patuljak sa Visokom Kapom",
+      "category": "figure",
+      "price": 1200,
+      "compareAt": null,
+      "lead": "Rebrasti skandinavski patuljak (gnome) sa visokom kapom i belom bradom: minimalistička novogodišnja figura za policu, komodu ili sto.",
+      "forWhom": "Poklon za Novu godinu i Božić, za ljubitelje skandinavskog, minimalističkog stila.",
+      "dimension": "",
+      "colors": [
+        "white",
+        "beige",
+        "gray",
+        "black",
+        "pink",
+        "green",
+        "red"
+      ],
+      "collection": "novogodisnja-ponuda",
+      "images": [
+        {
+          "src": "/images/products/skandinavski-patuljak/1.webp",
+          "alt": "Skandinavski patuljak sa visokom rebrastom kapom, 3D štampana novogodišnja figura, Lumora"
+        },
+        {
+          "src": "/images/products/skandinavski-patuljak/2.webp",
+          "alt": "Skandinavski patuljak na stolu uz novogodišnju jelku i lampice, Lumora"
+        }
+      ],
+      "seoTitle": "Skandinavski Patuljak sa Visokom Kapom – Figura | Lumora",
+      "seoDescription": "Skandinavski patuljak (gnome, tomte) sa visokom kapom: 3D štampana novogodišnja figura u 7 boja. 1.200 RSD · dostava po Srbiji.",
+      "featured": false,
+      "bestseller": false,
+      "sourceHandle": "skandinavski-patuljak",
+      "addedAt": "2026-11-17",
+      "showInNovo": false,
+      "copy": {
+        "title": "Skandinavski patuljak sa visokom kapom – novogodišnja figura",
+        "body": [
+          "Skandinavski patuljak (gnome, tomte) sa visokom rebrastom kapom i dugom belom bradom je minimalistička novogodišnja figura bez suvišnih detalja. Meke vertikalne linije lepo se slažu sa drvetom, lampicama i jelkom, a figura ostaje lepa i posle praznika, kao deo skandinavske dekoracije doma.",
+          "Dobar je poklon za Božić i Novu godinu. Štampa se po porudžbini u boji koju izabereš, a pred praznike izrada traje 5–7 radnih dana, pa poruči na vreme."
+        ],
+        "faq": {
+          "q": "Gde najbolje stoji skandinavski patuljak?",
+          "a": "Na komodi, polici, prozorskoj dasci ili stolu, uz lampice i grančice. Zbog visoke kape dobro se vidi i kao samostalna figura."
+        }
+      }
+    },
+    {
+      "slug": "masna-ukras-za-jelku",
+      "name": "Mašna Ukras za Jelku",
+      "category": "dom",
+      "price": 600,
+      "compareAt": null,
+      "lead": "Mekana 3D štampana mašna sa kanapom za kačenje: novogodišnji ukras za jelku, venac ili poklon.",
+      "forWhom": "Mali poklon za Novu godinu i Božić, za one koji vole nežne i romantične ukrase.",
+      "dimension": "",
+      "colors": [
+        "white",
+        "beige",
+        "gray",
+        "black",
+        "pink",
+        "green",
+        "red"
+      ],
+      "collection": "novogodisnja-ponuda",
+      "images": [
+        {
+          "src": "/images/products/masna-ukras-za-jelku/1.webp",
+          "alt": "Mašna ukras za jelku, 3D štampana novogodišnja dekoracija sa kanapom za kačenje, Lumora"
+        },
+        {
+          "src": "/images/products/masna-ukras-za-jelku/2.webp",
+          "alt": "Mašna ukras okačena na novogodišnjoj jelki uz lampice, Lumora"
+        }
+      ],
+      "seoTitle": "Mašna Ukras za Jelku – Novogodišnja Dekoracija | Lumora",
+      "seoDescription": "Mašna ukras za jelku: 3D štampana novogodišnja mašna sa kanapom za kačenje, 7 boja. Za jelku, venac i poklone. 600 RSD · dostava po Srbiji.",
+      "featured": false,
+      "bestseller": false,
+      "sourceHandle": "masna-ukras-za-jelku",
+      "addedAt": "2026-11-17",
+      "showInNovo": false,
+      "copy": {
+        "title": "Mašna ukras za jelku – novogodišnja dekoracija",
+        "body": [
+          "Mašna je jedan od najtraženijih novogodišnjih detalja, a ova je 3D štampana u mekim naborima i ima kanap za kačenje. Okači je na jelku, venac, kvaku ili prozor, a u boji koju izabereš uklopiće se u svaku dekoraciju, od klasične crvene do bež i roze tonova.",
+          "Mala je i lagana, pa je dobar sitan poklon i ukras koji može da se koristi svake godine. Štampa se po porudžbini u boji koju izabereš, a pred praznike izrada traje 5–7 radnih dana, pa poruči na vreme."
+        ],
+        "faq": {
+          "q": "Gde može da se okači mašna ukras?",
+          "a": "Na jelku, grane, venac, kvaku, prozor ili zavesu, jer ima kanap za kačenje. Može i da se okači na poklon kao poseban detalj."
+        }
+      }
+    },
+    {
+      "slug": "pletene-zvezde-ukras-za-jelku",
+      "name": "Pletene Zvezde Ukras za Jelku",
+      "category": "dom",
+      "price": 600,
+      "compareAt": null,
+      "lead": "Zvezda sa teksturom pletenja i trakom za kačenje: topao novogodišnji ukras za jelku, prozor ili poklon.",
+      "forWhom": "Mali poklon za Novu godinu i Božić, za skandinavsku i toplu dekoraciju.",
+      "dimension": "",
+      "colors": [
+        "white",
+        "beige",
+        "gray",
+        "black",
+        "pink",
+        "green",
+        "red"
+      ],
+      "collection": "novogodisnja-ponuda",
+      "images": [
+        {
+          "src": "/images/products/pletene-zvezde-ukras-za-jelku/1.webp",
+          "alt": "Pletene zvezde ukras za jelku, 3D štampane novogodišnje zvezde sa trakom za kačenje, Lumora"
+        },
+        {
+          "src": "/images/products/pletene-zvezde-ukras-za-jelku/2.webp",
+          "alt": "Pletene zvezde okačene na novogodišnjoj jelki uz lampice, Lumora"
+        }
+      ],
+      "seoTitle": "Pletene Zvezde Ukras za Jelku – Novogodišnje | Lumora",
+      "seoDescription": "Pletena zvezda ukras za jelku: 3D štampana, sa teksturom pletenja i trakom za kačenje, 7 boja. 600 RSD · dostava po Srbiji.",
+      "featured": false,
+      "bestseller": false,
+      "sourceHandle": "pletene-zvezde-ukras-za-jelku",
+      "addedAt": "2026-11-17",
+      "showInNovo": false,
+      "copy": {
+        "title": "Pletene zvezde ukras za jelku – novogodišnje",
+        "body": [
+          "Pletena zvezda ima teksturu ručnog pletenja i traku za kačenje, pa deluje toplo i domaće na jelki, grani ili prozoru. 3D štampana je u boji koju izabereš, a nekoliko zvezdi u različitim tonovima daje lep skandinavski efekat.",
+          "Za razliku od staklenih ukrasa ne puca, a mala je i lagana, pa je dobar sitan poklon za praznike. Štampa se po porudžbini u boji koju izabereš, a pred praznike izrada traje 5–7 radnih dana, pa poruči na vreme."
+        ],
+        "faq": {
+          "q": "Mogu li da naručim zvezde u različitim bojama?",
+          "a": "Da. Svaka zvezda se naručuje u jednoj boji, a za više boja dodaj više komada u korpu, svaki u željenoj boji."
+        }
+      }
+    },
+    {
+      "slug": "spiralna-jelka",
+      "name": "Spiralna Novogodišnja Jelka",
+      "category": "figure",
+      "price": 1200,
+      "compareAt": null,
+      "lead": "Rebrasta spiralna jelka sa zvezdom na vrhu: moderna novogodišnja dekoracija za sto, komodu ili policu.",
+      "forWhom": "Poklon za Novu godinu i Božić, za one koji vole moderan, skulpturalni izgled.",
+      "dimension": "",
+      "colors": [
+        "white",
+        "beige",
+        "gray",
+        "black",
+        "pink",
+        "green",
+        "red"
+      ],
+      "collection": "novogodisnja-ponuda",
+      "images": [
+        {
+          "src": "/images/products/spiralna-jelka/1.webp",
+          "alt": "Spiralna dekorativna novogodišnja jelka sa zvezdom, 3D štampana, Lumora"
+        },
+        {
+          "src": "/images/products/spiralna-jelka/2.webp",
+          "alt": "Spiralna novogodišnja jelka na stolu uz veliku jelku, lampice i medenjake, Lumora"
+        }
+      ],
+      "seoTitle": "Spiralna Novogodišnja Jelka – Dekoracija za Sto | Lumora",
+      "seoDescription": "Spiralna dekorativna novogodišnja jelka: 3D štampana, rebrasta, sa zvezdom na vrhu, 7 boja. Za sto i komodu. 1.200 RSD · dostava po Srbiji.",
+      "featured": false,
+      "bestseller": false,
+      "sourceHandle": "spiralna-jelka",
+      "addedAt": "2026-11-17",
+      "showInNovo": false,
+      "copy": {
+        "title": "Spiralna novogodišnja jelka – dekoracija za sto",
+        "body": [
+          "Spiralna jelka je mala dekorativna jelka za sto, komodu ili policu: rebrasti slojevi se uvijaju u spiralu do zvezde na vrhu, pa figura izgleda moderno i skulpturalno. Najlepše deluje u boji koju izabereš da se slaže sa ostatkom prostora, a lepo izgleda i više njih u različitim tonovima.",
+          "Ne zamenjuje pravu jelku nego je dopunjuje, pa je dobar izbor za male prostore, kancelarije i kao poklon za praznike. Štampa se po porudžbini u boji koju izabereš, a pred praznike izrada traje 5–7 radnih dana, pa poruči na vreme."
+        ],
+        "faq": {
+          "q": "Da li ova jelka zamenjuje pravu novogodišnju jelku?",
+          "a": "Ne, to je mala dekorativna jelka za sto, komodu ili policu. Dopunjuje pravu jelku, a dobro je rešenje za male prostore i kancelarije."
+        }
+      }
+    },
+    {
+      "slug": "kugla-sa-porukom",
+      "name": "Kugla koja se Otvara sa Porukom",
+      "category": "dom",
+      "price": 1200,
+      "compareAt": null,
+      "lead": "Rebrasta novogodišnja kugla koja se otvara: unutra stavi porukicu za voljenu osobu, pa je okači na jelku. Ukras i poklon u jednom.",
+      "forWhom": "Poklon za voljenu osobu za Novu godinu i Božić, za one koji vole poklone sa porukom.",
+      "dimension": "",
+      "colors": [
+        "white",
+        "beige",
+        "gray",
+        "black",
+        "pink",
+        "green",
+        "red"
+      ],
+      "collection": "novogodisnja-ponuda",
+      "images": [
+        {
+          "src": "/images/products/kugla-sa-porukom/1.webp",
+          "alt": "Novogodišnja kugla koja se otvara, rebrasti ukras za jelku za poruku, 3D štampana, Lumora"
+        },
+        {
+          "src": "/images/products/kugla-sa-porukom/2.webp",
+          "alt": "Rebraste novogodišnje kugle sa porukom kao ukras za jelku, Lumora"
+        }
+      ],
+      "seoTitle": "Kugla Koja se Otvara sa Porukom – Ukras za Jelku | Lumora",
+      "seoDescription": "Novogodišnja kugla koja se otvara: unutra stavi porukicu za voljenu osobu. 3D štampana, 7 boja, poklon i ukras za jelku. 1.200 RSD.",
+      "featured": false,
+      "bestseller": false,
+      "sourceHandle": "kugla-sa-porukom",
+      "addedAt": "2026-11-17",
+      "showInNovo": false,
+      "copy": {
+        "title": "Kugla koja se otvara sa porukom – ukras za jelku i poklon",
+        "body": [
+          "Ovo nije samo običan ukras: kugla se otvara, pa unutra možeš da staviš porukicu za voljenu osobu kojoj je pokloniš, mali papirić sa željom ili posvetom. Zato je to ukras sa značenjem, poklon koji se čuva i svake godine ponovo otvara kada se kiti jelka.",
+          "Rebrasta površina i mekani oblik lepo izgledaju na jelki, a u boji koju izabereš uklapa se u svaku dekoraciju. Kao poklon za partnera, roditelje ili prijatelje ima dodatnu vrednost zbog poruke koju ti sam napišeš. Štampa se po porudžbini u boji koju izabereš, a pred praznike izrada traje 5–7 radnih dana, pa poruči na vreme."
+        ],
+        "faq": {
+          "q": "Šta može da se stavi unutra kugle?",
+          "a": "Mali presavijeni papirić sa porukom, željom ili posvetom. Zato je kugla poseban poklon za voljenu osobu, a ne samo ukras za jelku."
+        }
+      }
+    },
+    {
+      "slug": "pletena-kugla-ukras-za-jelku",
+      "name": "Pletena Kugla Ukras za Jelku",
+      "category": "dom",
+      "price": 600,
+      "compareAt": null,
+      "lead": "Kugla sa teksturom pletenog džempera (cable knit) i kanapom za kačenje: topao ukras za jelku.",
+      "forWhom": "Mali poklon za Novu godinu i Božić, za one koji vole tople, skandinavske ukrase.",
+      "dimension": "",
+      "colors": [
+        "white",
+        "beige",
+        "gray",
+        "black",
+        "pink",
+        "green",
+        "red"
+      ],
+      "collection": "novogodisnja-ponuda",
+      "images": [
+        {
+          "src": "/images/products/pletena-kugla-ukras-za-jelku/1.webp",
+          "alt": "Pletena kugla cable knit ukras za jelku, 3D štampana novogodišnja kugla, Lumora"
+        },
+        {
+          "src": "/images/products/pletena-kugla-ukras-za-jelku/2.webp",
+          "alt": "Pletene kugle okačene na novogodišnjoj jelki, Lumora"
+        }
+      ],
+      "seoTitle": "Pletena Kugla Cable Knit – Ukras za Jelku | Lumora",
+      "seoDescription": "Pletena kugla (cable knit) ukras za jelku: 3D štampana, sa kanapom za kačenje, 7 boja. 600 RSD · dostava po Srbiji.",
+      "featured": false,
+      "bestseller": false,
+      "sourceHandle": "pletena-kugla-ukras-za-jelku",
+      "addedAt": "2026-11-17",
+      "showInNovo": false,
+      "copy": {
+        "title": "Pletena kugla (cable knit) – ukras za jelku",
+        "body": [
+          "Pletena kugla ima reljefnu teksturu pletenog džempera (cable knit) i kanap za kačenje, pa izgleda toplo i domaće na jelki. Za razliku od staklenih kugli, 3D štampana kugla se lakše nosi i ne puca, a u boji koju izabereš uklapa se u svaku novogodišnju temu.",
+          "Nekoliko kugli u različitim tonovima daje lep skandinavski efekat, a kao sitan poklon dobra je za kolege, prijatelje i komšije. Štampa se po porudžbini u boji koju izabereš, a pred praznike izrada traje 5–7 radnih dana, pa poruči na vreme."
+        ],
+        "faq": {
+          "q": "Da li pletena kugla može da se razbije?",
+          "a": "Kugla je 3D štampana od plastike (PLA), pa ne puca kao staklena, ali ipak je ukras i treba je čuvati od jakog pritiska i toplote."
+        }
+      }
+    },
+    {
+      "slug": "venac-od-masni",
+      "name": "Venac od Mašni za Vrata",
+      "category": "dom",
+      "price": 1200,
+      "compareAt": null,
+      "lead": "Venac sačinjen od mašni: novogodišnja dekoracija za vrata, zid ili prozor, sa kanapom za kačenje.",
+      "forWhom": "Poklon za Novu godinu i Božić, za one koji vole nežne i romantične dekoracije.",
+      "dimension": "",
+      "colors": [
+        "white",
+        "beige",
+        "gray",
+        "black",
+        "pink",
+        "green",
+        "red"
+      ],
+      "collection": "novogodisnja-ponuda",
+      "images": [
+        {
+          "src": "/images/products/venac-od-masni/1.webp",
+          "alt": "Venac od mašni, 3D štampana novogodišnja dekoracija za vrata sa kanapom za kačenje, Lumora"
+        },
+        {
+          "src": "/images/products/venac-od-masni/2.webp",
+          "alt": "Venac od mašni okačen na starim drvenim vratima uz grančice jelke, Lumora"
+        }
+      ],
+      "seoTitle": "Venac od Mašni za Vrata – Novogodišnja Dekoracija | Lumora",
+      "seoDescription": "Venac od mašni za vrata: 3D štampan novogodišnji (božićni) venac u 7 boja, sa kanapom za kačenje. 1.200 RSD · dostava po Srbiji.",
+      "featured": false,
+      "bestseller": false,
+      "sourceHandle": "venac-od-masni",
+      "addedAt": "2026-11-17",
+      "showInNovo": false,
+      "copy": {
+        "title": "Venac od mašni za vrata – novogodišnja dekoracija",
+        "body": [
+          "Umesto klasičnog venca od grana, ovaj novogodišnji venac je sastavljen od mekih mašni i 3D štampan u boji koju izabereš. Ima kanap za kačenje, pa ga možeš da okačiš na vrata, zid, prozor ili ogledalo i da dobiješ praznični detalj bez ikakvog slaganja.",
+          "Lak je i ne sipa iglice, pa može da se čuva i koristi svake godine. Dobar je poklon za Božić i Novu godinu. Štampa se po porudžbini u boji koju izabereš, a pred praznike izrada traje 5–7 radnih dana, pa poruči na vreme."
+        ],
+        "faq": {
+          "q": "Gde da okačim venac od mašni?",
+          "a": "Na vrata, zid, prozor ili ogledalo, preko kanapa za kačenje. Pošto je od plastike (PLA), drži ga u zatvorenom prostoru, van kiše i jakog sunca."
+        }
+      }
+    },
+    {
+      "slug": "jelka-od-rebrastih-kugli",
+      "name": "Jelka od Rebrastih Kugli",
+      "category": "figure",
+      "price": 1800,
+      "compareAt": null,
+      "lead": "Dekorativna jelka složena od rebrastih kugli: skulpturalna novogodišnja dekoracija za sto, komodu ili policu.",
+      "forWhom": "Poklon za Novu godinu i Božić, za one koji vole moderne skulpturalne dekoracije.",
+      "dimension": "",
+      "colors": [
+        "white",
+        "beige",
+        "gray",
+        "black",
+        "pink",
+        "green",
+        "red"
+      ],
+      "collection": "novogodisnja-ponuda",
+      "images": [
+        {
+          "src": "/images/products/jelka-od-rebrastih-kugli/1.webp",
+          "alt": "Jelka od rebrastih kugli, 3D štampana dekorativna novogodišnja jelka, Lumora"
+        },
+        {
+          "src": "/images/products/jelka-od-rebrastih-kugli/2.webp",
+          "alt": "Jelka od rebrastih kugli na stolu uz veliku jelku, lampice i medenjake, Lumora"
+        }
+      ],
+      "seoTitle": "Jelka od Rebrastih Kugli – Dekoracija za Sto | Lumora",
+      "seoDescription": "Jelka od rebrastih kugli: 3D štampana dekorativna novogodišnja jelka u 7 boja za sto i komodu. 1.800 RSD · dostava po Srbiji.",
+      "featured": false,
+      "bestseller": false,
+      "sourceHandle": "jelka-od-rebrastih-kugli",
+      "addedAt": "2026-11-17",
+      "showInNovo": false,
+      "copy": {
+        "title": "Jelka od rebrastih kugli – novogodišnja dekoracija za sto",
+        "body": [
+          "Jelka od rebrastih kugli je složena od kugli koje se sužavaju ka vrhu, pa dobijaš savremenu, skulpturalnu verziju novogodišnje jelke. Rebrasta površina lepo hvata svetlost, a u boji koju izabereš figura se slaže sa ostatkom dekoracije.",
+          "Stavi je na sto, komodu ili policu, sama ili uz lampice, kao pravi centar praznične dekoracije. Dobar je poklon za Novu godinu i Božić. Štampa se po porudžbini u boji koju izabereš, a pred praznike izrada traje 5–7 radnih dana, pa poruči na vreme."
+        ],
+        "faq": {
+          "q": "Gde najbolje stoji jelka od rebrastih kugli?",
+          "a": "Na stolu, komodi ili polici, sama ili uz lampice i grančice. Zbog skulpturalnog oblika dobro deluje i bez dodatnih ukrasa."
+        }
+      }
+    },
+    {
+      "slug": "irvas-i-jelka-svecnjak",
+      "name": "Svećnjak Irvas i Jelka sa LED Svećicom",
+      "category": "svecnjaci",
+      "price": 1800,
+      "compareAt": null,
+      "lead": "Svećnjak sa irvasom i jelkom na okruglom postolju. LED svećica je u kompletu, pa je odmah spreman za praznični sto.",
+      "forWhom": "Poklon za Novu godinu i Božić, za one koji vole simpatične i tople dekoracije.",
+      "dimension": "",
+      "colors": [
+        "white",
+        "beige",
+        "gray",
+        "black",
+        "pink",
+        "green",
+        "red"
+      ],
+      "collection": "novogodisnja-ponuda",
+      "images": [
+        {
+          "src": "/images/products/irvas-i-jelka-svecnjak/1.webp",
+          "alt": "Svećnjak sa irvasom i jelkom i LED svećicom, 3D štampana novogodišnja dekoracija, Lumora"
+        },
+        {
+          "src": "/images/products/irvas-i-jelka-svecnjak/2.webp",
+          "alt": "Svećnjak irvas i jelka sa LED svećicom na stolu uz novogodišnju jelku, Lumora"
+        }
+      ],
+      "seoTitle": "Svećnjak Irvas i Jelka sa LED Svećicom | Lumora",
+      "seoDescription": "Svećnjak sa irvasom i jelkom, LED svećica u kompletu: 3D štampana novogodišnja dekoracija u 7 boja. 1.800 RSD · dostava po Srbiji.",
+      "featured": false,
+      "bestseller": false,
+      "sourceHandle": "irvas-i-jelka-svecnjak",
+      "addedAt": "2026-11-17",
+      "showInNovo": false,
+      "copy": {
+        "title": "Svećnjak irvas i jelka sa LED svećicom",
+        "body": [
+          "Nasmejani irvas sa šalom i jelka sa zvezdom stoje na okruglom postolju, a u sredini je svećnjak za LED svećicu, koja je u kompletu. Gotova je praznična dekoracija za komodu, sto ili policu, bez ikakvog slaganja.",
+          "Svećnjaci su namenjeni isključivo LED svećicama i ne smeju se koristiti sa otvorenim plamenom. Meko LED svetlo daje toplu atmosferu uz lampice i jelku, a kao poklon za Božić i Novu godinu ostaje u domu cele zime. Štampa se po porudžbini u boji koju izabereš, a pred praznike izrada traje 5–7 radnih dana, pa poruči na vreme."
+        ],
+        "faq": {
+          "q": "Može li da se koristi prava svećica?",
+          "a": "Ne. Svećnjak je namenjen isključivo LED svećici (jedna je u kompletu), jer je od plastike (PLA) i ne sme da se koristi sa otvorenim plamenom."
+        }
+      }
+    },
+    {
+      "slug": "kucica-sisarka-ukras",
+      "name": "Šišarka Kućica Viseći Ukras sa LED Svećicom",
+      "category": "dom",
+      "price": 1800,
+      "compareAt": null,
+      "lead": "Kućica u obliku šišarke sa osvetljenim prozorčetom i kanapom za kačenje. LED svećica je u kompletu.",
+      "forWhom": "Poklon za Novu godinu i Božić, za ljubitelje bajkovitih, toplih dekoracija.",
+      "dimension": "",
+      "colors": [
+        "white",
+        "beige",
+        "gray",
+        "black",
+        "pink",
+        "green",
+        "red"
+      ],
+      "collection": "novogodisnja-ponuda",
+      "images": [
+        {
+          "src": "/images/products/kucica-sisarka-ukras/1.webp",
+          "alt": "Šišarka kućica viseći ukras sa LED svećicom, 3D štampana novogodišnja dekoracija, Lumora"
+        },
+        {
+          "src": "/images/products/kucica-sisarka-ukras/2.webp",
+          "alt": "Šišarka kućice viseće na grani jelke sa snegom, sa svetlom u prozoru, Lumora"
+        }
+      ],
+      "seoTitle": "Šišarka Kućica Viseći Ukras sa LED Svećicom | Lumora",
+      "seoDescription": "Šišarka kućica, viseći ukras sa LED svećicom u kompletu: 3D štampana novogodišnja dekoracija u 7 boja. 1.800 RSD · dostava po Srbiji.",
+      "featured": false,
+      "bestseller": false,
+      "sourceHandle": "kucica-sisarka-ukras",
+      "addedAt": "2026-11-17",
+      "showInNovo": false,
+      "copy": {
+        "title": "Šišarka kućica – viseći ukras sa LED svećicom",
+        "body": [
+          "Šišarka kućica ima reljefne ljuspice, mala vrata, dimnjak i prozorče koje svetli uz LED svećicu u kompletu. Okači je na granu jelke, prozor ili policu pomoću kanapa i dobićeš bajkoviti ukras koji u tami svetli toplo.",
+          "Svećnjaci su namenjeni isključivo LED svećicama i ne smeju se koristiti sa otvorenim plamenom. Zbog toplog svetla i detalja je poklon sa dodatnom vrednošću za Božić i Novu godinu. Štampa se po porudžbini u boji koju izabereš, a pred praznike izrada traje 5–7 radnih dana, pa poruči na vreme."
+        ],
+        "faq": {
+          "q": "Da li uz kućicu dolazi LED svećica?",
+          "a": "Da, LED svećica je u kompletu. Kućica je namenjena isključivo LED svetlu i ne sme da se koristi sa otvorenim plamenom, jer je od plastike (PLA)."
+        }
+      }
+    },
+    {
       "slug": "bozicni-patuljak-sa-soljom",
       "name": "Božićni Patuljak sa Šoljom",
       "category": "figure",
@@ -351,7 +898,15 @@
       "lead": "Dve figure priljubljene jedna uz drugu u jednoj mekoj formi sa otvorom u sredini — tih simbol bliskosti i zajedništva.",
       "forWhom": "Poklon za par, godišnjicu, venčanje ili Dan zaljubljenih.",
       "dimension": "Visina: 18 cm",
-      "colors": ["white", "beige", "gray", "black", "pink", "green", "red"],
+      "colors": [
+        "white",
+        "beige",
+        "gray",
+        "black",
+        "pink",
+        "green",
+        "red"
+      ],
       "images": [
         {
           "src": "/images/products/eternal-duo-figura/1.webp",
