@@ -1,5 +1,5 @@
 {
- "version": 108749045,
+ "version": 31202777,
  "products": [
   {
    "slug": "arch-vaza",
@@ -1850,6 +1850,117 @@
     }
    ],
    "image": "images/products/kucica-sisarka-ukras/1.webp"
+  },
+  {
+   "slug": "rebrasti-irvas-figura",
+   "name": "Rebrasti Irvas Figura",
+   "category": "figure",
+   "price": 1200,
+   "colors": [
+    {
+     "key": "white",
+     "label": "bela"
+    },
+    {
+     "key": "beige",
+     "label": "bež"
+    },
+    {
+     "key": "gray",
+     "label": "siva"
+    },
+    {
+     "key": "black",
+     "label": "crna"
+    },
+    {
+     "key": "pink",
+     "label": "roze"
+    },
+    {
+     "key": "green",
+     "label": "maslinasto zelena"
+    },
+    {
+     "key": "red",
+     "label": "crvena"
+    }
+   ],
+   "image": "images/products/rebrasti-irvas-figura/1.webp"
+  },
+  {
+   "slug": "irvas-pletena-tekstura",
+   "name": "Irvas sa Pletenom Teksturom",
+   "category": "figure",
+   "price": 1200,
+   "colors": [
+    {
+     "key": "white",
+     "label": "bela"
+    },
+    {
+     "key": "beige",
+     "label": "bež"
+    },
+    {
+     "key": "gray",
+     "label": "siva"
+    },
+    {
+     "key": "black",
+     "label": "crna"
+    },
+    {
+     "key": "pink",
+     "label": "roze"
+    },
+    {
+     "key": "green",
+     "label": "maslinasto zelena"
+    },
+    {
+     "key": "red",
+     "label": "crvena"
+    }
+   ],
+   "image": "images/products/irvas-pletena-tekstura/1.webp"
+  },
+  {
+   "slug": "uvijena-novogodisnja-jelka",
+   "name": "Uvijena Novogodišnja Jelka",
+   "category": "figure",
+   "price": 1800,
+   "colors": [
+    {
+     "key": "white",
+     "label": "bela"
+    },
+    {
+     "key": "beige",
+     "label": "bež"
+    },
+    {
+     "key": "gray",
+     "label": "siva"
+    },
+    {
+     "key": "black",
+     "label": "crna"
+    },
+    {
+     "key": "pink",
+     "label": "roze"
+    },
+    {
+     "key": "green",
+     "label": "maslinasto zelena"
+    },
+    {
+     "key": "red",
+     "label": "crvena"
+    }
+   ],
+   "image": "images/products/uvijena-novogodisnja-jelka/1.webp"
   }
  ]
 }
