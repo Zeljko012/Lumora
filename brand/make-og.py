@@ -19,7 +19,7 @@ logo = logo.resize((lw, lh), Image.LANCZOS)
 mask = Image.new("L", logo.size, 0)
 ImageDraw.Draw(mask).rectangle([36, 36, logo.width - 36, logo.height - 36], fill=255)
 mask = mask.filter(ImageFilter.GaussianBlur(24))
-canvas.paste(logo, ((W - lw) // 2, 30), mask)
+canvas.paste(logo, ((W - lw) // 2, 20), mask)
 
 # slogan ispod loga, zlatnom bojom iz logoa
 gold = (214, 170, 62)
@@ -27,13 +27,14 @@ d = ImageDraw.Draw(canvas)
 font = None
 for f in (r"C:\Windows\Fonts\segoeui.ttf", r"C:\Windows\Fonts\arial.ttf"):
     try:
-        font = ImageFont.truetype(f, 34)
+        font = ImageFont.truetype(f, 36)
         break
     except OSError:
         pass
-text = "Skulpturalne 3D dekoracije, izrađene u Srbiji"
-tw = d.textlength(text, font=font)
-d.text(((W - tw) / 2, 505), text, font=font, fill=gold)
+# Instagram i drugi čet prikazuju sredinu slike (skoro kvadrat), pa sve mora da stane u sredinu: slogan u dva reda
+for i, line in enumerate(("Skulpturalne 3D dekoracije,", "izrađene u Srbiji")):
+    tw = d.textlength(line, font=font)
+    d.text(((W - tw) / 2, 478 + i * 46), line, font=font, fill=gold)
 
 out = root / "public" / "og-default.jpg"
 canvas.save(out, "JPEG", quality=90, optimize=True)
