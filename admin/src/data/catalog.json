@@ -1,5 +1,5 @@
 {
- "version": 31202777,
+ "version": 88213183,
  "products": [
   {
    "slug": "arch-vaza",
@@ -1294,7 +1294,21 @@
      "label": "crvena"
     }
    ],
-   "image": "images/products/kucni-cuvar-maca/1.webp"
+   "image": "images/products/kucni-cuvar-maca/1.webp",
+   "options": [
+    {
+     "id": "pojedinacno",
+     "label": "Pojedinačno",
+     "price": 1800,
+     "pieces": 1
+    },
+    {
+     "id": "par",
+     "label": "Par",
+     "price": 2400,
+     "pieces": 2
+    }
+   ]
   },
   {
    "slug": "bozicni-patuljak-sa-soljom",
@@ -1405,7 +1419,54 @@
      "label": "crvena"
     }
    ],
-   "image": "images/products/bozicni-patuljci-trio/1.webp"
+   "image": "images/products/bozicni-patuljci-trio/1.webp",
+   "options": [
+    {
+     "id": "najveci",
+     "label": "Najveći",
+     "price": 1200,
+     "pieces": 1,
+     "pieceLabels": [
+      "najvećeg patuljka"
+     ],
+     "pieceNames": [
+      "najveći"
+     ],
+     "cartName": "najveći"
+    },
+    {
+     "id": "veliki-srednji",
+     "label": "Veliki + srednji",
+     "price": 1800,
+     "pieces": 2,
+     "pieceLabels": [
+      "velikog patuljka",
+      "srednjeg patuljka"
+     ],
+     "pieceNames": [
+      "veliki",
+      "srednji"
+     ],
+     "cartName": "veliki + srednji"
+    },
+    {
+     "id": "sva-tri",
+     "label": "Sva tri",
+     "price": 2000,
+     "pieces": 3,
+     "pieceLabels": [
+      "najvećeg patuljka",
+      "velikog patuljka",
+      "srednjeg patuljka"
+     ],
+     "pieceNames": [
+      "najveći",
+      "veliki",
+      "srednji"
+     ],
+     "cartName": "sva tri"
+    }
+   ]
   },
   {
    "slug": "merry-christmas-natpis-medenjaci",
@@ -1479,7 +1540,26 @@
      "label": "crvena"
     }
    ],
-   "image": "images/products/mali-deda-mraz-trio/1.webp"
+   "image": "images/products/mali-deda-mraz-trio/1.webp",
+   "options": [
+    {
+     "id": "set-od-3",
+     "label": "Set od 3 Deda Mraza",
+     "price": 900,
+     "pieces": 3,
+     "pieceLabels": [
+      "prvog Deda Mraza",
+      "drugog Deda Mraza",
+      "trećeg Deda Mraza"
+     ],
+     "pieceNames": [
+      "prvi",
+      "drugi",
+      "treći"
+     ],
+     "cartName": "set od 3"
+    }
+   ]
   },
   {
    "slug": "skandinavski-patuljak",

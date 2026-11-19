@@ -348,7 +348,7 @@ export default function OrderFormPage() {
           onClose={() => setPicker(false)}
           onPick={(item) => {
             // isti proizvod iste boje/veličine → samo povećaj količinu
-            const same = order.items.find((i) => i.variantId === item.variantId)
+            const same = order.items.find((i) => i.title === item.title && i.color === item.color && i.size === item.size && i.price === item.price && i.variantId === item.variantId)
             set({ items: same ? order.items.map((i) => (i === same ? { ...i, qty: i.qty + item.qty } : i)) : [...order.items, item] })
             setErrors((e) => ({ ...e, items: false }))
             setPicker(false)

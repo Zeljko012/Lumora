@@ -66,6 +66,17 @@ export interface Variant {
   imageUrl: string
 }
 
+/** opcija sa sajta sa svojom cenom (npr. pojedinačno / par); komadi = koliko figura ulazi u opciju */
+export interface ProductOption {
+  id: string
+  label: string
+  price: number
+  pieces: number
+  pieceLabels?: string[]
+  pieceNames?: string[]
+  cartName?: string
+}
+
 export interface Product {
   id: string
   handle: string
@@ -76,6 +87,8 @@ export interface Product {
   source: 'shopify' | 'rucno' | 'sajt'
   /** kategorija sa sajta: vaze | figure | svecnjaci | dom */
   category?: string
+  /** opcije sa različitom cenom (pojedinačno / par / set); bez njih proizvod ima cenu varijante */
+  options?: ProductOption[]
   /** trošak izrade jednog komada (materijal, struja…) — za procenu marže; 0/prazno = nepoznato */
   cost?: number
   /** prag za upozorenje o zalihi samo za ovaj proizvod; null = koristi globalni */

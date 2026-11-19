@@ -23,6 +23,8 @@ for (const p of novo) {
     colors: p.colors.map((k) => ({ key: k, label: COLOR[k] ?? k })),
     image: p.images[0] ? p.images[0].src.replace(/^\//, "") : "",
   };
+  // opcije sa različitom cenom (pojedinačno / par / set): da ih aplikacija nudi pri ručnom unosu porudžbine
+  if (p.options?.length) entry.options = p.options;
   const i = cat.products.findIndex((x) => x.slug === p.slug);
   if (i >= 0) cat.products[i] = entry;
   else cat.products.push(entry);

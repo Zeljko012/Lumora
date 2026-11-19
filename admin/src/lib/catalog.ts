@@ -1,6 +1,6 @@
 import catalogFile from '../data/catalog.json'
 import { db, getSettings, saveSettings } from '../db'
-import type { Product, Variant } from '../types'
+import type { Product, ProductOption, Variant } from '../types'
 
 interface CatalogProduct {
   slug: string
@@ -9,6 +9,7 @@ interface CatalogProduct {
   price: number
   colors: { key: string; label: string }[]
   image: string
+  options?: ProductOption[]
 }
 interface CatalogFile {
   version: number
@@ -71,6 +72,7 @@ export async function syncCatalog(force = false): Promise<SyncResult> {
         active: true,
         source: 'sajt',
         category: c.category,
+        options: c.options,
         lowStock: null,
         variants: c.colors.map((col) => ({
           id: `site:${c.slug}:${col.key}`,
@@ -95,10 +97,11 @@ export async function syncCatalog(force = false): Promise<SyncResult> {
         variants.push({ id: `site:${c.slug}:${col.key}`, sku: `${c.slug}-${col.key}`, optionKey: col.key, color: col.label, size: '', price: c.price, stock: 0, imageUrl: img })
       }
     }
-    const next: Product = { ...cur, title: c.name, category: c.category, imageUrl: img || cur.imageUrl, images: img ? [img] : cur.images, active: true, variants }
+    const next: Product = { ...cur, title: c.name, category: c.category, options: c.options, imageUrl: img || cur.imageUrl, images: img ? [img] : cur.images, active: true, variants }
     const changed =
       cur.title !== next.title ||
       cur.category !== next.category ||
+      JSON.stringify(cur.options ?? null) !== JSON.stringify(next.options ?? null) ||
       cur.imageUrl !== next.imageUrl ||
       !cur.active ||
       cur.variants.length !== variants.length ||
