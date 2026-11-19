@@ -1061,7 +1061,15 @@
           "id": "par",
           "label": "Par",
           "price": 2400,
-          "pieces": 2
+          "pieces": 2,
+          "pieceLabels": [
+            "veće figure",
+            "manje figure"
+          ],
+          "pieceNames": [
+            "veća",
+            "manja"
+          ]
         }
       ],
       "images": [
